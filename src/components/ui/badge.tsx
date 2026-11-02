@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/lib/utils';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?:
@@ -35,7 +34,7 @@ export const Badge: React.FC<BadgeProps> = ({
   };
 
   return (
-    <span className={twMerge(clsx(baseStyles, variants[variant], className))} {...props}>
+    <span className={cn(baseStyles, variants[variant], className)} {...props}>
       {children}
     </span>
   );

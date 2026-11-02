@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/lib/utils';
 
 export interface EmptyStateProps {
   icon?: React.ReactNode;
@@ -18,8 +17,9 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   className,
 }) => (
   <div
-    className={twMerge(
-      clsx('flex flex-col items-center justify-center p-8 text-center rounded-2xl border border-dashed border-slate-300 bg-slate-50/50', className)
+    className={cn(
+      'flex flex-col items-center justify-center p-8 text-center rounded-2xl border border-dashed border-slate-300 bg-slate-50/50',
+      className
     )}
   >
     {icon && <div className="mb-4 text-slate-400">{icon}</div>}
@@ -31,7 +31,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
 
 export const Skeleton: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
   <div
-    className={twMerge(clsx('animate-pulse rounded-md bg-slate-200/80', className))}
+    className={cn('animate-pulse rounded-md bg-slate-200/80', className)}
     {...props}
   />
 );

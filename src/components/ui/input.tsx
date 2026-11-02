@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/lib/utils';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -25,16 +24,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? `${inputId}-error` : helperText ? `${inputId}-helper` : undefined}
-          className={twMerge(
-            clsx(
-              'w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 transition-colors',
-              'placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-offset-1',
-              error
-                ? 'border-red-300 focus:border-red-500 focus:ring-red-400'
-                : 'border-slate-300 focus:border-[#00BF62] focus:ring-[#00BF62]',
-              'disabled:bg-slate-50 disabled:text-slate-500 disabled:cursor-not-allowed',
-              className
-            )
+          className={cn(
+            'w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 transition-colors',
+            'placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-offset-1',
+            error
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-400'
+              : 'border-slate-300 focus:border-[#00BF62] focus:ring-[#00BF62]',
+            'disabled:bg-slate-50 disabled:text-slate-500 disabled:cursor-not-allowed',
+            className
           )}
           {...props}
         />

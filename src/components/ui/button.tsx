@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/lib/utils';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'teal' | 'outline' | 'ghost' | 'destructive' | 'whatsapp';
@@ -40,7 +39,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={disabled || isLoading}
-        className={twMerge(clsx(baseStyles, variants[variant], sizes[size], className))}
+        className={cn(baseStyles, variants[variant], sizes[size], className)}
         {...props}
       >
         {isLoading && (
