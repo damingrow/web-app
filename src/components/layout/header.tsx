@@ -9,11 +9,11 @@ import { Button } from '@/components/ui/button';
 import { ShoppingBag, Menu, X, Phone, ShieldCheck } from 'lucide-react';
 
 const NAV_LINKS = [
-  { name: 'Day-Old Chicks', href: '/chicks' },
-  { name: 'Veterinary Drugs', href: '/drugs' },
-  { name: 'Livestock Vaccines', href: '/vaccines' },
+  { name: 'Chicks', href: '/chicks' },
+  { name: 'Drugs', href: '/drugs' },
+  { name: 'Vaccines', href: '/vaccines' },
   { name: 'Farm Equipment', href: '/accessories' },
-  { name: 'Knowledge Hub', href: '/knowledge' },
+  { name: 'Insights', href: '/knowledge' },
   { name: 'Calculators', href: '/calculators/brooder' },
   { name: 'Consultations', href: '/services' },
 ];
