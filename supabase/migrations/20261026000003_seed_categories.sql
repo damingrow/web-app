@@ -2,8 +2,12 @@
 -- D-AMINGROW PLATFORM — MIGRATION 20261026000003: SEED CORE PRODUCT CATEGORIES
 -- Author: Principal Supabase Database Architect
 -- Date: 2026-10-26
--- Description: Seeds the four core product categories (Accessories, Drugs, Vaccines, Day-Old Chicks)
+-- Description: Seeds the core product categories (Accessories, Drugs, Vaccines, Day-Old Chicks, Point-of-Lay)
 -- ==============================================================================
+
+-- Ensure category columns accept text values safely without rigid enum restriction
+ALTER TABLE IF EXISTS product_categories ALTER COLUMN core_category TYPE text USING core_category::text;
+ALTER TABLE IF EXISTS products ALTER COLUMN category TYPE text USING category::text;
 
 INSERT INTO product_categories (name, slug, core_category, description, display_order, is_active)
 VALUES
