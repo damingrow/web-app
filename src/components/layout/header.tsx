@@ -52,26 +52,18 @@ export function Header() {
 
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-18 sm:h-20 items-center justify-between">
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative h-11 w-11 overflow-hidden rounded-xl bg-white p-0.5 shadow-sm border border-slate-100 group-hover:scale-105 transition-transform">
+          <Link href="/" className="flex items-center group py-1.5" aria-label="D-AminGrow Home">
+            <div className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-2xl group-hover:scale-105 transition-transform">
               <Image
                 src="/Brand identity/damingrow logo.png"
-                alt="D-AminGrow Logo"
+                alt="D-AminGrow"
                 fill
                 priority
                 className="object-contain"
-                sizes="44px"
+                sizes="64px"
               />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tight text-slate-950 font-heading leading-tight">
-                D-Amin<span className="text-emerald-600">Grow</span>
-              </span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-500 font-medium">
-                Your Satisfaction Is Our Priority
-              </span>
             </div>
           </Link>
 
