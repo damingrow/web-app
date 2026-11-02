@@ -1,16 +1,15 @@
 /**
  * ==============================================================================
- * D-AMINGROW DESIGN SYSTEM TOKENS
+ * D-AMINGROW DESIGN SYSTEM TOKENS — v2.0
  * Brand Promise: "Your Satisfaction Is Our Priority"
- * Extracted Brand Colors:
- *   - Primary Green:   #00BF62 (Vibrant Emerald / Conversion)
- *   - Lime Green:      #7ED956 (Agri Growth / Vitality)
- *   - Authority Teal:  #056782 (Deep Veterinary Authority / Scientific Trust)
- *   - Supporting Teal: #008080 (Muted Teal / Structural Accent)
- * Typography:
- *   - Headings: Poppins, sans-serif
- *   - Body: Inter, sans-serif
- * Compliance: WCAG 2.1 Level AA Contrast Standards
+ * Redesign: Cinematic, Billion-Dollar, Professional Standard
+ * Brand Colors:
+ *   - Primary Green:   #00BF62 (Vibrant Emerald / CTA)
+ *   - Lime Green:      #7ED956 (Agri Growth / Accent)
+ *   - Authority Teal:  #056782 (Deep Veterinary Authority)
+ *   - Gold Accent:     #F3C653 (Premium/Trust)
+ *   - Dark:            #050E08 (Cinematic Dark)
+ * Typography: Poppins (headings) + Inter (body)
  * ==============================================================================
  */
 
@@ -21,7 +20,7 @@
   --brand-green-200: #8bf2c3;
   --brand-green-300: #4ee6a2;
   --brand-green-400: #1fd282;
-  --brand-green-500: #00bf62; /* Primary Emerald CTA */
+  --brand-green-500: #00BF62;
   --brand-green-600: #009e50;
   --brand-green-700: #007c40;
   --brand-green-800: #026134;
@@ -32,7 +31,7 @@
   --brand-lime-200: #cff3a0;
   --brand-lime-300: #b1ea6c;
   --brand-lime-400: #93dd3e;
-  --brand-lime-500: #7ed956; /* Agri Lime / Growth */
+  --brand-lime-500: #7ed956;
   --brand-lime-600: #5db720;
   --brand-lime-700: #488c1c;
   --brand-lime-800: #3b6f1b;
@@ -43,15 +42,26 @@
   --brand-teal-200: #afdbe8;
   --brand-teal-300: #7ac1d7;
   --brand-teal-400: #42a1c1;
-  --brand-teal-500: #056782; /* Deep Veterinary Teal */
+  --brand-teal-500: #056782;
   --brand-teal-600: #045268;
   --brand-teal-700: #054355;
   --brand-teal-800: #083746;
   --brand-teal-900: #0a2f3c;
 
-  --brand-supporting-teal: #008080;
+  --brand-gold-50: #fffbeb;
+  --brand-gold-100: #fef3c7;
+  --brand-gold-200: #fde68a;
+  --brand-gold-300: #fcd34d;
+  --brand-gold-400: #fbbf24;
+  --brand-gold-500: #F3C653;
+  --brand-gold-600: #d97706;
+  --brand-gold-700: #b45309;
 
-  /* Neutrals & Surfaces (High-Contrast Scale) */
+  --brand-supporting-teal: #008080;
+  --brand-dark: #050E08;
+  --brand-dark-card: #0a1a0f;
+
+  /* Neutrals & Surfaces */
   --color-white: #ffffff;
   --color-slate-50: #f8fafc;
   --color-slate-100: #f1f5f9;
@@ -86,7 +96,7 @@
   --color-info-text: #1e40af;
   --color-info-fill: #3b82f6;
 
-  /* Regulatory & Veterinary Specific Badges */
+  /* Regulatory & Veterinary Specific */
   --color-coldchain-bg: #f0f9ff;
   --color-coldchain-border: #bae6fd;
   --color-coldchain-text: #0369a1;
@@ -103,19 +113,23 @@
   --font-family-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Elevation Shadows */
+  /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+  --shadow-green: 0 20px 40px -12px rgb(0 191 98 / 0.35);
+  --shadow-green-sm: 0 4px 14px -2px rgb(0 191 98 / 0.25);
 
   /* Border Radii */
-  --radius-sm: 0.25rem;  /* 4px */
-  --radius-md: 0.375rem; /* 6px */
-  --radius-lg: 0.5rem;   /* 8px */
-  --radius-xl: 0.75rem;  /* 12px */
-  --radius-2xl: 1rem;    /* 16px */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
   --radius-full: 9999px;
 
   /* Focus Rings */

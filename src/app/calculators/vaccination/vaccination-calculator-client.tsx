@@ -7,6 +7,8 @@ import {
   Printer,
   AlertTriangle,
   ArrowRight,
+  Calendar,
+  ChevronRight,
 } from 'lucide-react';
 
 interface VaccineEvent {
@@ -28,7 +30,7 @@ const BROILER_SCHEDULE: VaccineEvent[] = [
     strain: 'FC 126 Strain',
     route: 'Subcutaneous injection at hatchery',
     importance: 'critical',
-    notes: 'Administered at certified hatchery before packaging. Verified on arrival.',
+    notes: 'Administered at certified hatchery before packaging. Verified on chick arrival.',
   },
   {
     dayAge: 7,
@@ -128,56 +130,73 @@ export default function VaccinationCalculatorClient() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {/* Breadcrumb */}
-        <nav className="text-xs text-slate-500 flex items-center space-x-2">
-          <Link href="/" className="hover:text-emerald-700">Home</Link>
-          <span>/</span>
-          <span className="text-slate-800 font-medium">Poultry Vaccination Calendar</span>
-        </nav>
+    <div className="min-h-screen bg-slate-50/70">
+      {/* ====================================================================
+          CINEMATIC DARK HERO
+          ==================================================================== */}
+      <section className="relative hero-mesh bg-[#050E08] text-white pt-24 pb-20 sm:pt-32 sm:pb-28 overflow-hidden print:hidden">
+        <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[300px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
 
-        {/* Hero Header */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-cyan-950 to-slate-900 p-8 sm:p-12 text-white shadow-xl">
-          <div className="relative z-10 max-w-3xl space-y-4">
-            <span className="inline-flex items-center rounded-full bg-cyan-500/20 px-3.5 py-1 text-xs font-semibold text-cyan-300 border border-cyan-400/30">
-              📅 Clinical Veterinary Schedule
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-heading">
-              Poultry Vaccination Schedule Generator
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <nav className="flex items-center space-x-2 text-xs text-slate-400">
+            <Link href="/" className="hover:text-emerald-400 transition-colors">Home</Link>
+            <ChevronRight className="h-3 w-3 text-slate-600" />
+            <Link href="/knowledge" className="hover:text-emerald-400 transition-colors">Knowledge & Tools</Link>
+            <ChevronRight className="h-3 w-3 text-slate-600" />
+            <span className="text-cyan-400 font-semibold">Vaccination Schedule Generator</span>
+          </nav>
+
+          <div className="max-w-3xl space-y-4">
+            <div className="section-label-dark">
+              <Calendar className="h-3.5 w-3.5 text-cyan-400" />
+              Clinical Immunization Engine
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-tight">
+              Flock Vaccination <br />
+              <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
+                Schedule Generator
+              </span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Generate a customized day-by-day immunization timetable for your flock placement date. Protect broilers and commercial layers against Newcastle, Gumboro, and Fowl Pox.
+
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+              Generate a verified, day-by-day immunization calendar tailored to your chick arrival date in Nigeria. Built for commercial broilers and brown layer pullets.
             </p>
           </div>
         </div>
+      </section>
 
+      {/* ====================================================================
+          CONTROLS & TIMETABLE CONTAINER
+          ==================================================================== */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-12 z-20 relative pb-20 space-y-8">
         {/* Controls Card */}
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+        <div className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-xl shadow-slate-200/50 print:border-none print:shadow-none">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                 Chick Placement / Arrival Date:
               </label>
               <input
                 type="date"
                 value={placementDate}
                 onChange={(e) => setPlacementDate(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-2xl border border-slate-300 px-4 py-3 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-sm"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                 Bird Production Category:
               </label>
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
                   onClick={() => setFlockType('broiler')}
-                  className={`rounded-xl border p-2.5 text-xs font-bold transition-all ${
+                  className={`rounded-2xl border p-3 text-xs font-bold transition-all ${
                     flockType === 'broiler'
-                      ? 'border-emerald-500 bg-emerald-50 text-emerald-800 ring-2 ring-emerald-500/20'
+                      ? 'border-cyan-500 bg-cyan-50/70 text-cyan-900 ring-2 ring-cyan-500/20 font-extrabold shadow-sm'
                       : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
                   }`}
                 >
@@ -186,9 +205,9 @@ export default function VaccinationCalculatorClient() {
                 <button
                   type="button"
                   onClick={() => setFlockType('layer')}
-                  className={`rounded-xl border p-2.5 text-xs font-bold transition-all ${
+                  className={`rounded-2xl border p-3 text-xs font-bold transition-all ${
                     flockType === 'layer'
-                      ? 'border-emerald-500 bg-emerald-50 text-emerald-800 ring-2 ring-emerald-500/20'
+                      ? 'border-cyan-500 bg-cyan-50/70 text-cyan-900 ring-2 ring-cyan-500/20 font-extrabold shadow-sm'
                       : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
                   }`}
                 >
@@ -202,96 +221,100 @@ export default function VaccinationCalculatorClient() {
                 variant="outline"
                 size="md"
                 onClick={handlePrint}
-                className="w-full justify-center"
+                className="w-full justify-center py-3.5 rounded-2xl border-slate-300 hover:bg-slate-100 font-bold text-xs"
               >
                 <Printer className="h-4 w-4 mr-2" />
-                <span>Print Schedule</span>
+                <span>Print Immunization Chart</span>
               </Button>
             </div>
           </div>
         </div>
 
         {/* Administration Rules Banner */}
-        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6 space-y-3">
-          <div className="flex items-center space-x-2 text-amber-900 font-bold text-sm font-heading">
+        <div className="rounded-3xl border border-amber-200 bg-amber-50/80 p-6 sm:p-8 space-y-4 print:border print:border-amber-300">
+          <div className="flex items-center space-x-2 text-amber-950 font-bold text-sm font-heading">
             <AlertTriangle className="h-5 w-5 text-amber-700 shrink-0" />
             <span>Golden Rules of Drinking Water Poultry Vaccination in Nigeria:</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-amber-900 leading-relaxed">
-            <div className="bg-white/60 rounded-xl p-3 border border-amber-200/50">
-              <strong>1. Chlorine Neutralization:</strong> Always dissolve 2g of skimmed milk powder per litre of water 20 minutes before adding vaccine. Tap chlorine destroys live viruses.
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-amber-950 leading-relaxed">
+            <div className="bg-white/80 rounded-2xl p-4 border border-amber-200/60 shadow-sm">
+              <strong className="block text-amber-900 font-bold mb-1">1. Chlorine Neutralization:</strong>
+              Dissolve 2g of skimmed milk powder per litre of drinking water 20 minutes before mixing vaccine. Tap water chlorine neutralizes live vaccine viruses.
             </div>
-            <div className="bg-white/60 rounded-xl p-3 border border-amber-200/50">
-              <strong>2. Thirst Thirst Period:</strong> Deprive birds of water for 1.5 to 2 hours prior to vaccination so all birds drink the full dose within 90 minutes.
+            <div className="bg-white/80 rounded-2xl p-4 border border-amber-200/60 shadow-sm">
+              <strong className="block text-amber-900 font-bold mb-1">2. Thirst Period:</strong>
+              Withhold water for 1.5 to 2 hours prior to vaccination so all birds drink the full dose within 90 minutes.
             </div>
-            <div className="bg-white/60 rounded-xl p-3 border border-amber-200/50">
-              <strong>3. Temperature & Sunlight:</strong> Vaccinate strictly between 6:00 AM – 8:00 AM before ambient daytime heat rises. Never expose vaccine solution to sunlight.
+            <div className="bg-white/80 rounded-2xl p-4 border border-amber-200/60 shadow-sm">
+              <strong className="block text-amber-900 font-bold mb-1">3. Early Morning Timing:</strong>
+              Vaccinate strictly between 6:00 AM – 8:00 AM before ambient daytime heat rises. Never expose vaccine solution to sunlight.
             </div>
           </div>
         </div>
 
         {/* Dynamic Timetable */}
-        <div className="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+        <div className="rounded-3xl border border-slate-200/90 bg-white shadow-xl shadow-slate-200/50 overflow-hidden">
+          <div className="p-6 sm:p-8 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-gradient-to-r from-slate-50 to-white">
             <div>
-              <h2 className="text-lg font-bold text-slate-900 font-heading">
+              <h2 className="text-xl font-extrabold text-slate-950 font-heading">
                 Vaccination Timetable ({flockType === 'broiler' ? '6-Week Broiler Cycle' : 'Point-of-Lay Pullet Cycle'})
               </h2>
-              <p className="text-xs text-slate-500">
-                Calculated for arrival date: {calculateDate(1)}
+              <p className="text-xs text-slate-500 mt-0.5">
+                Calculated for arrival date: <strong className="text-slate-800">{calculateDate(1)}</strong>
               </p>
             </div>
-            <span className="text-xs font-semibold text-cyan-800 bg-cyan-100 px-3 py-1 rounded-full">
+            <span className="text-xs font-bold text-cyan-800 bg-cyan-50 border border-cyan-200 px-3.5 py-1.5 rounded-full whitespace-nowrap">
               Cold-Chain (2°C–8°C) Mandatory
             </span>
           </div>
 
           <div className="divide-y divide-slate-100">
             {schedule.map((ev, idx) => (
-              <div key={idx} className="p-6 hover:bg-slate-50/80 transition-colors">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div key={idx} className="p-6 sm:p-7 hover:bg-slate-50/80 transition-colors">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                   {/* Left: Timing & Disease */}
                   <div className="flex items-start space-x-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-white font-heading font-extrabold text-sm">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-950 text-white font-heading font-extrabold text-sm shadow-md">
                       D{ev.dayAge}
                     </div>
-                    <div>
+                    <div className="space-y-1">
                       <div className="flex items-center space-x-2">
-                        <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                        <span className="text-xs font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-md">
                           {calculateDate(ev.dayAge)}
                         </span>
                         <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                           Day {ev.dayAge} of life
                         </span>
                       </div>
-                      <h3 className="text-base font-bold text-slate-950 font-heading mt-1">
+                      <h3 className="text-base sm:text-lg font-extrabold text-slate-950 font-heading">
                         {ev.disease} — <span className="text-slate-600 font-normal">{ev.vaccineName}</span>
                       </h3>
-                      <p className="text-xs text-slate-500 mt-0.5">
-                        Route: <strong className="text-slate-700">{ev.route}</strong> • Strain: {ev.strain}
+                      <p className="text-xs text-slate-500">
+                        Route: <strong className="text-slate-800 font-semibold">{ev.route}</strong> • Strain: {ev.strain}
                       </p>
                     </div>
                   </div>
 
                   {/* Right: Notes & Fast Order Link */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 md:max-w-md">
-                    <p className="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 flex-1">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 lg:max-w-md">
+                    <p className="text-xs text-slate-600 bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 flex-1 leading-relaxed">
                       {ev.notes}
                     </p>
                     {ev.productLink ? (
-                      <Link href={ev.productLink}>
-                        <Button variant="primary" size="sm" className="whitespace-nowrap shrink-0">
+                      <Link href={ev.productLink} className="whitespace-nowrap shrink-0">
+                        <Button variant="primary" size="sm" className="whitespace-nowrap font-bold text-xs py-2.5 px-4 rounded-xl">
                           <span>Order Vaccine</span>
                           <ArrowRight className="h-3 w-3 ml-1" />
                         </Button>
                       </Link>
                     ) : (
                       <a
-                        href="https://wa.me/2348139169402?text=Hello%20D-AminGrow,%20I%20need%20assistance%20with%20vaccines%20for%20my%20flock."
+                        href="https://wa.me/2348139169402?text=Hello%20D-AminGrow,%20I%20need%20assistance%20ordering%20vaccines%20for%20my%20flock."
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="whitespace-nowrap shrink-0"
                       >
-                        <Button variant="outline" size="sm" className="whitespace-nowrap shrink-0">
+                        <Button variant="outline" size="sm" className="whitespace-nowrap font-bold text-xs py-2.5 px-4 rounded-xl">
                           <span>Inquire Desk</span>
                         </Button>
                       </a>
@@ -303,23 +326,23 @@ export default function VaccinationCalculatorClient() {
           </div>
         </div>
 
-        {/* Anti-Stress Recommendation Card */}
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="space-y-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700">
+        {/* Anti-Stress Companion Protocol Card */}
+        <div className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div className="space-y-2 max-w-xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
               Essential Companion Protocol
             </span>
-            <h3 className="text-xl font-bold text-slate-900 font-heading">
+            <h3 className="text-xl font-extrabold text-slate-950 font-heading">
               Post-Vaccination Anti-Stress Recovery
             </h3>
-            <p className="text-xs text-slate-600 max-w-xl leading-relaxed">
-              Vaccination induces mild febrile stress and immune reactions. Administer water-soluble Ascorbic Acid (Vitamin C) for 48 hours following each vaccine dose to prevent drop in feed consumption.
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Vaccination induces mild febrile stress and immune reactions. Administer water-soluble Ascorbic Acid (Vitamin C) for 48 hours following each vaccine dose to prevent drop in feed intake.
             </p>
           </div>
-          <Link href="/drugs/ascorbic-acid-vitamin-c-anti-stress-powder">
-            <Button variant="primary" size="md" className="whitespace-nowrap">
-              <span>View Ascorbic Acid Vitamin C</span>
-              <ArrowRight className="h-4 w-4 ml-1.5" />
+          <Link href="/drugs/ascorbic-acid-vitamin-c-anti-stress-powder" className="shrink-0">
+            <Button variant="primary" size="md" className="whitespace-nowrap py-3.5 px-6 rounded-2xl font-bold text-xs">
+              <span>View Ascorbic Acid (Vitamin C)</span>
+              <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
           </Link>
         </div>

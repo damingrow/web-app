@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
-import { Button } from '@/components/ui/button';
 import {
   Target,
   Compass,
@@ -10,224 +10,321 @@ import {
   Phone,
   ArrowRight,
   ShieldCheck,
-  CheckCircle2,
   Sparkles,
   Stethoscope,
-  Truck,
   Building,
   HelpCircle,
+  Feather,
+  Syringe,
+  ChevronRight,
+  TrendingUp,
+  MessageCircle,
+  Star,
+  HeartHandshake,
+  Leaf,
+  MapPin,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us — Goal, Aim, Vision & Services | D-AminGrow',
+  title: 'About D-AminGrow — Goal, Aim, Vision & Our Story | Agro-Allied Company Nigeria',
   description:
-    'D-AminGrow is an agro-allied company specialized in livestock vaccines, veterinary drugs, farm accessories, technical consultation, and day-old chicks across Nigeria and Africa.',
+    'D-AminGrow is Nigeria\'s specialized agro-allied company for livestock vaccines, veterinary drugs, day-old chicks, and farm consultation. Dedicated to improving Africa\'s livestock sector.',
   openGraph: {
     title: 'About D-AminGrow — Your Satisfaction Is Our Priority',
     description:
-      'Building communities of healthy livestock and healthy living across Nigeria and Africa through current information and healthy solutions.',
+      'Building communities of healthy livestock and healthy living across Nigeria and Africa through certified inputs and professional advisory.',
     type: 'website',
   },
 };
 
+const SERVICES = [
+  { title: 'Day-Old Chicks Sales & Distribution', icon: Feather, link: '/chicks', color: 'bg-amber-100 text-amber-700' },
+  { title: 'Livestock Vaccine Sales & Distribution', icon: Syringe, link: '/vaccines', color: 'bg-cyan-100 text-cyan-700' },
+  { title: 'Antibiotics, Probiotics & Supplements', icon: Stethoscope, link: '/drugs', color: 'bg-emerald-100 text-emerald-700' },
+  { title: 'Livestock Housing & Rearing Equipment', icon: Building, link: '/accessories', color: 'bg-slate-100 text-slate-700' },
+  { title: 'Livestock Technical Services', icon: ShieldCheck, link: '/services', color: 'bg-teal-100 text-teal-700' },
+  { title: 'Agricultural Consultation Services', icon: HelpCircle, link: '/services', color: 'bg-violet-100 text-violet-700' },
+];
+
 export default function AboutPage() {
-  const services = [
-    {
-      title: 'Day-Old Chicks Sales & Distribution',
-      description:
-        'Direct sourcing and distribution of high-performance commercial broiler chicks and brown layer pullets from biosecure, certified primary hatcheries.',
-      icon: Sparkles,
-      link: '/chicks',
-    },
-    {
-      title: 'Livestock Vaccine Sales & Distribution',
-      description:
-        'Strict 2°C–8°C cold-chain logistics for live viral and freeze-dried vaccines (Marek’s, Newcastle, Gumboro, Fowl Pox) in thermal insulated containers.',
-      icon: Truck,
-      link: '/vaccines',
-    },
-    {
-      title: 'Antibiotics, Probiotics & Supplements',
-      description:
-        'NAFDAC-registered therapeutic pharmaceuticals, fast-acting anticoccidials, gut health probiotics, and water-soluble anti-stress vitamin premixes.',
-      icon: Stethoscope,
-      link: '/drugs',
-    },
-    {
-      title: 'Livestock Housing & Rearing Equipment',
-      description:
-        'Infrared radiant canopy gas brooders, automatic stainless steel nipple lines, automated battery cages, bell drinkers, and defeathering machines.',
-      icon: Building,
-      link: '/accessories',
-    },
-    {
-      title: 'Livestock Technical Services',
-      description:
-        'On-site flock vaccination administration, drinker pressure calibration, brooder temperature regulation, and farm biosecurity audits.',
-      icon: ShieldCheck,
-      link: '/services',
-    },
-    {
-      title: 'Agricultural Consultation Services',
-      description:
-        'Professional livestock business planning, commercial pen design, feed formulation balancing, and disease prevention advisory for commercial farms.',
-      icon: HelpCircle,
-      link: '/services',
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-slate-50 font-body py-12 space-y-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Breadcrumb */}
-        <nav className="text-xs text-slate-500 flex items-center space-x-2">
-          <Link href="/" className="hover:text-emerald-700">Home</Link>
-          <span>/</span>
-          <span className="text-slate-800 font-semibold">About D-AminGrow</span>
-        </nav>
+    <div className="font-body">
 
-        {/* Hero Section */}
-        <section className="relative overflow-hidden rounded-3xl bg-slate-900 text-white p-8 sm:p-14 shadow-xl">
-          <div className="relative z-10 max-w-3xl space-y-5">
-            <span className="inline-flex items-center space-x-2 rounded-full bg-emerald-500/20 px-3.5 py-1 text-xs font-semibold text-emerald-300 border border-emerald-400/30">
-              <Award className="h-4 w-4" />
-              <span>Agro-Allied Solutions & Professional Advisory</span>
-            </span>
+      {/* ====================================================================
+          HERO — About
+          ==================================================================== */}
+      <section className="relative hero-mesh overflow-hidden py-20 sm:py-28">
+        <div className="absolute inset-0 grid-pattern opacity-40" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full bg-emerald-500/8 blur-3xl pointer-events-none" />
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-heading leading-tight">
-              About <span className="text-emerald-400">D-AminGrow</span>
-            </h1>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-xs text-slate-500 mb-12">
+            <Link href="/" className="hover:text-emerald-400 transition-colors">Home</Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-slate-300">About D-AminGrow</span>
+          </nav>
 
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-              D-AminGrow is a specialized agro-allied enterprise dedicated to empowering farmers through certified livestock vaccines, high-potency veterinary drugs, durable farm housing accessories, technical services, and day-old chicks.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-7">
+              <div className="section-label-dark w-fit">
+                <Award className="h-3.5 w-3.5" />
+                Our Story & Mission
+              </div>
 
-            <div className="pt-2 flex items-center space-x-3 text-emerald-400 font-bold text-sm">
-              <span className="uppercase tracking-widest text-xs text-slate-400">Our Motto:</span>
-              <span className="text-white italic bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-500/30 font-heading">
-                &ldquo;Your Satisfaction Is Our Priority&rdquo;
-              </span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-tight">
+                Transforming Africa&apos;s{' '}
+                <span className="text-gradient-green">Livestock Sector</span>
+              </h1>
+
+              <p className="text-lg text-slate-400 leading-relaxed">
+                D-AminGrow is a specialized agro-allied enterprise dedicated to empowering Nigerian and African farmers through certified livestock vaccines, high-potency veterinary drugs, durable farm accessories, and professional advisory services.
+              </p>
+
+              <div className="flex items-center gap-3 bg-white/5 border border-emerald-500/20 rounded-2xl px-5 py-4">
+                <Award className="h-6 w-6 text-emerald-400 shrink-0" />
+                <div>
+                  <p className="text-sm text-slate-300 font-medium italic">
+                    &ldquo;Your Satisfaction Is Our Priority&rdquo;
+                  </p>
+                  <p className="text-xs text-slate-600 mt-0.5">Our Core Motto & Promise</p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20learn%20more%20about%20your%20services."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all text-sm"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Get In Touch
+                </a>
+                <Link
+                  href="/services"
+                  className="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-6 py-3.5 rounded-xl border border-white/10 hover:border-white/20 transition-all text-sm"
+                >
+                  Our Services <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: Logo & Stats */}
+            <div className="space-y-6">
+              {/* Logo Display */}
+              <div className="relative h-64 rounded-3xl overflow-hidden bg-white/5 border border-white/10 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-500/5" />
+                <Image
+                  src="/Brand identity/damingrow logo.png"
+                  alt="D-AminGrow Logo"
+                  width={240}
+                  height={240}
+                  className="relative z-10 object-contain drop-shadow-2xl"
+                />
+              </div>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { value: '36+', label: 'States Served', icon: MapPin },
+                  { value: '100%', label: 'NAFDAC Verified', icon: ShieldCheck },
+                  { value: '2°–8°C', label: 'Cold-Chain', icon: Star },
+                  { value: '2hrs', label: 'Response Time', icon: TrendingUp },
+                ].map((stat, i) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div key={i} className="rounded-2xl bg-white/5 border border-white/8 p-4 text-center">
+                      <Icon className="h-5 w-5 text-emerald-400 mx-auto mb-2" />
+                      <div className="text-xl font-extrabold text-white font-heading">{stat.value}</div>
+                      <div className="text-xs text-slate-500">{stat.label}</div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
+      </section>
 
-        {/* Corporate Pillars: Goal, Aim, Vision & Motto */}
-        <section className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-heading">
-              Our Purpose & Driving Pillars
+      {/* ====================================================================
+          MISSION, AIM, VISION — Pillars
+          ==================================================================== */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <div className="section-label mx-auto w-fit">
+              <Leaf className="h-3.5 w-3.5" />
+              Our Foundation
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
+              Purpose, Aim & Vision
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600">
-              Every chick dispatched, vaccine preserved, and consultation conducted is guided by our core mandate.
+            <p className="text-base text-slate-600 leading-relaxed">
+              Every chick dispatched, every vaccine preserved, and every consultation delivered is guided by our core mandate to transform African agriculture.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Goal Card */}
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm space-y-4 hover:border-emerald-300 transition-colors">
-              <div className="h-12 w-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
-                <Target className="h-6 w-6" />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            {/* Goal */}
+            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 p-8 sm:p-10 space-y-5 group hover:shadow-xl hover:shadow-emerald-50 transition-all duration-300">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-100/50 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              <div className="relative">
+                <div className="h-16 w-16 rounded-2xl bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/30 mb-5">
+                  <Target className="h-8 w-8 text-white" />
+                </div>
+                <div className="text-[11px] font-bold uppercase tracking-widest text-emerald-600 mb-2">01 / Our Goal</div>
+                <h3 className="text-2xl font-extrabold text-slate-900 font-heading mb-3">Drive Sector Growth</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  To help improve the livestock sector in Nigeria and Africa, by introducing the latest information, scientific management techniques, and healthy solutions to the livestock market.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-slate-950 font-heading">Our Goal</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                To help improve the livestock sector in Nigeria and Africa, by introducing the latest information, scientific management techniques, and healthy solutions to the livestock market.
-              </p>
             </div>
 
-            {/* Aim Card */}
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm space-y-4 hover:border-teal-300 transition-colors">
-              <div className="h-12 w-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center font-bold">
-                <Compass className="h-6 w-6" />
+            {/* Aim */}
+            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-teal-50 to-white border border-teal-100 p-8 sm:p-10 space-y-5 group hover:shadow-xl hover:shadow-teal-50 transition-all duration-300 lg:mt-6">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-teal-100/50 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              <div className="relative">
+                <div className="h-16 w-16 rounded-2xl bg-teal-500 flex items-center justify-center shadow-lg shadow-teal-500/30 mb-5">
+                  <Compass className="h-8 w-8 text-white" />
+                </div>
+                <div className="text-[11px] font-bold uppercase tracking-widest text-teal-600 mb-2">02 / Our Aim</div>
+                <h3 className="text-2xl font-extrabold text-slate-900 font-heading mb-3">Healthy Communities</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  To build vibrant communities of healthy livestock, which directly underpins food security, nutritional excellence, and the overall healthy living of our people across Africa.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-slate-950 font-heading">Our Aim</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                To build vibrant communities of healthy livestock, which directly underpins food security, nutritional excellence, and the overall healthy living of our people.
-              </p>
             </div>
 
-            {/* Vision Card */}
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm space-y-4 hover:border-cyan-300 transition-colors">
-              <div className="h-12 w-12 rounded-2xl bg-cyan-50 text-cyan-700 flex items-center justify-center font-bold">
-                <Globe2 className="h-6 w-6" />
+            {/* Vision */}
+            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-cyan-50 to-white border border-cyan-100 p-8 sm:p-10 space-y-5 group hover:shadow-xl hover:shadow-cyan-50 transition-all duration-300">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-cyan-100/50 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              <div className="relative">
+                <div className="h-16 w-16 rounded-2xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/30 mb-5">
+                  <Globe2 className="h-8 w-8 text-white" />
+                </div>
+                <div className="text-[11px] font-bold uppercase tracking-widest text-cyan-600 mb-2">03 / Our Vision</div>
+                <h3 className="text-2xl font-extrabold text-slate-900 font-heading mb-3">Global Excellence</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  To see the African livestock market becoming significantly better, highly productive, and globally competitive across international agricultural standards and best practices.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-slate-950 font-heading">Our Vision</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                To see the African livestock market becoming significantly better, highly productive, and globally competitive across international agricultural standards.
-              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Our Services Section */}
-        <section className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-heading">
+      {/* ====================================================================
+          SERVICES OVERVIEW
+          ==================================================================== */}
+      <section className="py-20 sm:py-28 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <div className="section-label mx-auto w-fit">
+              <Sparkles className="h-3.5 w-3.5" />
+              What We Offer
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
               Our Professional Services
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600">
-              We provide end-to-end technical support and verified input supplies for commercial poultry and livestock farmers.
+            <p className="text-base text-slate-600 leading-relaxed">
+              End-to-end technical support and verified input supplies for commercial poultry and livestock farmers across Nigeria and West Africa.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((srv, idx) => {
+            {SERVICES.map((srv, idx) => {
               const Icon = srv.icon;
               return (
-                <div
+                <Link
                   key={idx}
-                  className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-4 hover:shadow-md transition-shadow"
+                  href={srv.link}
+                  className="service-card group flex items-start gap-4 rounded-3xl border border-slate-200 bg-white p-7 hover:border-emerald-200 transition-all"
                 >
-                  <div className="h-10 w-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
-                    <Icon className="h-5 w-5" />
+                  <div className={`h-12 w-12 rounded-2xl ${srv.color} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 font-heading">
-                    {srv.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {srv.description}
-                  </p>
-                  <Link
-                    href={srv.link}
-                    className="inline-flex items-center text-xs font-semibold text-emerald-700 hover:text-emerald-800"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight className="h-3.5 w-3.5 ml-1" />
-                  </Link>
-                </div>
+                  <div>
+                    <h3 className="text-base font-bold text-slate-900 font-heading mb-2 group-hover:text-emerald-700 transition-colors leading-snug">
+                      {srv.title}
+                    </h3>
+                    <span className="flex items-center gap-1 text-xs font-semibold text-emerald-700">
+                      Learn More <ArrowRight className="h-3 w-3" />
+                    </span>
+                  </div>
+                </Link>
               );
             })}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Dynamic Pricing & Quotation Policy */}
-        <section className="rounded-3xl border border-emerald-200 bg-emerald-50/70 p-8 sm:p-10 space-y-4 text-emerald-950">
-          <div className="flex items-center space-x-2 text-emerald-800 font-bold text-sm font-heading">
-            <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
-            <span>How We Operate: Dynamic Market Rates & Professional Quotations</span>
+      {/* ====================================================================
+          HOW WE OPERATE — Pricing Policy
+          ==================================================================== */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-emerald-50 via-white to-teal-50 border border-emerald-200 p-8 sm:p-12 space-y-7">
+
+            <div className="flex items-start gap-4">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-500 flex items-center justify-center shrink-0">
+                <HeartHandshake className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900 mb-2">
+                  How We Operate: Dynamic Market Rates
+                </h2>
+                <p className="text-sm text-slate-600 leading-relaxed max-w-3xl">
+                  Because livestock supplies and day-old chicks are subject to weekly market variations influenced by grain feed costs, parent-stock genetics, and seasonal demand — we do not advertise static retail prices. Instead, our technical sales desk communicates today&apos;s confirmed prices directly to you, prepares transparent delivery waybills, and coordinates timely dispatch to your state.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {[
+                { step: '1', title: 'Contact Us', desc: 'Reach out via WhatsApp or our contact form with your product request.' },
+                { step: '2', title: 'Get Confirmed Price', desc: 'Our team shares today\'s verified market rate and availability.' },
+                { step: '3', title: 'Book & Dispatch', desc: 'Confirm your order and we coordinate dispatch to your location.' },
+              ].map((step) => (
+                <div key={step.step} className="flex items-start gap-3">
+                  <div className="h-8 w-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                    {step.step}
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 mb-1">{step.title}</h4>
+                    <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-4 pt-2">
+              <a
+                href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20would%20like%20to%20inquire%20about%20your%20services%20and%20request%20today%27s%20rates."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all text-sm shadow-md"
+              >
+                <Phone className="h-4 w-4" />
+                Contact Desk (+234 813 916 9402)
+              </a>
+              <Link
+                href="/services"
+                className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-all text-sm"
+              >
+                Book Farm Consultation
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
-          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed max-w-4xl">
-            Because livestock supplies and day-old chicks are subject to weekly market variations influenced by grain feed costs, parent-stock genetics, and seasonal demands, we do not advertise static retail prices. Instead, our technical sales desk communicates today&apos;s confirmed prices directly to you, prepares transparent delivery waybills, and coordinates timely dispatch to your state.
-          </p>
-          <div className="pt-2 flex flex-wrap gap-4">
-            <a
-              href="https://wa.me/2348139169402?text=Hello%20D-AminGrow,%20I%20would%20like%20to%20inquire%20about%20your%20services%20and%20request%20today's%20chick%20rates."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="whatsapp" size="lg" className="shadow-md">
-                <Phone className="h-4 w-4 mr-2" />
-                <span>Contact Desk for Current Rates (+234 813 916 9402)</span>
-              </Button>
-            </a>
-            <Link href="/services">
-              <Button variant="outline" size="lg">
-                <span>Book Farm Consultation</span>
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            </Link>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
+
+

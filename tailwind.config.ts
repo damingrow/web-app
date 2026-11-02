@@ -46,6 +46,18 @@ const config: Config = {
             800: 'var(--brand-teal-800)',
             900: 'var(--brand-teal-900)',
           },
+          gold: {
+            50: 'var(--brand-gold-50)',
+            100: 'var(--brand-gold-100)',
+            200: 'var(--brand-gold-200)',
+            300: 'var(--brand-gold-300)',
+            400: 'var(--brand-gold-400)',
+            500: 'var(--brand-gold-500)',
+            600: 'var(--brand-gold-600)',
+            700: 'var(--brand-gold-700)',
+          },
+          dark: 'var(--brand-dark)',
+          'dark-card': 'var(--brand-dark-card)',
           supporting: 'var(--brand-supporting-teal)',
         },
         semantic: {
@@ -96,6 +108,9 @@ const config: Config = {
       },
       boxShadow: {
         card: 'var(--shadow-card)',
+        'green': '0 20px 40px -12px rgb(0 191 98 / 0.35)',
+        'green-sm': '0 4px 14px -2px rgb(0 191 98 / 0.25)',
+        'glow': '0 0 20px rgba(0, 191, 98, 0.4), 0 4px 14px rgba(0, 191, 98, 0.25)',
       },
       borderRadius: {
         sm: 'var(--radius-sm)',
@@ -103,6 +118,39 @@ const config: Config = {
         lg: 'var(--radius-lg)',
         xl: 'var(--radius-xl)',
         '2xl': 'var(--radius-2xl)',
+        '3xl': '1.5rem',
+        '4xl': '2rem',
+      },
+      backgroundImage: {
+        'hero-radial': 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,191,98,0.15) 0%, transparent 60%)',
+        'green-glow': 'radial-gradient(ellipse at center, rgba(0,191,98,0.2) 0%, transparent 70%)',
+        'grid-pattern': "linear-gradient(rgba(0,191,98,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,191,98,0.05) 1px, transparent 1px)",
+      },
+      animation: {
+        'fade-up': 'fade-up 0.6s ease forwards',
+        'pulse-green': 'pulse-green 2s ease-in-out infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+      },
+      keyframes: {
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(20px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        'pulse-green': {
+          '0%, 100%': { opacity: '1', boxShadow: '0 0 0 0 rgba(0, 191, 98, 0.4)' },
+          '50%': { opacity: '0.8', boxShadow: '0 0 0 8px rgba(0, 191, 98, 0)' },
+        },
+        'shimmer': {
+          from: { backgroundPosition: '-200% 0' },
+          to: { backgroundPosition: '200% 0' },
+        },
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+        '88': '22rem',
+        '100': '25rem',
+        '120': '30rem',
       },
     },
   },

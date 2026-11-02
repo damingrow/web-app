@@ -1,4 +1,4 @@
-export type ProductCategory = 'chicks' | 'drugs' | 'vaccines' | 'accessories';
+export type ProductCategory = 'chicks' | 'drugs' | 'vaccines' | 'accessories' | 'point-of-lay';
 
 export type RegulatoryStatus = 'nafdac_registered' | 'pending_registration' | 'exempt_accessory' | 'cold_chain_only';
 

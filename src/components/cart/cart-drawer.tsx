@@ -14,7 +14,6 @@ export function CartDrawer() {
   const {
     items,
     itemCount,
-    totalAmount,
     hasChicks,
     hasVaccines,
     isDrawerOpen,
@@ -75,7 +74,7 @@ export function CartDrawer() {
           state: deliveryState,
           city: deliveryCity,
           enquiryType: 'whatsapp_order',
-          notes: `Ref: ${orderRef}. Items: ${items.map((i) => `${i.product.name} (x${i.quantity})`).join(', ')}. Est: ₦${totalAmount.toLocaleString()}`,
+          notes: `Ref: ${orderRef}. Items: ${items.map((i) => `${i.product.name} (${i.quantity} ${i.product.unit})`).join(', ')}. Pricing: Daily market rate quotation requested.`,
           consentMarketing: true,
         }),
       }).catch(() => {});

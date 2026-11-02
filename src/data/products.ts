@@ -43,6 +43,44 @@ export const PRODUCTS: ProductItem[] = [
     ],
   },
   {
+    id: 'chick-003',
+    sku: 'DOC-TKY-03',
+    name: 'Commercial Day-Old Turkey Poults',
+    slug: 'commercial-day-old-turkey-poults',
+    category: 'chicks',
+    categoryName: 'Day-Old Chicks',
+    shortDescription: 'Vigorous day-old commercial turkey poults (keets) from certified parent-stock hatcheries for Nigerian turkey farming.',
+    description: 'Hardy broad-breasted turkey poults from certified hatcheries, ideal for commercial turkey meat production. Known for excellent feed conversion, rapid body weight gain, and adaptability to Nigerian tropical conditions. Pre-inspected at hatch for alertness, umbilical closure, and vigour.',
+    price: 0,
+    priceFormatted: 'Current Price on Request',
+    priceNotice: 'Dynamic market rate — contact for current confirmed price',
+    unit: 'Carton of 25 poults',
+    minOrderQty: 1,
+    stockStatus: 'in_stock',
+    primaryImage: '/products/Chicks/day old broiler.jpeg',
+    galleryImages: ['/products/Chicks/day old broiler.jpeg'],
+    dispatchDays: ['Tuesday', 'Thursday'],
+    compliance: {
+      regulatoryStatus: 'exempt_accessory',
+      coldChainRequired: false,
+      targetSpecies: ['Turkeys'],
+      storageTemp: 'Brooding chamber 35°C - 37°C on arrival (higher than chicks)',
+    },
+    specifications: {
+      'Target Harvest Weight': '6kg – 9kg at 16 to 20 weeks',
+      'Brooding Temperature': '35°C – 37°C (first week)',
+      'Packing Unit': 'Ventilated Cardboard Carton of 25 poults',
+      'Dispatch Window': 'Nationwide dispatch every Tuesday & Thursday',
+      'Key Disease Risk': 'Newcastle Disease — vaccinate at Day 7',
+    },
+    features: [
+      'Broad-breasted genetics for superior meat yield',
+      'Certified healthy, active, and uniform at hatch',
+      'Suitable for both backyard and commercial production',
+      'Advisory on brooding protocol provided with each order',
+    ],
+  },
+  {
     id: 'chick-002',
     sku: 'DOC-PLT-02',
     name: 'Commercial Day-Old Layer Pullets',
@@ -81,7 +119,87 @@ export const PRODUCTS: ProductItem[] = [
   },
 
   // ============================================================================
-  // 2. VETERINARY DRUGS & SUPPLEMENTS
+  // 2. POINT-OF-LAY BIRDS
+  // ============================================================================
+  {
+    id: 'pol-001',
+    sku: 'POL-BRN-01',
+    name: 'Brown Layer Point-of-Lay Pullets (17–18 Weeks)',
+    slug: 'brown-layer-point-of-lay-pullets',
+    category: 'point-of-lay',
+    categoryName: 'Point-of-Lay Birds',
+    shortDescription: 'Fully vaccinated, 17–18 week-old brown layer pullets entering production — ready to start laying within 4–6 weeks of purchase.',
+    description: 'Premium brown layer Point-of-Lay (POL) pullets sourced from certified farms. Raised under strict biosecurity, fully vaccinated against Newcastle, Gumboro, Fowl Pox, Marek\'s Disease, and Infectious Bronchitis. Ready to transition into laying cages or deep litter without health setbacks.',
+    price: 0,
+    priceFormatted: 'Current Price on Request',
+    priceNotice: 'Dynamic market rate — contact for current confirmed price',
+    unit: 'Per Bird',
+    minOrderQty: 50,
+    stockStatus: 'in_stock',
+    primaryImage: '/products/Chicks/day old pullet.jpeg',
+    galleryImages: ['/products/Chicks/day old pullet.jpeg'],
+    dispatchDays: ['Tuesday', 'Thursday'],
+    compliance: {
+      regulatoryStatus: 'exempt_accessory',
+      coldChainRequired: false,
+      targetSpecies: ['Poultry (Layers)'],
+      storageTemp: 'Standard ambient housing — 18–24°C optimal',
+    },
+    specifications: {
+      'Age at Sale': '17 – 18 weeks (pre-lay transition)',
+      'Expected First Egg': '4 – 6 weeks post-purchase',
+      'Egg Production Potential': '305 – 320 eggs per bird per cycle',
+      'Vaccination History': 'Full schedule: Newcastle, Gumboro, Fowl Pox, IB, Marek\'s',
+      'Minimum Order': '50 birds',
+    },
+    features: [
+      'Fully vaccinated — eliminates the cost & risk of rearing from day-old',
+      'Uniform flock — birds from same batch for consistent production start',
+      'Verified body weight within breed standard at 17 weeks',
+      'Nationwide dispatch with proper transport crates and ventilation',
+    ],
+  },
+  {
+    id: 'pol-002',
+    sku: 'POL-WHT-02',
+    name: 'White Layer Point-of-Lay Pullets (18–20 Weeks)',
+    slug: 'white-layer-point-of-lay-pullets',
+    category: 'point-of-lay',
+    categoryName: 'Point-of-Lay Birds',
+    shortDescription: 'High-efficiency white-egg layer pullets at 18–20 weeks — fully vaccinated and ready for cage transfer to begin production.',
+    description: 'White leghorn or white layer hybrid POL pullets raised to 18–20 weeks under controlled biosecurity with full vaccination history. Ideal for commercial cage systems aiming for white-shell egg market segments. Light body frame maximises egg production efficiency and minimizes feed cost per dozen eggs.',
+    price: 0,
+    priceFormatted: 'Current Price on Request',
+    priceNotice: 'Dynamic market rate — contact for current confirmed price',
+    unit: 'Per Bird',
+    minOrderQty: 50,
+    stockStatus: 'in_stock',
+    primaryImage: '/products/Chicks/day old broiler.jpeg',
+    galleryImages: ['/products/Chicks/day old broiler.jpeg'],
+    dispatchDays: ['Tuesday', 'Thursday'],
+    compliance: {
+      regulatoryStatus: 'exempt_accessory',
+      coldChainRequired: false,
+      targetSpecies: ['Poultry (Layers)'],
+      storageTemp: 'Standard ambient housing',
+    },
+    specifications: {
+      'Age at Sale': '18 – 20 weeks',
+      'Egg Shell Colour': 'White',
+      'Peak Lay Rate': '92% – 95%',
+      'Feed Intake': 'Low — 95–110g/bird/day at peak',
+      'Vaccination History': 'Full schedule completed at rearing farm',
+    },
+    features: [
+      'Light body frame — very high feed-to-egg conversion efficiency',
+      'Full vaccination history provided with health certificate',
+      'Ideal for battery cage commercial production',
+      'Uniform flocking — consistent production timing',
+    ],
+  },
+
+  // ============================================================================
+  // 3. VETERINARY DRUGS & SUPPLEMENTS
   // ============================================================================
   {
     id: 'drug-001',
@@ -796,6 +914,15 @@ export function getProductsByCategory(category: string): ProductItem[] {
   return PRODUCTS.filter((p) => p.category === category);
 }
 
+export function getProductsByCategories(categories: string[]): ProductItem[] {
+  return PRODUCTS.filter((p) => categories.includes(p.category));
+}
+
 export function getRelatedProducts(product: ProductItem, limit: number = 3): ProductItem[] {
   return PRODUCTS.filter((p) => p.category === product.category && p.id !== product.id).slice(0, limit);
+}
+
+// All "birds" categories combined (chicks + point-of-lay)
+export function getAllBirdsProducts(): ProductItem[] {
+  return PRODUCTS.filter((p) => p.category === 'chicks' || p.category === 'point-of-lay');
 }

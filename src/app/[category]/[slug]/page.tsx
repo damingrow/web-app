@@ -14,6 +14,10 @@ import {
   AlertTriangle,
   CheckCircle2,
   Clock,
+  ChevronRight,
+  Package,
+  Truck,
+  FileCheck2,
 } from 'lucide-react';
 
 interface PageProps {
@@ -41,10 +45,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${product.name} | D-AminGrow Nigeria`,
-    description: `${product.shortDescription} Inquire for current market rate and booking.`,
+    title: `${product.name} — Current Price & Specs | D-AminGrow Nigeria`,
+    description: `${product.shortDescription} Verified NAFDAC/Hatchery quality. Inquire for today's market rate and nationwide dispatch.`,
     openGraph: {
-      title: `${product.name} | D-AminGrow Nigeria`,
+      title: `${product.name} | D-AminGrow Agro-Allied Nigeria`,
       description: product.shortDescription,
       images: [{ url: product.primaryImage }],
     },
@@ -77,6 +81,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       '@type': 'Offer',
       priceCurrency: 'NGN',
       price: product.price,
+      priceValidUntil: '2026-12-31',
       availability:
         product.stockStatus === 'in_stock'
           ? 'https://schema.org/InStock'
@@ -89,57 +94,70 @@ export default async function ProductDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10">
+    <div className="min-h-screen bg-slate-50/70 py-8 sm:py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Breadcrumb Navigation */}
-        <nav className="text-xs text-slate-500 flex items-center space-x-2">
-          <Link href="/" className="hover:text-emerald-700">Home</Link>
-          <span>/</span>
-          <Link href={`/${product.category}`} className="hover:text-emerald-700">
+        <nav className="flex items-center space-x-2 text-xs text-slate-500 overflow-x-auto whitespace-nowrap pb-1">
+          <Link href="/" className="hover:text-emerald-700 transition-colors font-medium">Home</Link>
+          <ChevronRight className="h-3 w-3 text-slate-400 shrink-0" />
+          <Link href={`/${product.category}`} className="hover:text-emerald-700 transition-colors font-medium">
             {product.categoryName}
           </Link>
-          <span>/</span>
-          <span className="text-slate-800 font-medium truncate max-w-xs">{product.name}</span>
+          <ChevronRight className="h-3 w-3 text-slate-400 shrink-0" />
+          <span className="text-slate-900 font-semibold truncate max-w-xs">{product.name}</span>
         </nav>
 
-        {/* Product Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm">
-          {/* Gallery View */}
-          <div className="space-y-4">
-            <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-slate-50 border border-slate-100">
+        {/* Product Showcase Container */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-xl shadow-slate-200/50">
+          {/* Gallery View (Left) */}
+          <div className="lg:col-span-5 space-y-5">
+            <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-gradient-to-b from-slate-50 to-slate-100/70 border border-slate-200/80 p-6 flex items-center justify-center">
               <Image
                 src={product.primaryImage}
                 alt={product.name}
                 fill
                 priority
-                className="object-contain p-6"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain p-6 transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 42vw"
               />
 
-              {/* Overlays */}
-              <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
+              {/* Overlays / Badges */}
+              <div className="absolute top-4 left-4 flex flex-col gap-2 z-10 pointer-events-none">
                 {product.compliance.coldChainRequired && (
-                  <Badge variant="coldchain" className="shadow-sm">
-                    <Thermometer className="h-3.5 w-3.5 mr-1" />
-                    2°C–8°C Cold-Chain Verified
+                  <Badge variant="coldchain" className="shadow-md backdrop-blur-md bg-cyan-900/95 text-cyan-200 border-cyan-700/60 text-xs py-1 px-3">
+                    <Thermometer className="h-3.5 w-3.5 mr-1.5 text-cyan-300" />
+                    2°C–8°C Cold-Chain Guaranteed
                   </Badge>
                 )}
-                {product.compliance.nafdacNumber && (
-                  <Badge variant="nafdac" className="shadow-sm">
-                    <ShieldCheck className="h-3.5 w-3.5 mr-1" />
-                    NAFDAC Reg: {product.compliance.nafdacNumber}
+                {product.compliance.regulatoryStatus === 'nafdac_registered' && product.compliance.nafdacNumber && (
+                  <Badge variant="nafdac" className="shadow-md backdrop-blur-md bg-emerald-900/95 text-emerald-200 border-emerald-700/60 text-xs py-1 px-3">
+                    <ShieldCheck className="h-3.5 w-3.5 mr-1.5 text-emerald-300" />
+                    NAFDAC: {product.compliance.nafdacNumber}
                   </Badge>
                 )}
                 {product.category === 'chicks' && (
-                  <Badge variant="chick" className="shadow-sm">
+                  <span className="inline-flex items-center rounded-full bg-amber-500 text-white px-3 py-1 text-xs font-bold shadow-md">
                     🐣 Marek&apos;s Disease Vaccinated
-                  </Badge>
+                  </span>
                 )}
+                {product.category === 'point-of-lay' && (
+                  <span className="inline-flex items-center rounded-full bg-teal-600 text-white px-3 py-1 text-xs font-bold shadow-md">
+                    🥚 Ready to Lay (17–20 Wks)
+                  </span>
+                )}
+              </div>
+
+              {/* Packaging unit floating tag */}
+              <div className="absolute bottom-4 right-4 z-10">
+                <span className="inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-xs font-extrabold text-slate-800 shadow-md border border-slate-200">
+                  <Package className="h-3.5 w-3.5 mr-1.5 text-emerald-600" />
+                  {product.unit}
+                </span>
               </div>
             </div>
 
@@ -149,11 +167,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 {product.galleryImages.map((img, idx) => (
                   <div
                     key={idx}
-                    className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 border-emerald-500 bg-slate-50"
+                    className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-emerald-500 bg-slate-50 p-2"
                   >
                     <Image
                       src={img}
-                      alt={`${product.name} view ${idx + 1}`}
+                      alt={`${product.name} preview ${idx + 1}`}
                       fill
                       className="object-contain p-1"
                       sizes="80px"
@@ -162,88 +180,108 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 ))}
               </div>
             )}
+
+            {/* Quick logistics reassurance */}
+            <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 space-y-2 text-xs text-slate-600">
+              <div className="flex items-center gap-2 font-bold text-slate-900">
+                <Truck className="h-4 w-4 text-emerald-600" />
+                Dispatch & Logistics Coverage
+              </div>
+              <p className="leading-relaxed">
+                Direct interstate bus/park waybill transport across all 36 Nigerian States and the FCT. Live animals packed in ventilated transport cartons.
+              </p>
+            </div>
           </div>
 
-          {/* Product Meta & Actions */}
-          <div className="flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700">
-                  {product.categoryName} • SKU: {product.sku}
+          {/* Product Meta & Actions (Right) */}
+          <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+            <div className="space-y-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+                  {product.categoryName}
                 </span>
-                <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-800">
-                  {product.stockStatus === 'in_stock' ? 'In Stock' : 'Pre-Order Only'}
-                </span>
+                <div className="flex items-center gap-3 text-xs">
+                  <span className="text-slate-400">SKU: <strong className="text-slate-700">{product.sku}</strong></span>
+                  <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 font-bold text-emerald-800">
+                    {product.stockStatus === 'in_stock' ? 'In Stock' : 'Pre-Order Only'}
+                  </span>
+                </div>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-bold text-slate-950 font-heading leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-950 font-heading leading-tight tracking-tight">
                 {product.name}
               </h1>
 
-              <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 space-y-1.5">
+              {/* Dynamic Market Pricing Policy Card */}
+              <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/50 p-5 space-y-2 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 font-heading">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-emerald-900 font-heading">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                     Current Market Pricing Policy
                   </span>
-                  <span className="text-[11px] font-semibold text-emerald-700 bg-white px-2 py-0.5 rounded-md border border-emerald-200">
-                    Packaging: {product.unit}
+                  <span className="text-xs font-bold text-emerald-800 bg-white px-2.5 py-1 rounded-lg border border-emerald-200">
+                    Standard Unit: {product.unit}
                   </span>
                 </div>
                 <p className="text-xs text-slate-700 leading-relaxed">
-                  Prices for livestock supplies and day-old chicks fluctuate based on weekly hatchery input costs, feed grain rates, and batch availability. <strong>Contact our sales desk on WhatsApp to confirm today&apos;s live price and arrange delivery.</strong>
+                  Due to variable grain feed prices, hatchery production cycles, and cold-chain transport costs, product rates are refreshed weekly. <strong>Contact our veterinary sales desk on WhatsApp for today&apos;s confirmed rate and availability.</strong>
                 </p>
               </div>
 
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 {product.description}
               </p>
 
-              {/* Compliance Alerts */}
-              {product.compliance.withdrawalPeriod && (
-                <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900 flex items-start space-x-3">
-                  <Clock className="h-5 w-5 text-amber-700 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-semibold block">Withdrawal Period Notice:</span>
-                    Strictly withhold meat or eggs for <strong>{product.compliance.withdrawalPeriod}</strong> after last dose to ensure safe food residues.
+              {/* Regulatory Notices Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                {product.compliance.withdrawalPeriod && (
+                  <div className="rounded-xl border border-amber-200 bg-amber-50/80 p-3.5 text-xs text-amber-900 flex items-start space-x-2.5">
+                    <Clock className="h-4 w-4 text-amber-700 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-bold block">Withdrawal Notice:</span>
+                      Withhold meat/eggs for <strong>{product.compliance.withdrawalPeriod}</strong> after treatment.
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {product.compliance.amrWarning && (
-                <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-xs text-red-900 flex items-start space-x-3">
-                  <AlertTriangle className="h-5 w-5 text-red-700 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-semibold block">Antimicrobial Stewardship:</span>
-                    Administer for diagnosed bacterial infections under veterinary direction. Not for routine growth promotion.
+                {product.compliance.amrWarning && (
+                  <div className="rounded-xl border border-rose-200 bg-rose-50/80 p-3.5 text-xs text-rose-900 flex items-start space-x-2.5">
+                    <AlertTriangle className="h-4 w-4 text-rose-700 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-bold block">AMR Stewardship:</span>
+                      Administer solely under licensed veterinary guidance.
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {product.dispatchDays && (
-                <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-xs text-emerald-900 flex items-start space-x-3">
-                  <Calendar className="h-5 w-5 text-emerald-700 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-semibold block">Hatchery Dispatch Schedule:</span>
-                    Nationwide motor park waybill departures occur every <strong>{product.dispatchDays.join(' and ')}</strong>. Pre-order 48h prior.
+                {product.dispatchDays && (
+                  <div className="rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 text-xs text-emerald-900 flex items-start space-x-2.5 sm:col-span-2">
+                    <Calendar className="h-4 w-4 text-emerald-700 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-bold block">Hatchery Dispatch Schedule:</span>
+                      Nationwide dispatch departures every <strong>{product.dispatchDays.join(' and ')}</strong>. Please place reservations at least 48h in advance.
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
 
               {/* Key Features Bullet List */}
               <div className="pt-2">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-900">Key Advantages:</h3>
-                <ul className="mt-2 space-y-1.5 text-xs text-slate-600">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 font-heading">
+                  Key Technical Advantages:
+                </h3>
+                <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-600">
                   {product.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-center space-x-2">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-                      <span>{feat}</span>
+                    <li key={idx} className="flex items-start space-x-2">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span className="leading-snug">{feat}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
 
-            {/* Interactive Client Actions (Cart + Direct WhatsApp) */}
+            {/* Interactive Client Actions */}
             <div className="pt-6 border-t border-slate-100">
               <ProductDetailClientActions product={product} />
             </div>
@@ -252,52 +290,70 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
         {/* Technical Specifications Table */}
         <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-sm space-y-6">
-          <div className="border-b border-slate-100 pb-4">
-            <h2 className="text-lg font-bold text-slate-900 font-heading">
-              Technical & Regulatory Specifications
-            </h2>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Verified clinical and engineering specifications for {product.name}
-            </p>
+          <div className="border-b border-slate-100 pb-4 flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-extrabold text-slate-900 font-heading">
+                Technical & Clinical Specifications
+              </h2>
+              <p className="text-xs text-slate-500 mt-1">
+                Verified clinical parameters and regulatory records for {product.name}
+              </p>
+            </div>
+            <FileCheck2 className="h-6 w-6 text-emerald-600 hidden sm:block" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 text-xs sm:text-sm">
             {Object.entries(product.specifications).map(([key, val]) => (
-              <div key={key} className="flex justify-between py-2 border-b border-slate-100 text-xs sm:text-sm">
+              <div key={key} className="flex justify-between py-2.5 border-b border-slate-100">
                 <span className="font-medium text-slate-500">{key}</span>
-                <span className="font-semibold text-slate-900 text-right">{val}</span>
+                <span className="font-bold text-slate-900 text-right">{val}</span>
               </div>
             ))}
 
             {product.compliance.nafdacNumber && (
-              <div className="flex justify-between py-2 border-b border-slate-100 text-xs sm:text-sm">
+              <div className="flex justify-between py-2.5 border-b border-slate-100">
                 <span className="font-medium text-slate-500">NAFDAC Reg. Number</span>
-                <span className="font-semibold text-slate-900">{product.compliance.nafdacNumber}</span>
+                <span className="font-bold text-emerald-700">{product.compliance.nafdacNumber}</span>
               </div>
             )}
 
             {product.compliance.storageTemp && (
-              <div className="flex justify-between py-2 border-b border-slate-100 text-xs sm:text-sm">
-                <span className="font-medium text-slate-500">Storage Protocol</span>
-                <span className="font-semibold text-slate-900">{product.compliance.storageTemp}</span>
+              <div className="flex justify-between py-2.5 border-b border-slate-100">
+                <span className="font-medium text-slate-500">Storage & Cold-Chain Protocol</span>
+                <span className="font-bold text-slate-900">{product.compliance.storageTemp}</span>
               </div>
             )}
 
             {product.compliance.activeIngredients && (
-              <div className="flex justify-between py-2 border-b border-slate-100 text-xs sm:text-sm">
+              <div className="flex justify-between py-2.5 border-b border-slate-100">
                 <span className="font-medium text-slate-500">Active Formulation</span>
-                <span className="font-semibold text-slate-900">{product.compliance.activeIngredients}</span>
+                <span className="font-bold text-slate-900">{product.compliance.activeIngredients}</span>
               </div>
             )}
+
+            <div className="flex justify-between py-2.5 border-b border-slate-100">
+              <span className="font-medium text-slate-500">Origin & Quality Control</span>
+              <span className="font-bold text-slate-900">Certified Veterinary Supplier</span>
+            </div>
           </div>
         </div>
 
         {/* Related Products Section */}
         {related.length > 0 && (
-          <div className="space-y-6">
-            <div className="border-b border-slate-200 pb-4">
-              <h2 className="text-xl font-bold text-slate-900 font-heading">Related in {product.categoryName}</h2>
-              <p className="text-xs text-slate-500 mt-0.5">Frequently paired items by commercial farmers</p>
+          <div className="space-y-6 pt-4">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 font-heading">
+                  Related Products in {product.categoryName}
+                </h2>
+                <p className="text-xs text-slate-500 mt-1">Frequently paired inputs for optimal livestock health</p>
+              </div>
+              <Link
+                href={`/${product.category}`}
+                className="text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-colors"
+              >
+                View Category →
+              </Link>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -11,6 +11,9 @@ import {
   CheckCircle2,
   Phone,
   Thermometer,
+  Calculator,
+  ArrowRight,
+  ChevronRight,
 } from 'lucide-react';
 
 export default function BrooderCalculatorClient() {
@@ -49,42 +52,59 @@ export default function BrooderCalculatorClient() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {/* Breadcrumb */}
-        <nav className="text-xs text-slate-500 flex items-center space-x-2">
-          <Link href="/" className="hover:text-emerald-700">Home</Link>
-          <span>/</span>
-          <span className="text-slate-800 font-medium">Brooder Equipment Calculator</span>
-        </nav>
+    <div className="min-h-screen bg-slate-50/70">
+      {/* ====================================================================
+          CINEMATIC DARK HERO
+          ==================================================================== */}
+      <section className="relative hero-mesh bg-[#050E08] text-white pt-24 pb-20 sm:pt-32 sm:pb-28 overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[300px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
 
-        {/* Hero Header */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 p-8 sm:p-12 text-white shadow-xl">
-          <div className="relative z-10 max-w-3xl space-y-4">
-            <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-3.5 py-1 text-xs font-semibold text-emerald-300 border border-emerald-400/30">
-              🧮 Interactive Farm Planning Utility
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-heading">
-              Poultry Brooder Equipment Calculator
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <nav className="flex items-center space-x-2 text-xs text-slate-400">
+            <Link href="/" className="hover:text-emerald-400 transition-colors">Home</Link>
+            <ChevronRight className="h-3 w-3 text-slate-600" />
+            <Link href="/knowledge" className="hover:text-emerald-400 transition-colors">Knowledge & Tools</Link>
+            <ChevronRight className="h-3 w-3 text-slate-600" />
+            <span className="text-emerald-400 font-semibold">Brooder Calculator</span>
+          </nav>
+
+          <div className="max-w-3xl space-y-4">
+            <div className="section-label-dark">
+              <Calculator className="h-3.5 w-3.5 text-emerald-400" />
+              Interactive Farm Engineering Utility
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-tight">
+              Poultry Brooder Equipment <br />
+              <span className="text-gradient-green">& Space Calculator</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Calculate exact brooding space, radiant gas heating units, starter feeding trays, drinkers, and estimated initial capital required for your specific flock size.
+
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+              Accurately compute brooding floor area, radiant gas heating heaters, feeding trays, drinker units, and first 14-day starter feed requirement for your flock size.
             </p>
           </div>
         </div>
+      </section>
 
-        {/* Calculator Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Input Panel */}
-          <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+      {/* ====================================================================
+          CALCULATOR MAIN GRID
+          ==================================================================== */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-12 z-20 relative pb-20 space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Input Panel (Left 5 Cols) */}
+          <div className="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-xl shadow-slate-200/50 space-y-6">
             <div className="border-b border-slate-100 pb-4">
-              <h2 className="text-lg font-bold text-slate-900 font-heading">1. Farm Parameters</h2>
+              <h2 className="text-xl font-extrabold text-slate-900 font-heading flex items-center gap-2">
+                <span className="h-6 w-6 rounded-full bg-emerald-500 text-white text-xs font-extrabold flex items-center justify-center">1</span>
+                Flock Parameters
+              </h2>
               <p className="text-xs text-slate-500 mt-1">Specify your flock size and target bird type</p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                   Target Number of Day-Old Chicks:
                 </label>
                 <div className="relative">
@@ -95,193 +115,202 @@ export default function BrooderCalculatorClient() {
                     step={50}
                     value={flockSize}
                     onChange={(e) => setFlockSize(Number(e.target.value))}
-                    className="text-lg font-bold text-slate-900 pr-12"
+                    className="text-xl font-extrabold text-slate-900 pr-16 py-3.5 rounded-2xl border-slate-300 focus:ring-emerald-500"
                   />
-                  <span className="absolute right-3.5 top-3 text-xs font-medium text-slate-400">birds</span>
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">birds</span>
                 </div>
               </div>
 
               {/* Quick Preset Buttons */}
-              <div className="flex flex-wrap gap-2">
-                {[200, 500, 1000, 2500, 5000].map((preset) => (
-                  <button
-                    key={preset}
-                    type="button"
-                    onClick={() => setFlockSize(preset)}
-                    className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-colors ${
-                      flockSize === preset
-                        ? 'bg-emerald-600 text-white font-semibold'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
-                  >
-                    {preset.toLocaleString()} birds
-                  </button>
-                ))}
+              <div>
+                <span className="block text-[11px] font-semibold text-slate-500 mb-2">Popular Flock Sizes:</span>
+                <div className="flex flex-wrap gap-2">
+                  {[200, 500, 1000, 2500, 5000].map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      onClick={() => setFlockSize(preset)}
+                      className={`rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all ${
+                        flockSize === preset
+                          ? 'bg-slate-950 text-white shadow-md'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
+                    >
+                      {preset.toLocaleString()}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                   Bird Production Type:
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
                     onClick={() => setBirdType('broiler')}
-                    className={`rounded-xl border p-3 text-center transition-all ${
+                    className={`rounded-2xl border p-4 text-center transition-all ${
                       birdType === 'broiler'
-                        ? 'border-emerald-500 bg-emerald-50/50 font-bold text-emerald-800 ring-2 ring-emerald-500/20'
+                        ? 'border-emerald-500 bg-emerald-50/70 font-extrabold text-emerald-900 ring-2 ring-emerald-500/20 shadow-sm'
                         : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
                     }`}
                   >
-                    <span className="block text-sm">Commercial Broiler</span>
-                    <span className="block text-[10px] text-slate-500 mt-0.5">Meat Production</span>
+                    <span className="block text-sm font-bold font-heading">Commercial Broiler</span>
+                    <span className="block text-[10px] text-slate-500 mt-0.5">Rapid Meat Production</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => setBirdType('layer')}
-                    className={`rounded-xl border p-3 text-center transition-all ${
+                    className={`rounded-2xl border p-4 text-center transition-all ${
                       birdType === 'layer'
-                        ? 'border-emerald-500 bg-emerald-50/50 font-bold text-emerald-800 ring-2 ring-emerald-500/20'
+                        ? 'border-emerald-500 bg-emerald-50/70 font-extrabold text-emerald-900 ring-2 ring-emerald-500/20 shadow-sm'
                         : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
                     }`}
                   >
-                    <span className="block text-sm">Brown Layer Pullet</span>
-                    <span className="block text-[10px] text-slate-500 mt-0.5">Table Egg Layer</span>
+                    <span className="block text-sm font-bold font-heading">Brown Layer Pullet</span>
+                    <span className="block text-[10px] text-slate-500 mt-0.5">Egg Production</span>
                   </button>
                 </div>
               </div>
 
-              {/* Brooding Protocol Alert */}
-              <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900 space-y-1">
-                <div className="font-semibold flex items-center space-x-1.5">
-                  <Thermometer className="h-4 w-4 text-amber-700" />
-                  <span>Crucial Temperature Target:</span>
+              {/* Crucial Brooding Protocol Notice */}
+              <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-4 text-xs text-amber-950 space-y-1.5">
+                <div className="font-bold flex items-center space-x-1.5 text-amber-900">
+                  <Thermometer className="h-4 w-4 text-amber-700 shrink-0" />
+                  <span>Crucial Brooding Temperature Target:</span>
                 </div>
-                <p>
-                  Maintain <strong>32°C – 35°C</strong> at chick height during Days 1–3, dropping 2.5°C weekly until ambient room temperature is reached at week 4.
+                <p className="leading-relaxed">
+                  Maintain <strong>32°C – 35°C</strong> at chick height during Days 1–3, gradually reducing by 2.5°C weekly until room ambient is reached. Avoid chick huddling around heat sources.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Results & Equipment Package Panel */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+          {/* Results & Equipment Package (Right 7 Cols) */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-xl shadow-slate-200/50 space-y-8">
               <div className="border-b border-slate-100 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900 font-heading">
-                    2. Recommended Brooding Infrastructure
+                  <h2 className="text-xl font-extrabold text-slate-900 font-heading flex items-center gap-2">
+                    <span className="h-6 w-6 rounded-full bg-emerald-500 text-white text-xs font-extrabold flex items-center justify-center">2</span>
+                    Recommended Infrastructure
                   </h2>
-                  <p className="text-xs text-slate-500">
-                    Engineered for {safeFlock.toLocaleString()} {birdType === 'broiler' ? 'Broiler' : 'Layer'} chicks
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Engineered for {safeFlock.toLocaleString()} {birdType === 'broiler' ? 'Broiler' : 'Layer'} chicks in Nigeria
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
-                  Nigerian Climate Standard
+                <span className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-100 px-3 py-1 rounded-full whitespace-nowrap">
+                  Tropical Standard
                 </span>
               </div>
 
-              {/* Specification Metrics */}
+              {/* 4 Metric Cards */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
-                  <span className="text-[10px] uppercase font-semibold text-slate-500">Floor Space</span>
-                  <div className="text-xl font-extrabold text-slate-900 font-heading mt-1">
+                <div className="rounded-2xl bg-slate-50 p-4 border border-slate-200/80">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500">Floor Space</span>
+                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 font-heading mt-1">
                     {floorAreaSqM} m²
                   </div>
                   <span className="text-[10px] text-slate-400">({floorAreaSqFt} sq. ft)</span>
                 </div>
 
-                <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
-                  <span className="text-[10px] uppercase font-semibold text-slate-500">Gas Brooders</span>
-                  <div className="text-xl font-extrabold text-emerald-700 font-heading mt-1">
-                    {gasBrooderCount} Unit{gasBrooderCount > 1 ? 's' : ''}
+                <div className="rounded-2xl bg-emerald-50/60 p-4 border border-emerald-200/80">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-800">Gas Brooders</span>
+                  <div className="text-xl sm:text-2xl font-extrabold text-emerald-700 font-heading mt-1">
+                    {gasBrooderCount} {gasBrooderCount === 1 ? 'Unit' : 'Units'}
                   </div>
-                  <span className="text-[10px] text-slate-400">Canopy LPG heaters</span>
+                  <span className="text-[10px] text-slate-400">LPG Canopy</span>
                 </div>
 
-                <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
-                  <span className="text-[10px] uppercase font-semibold text-slate-500">Feeding Trays</span>
-                  <div className="text-xl font-extrabold text-slate-900 font-heading mt-1">
+                <div className="rounded-2xl bg-slate-50 p-4 border border-slate-200/80">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500">Feeding Trays</span>
+                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 font-heading mt-1">
                     {feedingTrayCount} Trays
                   </div>
-                  <span className="text-[10px] text-slate-400">Low-lip starter pans</span>
+                  <span className="text-[10px] text-slate-400">Starter Pans</span>
                 </div>
 
-                <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
-                  <span className="text-[10px] uppercase font-semibold text-slate-500">Starter Drinkers</span>
-                  <div className="text-xl font-extrabold text-slate-900 font-heading mt-1">
+                <div className="rounded-2xl bg-slate-50 p-4 border border-slate-200/80">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500">Drinkers</span>
+                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 font-heading mt-1">
                     {drinkerCount} Units
                   </div>
-                  <span className="text-[10px] text-slate-400">Fount or bell drinkers</span>
+                  <span className="text-[10px] text-slate-400">Bell / Fount</span>
                 </div>
               </div>
 
-              {/* Feed Consumption Estimation */}
-              <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 text-xs text-slate-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              {/* Feed Consumption Estimation Strip */}
+              <div className="rounded-2xl border border-slate-200 bg-slate-50/80 p-5 text-xs text-slate-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                 <div>
-                  <span className="font-semibold text-slate-900">First 14 Days Starter Feed:</span>{' '}
-                  Approximately <strong>{starterFeedKg} kg</strong> (~{starterBags25kg} bags of 25kg commercial starter crumble).
+                  <span className="font-bold text-slate-900 block text-sm mb-0.5">First 14 Days Starter Feed:</span>
+                  Estimated requirement is <strong>{starterFeedKg.toLocaleString()} kg</strong> (~{starterBags25kg} bags of 25kg commercial starter crumble).
                 </div>
                 <Link
                   href="/drugs/ascorbic-acid-vitamin-c-anti-stress-powder"
-                  className="text-xs text-emerald-700 hover:underline font-semibold shrink-0"
+                  className="text-xs text-emerald-700 hover:text-emerald-800 font-bold shrink-0 flex items-center gap-1"
                 >
-                  Pair with Anti-Stress Vitamins →
+                  <span>Pair Anti-Stress Vitamins</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
 
-              {/* Itemized Equipment Cost Breakdown */}
-              <div className="border-t border-slate-100 pt-4 space-y-3">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-800">
-                  Equipment Investment Package:
-                </h3>
+              {/* Itemized Package & Dynamic Pricing */}
+              <div className="border-t border-slate-100 pt-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-900 font-heading">
+                    Itemized Equipment Package:
+                  </h3>
+                  <span className="text-xs text-slate-500">Current Market Rates</span>
+                </div>
 
                 <div className="divide-y divide-slate-100 text-xs sm:text-sm">
-                  <div className="flex justify-between py-2">
-                    <span className="text-slate-700 font-medium">
+                  <div className="flex justify-between py-2.5">
+                    <span className="text-slate-800 font-medium">
                       {gasBrooderCount}x Infrared Radiant Gas Brooder Canopy Units
                     </span>
-                    <span className="text-xs text-emerald-700 font-semibold">Current Rate on Request</span>
+                    <span className="text-xs text-emerald-700 font-bold">Price on Request</span>
                   </div>
 
-                  <div className="flex justify-between py-2">
-                    <span className="text-slate-700 font-medium">
+                  <div className="flex justify-between py-2.5">
+                    <span className="text-slate-800 font-medium">
                       {feedingTrayCount}x Day-Old Chick Brooding Feeding Trays
                     </span>
-                    <span className="text-xs text-emerald-700 font-semibold">Current Rate on Request</span>
+                    <span className="text-xs text-emerald-700 font-bold">Price on Request</span>
                   </div>
 
-                  <div className="flex justify-between py-2">
-                    <span className="text-slate-700 font-medium">
+                  <div className="flex justify-between py-2.5">
+                    <span className="text-slate-800 font-medium">
                       {drinkerCount}x Manual Poultry Feeder / Drinker Founts
                     </span>
-                    <span className="text-xs text-emerald-700 font-semibold">Current Rate on Request</span>
+                    <span className="text-xs text-emerald-700 font-bold">Price on Request</span>
                   </div>
 
                   <div className="flex justify-between py-3 border-t-2 border-slate-200 text-xs text-slate-600">
-                    <span>Pricing Policy:</span>
-                    <span className="text-emerald-800 font-bold">Dynamic Market Rates • Instant Quote</span>
+                    <span className="font-semibold">Pricing Policy:</span>
+                    <span className="text-emerald-800 font-extrabold">Weekly Verified Hatchery & Manufacturer Rates</span>
                   </div>
                 </div>
 
+                {/* Conversion Buttons */}
                 <div className="pt-2 flex flex-col sm:flex-row gap-3">
                   <Button
                     variant="primary"
                     size="lg"
                     onClick={handleAddPackageToCart}
-                    className="flex-1 justify-center"
+                    className="flex-1 justify-center py-4 rounded-2xl font-bold text-sm h-auto"
                   >
                     {packageAdded ? (
-                      <>
-                        <CheckCircle2 className="h-5 w-5 mr-2 text-emerald-300" />
+                      <span className="flex items-center gap-2 text-white">
+                        <CheckCircle2 className="h-5 w-5 text-emerald-300" />
                         <span>Package Added to Inquiry List!</span>
-                      </>
+                      </span>
                     ) : (
-                      <>
-                        <ShoppingBag className="h-5 w-5 mr-2" />
+                      <span className="flex items-center gap-2">
+                        <ShoppingBag className="h-5 w-5" />
                         <span>Add Equipment Package to Inquiry</span>
-                      </>
+                      </span>
                     )}
                   </Button>
 
@@ -289,11 +318,10 @@ export default function BrooderCalculatorClient() {
                     href={`https://wa.me/2348139169402?text=Hello%20D-AminGrow,%20I%20used%20your%20Brooder%20Calculator%20for%20${safeFlock}%20${birdType}%20chicks.%20Required%20equipment:%20${gasBrooderCount}x%20Gas%20Brooders,%20${feedingTrayCount}x%20Feeding%20Trays,%20${drinkerCount}x%20Drinkers.%20Please%20send%20me%20today's%20formal%20quote.`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 px-6 rounded-2xl transition-all shadow-md text-sm whitespace-nowrap"
                   >
-                    <Button variant="whatsapp" size="lg" className="w-full sm:w-auto justify-center">
-                      <Phone className="h-5 w-5 mr-2" />
-                      <span>Request Quote on WhatsApp</span>
-                    </Button>
+                    <Phone className="h-4 w-4" />
+                    <span>Get Quote on WhatsApp</span>
                   </a>
                 </div>
               </div>
