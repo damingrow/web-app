@@ -218,11 +218,12 @@ export function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-widest text-slate-300 mb-5">Services</h4>
             <ul className="space-y-3">
               {[
-                { name: 'Day-Old Chick Booking', href: '/chicks' },
-                { name: 'Vaccine Distribution', href: '/vaccines' },
-                { name: 'Technical Services', href: '/services' },
-                { name: 'Farm Consultation', href: '/services#consultation' },
-                { name: 'Knowledge Centre', href: '/knowledge' },
+                { name: 'Day-Old Chick Booking', href: '/services/chicks' },
+                { name: 'Vaccine Distribution', href: '/services/vaccines' },
+                { name: 'Veterinary Drugs', href: '/services/drugs' },
+                { name: 'Point-of-Lay Birds', href: '/services/point-of-lay' },
+                { name: 'Technical Services', href: '/services/technical' },
+                { name: 'Farm Consultation', href: '/services/consultation' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-slate-500 hover:text-emerald-400 transition-colors flex items-center gap-1.5 group">

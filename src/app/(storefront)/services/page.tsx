@@ -32,7 +32,7 @@ const SERVICE_PAGES = [
   {
     id: 'chicks',
     title: 'Day-Old Chicks Sales & Distribution',
-    href: '/chicks',
+    href: '/services/chicks',
     icon: Feather,
     description: 'Premium commercial broilers and layer pullets from certified hatcheries, dispatched nationwide every Tuesday and Thursday.',
     features: [
@@ -50,7 +50,7 @@ const SERVICE_PAGES = [
   {
     id: 'vaccines',
     title: 'Livestock Vaccine Sales & Distribution',
-    href: '/vaccines',
+    href: '/services/vaccines',
     icon: Syringe,
     description: 'Live freeze-dried viral and bacterial vaccines shipped under verified 2°C–8°C cold-chain with certified ice gel packs.',
     features: [
@@ -68,7 +68,7 @@ const SERVICE_PAGES = [
   {
     id: 'drugs',
     title: 'Antibiotics, Probiotics & Supplements',
-    href: '/drugs',
+    href: '/services/drugs',
     icon: Pill,
     description: 'NAFDAC-registered broad-spectrum therapeutics, targeted anticoccidials, gut health probiotics, and anti-stress vitamin premixes.',
     features: [
@@ -104,7 +104,7 @@ const SERVICE_PAGES = [
   {
     id: 'point-of-lay',
     title: 'Sales & Distribution of Point-of-Lay Birds',
-    href: '/point-of-lay',
+    href: '/services/point-of-lay',
     icon: Egg,
     description: 'Fully grown 17–20 week brown and white layer pullets with 100% completed vaccination timetables, ready to start laying eggs immediately.',
     features: [
@@ -122,7 +122,7 @@ const SERVICE_PAGES = [
   {
     id: 'technical',
     title: 'Livestock Technical Services',
-    href: '#consultation',
+    href: '/services/technical',
     icon: ShieldCheck,
     description: 'On-farm clinical vaccination, biosecurity setup, post-mortem disease diagnostics, and automated equipment installation.',
     features: [

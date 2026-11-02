@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   description:
     'D-AminGrow is your trusted Nigerian partner for commercial day-old chicks, cold-chain poultry vaccines, NAFDAC registered veterinary drugs, and modern farm equipment. Your Satisfaction Is Our Priority.',
   metadataBase: new URL('https://damingrow.com'),
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   openGraph: {
     title: 'D-AminGrow — Your Satisfaction Is Our Priority',
     description:
