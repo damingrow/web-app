@@ -24,7 +24,14 @@ export default function AdminLoginPage() {
     setMounted(true);
   }, []);
 
-  const isPlaceholder = env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
+  const isDevOrPlaceholder =
+    process.env.NODE_ENV === 'development' ||
+    env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
+
+  const enterDemoMode = () => {
+    document.cookie = 'damingrow_staff_demo=true; path=/; max-age=86400; SameSite=Lax';
+    router.push('/admin');
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,9 +39,8 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      if (isPlaceholder) {
-        // In local development or preview without live Supabase credentials
-        router.push('/admin');
+      if (isDevOrPlaceholder && !email && !password) {
+        enterDemoMode();
         return;
       }
 
@@ -45,7 +51,11 @@ export default function AdminLoginPage() {
       });
 
       if (error) {
-        setErrorMsg(error.message);
+        if (isDevOrPlaceholder) {
+          setErrorMsg(`${error.message}. Or click below to enter Preview / Dev Mode.`);
+        } else {
+          setErrorMsg(error.message);
+        }
         setLoading(false);
         return;
       }
@@ -82,16 +92,23 @@ export default function AdminLoginPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4">
         <div className="bg-white py-8 px-6 sm:px-10 shadow-2xl rounded-3xl border border-slate-800/20 space-y-6">
-          {/* Hydration-safe placeholder alert banner */}
-          {mounted && isPlaceholder && (
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900 space-y-1">
+          {/* Hydration-safe dev/preview alert banner */}
+          {mounted && isDevOrPlaceholder && (
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900 space-y-2">
               <div className="flex items-center space-x-1.5 font-bold">
                 <AlertCircle className="h-4 w-4 text-amber-700 shrink-0" />
-                <span>Development / Preview Mode</span>
+                <span>Development & Preview Mode</span>
               </div>
               <p className="text-slate-600 leading-relaxed">
-                Supabase credentials have not yet been configured in <code>.env.local</code>. Click below to enter the staff back-office in preview mode.
+                You can sign in with your staff account or enter the portal in preview mode to review customer enquiries, catalog items, and chick price synchronization.
               </p>
+              <button
+                type="button"
+                onClick={enterDemoMode}
+                className="inline-flex items-center text-xs font-semibold text-amber-800 underline hover:text-amber-900"
+              >
+                Enter Preview Dashboard Directly &rarr;
+              </button>
             </div>
           )}
 
@@ -107,7 +124,7 @@ export default function AdminLoginPage() {
               <Input
                 label="Staff Email Address"
                 type="email"
-                required
+                required={!isDevOrPlaceholder}
                 autoComplete="email"
                 placeholder="staff@damingrow.com"
                 value={email}
@@ -119,7 +136,7 @@ export default function AdminLoginPage() {
               <Input
                 label="Password"
                 type="password"
-                required
+                required={!isDevOrPlaceholder}
                 autoComplete="current-password"
                 placeholder="••••••••••••"
                 value={password}
@@ -136,12 +153,22 @@ export default function AdminLoginPage() {
             >
               {loading ? (
                 <span>Authenticating...</span>
-              ) : mounted && isPlaceholder ? (
-                <span>Enter Preview Staff Portal</span>
               ) : (
                 <span>Sign In to Dashboard</span>
               )}
             </Button>
+
+            {mounted && isDevOrPlaceholder && (
+              <Button
+                type="button"
+                variant="outline"
+                size="md"
+                onClick={enterDemoMode}
+                className="w-full justify-center border-slate-300 text-slate-700 hover:bg-slate-50 mt-2"
+              >
+                <span>Enter Preview Staff Portal</span>
+              </Button>
+            )}
           </form>
 
           {/* Security Features Notice */}

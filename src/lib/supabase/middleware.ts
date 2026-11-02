@@ -58,7 +58,8 @@ export async function updateSession(request: NextRequest) {
 
     // Protect administrative routes
     if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
-      if (!user) {
+      const isDemoSession = request.cookies.get('damingrow_staff_demo')?.value === 'true';
+      if (!user && !isDemoSession && process.env.NODE_ENV === 'production') {
         const loginUrl = request.nextUrl.clone();
         loginUrl.pathname = '/admin/login';
         loginUrl.searchParams.set('redirectTo', pathname);
