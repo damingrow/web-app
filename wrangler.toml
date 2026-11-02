@@ -1,0 +1,20 @@
+name = "damingrow"
+main = ".open-next/worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# Workers Static Assets binding for Next.js static output
+assets = { directory = ".open-next/assets", binding = "ASSETS" }
+
+# Production KV namespace for Incremental Static Regeneration (ISR) cache
+# [[kv_namespaces]]
+# binding = "NEXT_CACHE_WORKERS_KV"
+# id = "<YOUR_PRODUCTION_KV_ID>"
+
+# Cloudflare Cron Triggers for background operational tasks (e.g. daily lead status updates)
+[triggers]
+crons = ["0 2 * * *"] # Daily at 02:00 UTC
+
+[vars]
+NEXT_PUBLIC_SITE_URL = "https://damingrow.com"
+NEXT_PUBLIC_WHATSAPP_NUMBER = "+2348139169402"

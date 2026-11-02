@@ -1,0 +1,42 @@
+name: CI Quality Gate
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    name: Lint, Types & Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Check TypeScript Types
+        run: npm run type-check
+
+      - name: Execute Vitest Suite
+        run: npm test
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Verify Cloudflare OpenNext Build
+        run: npm run build:cloudflare
+        env:
+          NEXT_PUBLIC_SITE_URL: https://damingrow.com
+          NEXT_PUBLIC_WHATSAPP_NUMBER: +2348139169402
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-key

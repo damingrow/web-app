@@ -1,0 +1,47 @@
+-- ==============================================================================
+-- D-AMINGROW PLATFORM — MIGRATION 20261026000003: SEED CORE PRODUCT CATEGORIES
+-- Author: Principal Supabase Database Architect
+-- Date: 2026-10-26
+-- Description: Seeds the four core product categories (Accessories, Drugs, Vaccines, Day-Old Chicks)
+-- ==============================================================================
+
+INSERT INTO product_categories (name, slug, core_category, description, display_order, is_active)
+VALUES
+    (
+        'Day-Old Chicks',
+        'chicks',
+        'day_old_chicks',
+        'Premium quality broiler, layer, and cockerel day-old chicks from certified hatcheries across Nigeria. Vaccinated and temperature-monitored dispatch.',
+        1,
+        TRUE
+    ),
+    (
+        'Veterinary Drugs',
+        'drugs',
+        'drugs',
+        'NAFDAC-compliant veterinary medications, therapeutic antibiotics, broad-spectrum antiparasitics, and restorative nutritional supplements.',
+        2,
+        TRUE
+    ),
+    (
+        'Livestock Vaccines',
+        'vaccines',
+        'vaccines',
+        'Essential poultry and livestock vaccines maintained under strict cold-chain protocols (2°C to 8°C) with cold-pack transit verification.',
+        3,
+        TRUE
+    ),
+    (
+        'Farm Accessories & Equipment',
+        'accessories',
+        'accessories',
+        'Durable poultry feeders, drinkers, egg transport crates, brooding infrastructure, and essential commercial farm rearing accessories.',
+        4,
+        TRUE
+    )
+ON CONFLICT (slug) DO UPDATE SET
+    name = EXCLUDED.name,
+    description = EXCLUDED.description,
+    display_order = EXCLUDED.display_order,
+    is_active = EXCLUDED.is_active,
+    updated_at = NOW();
