@@ -9,6 +9,7 @@ import {
   Menu,
   X,
   MessageCircle,
+  HeartHandshake,
 } from 'lucide-react';
 
 export function Header() {
@@ -69,16 +70,16 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-[76px] items-center justify-between gap-4">
 
-          {/* Logo — Prominent & Clean */}
+          {/* Logo — Custom Brand Header Logo */}
           <Link href="/" className="flex items-center group shrink-0" aria-label="D-AminGrow Home">
-            <div className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-2xl group-hover:scale-105 transition-transform duration-200 shadow-sm bg-white">
+            <div className="relative h-11 w-44 sm:h-12 sm:w-52 md:h-13 md:w-56 overflow-hidden group-hover:opacity-95 transition-opacity">
               <Image
-                src="/Brand identity/damingrow logo.png"
-                alt="D-AminGrow"
+                src="/Brand identity/damingrow-header-logo.png"
+                alt="D-AminGrow — Your Satisfaction Is Our Priority"
                 fill
                 priority
-                className="object-contain"
-                sizes="(max-width: 640px) 56px, 64px"
+                className="object-contain object-left"
+                sizes="(max-width: 640px) 176px, 224px"
               />
             </div>
           </Link>
@@ -114,15 +115,13 @@ export function Header() {
 
           {/* Right CTAs */}
           <div className="flex items-center gap-3 shrink-0">
-            <a
-              href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20inquire%20about%20your%20products%20and%20services."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
+            <Link
+              href="/services#consultation"
+              className="hidden lg:flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5"
             >
-              <MessageCircle className="h-4 w-4" />
-              WhatsApp Us
-            </a>
+              <HeartHandshake className="h-4 w-4" />
+              Book Consultation
+            </Link>
 
             {/* Mobile menu toggle */}
             <button
@@ -170,15 +169,23 @@ export function Header() {
             ))}
 
             {/* Mobile CTA */}
-            <div className="pt-4 border-t border-slate-100">
+            <div className="pt-4 border-t border-slate-100 space-y-2">
+              <Link
+                href="/services#consultation"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white text-base font-semibold px-4 py-3 rounded-xl transition-colors shadow-sm"
+              >
+                <HeartHandshake className="h-5 w-5" />
+                Book Consultation
+              </Link>
               <a
                 href="https://wa.me/2348139169402"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-base font-semibold px-4 py-3.5 rounded-xl transition-colors shadow-sm"
+                className="flex items-center justify-center gap-2 w-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors"
               >
-                <MessageCircle className="h-5 w-5" />
+                <MessageCircle className="h-4 w-4 text-emerald-600" />
                 Chat on WhatsApp — +234 813 916 9402
               </a>
             </div>
