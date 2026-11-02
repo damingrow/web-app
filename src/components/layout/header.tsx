@@ -13,6 +13,8 @@ const NAV_LINKS = [
   { name: 'Veterinary Drugs', href: '/drugs' },
   { name: 'Livestock Vaccines', href: '/vaccines' },
   { name: 'Farm Equipment', href: '/accessories' },
+  { name: 'Knowledge Hub', href: '/knowledge' },
+  { name: 'Calculators', href: '/calculators/brooder' },
   { name: 'Consultations', href: '/services' },
 ];
 

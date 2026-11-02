@@ -124,26 +124,26 @@ export function Footer() {
 
           {/* Services & Guidance */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Advisory</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Advisory & Tools</h4>
             <ul className="mt-4 space-y-2 text-xs">
               <li>
-                <Link href="/services" className="text-slate-400 hover:text-white transition-colors">
-                  Veterinary Consultation
+                <Link href="/knowledge" className="text-slate-400 hover:text-white transition-colors">
+                  Knowledge Centre (Guides)
+                </Link>
+              </li>
+              <li>
+                <Link href="/calculators/brooder" className="text-slate-400 hover:text-white transition-colors">
+                  Brooder Space & Equipment Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/calculators/vaccination" className="text-slate-400 hover:text-white transition-colors">
+                  Poultry Vaccination Calendar
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="text-slate-400 hover:text-white transition-colors">
-                  Poultry House Design & Setup
-                </Link>
-              </li>
-              <li>
-                <Link href="/chicks" className="text-slate-400 hover:text-white transition-colors">
-                  Hatchery Dispatch Schedules
-                </Link>
-              </li>
-              <li>
-                <Link href="/drugs" className="text-slate-400 hover:text-white transition-colors">
-                  AMR Antibiotic Guidelines
+                  Veterinary Consultation Desk
                 </Link>
               </li>
             </ul>
