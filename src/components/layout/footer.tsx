@@ -151,13 +151,45 @@ export function Footer() {
 
           {/* Compliance & Regulatory Notice */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Compliance</h4>
-            <p className="mt-4 text-xs text-slate-400 leading-relaxed">
-              Veterinary prescription items are distributed strictly under veterinary guidance in accordance with NAFDAC and FMARD regulations.
-            </p>
-            <div className="mt-4 text-xs text-slate-500">
-              © {new Date().getFullYear()} D-AminGrow Agro-Allied Co. All rights reserved.
-            </div>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Legal & Policies</h4>
+            <ul className="mt-4 space-y-2 text-xs">
+              <li>
+                <Link href="/policies/privacy" className="text-slate-400 hover:text-white transition-colors">
+                  Privacy Policy (NDPA 2023)
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies/terms" className="text-slate-400 hover:text-white transition-colors">
+                  Terms of Service & Mortality Claims
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies/shipping" className="text-slate-400 hover:text-white transition-colors">
+                  Cold-Chain & Delivery Protocol
+                </Link>
+              </li>
+              <li>
+                <Link href="/admin/login" className="text-slate-400 hover:text-emerald-400 transition-colors">
+                  Staff Portal Login
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Sub-Strip */}
+      <div className="border-t border-slate-800 py-6 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p>
+            © {new Date().getFullYear()} D-AminGrow Agro-Allied Co. All rights reserved. Your Satisfaction Is Our Priority.
+          </p>
+          <div className="flex items-center space-x-4 text-[11px]">
+            <Link href="/policies/privacy" className="hover:text-slate-300">Privacy Policy</Link>
+            <span>•</span>
+            <Link href="/policies/terms" className="hover:text-slate-300">Terms of Service</Link>
+            <span>•</span>
+            <Link href="/policies/shipping" className="hover:text-slate-300">Cold-Chain Shipping</Link>
           </div>
         </div>
       </div>

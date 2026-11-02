@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { CartDrawer } from '@/components/cart/cart-drawer';
 import { CartFloatingButton } from '@/components/cart/cart-floating-button';
+import { ConsentBanner } from '@/components/compliance/consent-banner';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -50,6 +51,7 @@ export default function RootLayout({
           <Footer />
           <CartDrawer />
           <CartFloatingButton />
+          <ConsentBanner />
         </CartProvider>
       </body>
     </html>
