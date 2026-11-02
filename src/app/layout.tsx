@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { CartProvider } from '@/context/cart-context';
-import { LayoutShell } from '@/components/layout/layout-shell';
 
 export const metadata: Metadata = {
   title: 'D-AminGrow | Quality Day-Old Chicks, Vaccines, Drugs & Farm Equipment',
@@ -37,9 +35,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-slate-50 font-body text-slate-900 flex flex-col">
-        <CartProvider>
-          <LayoutShell>{children}</LayoutShell>
-        </CartProvider>
+        {children}
       </body>
     </html>
   );

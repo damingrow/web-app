@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { metadata as privacyMeta } from '@/app/policies/privacy/page';
-import { metadata as termsMeta } from '@/app/policies/terms/page';
-import { metadata as shippingMeta } from '@/app/policies/shipping/page';
+import { metadata as privacyMeta } from '@/app/(storefront)/policies/privacy/page';
+import { metadata as termsMeta } from '@/app/(storefront)/policies/terms/page';
+import { metadata as shippingMeta } from '@/app/(storefront)/policies/shipping/page';
 import nextConfig from '../../next.config';
 
 describe('Regulatory & Compliance Policy Pages', () => {
