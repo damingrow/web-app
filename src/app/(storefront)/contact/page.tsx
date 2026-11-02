@@ -230,8 +230,16 @@ export default function ContactPage() {
                   },
                   {
                     icon: MapPin,
-                    label: 'Location',
-                    value: 'Nigeria & West Africa (Nationwide Delivery)',
+                    label: 'Ibadan Office & Facility',
+                    value: '12 Oluyole Extension, Ibadan, Oyo State',
+                    href: null,
+                    color: 'text-slate-600',
+                    bg: 'bg-slate-100',
+                  },
+                  {
+                    icon: MapPin,
+                    label: 'Lagos Office & Operations',
+                    value: '20 Simarch Street, Agric Bus Stop, Ojo, Lagos State',
                     href: null,
                     color: 'text-slate-600',
                     bg: 'bg-slate-100',

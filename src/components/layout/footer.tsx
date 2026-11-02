@@ -162,9 +162,19 @@ export function Footer() {
                 <Mail className="h-4 w-4 text-emerald-500 shrink-0" />
                 info@damingrow.com
               </a>
-              <div className="flex items-start gap-2.5 text-sm text-slate-400">
+              <div className="flex items-start gap-2.5 text-xs text-slate-400">
                 <MapPin className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                <span>Nigeria & West Africa Region</span>
+                <div>
+                  <span className="font-semibold text-slate-300 block">Ibadan Office:</span>
+                  <span>12 Oluyole Extension, Ibadan, Oyo State</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2.5 text-xs text-slate-400">
+                <MapPin className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-slate-300 block">Lagos Office:</span>
+                  <span>20 Simarch Street, Agric Bus Stop, Ojo, Lagos State</span>
+                </div>
               </div>
             </div>
 
