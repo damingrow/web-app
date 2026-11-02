@@ -13,6 +13,7 @@ const envSchema = z.object({
     .default('+2348139169402'),
   NEXT_PUBLIC_SUPABASE_URL: z.string().url().default('https://placeholder.supabase.co'),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1).default('placeholder-anon-key'),
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().optional(),
 
   // Private Server Variables (Optional locally, required in production)
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
@@ -23,7 +24,14 @@ const envSchema = z.object({
 export type Env = z.infer<typeof envSchema>;
 
 function parseEnv(): Env {
-  const result = envSchema.safeParse(process.env);
+  const raw = {
+    ...process.env,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY:
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+      'placeholder-anon-key',
+  };
+  const result = envSchema.safeParse(raw);
   if (!result.success) {
     console.error('Invalid environment variables detected:', result.error.flatten().fieldErrors);
     // In production, throw to fail early; in test/dev, fall back safely
