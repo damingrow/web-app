@@ -3,7 +3,15 @@ export interface ArticleItem {
   slug: string;
   title: string;
   subtitle: string;
-  category: 'Disease Management' | 'Brooding & Housing' | 'Immunology & Vaccines';
+  category:
+    | 'Disease Management'
+    | 'Brooding & Housing'
+    | 'Immunology & Vaccines'
+    | 'Poultry Economics & Nutrition'
+    | 'Commercial Layers & Eggs'
+    | 'Biosecurity & Disease Prevention'
+    | 'Flock Health & Climate Adaptation'
+    | 'Day-Old Chick Sourcing';
   readTime: string;
   publishedDate: string;
   author: {
@@ -463,6 +471,326 @@ Correct drinker height is essential to prevent water deprivation or excessive sp
       '360-stainless-steel-poultry-nipple-drinker',
       'automatic-bell-drinker-plasson-style',
       'manual-conical-poultry-feeder',
+    ],
+  },
+  {
+    id: 'art-008',
+    slug: 'how-to-calculate-fcr-broiler-poultry-feed-costs-nigeria',
+    title: 'How to Calculate Broiler FCR (Feed Conversion Ratio) and Cut Feed Costs in Nigeria',
+    subtitle: 'The definitive financial and nutritional blueprint to achieving 1.55–1.65 FCR in tropical commercial broiler operations.',
+    category: 'Poultry Economics & Nutrition',
+    readTime: '8 min read',
+    publishedDate: '2026-11-02',
+    author: {
+      name: 'D-AminGrow Technical Advisory Desk',
+      role: 'Veterinary Nutrition & Poultry Specialist',
+    },
+    summary:
+      'With commercial poultry feed representing over 72% of total operational costs in Nigeria, managing your Feed Conversion Ratio (FCR) is the single biggest determinant of broiler profitability. Learn the exact mathematical formula, Nigerian benchmarks, and clinical strategies to stop feed wastage.',
+    content: `
+### Understanding FCR in Commercial Poultry Economics
+
+In commercial livestock production, **Feed Conversion Ratio (FCR)** measures the biological efficiency with which a bird converts feed intake into live body weight. 
+
+$$\\text{FCR} = \\frac{\\text{Total Feed Consumed by Flock (kg)}}{\\text{Total Live Weight Produced (kg)}}$$
+
+The lower your FCR number, the more efficient your flock is, and the higher your net profit margin per kilogram of meat sold.
+
+---
+
+### Why FCR Dictates Commercial Survival in Nigeria
+
+With the prices of commercial broiler feed fluctuating between ₦22,000 and ₦26,000 per 25kg bag in Nigerian agro-allied markets, every 0.1 difference in FCR drastically swings flock profitability.
+
+| Metric (1,000 Broiler Flock @ 2.2 kg Target) | Efficient Flock (1.60 FCR) | Inefficient Flock (1.90 FCR) | Financial Impact / Difference |
+|---|---|---|---|
+| **Total Meat Harvested** | 2,200 kg | 2,200 kg | Same revenue |
+| **Total Feed Required** | 3,520 kg (141 bags) | 4,180 kg (167 bags) | **+26 extra bags wasted** |
+| **Feed Investment @ ₦23,500/bag** | ₦3,313,500 | ₦3,924,500 | **₦611,000 Lost Profit** |
+| **Feed Cost per kg of Meat** | ₦1,506 / kg | ₦1,784 / kg | **+₦278 / kg higher cost** |
+
+An inefficient farm loses over **₦600,000 in unrecovered feed costs** on just 1,000 birds.
+
+---
+
+### Nigerian Broiler Age & FCR Benchmarks (Cobb 500 & Ross 308)
+
+| Bird Age | Cumulative Feed Consumed / Bird | Target Live Weight | Target FCR Range |
+|---|---|---|---|
+| **Day 7 (End of Week 1)** | 165 grams | 185–200 grams | **0.85 – 0.95** |
+| **Day 14 (Week 2)** | 480 grams | 460–500 grams | **1.00 – 1.15** |
+| **Day 21 (Week 3)** | 1,050 grams | 900–1,000 grams | **1.20 – 1.30** |
+| **Day 28 (Week 4)** | 1,900 grams | 1,450–1,600 grams | **1.35 – 1.45** |
+| **Day 35 (Week 5)** | 3,000 grams | 2,000–2,150 grams | **1.50 – 1.60** |
+| **Day 42 (Week 6 - Harvest)** | 4,200 grams | 2,500–2,700 grams | **1.62 – 1.70** |
+
+---
+
+### The 4 Major Causes of Poor FCR in Nigerian Farms
+
+1. **Feeder Pan Height & Spillage:** When feeders are positioned too low or overfilled past the lip, birds bill feed out into the wood shavings. This feed is trampled and lost, yet counted on the farmer's balance sheet.
+2. **Sub-Clinical Coccidiosis & Gut Dysbiosis:** Even without visible bloody droppings, mild *Eimeria acervulina* lesions erode intestinal microvilli, causing nutrients to pass through in droppings undigested.
+3. **High Ambient Pen Temperature (Heat Stress):** Above 30°C, broilers expend metabolic energy panting rather than synthesizing muscle protein.
+4. **Mycotoxin Contamination:** Aflatoxins and ochratoxins present in poorly stored maize damage the liver and reduce enzymatic protein breakdown.
+    `,
+    faqs: [
+      {
+        question: 'What is a good FCR for broilers at 6 weeks in Nigeria?',
+        answer:
+          'Under good tropical management, a 6-week broiler live weight of 2.4kg to 2.6kg with an FCR of 1.60 to 1.70 is considered commercially profitable. Anything above 1.85 requires immediate nutritional and feeder height audit.',
+      },
+      {
+        question: 'How do probiotics help improve FCR?',
+        answer:
+          'Probiotics colonize the gut with beneficial lactic acid bacteria (Lactobacillus and Bacillus subtilis), crowding out Salmonella and Clostridium, elongating intestinal villi, and increasing nutrient absorption by up to 8%.',
+      },
+    ],
+    relatedProductSlugs: [
+      'manual-conical-poultry-feeder',
+      'ascorbic-acid-vitamin-c-anti-stress-powder',
+      'commercial-day-old-broiler-chicks',
+    ],
+  },
+  {
+    id: 'art-009',
+    slug: 'point-of-lay-pullet-management-egg-production-nigeria',
+    title: 'Point-of-Lay (POL) Pullet Management: Feeding, Lighting & Peak Laying in Nigeria',
+    subtitle: 'Practical protocol for receiving 14–18 week commercial pullets, managing body weight uniformity, and reaching 92%+ peak Hen-Day Production.',
+    category: 'Commercial Layers & Eggs',
+    readTime: '9 min read',
+    publishedDate: '2026-11-02',
+    author: {
+      name: 'D-AminGrow Technical Services Desk',
+      role: 'Commercial Layer & Egg Production Specialist',
+    },
+    summary:
+      'Buying Point-of-Lay (POL) birds eliminates the financial risk and 16-week waiting period of day-old chick brooding. Discover how to inspect body weight uniformity, adjust photoperiod lighting, transition from grower to layer mash, and manage vaccination booster protocols.',
+    content: `
+### What Are Point-of-Lay (POL) Birds?
+
+**Point-of-Lay (POL) birds** are pre-reared commercial layer pullets sold at **14 to 18 weeks of age**. They have received full brooding, beak trimming, and complete primary immunization against Marek's Disease, Newcastle, Gumboro (IBD), Fowl Pox, and Infectious Coryza.
+
+For commercial egg entrepreneurs in Nigeria, POL birds reduce time-to-revenue from 5 months to just **2 to 4 weeks**.
+
+---
+
+### Pre-Arrival Pen Preparation Checklist
+
+Before POL pullets arrive from D-AminGrow rearing facilities:
+1. **Total Pen Disinfection:** Deep-clean cages, nipple drinker lines, and droppings belts with broad-spectrum veterinary disinfectants at least 7 days prior.
+2. **Fresh, Cold Drinking Water:** Prime all drinking lines with electrolyte and Vitamin C water. Transit stress dehydrates pullets; water access must be instantaneous upon cage introduction.
+3. **Lighting Setup:** Ensure pens are fitted with warm LED lighting (2,700K–3,000K) positioned to provide uniform 20 to 30 lux at bird eye level.
+
+---
+
+### Body Weight Uniformity: The Secret to High Peak Production
+
+A flock of 16-week pullets should not merely meet target average body weight (approx. **1.35 kg to 1.45 kg for ISA Brown / Lohmann**); at least **80% to 85% of the birds must fall within ±10% of the mean weight**.
+
+If flock uniformity is poor (under 75%), light birds will lay late with small eggs, while heavy birds will suffer prolapse and double-yolk eggs.
+
+---
+
+### Step-by-Step Feeding Transition Protocol
+
+Never abruptly switch pullets from Developer Mash to 100% Layer Mash. Follow this 14-day graduated transition:
+
+- **Weeks 14–16:** Grower / Developer Mash (15.5% Crude Protein, 1.0% Calcium).
+- **Week 16 (Pre-Lay Phase):** Pre-Lay Mash (16.5% Crude Protein, 2.2%–2.5% Calcium) to build medullary bone calcium reserves before the first egg drops.
+- **Onset of 5% Flock Lay:** Full Layer Phase 1 Mash (17.5% Crude Protein, 3.8%–4.2% Calcium).
+
+---
+
+### Critical Pre-Lay Killed Vaccines Required at 16–18 Weeks
+
+Before peak laying commences, birds must receive their long-acting inactivated (oil-emulsion) booster injections into the breast muscle or subcutaneous nape of the neck:
+1. **Triple ND + IB + EDS-76 Killed Vaccine:** Protects against Newcastle, Infectious Bronchitis, and Egg Drop Syndrome throughout the entire 52-week laying cycle.
+2. **Infectious Coryza Killed Bacterin:** Prevents facial swelling, foul nasal discharge, and catastrophic 30% egg production collapses.
+    `,
+    faqs: [
+      {
+        question: 'At what age do Point-of-Lay birds start laying eggs in Nigeria?',
+        answer:
+          'Commercial hybrid pullets (ISA Brown, Lohmann Brown, Bovan Nera) typically drop their first eggs between 18 and 19 weeks. The flock reaches 50% production around week 21–22, and hits peak production (90%–94% Hen-Day Production) between weeks 26 and 32.',
+      },
+      {
+        question: 'Why should I buy Point-of-Lay birds instead of Day-Old Pullets?',
+        answer:
+          'POL birds bypass the 16-week high-mortality brooding and rearing phase, save substantial labor and heating costs, and start generating daily crate egg cash flow within 14 to 28 days of stocking.',
+      },
+    ],
+    relatedProductSlugs: [
+      'commercial-point-of-lay-birds',
+      'nd-ib-eds-inactivated-killed-triple-vaccine',
+      'infectious-coryza-inactivated-killed-vaccine',
+    ],
+  },
+  {
+    id: 'art-010',
+    slug: 'poultry-biosecurity-checklist-farm-disinfection-nigeria',
+    title: 'Poultry Biosecurity Protocol: The Complete Daily Farm Sanitation Checklist',
+    subtitle: 'Proven biosecure operational procedures to stop Newcastle, Gumboro, and Coryza before pathogens reach your poultry sheds.',
+    category: 'Biosecurity & Disease Prevention',
+    readTime: '7 min read',
+    publishedDate: '2026-11-02',
+    author: {
+      name: 'D-AminGrow Veterinary Field Team',
+      role: 'Field Biosecurity & Preventive Health Specialist',
+    },
+    summary:
+      'Biosecurity is the cheapest, most effective form of poultry health insurance. Discover the 3-zone biosecurity perimeter, vehicle disinfection spray dip procedures, boot bath management, and rodent containment protocols used by top Nigerian commercial farms.',
+    content: `
+### What Is Poultry Biosecurity?
+
+**Biosecurity** refers to the comprehensive series of physical barriers, management protocols, and sanitation practices designed to prevent the introduction and spread of pathogenic micro-organisms (viruses, bacteria, fungi, parasites) into a livestock flock.
+
+In Nigeria's high-density poultry corridors (Oyo, Ogun, Osun, Kaduna, Plateau), disease pathogens travel through air currents, wild birds, vehicle tires, and human visitors.
+
+---
+
+### The Three-Zone Biosecurity Perimeter
+
+1. **Traffic Zone (Public Perimeter):** The boundary outside the farm gate. Only company vehicles may approach; all external customer trucks must park outside.
+2. **Service Zone (Intermediate Perimeter):** The area between the main security gate and poultry pens. Contains feed stores, office blocks, and mortality disposal pits.
+3. **Production Zone (Clean Core):** The interior of poultry sheds. Access is strictly limited to designated caretakers wearing shed-specific boots and overalls.
+
+---
+
+### Daily & Weekly Biosecurity Protocols
+
+- **Tyre Sprays & Wheel Dips:** Every vehicle entering the farm gate must drive through a wheel dip containing a 1:200 dilution of glutaraldehyde or peracetic acid.
+- **Footbath Refreshment:** Footbaths placed at shed entrances must be cleaned and recharged with fresh disinfectant every 48 hours. Organic matter (dirt, feces) neutralizes disinfectant potency.
+- **Boot Change Over Footbaths:** The most secure practice is changing from exterior farm boots to dedicated interior shed gumboots at the doorway.
+- **Wild Bird Netting:** Ensure all side-wall wire mesh is 1.5cm or smaller to prevent wild doves and sparrows from entering pens and sharing feed/water. Wild birds carry velogenic Newcastle and avian influenza viruses.
+- **Dead Bird Disposal:** Never discard dead birds in open heaps or bush paths where dogs and flies can scavenge. Use deep-pit composting with quicklime or closed incinerators.
+    `,
+    faqs: [
+      {
+        question: 'Which disinfectant is best for poultry footbaths in Nigeria?',
+        answer:
+          'Glutaraldehyde combined with quaternary ammonium compounds (QACs) or stabilized hydrogen peroxide/peracetic acid compounds provide rapid broad-spectrum biocidal action against enveloped viruses, bacteria, and spores even in the presence of moderate organic matter.',
+      },
+      {
+        question: 'How often should water lines be sanitized on a commercial poultry farm?',
+        answer:
+          'Continuous water chlorination or hydrogen peroxide injection at 2–3 ppm at the furthest nipple drinker is recommended. In addition, flush drinking lines between every flock batch using a 3% hydrogen peroxide solution to dissolve bacterial biofilm.',
+      },
+    ],
+    relatedProductSlugs: [
+      '360-stainless-steel-poultry-nipple-drinker',
+      'cipo-zen-antibacterial-oral-solution',
+      'newcastle-disease-vaccine-lasota-strain',
+    ],
+  },
+  {
+    id: 'art-011',
+    slug: 'broiler-heat-stress-management-tropical-climate-nigeria',
+    title: 'Combatting Broiler Heat Stress in Tropical African Climates: Electrolytes, Ventilation & Housing',
+    subtitle: 'How to prevent catastrophic afternoon broiler mortality, heat prostration, and panting exhaustion when pen temperatures exceed 32°C.',
+    category: 'Flock Health & Climate Adaptation',
+    readTime: '7 min read',
+    publishedDate: '2026-11-02',
+    author: {
+      name: 'D-AminGrow Veterinary Technical Desk',
+      role: 'Flock Health & Tropical Climate Specialist',
+    },
+    summary:
+      'Tropical Nigerian ambient temperatures frequently surpass 34°C during dry seasons and heatwaves. Broilers possess no sweat glands and rely entirely on panting. Learn how to manage heat index, electrolyte supplementation, fasting schedules, and roof cooling.',
+    content: `
+### The Physiology of Heat Stress in Commercial Broilers
+
+Unlike mammals, chickens possess **no sweat glands** and are fully insulated with feathers. When ambient temperatures rise above their thermoneutral comfort zone (18°C–24°C), birds can only dissipate heat through:
+1. **Radiation and Convection:** Spreading wings and elevating body tissues away from litter.
+2. **Evaporative Cooling (Panting):** Rapid open-beak breathing that evaporates moisture from the respiratory tract.
+
+When temperature exceeds 32°C combined with high humidity, panting leads to **respiratory alkalosis** (excessive loss of CO2, blood pH elevation, and potassium/sodium depletion), resulting in cardiac failure and sudden death.
+
+---
+
+### 5 Proven Management Tactics During Tropical Heatwaves
+
+1. **Strategic Afternoon Feed Fasting:** Digestion produces substantial internal metabolic heat. Withdraw all feed 2 to 3 hours before the hottest part of the day (e.g. withdraw at 10:30 AM; re-introduce feed at 4:30 PM). Fasted birds stay cooler and survive heat spikes.
+2. **Ascorbic Acid (Vitamin C) Supplementation:** Administer pure Ascorbic Acid at 1g per 5 to 10 liters of drinking water starting at 8:00 AM. Vitamin C inhibits corticosterone secretion and protects cellular membranes.
+3. **Roof Cooling Sprinklers:** Installing low-cost overhead agricultural micro-sprinklers on corrugated iron roofing sheets reduces interior shed ambient temperatures by 3°C to 5°C.
+4. **Flush Drinking Water Lines:** Water resting inside black PVC pipes quickly heats up to 35°C+. Chickens refuse warm water. Flush lines with cool well/borehole water every 2 hours.
+5. **Reduce Stocking Density:** During hot seasons, reduce density from 12 birds/m² to 9–10 birds/m² to allow air circulation between birds.
+    `,
+    faqs: [
+      {
+        question: 'Why do broilers die mostly between 1:00 PM and 4:30 PM from heat stress?',
+        answer:
+          'This coincides with peak solar radiation and the warmest pen ambient temperature. Birds that ate heavy feed in the late morning experience overlapping metabolic digestive heat and environmental heat, causing acute heat prostration.',
+      },
+      {
+        question: 'Does Vitamin C really reduce heat stress mortality in poultry?',
+        answer:
+          'Yes. Peer-reviewed clinical trials and Nigerian field experience confirm that supplementing 100–200 mg/kg of Ascorbic Acid in drinking water during hot seasons stabilizes blood plasma cortisol levels, improves feed intake, and cuts heat mortality by up to 65%.',
+      },
+    ],
+    relatedProductSlugs: [
+      'ascorbic-acid-vitamin-c-anti-stress-powder',
+      'commercial-day-old-broiler-chicks',
+      'manual-conical-poultry-feeder',
+    ],
+  },
+  {
+    id: 'art-012',
+    slug: 'day-old-chick-hatchery-booking-guide-nigeria',
+    title: 'Day-Old Chick Hatchery Booking Guide in Nigeria: Zartech, Amo, Chi & Waybill Dispatch',
+    subtitle: 'A complete commercial handbook on hatchery pricing cycles, Monday/Thursday dispatch days, motor park waybills, and arrival brooding.',
+    category: 'Day-Old Chick Sourcing',
+    readTime: '8 min read',
+    publishedDate: '2026-11-02',
+    author: {
+      name: 'D-AminGrow Hatchery Logistics Desk',
+      role: 'Commercial Day-Old Chick Sourcing Lead',
+    },
+    summary:
+      'Ordering day-old chicks in Nigeria requires understanding dynamic pricing schedules, verified hatchery parent-stock breeds (Cobb 500, Arbor Acres, ISA Brown), carton packaging standards (50+2 bonus), and nationwide waybill dispatch networks.',
+    content: `
+### Understanding the Nigerian Day-Old Chick (DOC) Market
+
+In Nigeria, commercial hatcheries set chick prices twice a week—predominantly on **Mondays and Thursdays at 9:00 AM**—reflecting broiler demand, feed input inflation, and hatching egg availability.
+
+D-AminGrow serves as an authorized primary distribution powerhouse, partnering directly with leading national hatcheries:
+- **Zartech:** Renowned for fast-growing Cobb 500 broilers and high-laying ISA Brown pullets.
+- **Amo Farm Sieberer:** Famous for hardy Arbor Acres Plus broilers and dual-purpose Amo Noilers.
+- **Chi Farms:** Preferred for disease-resistant Arbor Acres broilers.
+- **Sayed & Agrited:** Leading suppliers of Ross 308 broilers and Novogen Brown layers.
+
+---
+
+### Packaging and Delivery Standards
+
+- **Carton Capacity:** Commercial chicks are packed in ventilated cardboard chick boxes containing **50 chicks plus 2 extra bonus chicks (52 total per box)** to cover incidental transit stress.
+- **Dispatch Days:** Primary dispatch days nationwide are **Mondays and Thursdays**.
+- **Nationwide Waybill Network:** Chicks dispatched from Ibadan and Lagos incubation hubs travel via early-morning interstate luxury buses and dedicated transit vehicles to pickup depots across all 36 Nigerian states and the FCT.
+
+---
+
+### Step-by-Step Hatchery Booking Process with D-AminGrow
+
+1. **Step 1: Inquire Current Hatchery Rates:** Contact D-AminGrow via WhatsApp or phone on booking days to confirm current market rates for your chosen breed.
+2. **Step 2: Confirm Destination Depot:** Provide your state and nearest motor park or luxury bus depot for waybill routing.
+3. **Step 3: Secure Your Slot:** Lock in your carton allocation ahead of hatch day.
+4. **Step 4: Receive Waybill Dispatch Code:** On hatch morning, receive your vehicle plate number, driver phone contact, and dispatch slip.
+    `,
+    faqs: [
+      {
+        question: 'Why are chick prices not fixed on the D-AminGrow website?',
+        answer:
+          'Hatcheries across Nigeria update prices every Monday and Thursday morning based on market supply and foreign exchange grain prices. We provide live, real-time confirmed quotes on WhatsApp so farmers always pay the authentic current hatchery rate.',
+      },
+      {
+        question: 'What happens if chicks arrive weak or dehydrated?',
+        answer:
+          'Immediately prepare lukewarm water with pure Ascorbic Acid (Vitamin C) or anti-stress electrolyte with 5% glucose. Dip the beaks of 10% of the chicks directly into drinker water so they discover the water source.',
+      },
+    ],
+    relatedProductSlugs: [
+      'commercial-day-old-broiler-chicks',
+      'commercial-day-old-layer-pullets',
+      'commercial-day-old-turkey-poults',
     ],
   },
 ];

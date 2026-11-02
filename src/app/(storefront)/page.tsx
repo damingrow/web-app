@@ -30,6 +30,7 @@ import {
   Clock,
   MapPin,
   Egg,
+  Scale,
 } from 'lucide-react';
 import { ARTICLES } from '@/data/articles';
 
@@ -623,6 +624,115 @@ export default function HomePage() {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          FARM PLANNING CALCULATORS & CLINICAL DIAGNOSTIC SUITE
+          ==================================================================== */}
+      <section className="py-20 sm:py-28 bg-[#050E08] text-white relative overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+            <div className="space-y-4">
+              <div className="section-label-dark w-fit">
+                <Calculator className="h-3.5 w-3.5 text-emerald-400" />
+                <span>Agricultural Intelligence Suite</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight">
+                Scientific Farm Calculators & <br />
+                <span className="text-gradient-green">Clinical Decision Tools</span>
+              </h2>
+              <p className="text-base text-slate-300 max-w-xl leading-relaxed">
+                Free mathematical and diagnostic utilities engineered for commercial broiler, layer, and turkey farmers across Nigeria and West Africa.
+              </p>
+            </div>
+
+            <Link
+              href="/calculators"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 shrink-0 group border border-emerald-500/30 rounded-xl px-5 py-3 hover:bg-emerald-500/10 transition-colors"
+            >
+              <span>Explore All 5 Calculators</span>
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: 'Feed Conversion Ratio (FCR)',
+                desc: 'Compute exact feed-to-meat efficiency and identify money lost to feeder pan spillage.',
+                href: '/calculators/fcr',
+                icon: Scale,
+                badge: 'Profit Optimizer',
+                color: 'text-emerald-400',
+                bg: 'bg-emerald-500/10',
+              },
+              {
+                title: 'Hen-Day Egg Production (HDP)',
+                desc: 'Track laying percentages against ISA Brown standards and compute feed cost per crate of eggs.',
+                href: '/calculators/egg-production',
+                icon: Egg,
+                badge: 'Layer Management',
+                color: 'text-amber-400',
+                bg: 'bg-amber-500/10',
+              },
+              {
+                title: 'Disease Symptom Triager',
+                desc: 'Algorithmic matching of flock symptoms to Coccidiosis, Newcastle, Gumboro, or CRD with vet SOS.',
+                href: '/calculators/symptom-checker',
+                icon: Stethoscope,
+                badge: 'Emergency Clinical Tool',
+                color: 'text-rose-400',
+                bg: 'bg-rose-500/10',
+              },
+              {
+                title: 'Brooder Space & Heaters',
+                desc: 'Size canopy gas brooders, feeding trays, drinkers, and starter feed for tropical brooding.',
+                href: '/calculators/brooder',
+                icon: Thermometer,
+                badge: 'Day-Old Brooding',
+                color: 'text-cyan-400',
+                bg: 'bg-cyan-500/10',
+              },
+            ].map((card, i) => {
+              const Icon = card.icon;
+              return (
+                <Link
+                  key={i}
+                  href={card.href}
+                  className="rounded-3xl border border-white/10 bg-white/5 p-6 hover:bg-white/8 hover:border-emerald-500/40 transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className={`h-12 w-12 rounded-2xl ${card.bg} border border-white/10 flex items-center justify-center group-hover:scale-105 transition-transform`}>
+                        <Icon className={`h-6 w-6 ${card.color}`} />
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
+                        {card.badge}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-bold text-white font-heading group-hover:text-emerald-400 transition-colors">
+                        {card.title}
+                      </h3>
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        {card.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 border-t border-white/5 mt-6 flex items-center justify-between text-xs font-semibold text-emerald-400 group-hover:text-emerald-300">
+                    <span>Launch Calculator</span>
+                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
         </div>
       </section>
 

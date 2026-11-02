@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getProductsByCategory } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import ChickBookingForm from './chick-booking-form';
 import {
   Calendar,
   Thermometer,
@@ -201,6 +202,15 @@ export default function ChicksCategoryPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          INTERACTIVE HATCHERY BOOKING ENGINE
+          ==================================================================== */}
+      <section className="py-12 sm:py-16 bg-slate-50 border-y border-slate-200" id="booking-engine">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ChickBookingForm />
         </div>
       </section>
 

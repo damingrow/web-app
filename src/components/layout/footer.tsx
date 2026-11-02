@@ -234,17 +234,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources & Legal */}
+          {/* Resources & Calculators */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-300 mb-5">Resources</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-300 mb-5">Calculators & Tools</h4>
             <ul className="space-y-3">
               {[
-                { name: 'Brooder Calculator', href: '/calculators/brooder' },
-                { name: 'Vaccination Schedule', href: '/calculators/vaccination' },
-                { name: 'Poultry Farming Blog', href: '/knowledge' },
-                { name: 'Privacy Policy', href: '/policies/privacy' },
-                { name: 'Terms of Service', href: '/policies/terms' },
-                { name: 'Shipping Policy', href: '/policies/shipping' },
+                { name: 'All Farm Calculators', href: '/calculators' },
+                { name: 'FCR & Feed Cost Margin', href: '/calculators/fcr' },
+                { name: 'Hen-Day Egg (HDP) Tool', href: '/calculators/egg-production' },
+                { name: 'Disease Symptom Triager', href: '/calculators/symptom-checker' },
+                { name: 'Brooder Space Calculator', href: '/calculators/brooder' },
+                { name: 'Vaccination Timetable', href: '/calculators/vaccination' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-slate-500 hover:text-emerald-400 transition-colors flex items-center gap-1.5 group">

@@ -19,6 +19,11 @@ const CATEGORIES = [
   'Immunology & Vaccines',
   'Disease Management',
   'Brooding & Housing',
+  'Poultry Economics & Nutrition',
+  'Commercial Layers & Eggs',
+  'Biosecurity & Disease Prevention',
+  'Flock Health & Climate Adaptation',
+  'Day-Old Chick Sourcing',
 ] as const;
 
 export function KnowledgeList({ articles }: Props) {
