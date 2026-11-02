@@ -42,9 +42,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${product.name} | D-AminGrow Nigeria`,
-    description: product.shortDescription,
+    description: `${product.shortDescription} Inquire for current market rate and booking.`,
     openGraph: {
-      title: `${product.name} — ${product.priceFormatted}`,
+      title: `${product.name} | D-AminGrow Nigeria`,
       description: product.shortDescription,
       images: [{ url: product.primaryImage }],
     },
@@ -180,13 +180,18 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 {product.name}
               </h1>
 
-              <div className="flex items-baseline space-x-3">
-                <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading">
-                  {product.priceFormatted}
-                </span>
-                <span className="text-sm font-medium text-slate-500">
-                  / {product.unit}
-                </span>
+              <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 font-heading">
+                    Current Market Pricing Policy
+                  </span>
+                  <span className="text-[11px] font-semibold text-emerald-700 bg-white px-2 py-0.5 rounded-md border border-emerald-200">
+                    Packaging: {product.unit}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-700 leading-relaxed">
+                  Prices for livestock supplies and day-old chicks fluctuate based on weekly hatchery input costs, feed grain rates, and batch availability. <strong>Contact our sales desk on WhatsApp to confirm today&apos;s live price and arrange delivery.</strong>
+                </p>
               </div>
 
               <p className="text-sm text-slate-600 leading-relaxed">

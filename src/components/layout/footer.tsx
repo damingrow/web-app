@@ -97,7 +97,7 @@ export function Footer() {
 
           {/* Catalog Categories */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Catalog</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Products We Supply</h4>
             <ul className="mt-4 space-y-2 text-xs">
               <li>
                 <Link href="/chicks" className="text-slate-400 hover:text-white transition-colors">
@@ -106,7 +106,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/drugs" className="text-slate-400 hover:text-white transition-colors">
-                  Veterinary Drugs & Antibiotics
+                  Livestock Drugs & Supplements
                 </Link>
               </li>
               <li>
@@ -116,7 +116,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/accessories" className="text-slate-400 hover:text-white transition-colors">
-                  Poultry Equipment & Housing
+                  Poultry Accessories & Equipment
                 </Link>
               </li>
             </ul>
@@ -124,26 +124,31 @@ export function Footer() {
 
           {/* Services & Guidance */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Advisory & Tools</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Advisory & Services</h4>
             <ul className="mt-4 space-y-2 text-xs">
               <li>
+                <Link href="/about" className="text-slate-400 hover:text-white transition-colors">
+                  About Us (Goal, Aim & Vision)
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-slate-400 hover:text-white transition-colors">
+                  Our Professional Services
+                </Link>
+              </li>
+              <li>
                 <Link href="/knowledge" className="text-slate-400 hover:text-white transition-colors">
-                  Knowledge Centre (Guides)
+                  Insights & Clinical Guides
                 </Link>
               </li>
               <li>
                 <Link href="/calculators/brooder" className="text-slate-400 hover:text-white transition-colors">
-                  Brooder Space & Equipment Calculator
+                  Brooder Space Calculator
                 </Link>
               </li>
               <li>
                 <Link href="/calculators/vaccination" className="text-slate-400 hover:text-white transition-colors">
                   Poultry Vaccination Calendar
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-slate-400 hover:text-white transition-colors">
-                  Veterinary Consultation Desk
                 </Link>
               </li>
             </ul>

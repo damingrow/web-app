@@ -9,13 +9,13 @@ import { Button } from '@/components/ui/button';
 import { ShoppingBag, Menu, X, Phone, ShieldCheck } from 'lucide-react';
 
 const NAV_LINKS = [
-  { name: 'Chicks', href: '/chicks' },
-  { name: 'Drugs', href: '/drugs' },
+  { name: 'Services', href: '/services' },
+  { name: 'Day-Old Chicks', href: '/chicks' },
+  { name: 'Livestock Drugs', href: '/drugs' },
   { name: 'Vaccines', href: '/vaccines' },
-  { name: 'Farm Equipment', href: '/accessories' },
+  { name: 'Poultry Accessories', href: '/accessories' },
   { name: 'Insights', href: '/knowledge' },
-  { name: 'Calculators', href: '/calculators/brooder' },
-  { name: 'Consultations', href: '/services' },
+  { name: 'About Us', href: '/about' },
 ];
 
 export function Header() {

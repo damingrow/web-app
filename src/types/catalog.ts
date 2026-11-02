@@ -29,8 +29,9 @@ export interface ProductItem {
   categoryName: string;
   shortDescription: string;
   description: string;
-  price: number; // in NGN (Nigerian Naira)
-  priceFormatted: string;
+  price?: number; // in NGN (Nigerian Naira) - optional
+  priceFormatted?: string;
+  priceNotice?: string; // e.g. "Market Rate — Contact for Current Price"
   unit: string; // e.g. "Carton of 50", "1 Litre Bottle", "Unit", "Vial (1,000 Doses)"
   minOrderQty: number;
   stockStatus: StockStatus;

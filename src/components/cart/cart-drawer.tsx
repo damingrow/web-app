@@ -60,9 +60,7 @@ export function CartDrawer() {
         name: i.product.name,
         quantity: i.quantity,
         packagingUnit: i.product.unit,
-        unitPriceNgn: i.product.price,
       })),
-      estimatedTotalNgn: totalAmount,
       userNotes: userNotes.trim() || undefined,
     };
 
@@ -229,8 +227,8 @@ export function CartDrawer() {
                             <Plus className="h-3 w-3" />
                           </button>
                         </div>
-                        <span className="text-sm font-semibold text-slate-900">
-                          ₦{(product.price * quantity).toLocaleString()}
+                        <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">
+                          Current Price on Request
                         </span>
                       </div>
                     </div>
@@ -253,24 +251,20 @@ export function CartDrawer() {
         {/* Footer */}
         {items.length > 0 && (
           <div className="border-t border-slate-100 bg-slate-50/50 p-6 space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-600">Estimated Total:</span>
-              <span className="text-xl font-bold text-slate-900 font-heading">
-                ₦{totalAmount.toLocaleString()}
-              </span>
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 space-y-1.5 text-xs text-slate-700">
+              <span className="font-bold text-emerald-950 block">Market Rate Quotation:</span>
+              <p className="leading-relaxed">
+                Prices for livestock products and day-old chicks are confirmed daily upon booking based on hatchery availability and delivery state.
+              </p>
             </div>
-
-            <p className="text-xs text-slate-500">
-              * Official prices exclude state delivery / logistics fee, confirmed directly via WhatsApp.
-            </p>
 
             <Button
               variant="whatsapp"
               size="lg"
-              className="w-full justify-center"
+              className="w-full justify-center shadow-md"
               onClick={() => setIsCheckoutModalOpen(true)}
             >
-              <span>Continue to WhatsApp Order</span>
+              <span>Submit Inquiry for Today&apos;s Price</span>
               <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
           </div>

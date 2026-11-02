@@ -39,11 +39,6 @@ export default function BrooderCalculatorClient() {
   const feedingTrayProduct = PRODUCTS.find((p) => p.slug === 'day-old-chick-brooding-feeding-tray');
   const drinkerProduct = PRODUCTS.find((p) => p.slug === 'manual-conical-poultry-feeder');
 
-  const gasBrooderTotal = (gasBrooderProduct?.price || 38500) * gasBrooderCount;
-  const feedingTrayTotal = (feedingTrayProduct?.price || 1800) * feedingTrayCount;
-  const drinkerTotal = (drinkerProduct?.price || 4200) * drinkerCount;
-  const estimatedEquipmentTotal = gasBrooderTotal + feedingTrayTotal + drinkerTotal;
-
   const handleAddPackageToCart = () => {
     if (gasBrooderProduct) addItem(gasBrooderProduct, gasBrooderCount);
     if (feedingTrayProduct) addItem(feedingTrayProduct, feedingTrayCount);
@@ -244,29 +239,29 @@ export default function BrooderCalculatorClient() {
 
                 <div className="divide-y divide-slate-100 text-xs sm:text-sm">
                   <div className="flex justify-between py-2">
-                    <span className="text-slate-600">
-                      {gasBrooderCount}x Infrared Radiant Gas Brooder Canopy (₦38,500/ea)
+                    <span className="text-slate-700 font-medium">
+                      {gasBrooderCount}x Infrared Radiant Gas Brooder Canopy Units
                     </span>
-                    <span className="font-semibold text-slate-900">₦{gasBrooderTotal.toLocaleString()}</span>
+                    <span className="text-xs text-emerald-700 font-semibold">Current Rate on Request</span>
                   </div>
 
                   <div className="flex justify-between py-2">
-                    <span className="text-slate-600">
-                      {feedingTrayCount}x Day-Old Chick Brooding Feeding Tray (₦1,800/ea)
+                    <span className="text-slate-700 font-medium">
+                      {feedingTrayCount}x Day-Old Chick Brooding Feeding Trays
                     </span>
-                    <span className="font-semibold text-slate-900">₦{feedingTrayTotal.toLocaleString()}</span>
+                    <span className="text-xs text-emerald-700 font-semibold">Current Rate on Request</span>
                   </div>
 
                   <div className="flex justify-between py-2">
-                    <span className="text-slate-600">
-                      {drinkerCount}x Manual Poultry Feeder / Drinker Fount (₦4,200/ea)
+                    <span className="text-slate-700 font-medium">
+                      {drinkerCount}x Manual Poultry Feeder / Drinker Founts
                     </span>
-                    <span className="font-semibold text-slate-900">₦{drinkerTotal.toLocaleString()}</span>
+                    <span className="text-xs text-emerald-700 font-semibold">Current Rate on Request</span>
                   </div>
 
-                  <div className="flex justify-between py-3 border-t-2 border-slate-200 text-base font-bold text-slate-950 font-heading">
-                    <span>Estimated Total Equipment:</span>
-                    <span className="text-emerald-700">₦{estimatedEquipmentTotal.toLocaleString()}</span>
+                  <div className="flex justify-between py-3 border-t-2 border-slate-200 text-xs text-slate-600">
+                    <span>Pricing Policy:</span>
+                    <span className="text-emerald-800 font-bold">Dynamic Market Rates • Instant Quote</span>
                   </div>
                 </div>
 
@@ -280,18 +275,18 @@ export default function BrooderCalculatorClient() {
                     {packageAdded ? (
                       <>
                         <CheckCircle2 className="h-5 w-5 mr-2 text-emerald-300" />
-                        <span>Package Added to Order Cart!</span>
+                        <span>Package Added to Inquiry List!</span>
                       </>
                     ) : (
                       <>
                         <ShoppingBag className="h-5 w-5 mr-2" />
-                        <span>Add Complete Equipment Package to Order</span>
+                        <span>Add Equipment Package to Inquiry</span>
                       </>
                     )}
                   </Button>
 
                   <a
-                    href={`https://wa.me/2348139169402?text=Hello%20D-AminGrow,%20I%20used%20your%20Brooder%20Calculator%20for%20${safeFlock}%20${birdType}%20chicks.%20Estimated%20equipment%20package:%20₦${estimatedEquipmentTotal.toLocaleString()}.%20Please%20send%20me%20a%20formal%20quote.`}
+                    href={`https://wa.me/2348139169402?text=Hello%20D-AminGrow,%20I%20used%20your%20Brooder%20Calculator%20for%20${safeFlock}%20${birdType}%20chicks.%20Required%20equipment:%20${gasBrooderCount}x%20Gas%20Brooders,%20${feedingTrayCount}x%20Feeding%20Trays,%20${drinkerCount}x%20Drinkers.%20Please%20send%20me%20today's%20formal%20quote.`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

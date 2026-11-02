@@ -103,7 +103,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalAmount = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const totalAmount = items.reduce((sum, item) => sum + (item.product.price || 0) * item.quantity, 0);
 
   const hasChicks = items.some((item) => item.product.category === 'chicks');
   const hasVaccines = items.some((item) => item.product.category === 'vaccines');

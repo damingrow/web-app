@@ -92,12 +92,12 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Card Actions Footer */}
-      <div className="border-t border-slate-100 bg-slate-50/50 p-5">
-        <div className="flex items-center justify-between">
+      <div className="border-t border-slate-100 bg-slate-50/50 p-4">
+        <div className="flex items-center justify-between gap-2">
           <div>
-            <div className="text-[10px] uppercase text-slate-500 font-medium">Price</div>
-            <div className="text-lg font-bold text-slate-900 font-heading">
-              {product.priceFormatted}
+            <div className="text-[10px] uppercase font-bold tracking-wider text-emerald-800">Market Rate</div>
+            <div className="text-xs font-medium text-slate-600">
+              Contact for Today&apos;s Price
             </div>
           </div>
 
@@ -111,12 +111,12 @@ export function ProductCard({ product }: ProductCardProps) {
               {existingInCart ? (
                 <>
                   <Check className="h-4 w-4 text-emerald-600" />
-                  <span>Added ({existingInCart.quantity})</span>
+                  <span>In List ({existingInCart.quantity})</span>
                 </>
               ) : (
                 <>
                   <Plus className="h-4 w-4" />
-                  <span>Add to Order</span>
+                  <span>Add to Inquiry</span>
                 </>
               )}
             </Button>

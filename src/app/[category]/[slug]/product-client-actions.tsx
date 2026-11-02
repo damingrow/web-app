@@ -24,7 +24,7 @@ export function ProductDetailClientActions({ product }: Props) {
   };
 
   const handleInstantWhatsApp = () => {
-    const orderRef = `DAG-DIR-${Date.now().toString(36).toUpperCase()}`;
+    const orderRef = `DAG-INQ-${Date.now().toString(36).toUpperCase()}`;
     const url = generateWhatsAppOrderLink({
       orderRef,
       customerName: 'Customer Inquiry',
@@ -35,10 +35,9 @@ export function ProductDetailClientActions({ product }: Props) {
           name: product.name,
           quantity,
           packagingUnit: product.unit,
-          unitPriceNgn: product.price,
         },
       ],
-      estimatedTotalNgn: product.price * quantity,
+      userNotes: "Please confirm today's market price, batch availability, and delivery dispatch schedule.",
     });
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -76,32 +75,32 @@ export function ProductDetailClientActions({ product }: Props) {
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3">
         <Button
-          variant="primary"
+          variant="whatsapp"
+          size="lg"
+          onClick={handleInstantWhatsApp}
+          className="flex-1 justify-center py-3.5 shadow-md"
+        >
+          <Phone className="h-5 w-5 mr-2" />
+          <span>Inquire Today&apos;s Price on WhatsApp</span>
+        </Button>
+
+        <Button
+          variant="outline"
           size="lg"
           onClick={handleAddToCart}
           className="flex-1 justify-center py-3.5"
         >
           {justAdded ? (
             <>
-              <Check className="h-5 w-5 mr-2 text-emerald-300" />
-              <span>Added to Order!</span>
+              <Check className="h-5 w-5 mr-2 text-emerald-600" />
+              <span>Added to Inquiry List!</span>
             </>
           ) : (
             <>
               <ShoppingBag className="h-5 w-5 mr-2" />
-              <span>Add to Order List</span>
+              <span>Add to Inquiry List</span>
             </>
           )}
-        </Button>
-
-        <Button
-          variant="whatsapp"
-          size="lg"
-          onClick={handleInstantWhatsApp}
-          className="flex-1 justify-center py-3.5"
-        >
-          <Phone className="h-5 w-5 mr-2" />
-          <span>Instant WhatsApp Order</span>
         </Button>
       </div>
     </div>
