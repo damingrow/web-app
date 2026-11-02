@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from '@/context/cart-context';
 import { Header } from '@/components/layout/header';
@@ -7,19 +6,6 @@ import { Footer } from '@/components/layout/footer';
 import { CartDrawer } from '@/components/cart/cart-drawer';
 import { CartFloatingButton } from '@/components/cart/cart-floating-button';
 import { ConsentBanner } from '@/components/compliance/consent-banner';
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-family-body',
-});
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  display: 'swap',
-  variable: '--font-family-heading',
-});
 
 export const metadata: Metadata = {
   title: 'D-AminGrow | Quality Day-Old Chicks, Vaccines, Drugs & Farm Equipment',
@@ -43,7 +29,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} antialiased`}>
+    <html lang="en" className="antialiased">
+      <head>
+        {/* Preconnect to Google Fonts for performance (loads in browser, not server) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        />
+      </head>
       <body className="min-h-screen bg-slate-50 font-body text-slate-900 flex flex-col">
         <CartProvider>
           <Header />
