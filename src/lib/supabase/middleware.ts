@@ -33,7 +33,29 @@ export async function updateSession(request: NextRequest) {
   );
 
   // Refresh auth token
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const isPlaceholder = env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
+  const pathname = request.nextUrl.pathname;
+
+  // Protect administrative routes if live Supabase is configured
+  if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login') && !isPlaceholder) {
+    if (!user) {
+      const loginUrl = request.nextUrl.clone();
+      loginUrl.pathname = '/admin/login';
+      loginUrl.searchParams.set('redirectTo', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // Redirect already authenticated users away from the login page
+  if (pathname === '/admin/login' && user && !isPlaceholder) {
+    const adminUrl = request.nextUrl.clone();
+    adminUrl.pathname = '/admin';
+    return NextResponse.redirect(adminUrl);
+  }
 
   return supabaseResponse;
 }

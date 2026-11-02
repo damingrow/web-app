@@ -9,6 +9,7 @@ import {
   ShieldAlert,
   ArrowLeft,
   UserCheck,
+  LogOut,
 } from 'lucide-react';
 
 export default function AdminLayout({
@@ -81,8 +82,15 @@ export default function AdminLayout({
           </nav>
         </div>
 
-        {/* Return to Public Site */}
-        <div className="p-4 border-t border-slate-800">
+        {/* Return to Public Site & Sign Out */}
+        <div className="p-4 border-t border-slate-800 space-y-2">
+          <Link
+            href="/admin/login"
+            className="flex items-center space-x-2 text-xs font-semibold text-slate-400 hover:text-emerald-400 transition-colors"
+          >
+            <LogOut className="h-4 w-4" />
+            <span>Staff Portal / Switch User</span>
+          </Link>
           <Link
             href="/"
             className="flex items-center space-x-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
