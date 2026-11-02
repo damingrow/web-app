@@ -223,8 +223,6 @@ export function Footer() {
                 { name: 'Technical Services', href: '/services' },
                 { name: 'Farm Consultation', href: '/services#consultation' },
                 { name: 'Knowledge Centre', href: '/knowledge' },
-                { name: 'About D-AminGrow', href: '/about' },
-                { name: 'Contact Us', href: '/contact' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-slate-500 hover:text-emerald-400 transition-colors flex items-center gap-1.5 group">
@@ -247,7 +245,6 @@ export function Footer() {
                 { name: 'Privacy Policy', href: '/policies/privacy' },
                 { name: 'Terms of Service', href: '/policies/terms' },
                 { name: 'Shipping Policy', href: '/policies/shipping' },
-                { name: 'Staff Portal', href: '/admin/login' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-slate-500 hover:text-emerald-400 transition-colors flex items-center gap-1.5 group">
