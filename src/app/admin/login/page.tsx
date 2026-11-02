@@ -1,16 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
-import { env } from '@/lib/env';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-  ShieldCheck,
-  AlertCircle,
-} from 'lucide-react';
+import { ShieldCheck, AlertCircle } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -18,20 +14,6 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isDevOrPlaceholder =
-    process.env.NODE_ENV === 'development' ||
-    env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
-
-  const enterDemoMode = () => {
-    document.cookie = 'damingrow_staff_demo=true; path=/; max-age=86400; SameSite=Lax';
-    router.push('/admin');
-  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,11 +21,6 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      if (isDevOrPlaceholder && !email && !password) {
-        enterDemoMode();
-        return;
-      }
-
       const supabase = createClient();
       const { error } = await supabase.auth.signInWithPassword({
         email,
@@ -51,11 +28,7 @@ export default function AdminLoginPage() {
       });
 
       if (error) {
-        if (isDevOrPlaceholder) {
-          setErrorMsg(`${error.message}. Or click below to enter Preview / Dev Mode.`);
-        } else {
-          setErrorMsg(error.message);
-        }
+        setErrorMsg(error.message);
         setLoading(false);
         return;
       }
@@ -83,35 +56,15 @@ export default function AdminLoginPage() {
         </div>
 
         <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-heading tracking-tight">
-          Staff Back-Office Portal
+          Welcome Back!
         </h2>
         <p className="mt-2 text-xs sm:text-sm text-slate-400">
-          Authorized personnel only. Secure role-based administration for D-AminGrow.
+          Secure role-based administration for D-AminGrow
         </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4">
         <div className="bg-white py-8 px-6 sm:px-10 shadow-2xl rounded-3xl border border-slate-800/20 space-y-6">
-          {/* Hydration-safe dev/preview alert banner */}
-          {mounted && isDevOrPlaceholder && (
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900 space-y-2">
-              <div className="flex items-center space-x-1.5 font-bold">
-                <AlertCircle className="h-4 w-4 text-amber-700 shrink-0" />
-                <span>Development & Preview Mode</span>
-              </div>
-              <p className="text-slate-600 leading-relaxed">
-                You can sign in with your staff account or enter the portal in preview mode to review customer enquiries, catalog items, and chick price synchronization.
-              </p>
-              <button
-                type="button"
-                onClick={enterDemoMode}
-                className="inline-flex items-center text-xs font-semibold text-amber-800 underline hover:text-amber-900"
-              >
-                Enter Preview Dashboard Directly &rarr;
-              </button>
-            </div>
-          )}
-
           {errorMsg && (
             <div className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-xs text-rose-900 flex items-start space-x-2">
               <AlertCircle className="h-4 w-4 text-rose-600 shrink-0 mt-0.5" />
@@ -122,11 +75,11 @@ export default function AdminLoginPage() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <Input
-                label="Staff Email Address"
+                label="Your Email Address"
                 type="email"
-                required={!isDevOrPlaceholder}
+                required
                 autoComplete="email"
-                placeholder="staff@damingrow.com"
+                placeholder="your-email@damingrow.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -136,7 +89,7 @@ export default function AdminLoginPage() {
               <Input
                 label="Password"
                 type="password"
-                required={!isDevOrPlaceholder}
+                required
                 autoComplete="current-password"
                 placeholder="••••••••••••"
                 value={password}
@@ -157,18 +110,6 @@ export default function AdminLoginPage() {
                 <span>Sign In to Dashboard</span>
               )}
             </Button>
-
-            {mounted && isDevOrPlaceholder && (
-              <Button
-                type="button"
-                variant="outline"
-                size="md"
-                onClick={enterDemoMode}
-                className="w-full justify-center border-slate-300 text-slate-700 hover:bg-slate-50 mt-2"
-              >
-                <span>Enter Preview Staff Portal</span>
-              </Button>
-            )}
           </form>
 
           {/* Security Features Notice */}
