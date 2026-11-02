@@ -38,6 +38,14 @@ VALUES
         'Durable poultry feeders, drinkers, egg transport crates, brooding infrastructure, and essential commercial farm rearing accessories.',
         4,
         TRUE
+    ),
+    (
+        'Point-of-Lay Birds',
+        'point-of-lay',
+        'point_of_lay',
+        'High-production 14 to 18-week point-of-lay pullets reared under strict veterinary supervision, uniform body weight, and complete vaccination history.',
+        5,
+        TRUE
     )
 ON CONFLICT (slug) DO UPDATE SET
     name = EXCLUDED.name,

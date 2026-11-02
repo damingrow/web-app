@@ -21,7 +21,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
-    CREATE TYPE product_category_enum AS ENUM ('accessories', 'drugs', 'vaccines', 'day_old_chicks');
+    CREATE TYPE product_category_enum AS ENUM ('accessories', 'drugs', 'vaccines', 'day_old_chicks', 'point_of_lay');
 EXCEPTION
     WHEN duplicate_object THEN NULL;
 END $$;
