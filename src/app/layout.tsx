@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { CartProvider } from '@/context/cart-context';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
-import { CartDrawer } from '@/components/cart/cart-drawer';
-import { CartFloatingButton } from '@/components/cart/cart-floating-button';
-import { ConsentBanner } from '@/components/compliance/consent-banner';
+import { LayoutShell } from '@/components/layout/layout-shell';
 
 export const metadata: Metadata = {
   title: 'D-AminGrow | Quality Day-Old Chicks, Vaccines, Drugs & Farm Equipment',
@@ -42,12 +38,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-slate-50 font-body text-slate-900 flex flex-col">
         <CartProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CartDrawer />
-          <CartFloatingButton />
-          <ConsentBanner />
+          <LayoutShell>{children}</LayoutShell>
         </CartProvider>
       </body>
     </html>

@@ -24,18 +24,25 @@ const envSchema = z.object({
 export type Env = z.infer<typeof envSchema>;
 
 function parseEnv(): Env {
+  // Explicitly reference process.env.NEXT_PUBLIC_* variables so Next.js Webpack
+  // DefinePlugin can statically inline them into the browser client bundle.
   const raw = {
-    ...process.env,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+    NEXT_PUBLIC_WHATSAPP_NUMBER: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER,
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY:
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-      'placeholder-anon-key',
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    NODE_ENV: process.env.NODE_ENV,
   };
+
   const result = envSchema.safeParse(raw);
   if (!result.success) {
     console.error('Invalid environment variables detected:', result.error.flatten().fieldErrors);
-    // In production, throw to fail early; in test/dev, fall back safely
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production' && typeof window === 'undefined') {
       throw new Error('Invalid environment configuration.');
     }
   }

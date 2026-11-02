@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
@@ -9,7 +8,6 @@ import { env } from '@/lib/env';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
-  ArrowLeft,
   ShieldCheck,
   AlertCircle,
 } from 'lucide-react';
@@ -20,6 +18,11 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const isPlaceholder = env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder');
 
@@ -79,7 +82,8 @@ export default function AdminLoginPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4">
         <div className="bg-white py-8 px-6 sm:px-10 shadow-2xl rounded-3xl border border-slate-800/20 space-y-6">
-          {isPlaceholder && (
+          {/* Hydration-safe placeholder alert banner */}
+          {mounted && isPlaceholder && (
             <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-900 space-y-1">
               <div className="flex items-center space-x-1.5 font-bold">
                 <AlertCircle className="h-4 w-4 text-amber-700 shrink-0" />
@@ -132,7 +136,7 @@ export default function AdminLoginPage() {
             >
               {loading ? (
                 <span>Authenticating...</span>
-              ) : isPlaceholder ? (
+              ) : mounted && isPlaceholder ? (
                 <span>Enter Preview Staff Portal</span>
               ) : (
                 <span>Sign In to Dashboard</span>
@@ -143,24 +147,13 @@ export default function AdminLoginPage() {
           {/* Security Features Notice */}
           <div className="border-t border-slate-100 pt-5 space-y-2 text-[11px] text-slate-500">
             <div className="flex items-center space-x-2 text-slate-700 font-semibold">
-              <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
-              <span>Zero-Trust Enterprise Security</span>
+              <ShieldCheck className="h-4 w-4 text-emerald-600" />
+              <span>Protected Corporate Environment</span>
             </div>
             <p className="leading-relaxed">
-              Administrative actions, chick price changes, and customer records access are monitored and logged to the immutable audit ledger.
+              All logins, day-old chick price modifications, and customer enquiries are audited. Unauthorized access attempts are logged and flagged under Nigerian cybersecurity statutes.
             </p>
           </div>
-        </div>
-
-        {/* Back to Storefront Link */}
-        <div className="mt-6 text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center text-xs font-semibold text-slate-400 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="h-3.5 w-3.5 mr-1.5" />
-            <span>Return to D-AminGrow Storefront</span>
-          </Link>
         </div>
       </div>
     </div>
