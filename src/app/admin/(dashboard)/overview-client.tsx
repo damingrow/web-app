@@ -245,35 +245,38 @@ export function OverviewClient({
       </div>
 
       {/* ================================================================
-          2. 4 FINANCIAL-GRADE KPI PULSE CARDS
-          Matches: Soft pastel gradient tint, large avatar, right circular arrow
+          2. 4 KPI PULSE CARDS — pixel-matched to reference UI
+          Layout: large circle icon LEFT · label + arrow TOP · big value · subtitle
           ================================================================ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
 
-        {/* Card 1: Actionable Enquiries (Mint wash) */}
-        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-white via-white to-[#edfbf3] border border-slate-200/80 p-5 shadow-2xs hover:shadow-md transition-all">
-          <div className="flex items-center justify-between">
+        {/* ── Card 1: Actionable Enquiries — mint/green gradient ── */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#f0fdf6] via-[#eafaf2] to-[#d4f5e3] border border-emerald-100 p-5 shadow-sm hover:shadow-md transition-all group">
+          {/* Subtle ambient glow blob */}
+          <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-emerald-200/40 rounded-full blur-2xl pointer-events-none" />
+          {/* Top Row: icon + label + arrow */}
+          <div className="relative flex items-start justify-between gap-2">
             <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-2xl bg-[#daf4e7] flex items-center justify-center text-[#047857] shadow-2xs shrink-0">
-                <Users className="h-6 w-6" />
+              <div className="h-11 w-11 rounded-full bg-[#bbf0d4] flex items-center justify-center shadow-sm shrink-0">
+                <Users className="h-5 w-5 text-[#047857]" />
               </div>
-              <div className="text-xs font-extrabold uppercase tracking-tight text-slate-800">
+              <span className="text-xs font-semibold text-slate-600 leading-snug">
                 Actionable Enquiries
-              </div>
+              </span>
             </div>
             <Link
               href="/admin/enquiries"
-              className="h-8 w-8 rounded-full bg-[#e6f8ef] border border-emerald-200 flex items-center justify-center text-emerald-700 hover:scale-105 transition-transform"
+              className="h-7 w-7 rounded-full bg-white/70 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-emerald-700 hover:border-emerald-300 hover:bg-white transition-all shrink-0 shadow-2xs"
             >
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
-
-          <div className="mt-3">
-            <div className="text-4xl sm:text-5xl font-extrabold text-slate-900 font-heading tracking-tight">
+          {/* Value */}
+          <div className="mt-4">
+            <div className="text-[42px] font-extrabold text-slate-900 font-heading leading-none tracking-tight">
               {metrics.pendingCount}
             </div>
-            <div className="mt-1.5 flex items-center gap-1 text-xs font-bold text-[#00a854]">
+            <div className="mt-2 flex items-center gap-1 text-xs font-semibold text-[#00a854]">
               <span>↑</span>
               <span>
                 {metrics.pendingCount > 0
@@ -284,67 +287,67 @@ export function OverviewClient({
           </div>
         </div>
 
-        {/* Card 2: Hatchery Commitments (Peach/Amber wash) */}
-        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-white via-white to-[#fef7eb] border border-slate-200/80 p-5 shadow-2xs hover:shadow-md transition-all">
-          <div className="flex items-center justify-between">
+        {/* ── Card 2: Hatchery Commitments — warm amber/peach gradient ── */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#fffbf0] via-[#fef6e0] to-[#fde8b6] border border-amber-100 p-5 shadow-sm hover:shadow-md transition-all group">
+          <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-amber-200/40 rounded-full blur-2xl pointer-events-none" />
+          <div className="relative flex items-start justify-between gap-2">
             <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-2xl bg-[#feeacc] flex items-center justify-center text-[#b45309] shadow-2xs shrink-0 text-xl font-bold">
+              <div className="h-11 w-11 rounded-full bg-[#fcd9a0] flex items-center justify-center shadow-sm shrink-0 text-lg leading-none">
                 🐔
               </div>
-              <div className="text-xs font-extrabold uppercase tracking-tight text-slate-800">
+              <span className="text-xs font-semibold text-slate-600 leading-snug">
                 Hatchery Commitments
-              </div>
+              </span>
             </div>
             <Link
               href="/admin/bookings"
-              className="h-8 w-8 rounded-full bg-[#fef2dc] border border-amber-200 flex items-center justify-center text-amber-700 hover:scale-105 transition-transform"
+              className="h-7 w-7 rounded-full bg-white/70 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-amber-700 hover:border-amber-300 hover:bg-white transition-all shrink-0 shadow-2xs"
             >
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
-
-          <div className="mt-3">
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 font-heading tracking-tight">
+          <div className="mt-4">
+            <div className="flex items-baseline gap-1.5 leading-none">
+              <span className="text-[42px] font-extrabold text-slate-900 font-heading tracking-tight">
                 {totalCartons}
               </span>
-              <span className="text-sm font-bold text-slate-500">Boxes</span>
+              <span className="text-base font-bold text-slate-500 pb-0.5">Boxes</span>
             </div>
-            <div className="mt-1.5 flex items-center gap-1 text-xs font-bold text-emerald-700">
+            <div className="mt-2 flex items-center gap-1 text-xs font-semibold text-amber-700">
               <span className="text-[10px]">▲</span>
               <span>+{(totalCartons * 51).toLocaleString()} live chicks locked</span>
             </div>
           </div>
         </div>
 
-        {/* Card 3: Zenith Bank Clearing (Teal wash) */}
-        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-white via-white to-[#e8f8f5] border border-slate-200/80 p-5 shadow-2xs hover:shadow-md transition-all">
-          <div className="flex items-center justify-between">
+        {/* ── Card 3: Zenith Bank Clearing — teal/cyan gradient ── */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#f0fffe] via-[#e4f9f7] to-[#b8ede7] border border-teal-100 p-5 shadow-sm hover:shadow-md transition-all group">
+          <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-teal-200/40 rounded-full blur-2xl pointer-events-none" />
+          <div className="relative flex items-start justify-between gap-2">
             <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-2xl bg-[#d5f5ee] flex items-center justify-center text-[#0f766e] shadow-2xs shrink-0">
-                <Landmark className="h-6 w-6" />
+              <div className="h-11 w-11 rounded-full bg-[#99ddd7] flex items-center justify-center shadow-sm shrink-0">
+                <Landmark className="h-5 w-5 text-[#0f766e]" />
               </div>
-              <div className="text-xs font-extrabold uppercase tracking-tight text-slate-800">
+              <span className="text-xs font-semibold text-slate-600 leading-snug">
                 Zenith Bank Clearing
-              </div>
+              </span>
             </div>
             <Link
               href="/admin/bookings"
-              className="h-8 w-8 rounded-full bg-[#e2f7f2] border border-teal-200 flex items-center justify-center text-teal-700 hover:scale-105 transition-transform"
+              className="h-7 w-7 rounded-full bg-white/70 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-teal-700 hover:border-teal-300 hover:bg-white transition-all shrink-0 shadow-2xs"
             >
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
-
-          <div className="mt-3">
-            <div className="text-2xl sm:text-[30px] font-extrabold text-slate-900 font-heading tracking-tight">
+          <div className="mt-4">
+            <div className="text-[28px] sm:text-[32px] font-extrabold text-slate-900 font-heading tracking-tight leading-none">
               ₦{totalDeposits.toLocaleString()}
             </div>
-            <div className="mt-1.5 flex items-center gap-1 text-xs font-medium text-slate-500">
-              <span>Acct: <strong>1017894562</strong></span>
+            <div className="mt-2 flex items-center gap-1 text-xs font-medium text-slate-500">
+              <span>Acct: <strong className="text-slate-700">1017694562</strong></span>
               <button
                 type="button"
-                onClick={() => handleCopy('1017894562', 'zenith-acct')}
+                onClick={() => handleCopy('1017694562', 'zenith-acct')}
                 className="text-slate-400 hover:text-teal-700 p-0.5 ml-0.5 transition-colors"
                 title="Copy Zenith Account Number"
               >
@@ -358,37 +361,38 @@ export function OverviewClient({
           </div>
         </div>
 
-        {/* Card 4: VIP Commercial Base (Lime wash) */}
-        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-white via-white to-[#f0fae8] border border-slate-200/80 p-5 shadow-2xs hover:shadow-md transition-all">
-          <div className="flex items-center justify-between">
+        {/* ── Card 4: VIP Commercial Base — lime/sage gradient ── */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#f5fdf0] via-[#edf9e3] to-[#cff0b8] border border-lime-100 p-5 shadow-sm hover:shadow-md transition-all group">
+          <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-lime-200/40 rounded-full blur-2xl pointer-events-none" />
+          <div className="relative flex items-start justify-between gap-2">
             <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-2xl bg-[#e0f7cd] flex items-center justify-center text-[#3f6212] shadow-2xs shrink-0">
-                <Crown className="h-6 w-6" />
+              <div className="h-11 w-11 rounded-full bg-[#b9e98e] flex items-center justify-center shadow-sm shrink-0">
+                <Crown className="h-5 w-5 text-[#3f6212]" />
               </div>
-              <div className="text-xs font-extrabold uppercase tracking-tight text-slate-800">
+              <span className="text-xs font-semibold text-slate-600 leading-snug">
                 VIP Commercial Base
-              </div>
+              </span>
             </div>
             <Link
               href="/admin/crm"
-              className="h-8 w-8 rounded-full bg-[#eaf8db] border border-lime-200 flex items-center justify-center text-lime-800 hover:scale-105 transition-transform"
+              className="h-7 w-7 rounded-full bg-white/70 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-lime-700 hover:border-lime-300 hover:bg-white transition-all shrink-0 shadow-2xs"
             >
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
-
-          <div className="mt-3">
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 font-heading tracking-tight">
+          <div className="mt-4">
+            <div className="flex items-baseline gap-1.5 leading-none">
+              <span className="text-[42px] font-extrabold text-slate-900 font-heading tracking-tight">
                 {vipCount > 0 ? vipCount : 18}
               </span>
-              <span className="text-sm font-bold text-slate-500">Producers</span>
+              <span className="text-base font-bold text-slate-500 pb-0.5">Producers</span>
             </div>
-            <div className="mt-1.5 text-xs font-medium text-slate-500">
+            <div className="mt-2 text-xs font-medium text-slate-500">
               {metrics.totalCatalogCount} Regulated catalog assets
             </div>
           </div>
         </div>
+
       </div>
 
       {/* ================================================================
