@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getProductsByCategory } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { CLIENT_FARMS } from '@/data/partners-and-clients';
 import {
   CheckCircle2,
   MessageCircle,
@@ -16,6 +17,9 @@ import {
   BookOpen,
   Zap,
   ChevronRight,
+  FileSpreadsheet,
+  Building2,
+  Calendar,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -126,11 +130,11 @@ export default function VaccinesCategoryPage() {
                   Order Vaccines — WhatsApp
                 </a>
                 <Link
-                  href="/calculators/vaccination"
+                  href="/vaccination-program"
                   className="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-6 py-4 rounded-xl border border-white/10 hover:border-white/20 transition-all text-sm"
                 >
                   <BookOpen className="h-4 w-4" />
-                  Vaccination Schedule Tool
+                  Official Vaccination Program
                 </Link>
               </div>
             </div>
@@ -249,6 +253,62 @@ export default function VaccinesCategoryPage() {
             ))}
           </div>
 
+          {/* Official Vaccination Program Banner */}
+          <div className="mt-16 rounded-3xl bg-gradient-to-br from-emerald-950 via-[#050E08] to-cyan-950 border border-emerald-500/25 p-8 sm:p-12 relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 border border-cyan-500/25 px-4 py-1.5 rounded-full">
+                  <Calendar className="h-3.5 w-3.5" />
+                  Official Veterinary Protocol
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-white">
+                  Generate Your Calibrated Broiler & Layer Vaccination Calendar
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Enter your flock placement date to instantly calculate calendar-mapped vaccination days (IB Multi, ND LaSota, IBD Intermediate Plus, Fowl Pox, Salmonella, and Layer Inactivated Triple). Print directly or download as a PDF for pen records.
+                </p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <Link
+                    href="/vaccination-program"
+                    className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-7 py-3.5 rounded-xl transition-all text-sm shadow-lg shadow-emerald-600/30"
+                  >
+                    <FileSpreadsheet className="h-4 w-4" />
+                    Open Vaccination Program Hub
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/calculators/vaccination"
+                    className="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-5 py-3.5 rounded-xl border border-white/15 hover:border-white/25 transition-all text-sm"
+                  >
+                    Dose Volume Calculator
+                  </Link>
+                </div>
+              </div>
+              <div className="lg:col-span-4 bg-white/5 border border-white/10 rounded-2xl p-5 space-y-3">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Included Protocols</div>
+                <div className="space-y-2 text-xs text-slate-200">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Broiler Chart: Day 1 to 19 (ND + IBD Prime/Booster)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Layer Protocol: Day 1 to Week 22 Point-of-Lay</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Water withholding & skimmed milk stabilizer rules</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Printable Pen Chart for farm managers & staff</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* CTA Strip */}
           <div className="mt-12 rounded-3xl bg-gradient-to-r from-[#050E08] to-[#0a1f2e] border border-cyan-500/20 p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
@@ -266,12 +326,74 @@ export default function VaccinesCategoryPage() {
                 Get Custom Schedule
               </a>
               <Link
-                href="/calculators/vaccination"
+                href="/vaccination-program"
                 className="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-6 py-3.5 rounded-xl border border-white/15 hover:border-white/25 transition-all text-sm"
               >
                 Free Schedule Tool <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          TRUSTED BY COMMERCIAL CLIENT FARMS
+          ==================================================================== */}
+      <section className="py-16 sm:py-20 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <div className="section-label mx-auto w-fit">
+              <Building2 className="h-3.5 w-3.5" />
+              Commercial Farm Trust
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900">
+              Trusted by Commercial Poultry Operations Nationwide
+            </h2>
+            <p className="text-sm text-slate-600">
+              Commercial farms across the country rely on D-AminGrow cold-chain logistics to safeguard tens of thousands of birds against virulent field challenges.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CLIENT_FARMS.slice(0, 4).map((farm) => (
+              <div
+                key={farm.id}
+                className="rounded-2xl bg-white border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition-shadow group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+                      {farm.flockType}
+                    </span>
+                    <span className="text-xs text-slate-400 font-medium">{farm.relationshipYears}</span>
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 font-heading group-hover:text-emerald-700 transition-colors">
+                    {farm.name}
+                  </h3>
+                  <p className="text-xs text-slate-500 flex items-center gap-1">
+                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+                    {farm.location} · {farm.flockCapacity}
+                  </p>
+                  <p className="text-xs text-slate-600 italic leading-relaxed pt-2 border-t border-slate-100">
+                    &ldquo;{farm.testimonialSnippet}&rdquo;
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                  <span>Flock Capacity</span>
+                  <span className="font-semibold text-slate-700">{farm.flockCapacity}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/reviews"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
+            >
+              Read all verified commercial client reviews
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

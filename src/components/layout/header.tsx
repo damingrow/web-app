@@ -115,6 +115,7 @@ const CALCULATORS_MENU = [
   { icon: Thermometer, label: 'Brooder Heat Setup', desc: 'Temperature curves for chick age', href: '/calculators/brooder' },
   { icon: Syringe, label: 'Vaccination Planner', desc: 'Dose calculator by flock size', href: '/calculators/vaccination' },
   { icon: Stethoscope, label: 'Symptom Checker', desc: 'AI-guided disease triage tool', href: '/calculators/symptom-checker' },
+  { icon: Zap, label: 'Vaccination Programs', desc: 'Official broiler & layer schedules with calendar dates', href: '/vaccination-program' },
 ];
 
 const MORE_MENU = [

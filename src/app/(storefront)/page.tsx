@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PRODUCTS } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { HATCHERY_PARTNERS, CLIENT_FARMS } from '@/data/partners-and-clients';
 import {
   ArrowRight,
   CheckCircle2,
@@ -31,6 +32,8 @@ import {
   MapPin,
   Egg,
   Scale,
+  Building2,
+  FileSpreadsheet,
 } from 'lucide-react';
 import { ARTICLES } from '@/data/articles';
 
@@ -818,18 +821,127 @@ export default function HomePage() {
             </Link>
 
             <Link
-              href="/calculators/vaccination"
+              href="/vaccination-program"
               className="group flex items-center gap-5 rounded-3xl border border-cyan-200 bg-cyan-50/60 p-6 hover:bg-cyan-50 hover:shadow-md transition-all"
             >
               <div className="rounded-2xl bg-cyan-600 p-4 text-white shadow-lg group-hover:scale-105 transition-transform shrink-0">
-                <Syringe className="h-7 w-7" />
+                <FileSpreadsheet className="h-7 w-7" />
               </div>
               <div>
                 <div className="text-xs font-bold uppercase tracking-wider text-cyan-700 mb-1">Free Tool</div>
-                <h3 className="text-base font-bold text-slate-900 font-heading group-hover:text-cyan-800">Vaccination Schedule Generator</h3>
-                <p className="text-xs text-slate-600 mt-1">Get a custom immunization calendar for your flock</p>
+                <h3 className="text-base font-bold text-slate-900 font-heading group-hover:text-cyan-800">Calibrated Vaccination Programs</h3>
+                <p className="text-xs text-slate-600 mt-1">Official Broiler & Layer schedules with exact dates and printable PDF</p>
               </div>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          CERTIFIED HATCHERIES & COMMERCIAL CLIENT FARMS NETWORK
+          ==================================================================== */}
+      <section className="py-20 sm:py-28 bg-white border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
+            <div className="section-label mx-auto w-fit">
+              <Building2 className="h-3.5 w-3.5" />
+              Trusted Poultry Ecosystem
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
+              Hatcheries & Commercial Farms We Work With
+            </h2>
+            <p className="text-base text-slate-600 leading-relaxed">
+              We connect commercial poultry farmers to certified grandparent and parent-stock genetics, paired with genuine cold-chain vaccines and scientific flock health programs.
+            </p>
+          </div>
+
+          {/* Hatcheries strip */}
+          <div className="mb-16">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h3 className="text-lg font-bold font-heading text-slate-900">Partner Hatcheries</h3>
+                <p className="text-xs text-slate-500">Certified breeding operations and day-old chick sources</p>
+              </div>
+              <Link
+                href="/chicks"
+                className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1"
+              >
+                Book DOC Allocation <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {HATCHERY_PARTNERS.map((hatchery) => (
+                <div
+                  key={hatchery.id}
+                  className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 hover:bg-white hover:border-emerald-300 hover:shadow-md transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">
+                      {hatchery.badge}
+                    </span>
+                    <h4 className="text-sm font-bold font-heading text-slate-900 group-hover:text-emerald-700 transition-colors">
+                      {hatchery.shortName}
+                    </h4>
+                    <p className="text-[11px] text-slate-500 line-clamp-2">
+                      {hatchery.description}
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-slate-200/60 text-[11px] text-slate-600 font-medium">
+                    {hatchery.specialtyBreeds[0]}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Commercial Client Farms */}
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h3 className="text-lg font-bold font-heading text-slate-900">Commercial Poultry Clients</h3>
+                <p className="text-xs text-slate-500">Poultry operations trusting D-AminGrow across Nigeria</p>
+              </div>
+              <Link
+                href="/reviews"
+                className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1"
+              >
+                All Client Testimonials <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {CLIENT_FARMS.map((farm) => (
+                <div
+                  key={farm.id}
+                  className="rounded-2xl border border-slate-200 bg-white p-5 flex flex-col justify-between hover:shadow-md hover:border-emerald-200 transition-all group"
+                >
+                  <div className="space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full">
+                        {farm.flockType.split('&')[0]}
+                      </span>
+                      <span className="text-[10px] text-slate-400">{farm.relationshipYears}</span>
+                    </div>
+                    <h4 className="text-sm font-bold font-heading text-slate-900 group-hover:text-emerald-700 transition-colors">
+                      {farm.name}
+                    </h4>
+                    <p className="text-[11px] text-slate-500 flex items-center gap-1">
+                      <ShieldCheck className="h-3 w-3 text-emerald-600 shrink-0" />
+                      {farm.location}
+                    </p>
+                    <p className="text-xs text-slate-600 italic leading-relaxed pt-2 border-t border-slate-100">
+                      &ldquo;{farm.testimonialSnippet}&rdquo;
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                    <span>Flock Size</span>
+                    <span className="font-semibold text-slate-700">{farm.flockCapacity}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

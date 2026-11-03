@@ -10,8 +10,18 @@ const enquiryInputSchema = z.object({
   state: z.string().min(2).max(50),
   city: z.string().max(100).optional(),
   farmName: z.string().max(100).optional(),
+  flockType: z.string().max(50).optional(),
+  flockSize: z.union([z.number(), z.string()]).optional(),
+  placementDate: z.string().max(50).optional(),
   enquiryType: z
-    .enum(['whatsapp_order', 'bulk_quote', 'veterinary_consultation', 'farm_setup_inquiry', 'general'])
+    .enum([
+      'whatsapp_order',
+      'bulk_quote',
+      'veterinary_consultation',
+      'farm_setup_inquiry',
+      'vaccination_program',
+      'general',
+    ])
     .default('whatsapp_order'),
   notes: z.string().max(4000).optional(),
   priority: z.enum(['low', 'normal', 'high', 'urgent']).optional(),
@@ -55,19 +65,45 @@ export async function POST(request: Request) {
       try {
         const supabase = createAdminClient();
 
+        // Compile structured notes if vaccination program
+        let userNotes = validated.notes || null;
+        if (validated.enquiryType === 'vaccination_program') {
+          const details = [
+            `[VACCINATION PROGRAM LEAD]`,
+            `Flock Type: ${validated.flockType || 'Unspecified'}`,
+            `Flock Size: ${validated.flockSize || 'Not specified'}`,
+            `Placement Date: ${validated.placementDate || 'Not specified'}`,
+            validated.notes ? `Notes: ${validated.notes}` : '',
+          ]
+            .filter(Boolean)
+            .join(' | ');
+          userNotes = details;
+        }
+
+        // Map enum safely to prevent Postgres custom enum mismatch
+        const dbEnquiryType =
+          validated.enquiryType === 'vaccination_program'
+            ? 'veterinary_consultation'
+            : validated.enquiryType;
+
         // 1. Insert enquiry with aligned database schema (enquiry_ref)
         const { error: insertError } = await supabase.from('enquiries').insert({
           enquiry_ref: referenceNumber,
-          enquiry_type: validated.enquiryType,
+          enquiry_type: dbEnquiryType,
           customer_name: validated.fullName,
           customer_phone: validated.phone,
           farm_name: validated.farmName || null,
           delivery_state: validated.state,
           delivery_city: validated.city || validated.state,
           delivery_country: 'Nigeria',
-          user_notes: validated.notes || null,
+          user_notes: userNotes,
           status: 'pending_contact',
-          priority: validated.priority || (validated.enquiryType === 'veterinary_consultation' ? 'high' : 'normal'),
+          priority:
+            validated.priority ||
+            (validated.enquiryType === 'veterinary_consultation' ||
+            validated.enquiryType === 'vaccination_program'
+              ? 'high'
+              : 'normal'),
         });
 
         if (insertError) {

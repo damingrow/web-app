@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getProductsByCategory } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { HATCHERY_PARTNERS, CLIENT_FARMS } from '@/data/partners-and-clients';
 import ChickBookingForm from './chick-booking-form';
 import {
   Calendar,
@@ -19,6 +20,10 @@ import {
   ChevronRight,
   BookOpen,
   TrendingUp,
+  Building2,
+  Syringe,
+  FileSpreadsheet,
+  Award,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -243,6 +248,62 @@ export default function ChicksCategoryPage() {
             ))}
           </div>
 
+          {/* Official Vaccination Program Banner */}
+          <div className="mt-16 rounded-3xl bg-gradient-to-br from-emerald-950 via-[#050E08] to-slate-950 border border-emerald-500/25 p-8 sm:p-12 relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-1.5 rounded-full">
+                  <Syringe className="h-3.5 w-3.5" />
+                  Included With Every Batch
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-white">
+                  Calibrated Day-by-Day Vaccination Program for Your Birds
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Every chick placement requires timely immunization against Newcastle Disease, Gumboro (IBD), and Infectious Bronchitis. Input your delivery date into our veterinary planner to generate a calendar with exact dates, pen directions, and a downloadable PDF chart.
+                </p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <Link
+                    href="/vaccination-program"
+                    className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-7 py-3.5 rounded-xl transition-all text-sm shadow-lg shadow-emerald-600/30"
+                  >
+                    <FileSpreadsheet className="h-4 w-4" />
+                    Generate Pen Schedule Now
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/calculators/brooder"
+                    className="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-5 py-3.5 rounded-xl border border-white/15 hover:border-white/25 transition-all text-sm"
+                  >
+                    Brooder Heat & Space Setup
+                  </Link>
+                </div>
+              </div>
+              <div className="lg:col-span-4 bg-white/5 border border-white/10 rounded-2xl p-5 space-y-3">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Veterinary Highlights</div>
+                <div className="space-y-2 text-xs text-slate-200">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Hatchery Marek&apos;s HVT 0.2ml verified pre-delivery</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Exact calendar dates calculated automatically</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Printable chart to pin directly in brooding pen</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>WhatsApp cold-chain pre-order integration</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* CTA Strip */}
           <div className="mt-12 rounded-3xl bg-gradient-to-r from-[#050E08] to-emerald-950 border border-emerald-500/20 p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
@@ -267,6 +328,129 @@ export default function ChicksCategoryPage() {
                 Call Us
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          HATCHERIES WE WORK WITH
+          ==================================================================== */}
+      <section className="py-16 sm:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <div className="section-label mx-auto w-fit">
+              <Building2 className="h-3.5 w-3.5" />
+              Certified Hatchery Network
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
+              Hatcheries We Work With
+            </h2>
+            <p className="text-base text-slate-600 leading-relaxed">
+              We partner directly with Nigeria&apos;s leading grandparent and parent-stock hatcheries to guarantee genuine genetics, strict bio-security, and high livability.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {HATCHERY_PARTNERS.map((hatchery) => (
+              <div
+                key={hatchery.id}
+                className="rounded-3xl bg-white border border-slate-200 p-7 space-y-4 hover:shadow-lg transition-shadow group flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
+                      {hatchery.badge}
+                    </span>
+                    <span className="text-xs text-slate-400 font-medium">{hatchery.location.split(',')[0]}</span>
+                  </div>
+                  <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-emerald-700 transition-colors">
+                    {hatchery.name}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium">
+                    {hatchery.establishedRole}
+                  </p>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {hatchery.description}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 space-y-2">
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Key Breeds Supplied</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {hatchery.specialtyBreeds.map((breed, bIdx) => (
+                      <span
+                        key={bIdx}
+                        className="text-xs font-medium text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-md"
+                      >
+                        {breed}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          TRUSTED BY COMMERCIAL CLIENT FARMS
+          ==================================================================== */}
+      <section className="py-16 sm:py-24 bg-white border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <div className="section-label mx-auto w-fit">
+              <Award className="h-3.5 w-3.5" />
+              Verified Commercial Clients
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
+              Trusted by Commercial Poultry Operations
+            </h2>
+            <p className="text-base text-slate-600 leading-relaxed">
+              From smallholder brooders to multi-pen commercial operations, poultry farms across Nigeria count on D-AminGrow for reliable chick dispatch and brooding performance.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CLIENT_FARMS.map((farm) => (
+              <div
+                key={farm.id}
+                className="rounded-2xl bg-slate-50 border border-slate-200 p-6 flex flex-col justify-between hover:border-emerald-300 hover:bg-white transition-all group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100/70 px-2.5 py-0.5 rounded-full">
+                      {farm.flockType.split('&')[0]}
+                    </span>
+                    <span className="text-xs text-slate-400 font-medium">{farm.relationshipYears}</span>
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 font-heading group-hover:text-emerald-700 transition-colors">
+                    {farm.name}
+                  </h3>
+                  <p className="text-xs text-slate-500 flex items-center gap-1">
+                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+                    {farm.location}
+                  </p>
+                  <p className="text-xs text-slate-600 italic leading-relaxed pt-2 border-t border-slate-200">
+                    &ldquo;{farm.testimonialSnippet}&rdquo;
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                  <span>Capacity</span>
+                  <span className="font-semibold text-slate-800">{farm.flockCapacity}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/reviews"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
+            >
+              View detailed case studies and verified reviews
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
