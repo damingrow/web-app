@@ -206,26 +206,6 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
                 </span>
               </div>
             </Link>
-
-            {/* Enterprise Role & Operational Status Banner */}
-            <div className="mt-4 rounded-2xl border border-white/5 bg-white/5 p-2.5 backdrop-blur-md">
-              <div className="flex items-center justify-between text-xs">
-                <div className="flex items-center space-x-2">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <span className="font-bold text-white text-[11px]">Commercial Live</span>
-                </div>
-                <span className="rounded-full bg-emerald-500/20 border border-emerald-500/30 px-2 py-0.5 text-[9px] font-mono font-bold text-emerald-300">
-                  12 MODULES
-                </span>
-              </div>
-              <div className="text-[10px] text-slate-400 mt-1 flex items-center justify-between">
-                <span>Zenith Escrow Gate</span>
-                <span className="text-emerald-400 font-semibold">100% Cleared</span>
-              </div>
-            </div>
           </div>
 
           {/* Navigation Links Grouped by Section */}
