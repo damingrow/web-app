@@ -490,18 +490,6 @@ export function Header() {
 
           {/* ── Right CTAs ──────────────────────────────────────────── */}
           <div className="flex items-center gap-2 shrink-0">
-            {/* WhatsApp quick-dial (desktop only) */}
-            <a
-              href="https://wa.me/2348139169402"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden xl:flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-emerald-700 px-3 py-2 rounded-xl hover:bg-emerald-50 transition-all"
-              aria-label="WhatsApp"
-            >
-              <MessageCircle className="h-4 w-4 text-[#25D366]" />
-              <span className="text-xs">WhatsApp</span>
-            </a>
-
             {/* Book Consultation CTA */}
             <Link
               href="/services/consultation"
