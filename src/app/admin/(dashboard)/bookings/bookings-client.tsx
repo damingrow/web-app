@@ -12,6 +12,7 @@ import {
   Check,
   CreditCard,
   X,
+  MessageCircle,
 } from 'lucide-react';
 import { DbBooking, DbQuota } from '@/lib/supabase/data-access';
 
@@ -333,17 +334,32 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
                             {b.booking_status.replace('_', ' ')}
                           </span>
                         </td>
-                        <td className="px-4 py-3 text-right whitespace-nowrap">
+                        <td className="px-4 py-3 text-right whitespace-nowrap space-x-2">
+                          <a
+                            href={`https://wa.me/${b.customer_phone.replace(/\+/g, '').replace(/\s+/g, '')}?text=Hello%20${encodeURIComponent(
+                              b.customer_name
+                            )},%20this%20is%20D-AminGrow%20Dispatch%20Desk%20regarding%20chick%20reservation%20${b.booking_ref}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors shadow-2xs"
+                            title="Chat on WhatsApp"
+                          >
+                            <MessageCircle className="h-3.5 w-3.5 text-emerald-600" />
+                            <span className="hidden sm:inline">WhatsApp</span>
+                          </a>
+
                           {b.booking_status !== 'confirmed' ? (
                             <button
                               type="button"
                               onClick={() => handleOpenVerification(b)}
-                              className="rounded-lg bg-emerald-600 px-2.5 py-1 text-xs font-bold text-white hover:bg-emerald-700 transition-colors shadow-sm"
+                              className="rounded-lg bg-emerald-600 px-2.5 py-1 text-xs font-bold text-white hover:bg-emerald-700 transition-colors shadow-2xs"
                             >
                               Verify Deposit
                             </button>
                           ) : (
-                            <span className="text-[11px] font-bold text-emerald-700">Verified</span>
+                            <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                              ✓ Verified
+                            </span>
                           )}
                         </td>
                       </tr>
