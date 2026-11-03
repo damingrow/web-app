@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { generateLocalBusinessSchema } from '@/lib/seo/structured-data';
 
 export const metadata: Metadata = {
   title: 'D-AminGrow | Quality Day-Old Chicks, Vaccines, Drugs & Farm Equipment',
@@ -27,9 +28,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const localBusinessJsonLd = generateLocalBusinessSchema();
+
   return (
     <html lang="en" className="antialiased">
       <body className="min-h-screen bg-slate-50 font-body text-slate-900 flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
         {children}
       </body>
     </html>

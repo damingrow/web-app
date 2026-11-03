@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PRODUCTS, getProductBySlug, getRelatedProducts } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { generateBreadcrumbSchema } from '@/lib/seo/structured-data';
 import { Badge } from '@/components/ui/badge';
 import { ProductDetailClientActions } from './product-client-actions';
 import {
@@ -93,11 +94,21 @@ export default async function ProductDetailPage({ params }: PageProps) {
     },
   };
 
+  const breadcrumbJsonLd = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: product.category.replace(/-/g, ' '), url: `/${product.category}` },
+    { name: product.name, url: `/${product.category}/${product.slug}` },
+  ]);
+
   return (
     <div className="min-h-screen bg-slate-50/70 py-8 sm:py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">

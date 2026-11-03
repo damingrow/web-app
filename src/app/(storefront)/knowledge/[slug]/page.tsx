@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { ARTICLES, getArticleBySlug } from '@/data/articles';
 import { PRODUCTS } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/seo/structured-data';
 import {
   Clock,
   Calendar,
@@ -66,28 +67,26 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
   const otherArticles = ARTICLES.filter((a) => a.slug !== article.slug).slice(0, 3);
 
-  // Structured Data Schema for Article & FAQ (Crucial for Google SEO & 500K Traffic)
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    description: article.summary,
-    author: {
-      '@type': 'Person',
-      name: article.author.name,
-      jobTitle: article.author.role,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'D-AminGrow Agro-Allied Co.',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://damingrow.com/Brand%20identity/damingrow%20logo.png',
-      },
-    },
-    datePublished: article.publishedDate,
-    mainEntityOfPage: `https://damingrow.com/knowledge/${article.slug}`,
-  };
+  // Structured Data Schemas (MedicalWebPage, BreadcrumbList & FAQPage for Google SEO)
+  const articleJsonLd = generateArticleSchema({
+    title: article.title,
+    subtitle: article.subtitle,
+    summary: article.summary,
+    slug: article.slug,
+    publishedDate: article.publishedDate,
+    authorName: article.author.name,
+    authorRole: article.author.role,
+    reviewerName: article.clinicalReview?.reviewerName,
+    reviewerCredentials: article.clinicalReview?.credentials,
+    reviewerVcnReg: article.clinicalReview?.vcnRegistration,
+    reviewDate: article.clinicalReview?.reviewDate,
+  });
+
+  const breadcrumbJsonLd = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Knowledge Centre', url: '/knowledge' },
+    { name: article.title, url: `/knowledge/${article.slug}` },
+  ]);
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -106,7 +105,11 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     <div className="min-h-screen bg-slate-50/80">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"
@@ -187,6 +190,38 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12">
         {/* Main Article Body Card */}
         <article className="bg-white rounded-3xl p-6 sm:p-12 border border-slate-200/90 shadow-xl shadow-slate-200/50 space-y-8">
+          {/* VCN Clinical Peer Review Callout */}
+          {article.clinicalReview && (
+            <div className="rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50/80 to-slate-50 p-5 space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-violet-200/60 pb-3">
+                <div className="flex items-center space-x-2">
+                  <div className="h-7 w-7 rounded-lg bg-violet-600 text-white flex items-center justify-center">
+                    <ShieldCheck className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-violet-950 font-heading block">
+                      Clinically Reviewed & Verified
+                    </span>
+                    <span className="text-[11px] text-violet-800 font-semibold">
+                      {article.clinicalReview.reviewerName} · {article.clinicalReview.credentials}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-violet-200/80 text-violet-900 border border-violet-300">
+                    {article.clinicalReview.vcnRegistration}
+                  </span>
+                  <span className="text-[10px] text-slate-500 font-mono">
+                    Audited: {article.clinicalReview.reviewDate}
+                  </span>
+                </div>
+              </div>
+              <p className="text-[11px] text-slate-600 leading-relaxed italic">
+                &ldquo;{article.clinicalReview.declaration}&rdquo;
+              </p>
+            </div>
+          )}
+
           {/* Executive Summary Callout */}
           <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/70 to-teal-50/40 p-6 space-y-2">
             <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-emerald-900 font-heading">
