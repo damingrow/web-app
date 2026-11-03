@@ -147,22 +147,15 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
           </button>
         </div>
 
-        {/* CENTER: Operations Live Pulse & WAT Regional Clock */}
+        {/* CENTER: WAT Regional Clock */}
         <div className="hidden lg:flex items-center gap-3">
           <div className="flex items-center gap-3 rounded-full border border-slate-200/90 bg-gradient-to-r from-slate-50 via-white to-emerald-50/40 px-4 py-1.5 shadow-2xs">
-            {/* Live Status Indicator */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00a854]" />
-              </span>
-              <span className="text-[11px] font-bold text-slate-800">HQ Live Ops</span>
-            </div>
-
-            <span className="h-3 w-px bg-slate-200" />
-
             {/* WAT Time & Date Display */}
             <div className="flex items-center gap-2 text-xs">
+              <span className="relative flex h-2 w-2 mr-0.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00a854]" />
+              </span>
               <span className="font-mono font-extrabold text-slate-900 text-[13px] tracking-tight">
                 {currentTime}
               </span>
