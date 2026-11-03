@@ -403,40 +403,40 @@ export function OverviewClient({
         {/* Left Column (7 Cols): Weekly Quota Saturation Radar */}
         <div className="lg:col-span-7 rounded-3xl bg-white border border-slate-200/80 shadow-2xs overflow-hidden">
           {/* Dark Header Banner */}
-          <div className="bg-[#062413] px-6 py-4 flex items-center justify-between">
+          <div className="bg-[#062413] px-5 py-3 flex items-center justify-between">
             <div>
               <div className="text-[10px] font-bold text-[#2ee571] uppercase tracking-wider flex items-center gap-1.5">
-                <BarChart2 className="h-3.5 w-3.5" />
+                <BarChart2 className="h-3 w-3" />
                 <span>PRIMARY PARTNER HATCHERIES</span>
               </div>
-              <h2 className="text-base sm:text-lg font-bold text-white font-heading mt-0.5">
+              <h2 className="text-sm font-bold text-white font-heading mt-0.5">
                 Weekly Quota Saturation Radar
               </h2>
             </div>
             <Link
               href="/admin/bookings"
-              className="bg-[#00a854] hover:bg-[#009249] text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-xs"
+              className="bg-[#00a854] hover:bg-[#009249] text-white text-xs font-bold px-3.5 py-1.5 rounded-xl transition-all shadow-xs"
             >
               Manage Quotas →
             </Link>
           </div>
 
           {/* Hatchery Capacity Rows */}
-          <div className="divide-y divide-slate-100 px-6 py-2">
+          <div className="divide-y divide-slate-100 px-5 py-1">
             {hatcheries.map((h) => (
-              <div key={h.name} className="py-4 space-y-2">
+              <div key={h.name} className="py-3 space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-[#e8f7ee] flex items-center justify-center shrink-0">
-                      <Sprout className="h-5 w-5 text-[#00a854]" />
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-8 w-8 rounded-full bg-[#e8f7ee] flex items-center justify-center shrink-0">
+                      <Sprout className="h-4 w-4 text-[#00a854]" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-slate-900">{h.name}</div>
+                      <div className="text-xs font-bold text-slate-900">{h.name}</div>
                       <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{h.breed}</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm font-bold text-slate-900 font-mono">
+                    <div className="text-xs font-bold text-slate-900 font-mono">
                       {h.reserved} / {h.total}
                     </div>
                     <div className="text-[10px] font-medium text-slate-400">
@@ -446,9 +446,9 @@ export function OverviewClient({
                 </div>
 
                 {/* Progress Bar with open cartons label */}
-                <div className="flex items-center justify-between gap-4 pt-1">
+                <div className="flex items-center justify-between gap-4">
                   <div className="flex-1 space-y-1">
-                    <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-[#00a854] rounded-full transition-all duration-700"
                         style={{ width: `${h.pct}%` }}
@@ -471,17 +471,17 @@ export function OverviewClient({
         <div className="lg:col-span-5 rounded-3xl bg-white border border-slate-200/80 shadow-2xs overflow-hidden flex flex-col justify-between">
           <div>
             {/* Dark Header Banner */}
-            <div className="bg-[#062413] px-6 py-4 flex items-center justify-between">
+            <div className="bg-[#062413] px-5 py-3 flex items-center justify-between">
               <div>
                 <div className="text-[10px] font-bold text-[#2ee571] uppercase tracking-wider flex items-center gap-1.5">
-                  <Truck className="h-3.5 w-3.5" />
+                  <Truck className="h-3 w-3" />
                   <span>INTERSTATE DISPATCH GRID</span>
                 </div>
-                <h2 className="text-base sm:text-lg font-bold text-white font-heading mt-0.5">
+                <h2 className="text-sm font-bold text-white font-heading mt-0.5">
                   Motor Park Terminals
                 </h2>
               </div>
-              <span className="bg-[#00a854] text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+              <span className="bg-[#00a854] text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
                 🛡️ 99.2% Survival
               </span>
             </div>
@@ -491,18 +491,18 @@ export function OverviewClient({
               {DISPATCH_HUBS.map((hub) => (
                 <div
                   key={hub.name}
-                  className="flex items-center justify-between px-5 py-3.5 hover:bg-slate-50/70 transition-colors group"
+                  className="flex items-center justify-between px-4 py-2.5 hover:bg-slate-50/70 transition-colors group"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="h-8 w-8 rounded-full bg-[#e8f7ee] flex items-center justify-center text-[#00a854] shrink-0">
-                      <MapPin className="h-4 w-4" />
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="h-7 w-7 rounded-full bg-[#e8f7ee] flex items-center justify-center text-[#00a854] shrink-0">
+                      <MapPin className="h-3.5 w-3.5" />
                     </div>
                     <div className="min-w-0">
                       <div className="text-xs font-bold text-slate-900 leading-snug">{hub.name}</div>
                       <div className="text-[10px] text-slate-400 mt-0.5">{hub.schedule}</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 shrink-0 ml-3">
+                  <div className="flex items-center gap-1.5 shrink-0 ml-3">
                     <div className="text-right">
                       <span className={`text-[10px] font-bold rounded px-2 py-0.5 inline-block ${hub.badgeClass}`}>
                         {hub.badge}
@@ -511,8 +511,8 @@ export function OverviewClient({
                         {hub.dotLabel}
                       </div>
                     </div>
-                    <button className="text-slate-300 hover:text-slate-500 p-1" aria-label="More actions">
-                      <MoreVertical className="h-4 w-4" />
+                    <button className="text-slate-300 hover:text-slate-500 p-0.5" aria-label="More actions">
+                      <MoreVertical className="h-3.5 w-3.5" />
                     </button>
                   </div>
                 </div>
@@ -521,9 +521,9 @@ export function OverviewClient({
           </div>
 
           {/* VCN Standards Banner at Bottom */}
-          <div className="bg-[#eaf8f0] border border-emerald-200/80 rounded-2xl p-3.5 mx-5 mb-5 mt-2 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="h-5 w-5 text-[#00a854] shrink-0" />
+          <div className="bg-[#eaf8f0] border border-emerald-200/80 rounded-2xl p-3 mx-4 mb-4 mt-2 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5">
+              <ShieldCheck className="h-4 w-4 text-[#00a854] shrink-0" />
               <div>
                 <div className="text-xs font-bold text-emerald-950">
                   Veterinary Council of Nigeria (VCN) Standards
