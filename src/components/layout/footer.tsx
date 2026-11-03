@@ -2,9 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  Phone,
-  Mail,
-  MapPin,
   MessageCircle,
   ArrowRight,
   ShieldCheck,
@@ -142,40 +139,6 @@ export function Footer() {
             <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 text-xs font-semibold text-emerald-400">
               <span>✦</span>
               &quot;Your Satisfaction Is Our Priority&quot;
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-3 pt-2">
-              <a
-                href="https://wa.me/2348139169402"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
-              >
-                <Phone className="h-4 w-4 text-emerald-500 shrink-0" />
-                +234 813 916 9402 (WhatsApp)
-              </a>
-              <a
-                href="mailto:info@damingrow.com"
-                className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
-              >
-                <Mail className="h-4 w-4 text-emerald-500 shrink-0" />
-                info@damingrow.com
-              </a>
-              <div className="flex items-start gap-2.5 text-xs text-slate-400">
-                <MapPin className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                <div>
-                  <span className="font-semibold text-slate-300 block">Ibadan Office:</span>
-                  <span>12 Oluyole Extension, Ibadan, Oyo State</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2.5 text-xs text-slate-400">
-                <MapPin className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                <div>
-                  <span className="font-semibold text-slate-300 block">Lagos Office:</span>
-                  <span>20 Simarch Street, Agric Bus Stop, Ojo, Lagos State</span>
-                </div>
-              </div>
             </div>
 
             {/* Social Links */}
