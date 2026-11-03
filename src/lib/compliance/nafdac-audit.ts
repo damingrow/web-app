@@ -285,7 +285,11 @@ export function evaluateProductCompliance(product: ProductItem): RegulatoryAudit
   } else if (!amrCompliant || issues.length > 0) {
     // Check if issues are missing documentation vs invalid
     const hasMissingDocs = issues.some(
-      (i) => i.includes('missing') || i.includes('format error') || i.includes('WITHDRAWAL PERIOD MISSING')
+      (i) =>
+        i.toLowerCase().includes('missing') ||
+        i.toLowerCase().includes('format error') ||
+        i.toLowerCase().includes('cold-chain violation') ||
+        i.toLowerCase().includes('withdrawal period')
     );
     verificationState = hasMissingDocs ? 'documentation_incomplete' : 'awaiting_verification';
   } else if (product.compliance.regulatoryStatus === 'pending_registration') {

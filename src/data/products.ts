@@ -1288,3 +1288,20 @@ export function getRelatedProducts(product: ProductItem, limit: number = 3): Pro
 export function getAllBirdsProducts(): ProductItem[] {
   return PRODUCTS.filter((p) => p.category === 'chicks' || p.category === 'point-of-lay');
 }
+
+// Regulatory & Compliance Accessors (Phase 3)
+export function getVerifiedProducts(category?: string): ProductItem[] {
+  return PRODUCTS.filter((p) => {
+    const isVerified = (p.compliance.verificationState ?? 'verified_for_sale') === 'verified_for_sale';
+    if (!isVerified) return false;
+    return category ? p.category === category : true;
+  });
+}
+
+export function getColdChainProducts(): ProductItem[] {
+  return PRODUCTS.filter((p) => p.compliance.coldChainRequired);
+}
+
+export function getPrescriptionVeterinaryProducts(): ProductItem[] {
+  return PRODUCTS.filter((p) => p.compliance.prescriptionRequired || p.compliance.amrWarning);
+}
