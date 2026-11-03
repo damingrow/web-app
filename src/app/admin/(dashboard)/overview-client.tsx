@@ -421,44 +421,43 @@ export function OverviewClient({
             </Link>
           </div>
 
-          {/* Hatchery Capacity Rows */}
+          {/* Hatchery Capacity Rows — 3 column horizontal layout matching reference */}
           <div className="divide-y divide-slate-100 px-5 py-1">
             {hatcheries.map((h) => (
-              <div key={h.name} className="py-3 space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="h-8 w-8 rounded-full bg-[#e8f7ee] flex items-center justify-center shrink-0">
-                      <Sprout className="h-4 w-4 text-[#00a854]" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-slate-900">{h.name}</div>
-                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{h.breed}</div>
-                    </div>
+              <div key={h.name} className="py-3 flex items-center justify-between gap-4">
+                {/* Column 1: Icon & Name */}
+                <div className="flex items-center gap-3 w-44 sm:w-48 shrink-0">
+                  <div className="h-9 w-9 rounded-full bg-[#dcf5e7] flex items-center justify-center shrink-0">
+                    <Sprout className="h-4 w-4 text-[#00a854]" />
                   </div>
-                  <div className="text-right">
-                    <div className="text-xs font-bold text-slate-900 font-mono">
-                      {h.reserved} / {h.total}
-                    </div>
-                    <div className="text-[10px] font-medium text-slate-400">
-                      {h.pct}% Saturation
-                    </div>
+                  <div className="min-w-0">
+                    <div className="text-xs sm:text-sm font-bold text-slate-900 truncate">{h.name}</div>
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{h.breed}</div>
                   </div>
                 </div>
 
-                {/* Progress Bar with open cartons label */}
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex-1 space-y-1">
-                    <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-[#00a854] rounded-full transition-all duration-700"
-                        style={{ width: `${h.pct}%` }}
-                      />
-                    </div>
-                    <div className="text-[10px] font-bold text-[#00a854]">
-                      {h.pct}% Saturation
-                    </div>
+                {/* Column 2: Progress bar & saturation label */}
+                <div className="flex-1 max-w-[200px] px-2 space-y-1">
+                  <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-[#00a854] rounded-full transition-all duration-700"
+                      style={{ width: `${h.pct}%` }}
+                    />
                   </div>
-                  <div className="text-[11px] font-bold text-[#00a854] shrink-0">
+                  <div className="text-[10px] font-bold text-[#00a854]">
+                    {h.pct}% Saturation
+                  </div>
+                </div>
+
+                {/* Column 3: Count & open cartons */}
+                <div className="text-right shrink-0">
+                  <div className="text-xs sm:text-sm font-extrabold text-slate-900 font-mono leading-none">
+                    {h.reserved} / {h.total}
+                  </div>
+                  <div className="text-[10px] font-medium text-slate-400 mt-1">
+                    {h.pct}% Saturation
+                  </div>
+                  <div className="text-[11px] font-bold text-[#00a854] mt-0.5">
                     {h.open} cartons open
                   </div>
                 </div>
@@ -486,15 +485,15 @@ export function OverviewClient({
               </span>
             </div>
 
-            {/* Hub Rows */}
-            <div className="divide-y divide-slate-100">
+            {/* Hub Rows — enclosed rounded cards matching reference UI */}
+            <div className="p-3 space-y-1.5">
               {DISPATCH_HUBS.map((hub) => (
                 <div
                   key={hub.name}
-                  className="flex items-center justify-between px-4 py-2.5 hover:bg-slate-50/70 transition-colors group"
+                  className="flex items-center justify-between px-3 py-2 rounded-xl border border-slate-100 bg-white hover:border-slate-200 hover:shadow-2xs transition-colors group"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="h-7 w-7 rounded-full bg-[#e8f7ee] flex items-center justify-center text-[#00a854] shrink-0">
+                    <div className="h-7 w-7 rounded-full bg-[#dcf5e7] flex items-center justify-center text-[#00a854] shrink-0">
                       <MapPin className="h-3.5 w-3.5" />
                     </div>
                     <div className="min-w-0">
@@ -502,7 +501,7 @@ export function OverviewClient({
                       <div className="text-[10px] text-slate-400 mt-0.5">{hub.schedule}</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 shrink-0 ml-3">
+                  <div className="flex items-center gap-2 shrink-0 ml-3">
                     <div className="text-right">
                       <span className={`text-[10px] font-bold rounded px-2 py-0.5 inline-block ${hub.badgeClass}`}>
                         {hub.badge}
@@ -545,98 +544,114 @@ export function OverviewClient({
 
       {/* ================================================================
           4. BOTTOM SECTION: REAL-TIME ENQUIRY STREAM
+          Pixel-matched to reference: single header row + pills + dome graphic
           ================================================================ */}
       <div className="rounded-3xl bg-white border border-slate-200/80 shadow-2xs overflow-hidden">
-        {/* Header Area */}
-        <div className="p-6 border-b border-slate-100 space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div className="text-[10px] font-bold text-[#00a854] uppercase tracking-wider flex items-center gap-1.5">
-                <Activity className="h-3.5 w-3.5 animate-pulse" />
-                <span>REAL-TIME ENQUIRY STREAM</span>
-              </div>
-              <h2 className="text-lg font-bold text-slate-900 font-heading mt-0.5">
-                Incoming Customer Enquiries &amp; WhatsApp Bookings
-              </h2>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Live stream of farmer requests, price inquiries, and clinical triage tickets awaiting commercial response.
-              </p>
+        {/* Header Area — single aligned bar matching reference */}
+        <div className="p-4 sm:p-5 border-b border-slate-100 flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+          {/* Left Title Block */}
+          <div className="shrink-0">
+            <div className="text-[10px] font-extrabold text-[#00a854] uppercase tracking-wider flex items-center gap-1.5">
+              <Activity className="h-3.5 w-3.5 text-[#00a854]" />
+              <span>REAL-TIME ENQUIRY STREAM</span>
             </div>
+            <h2 className="text-sm sm:text-base font-extrabold text-slate-900 font-heading mt-0.5">
+              Incoming Customer Enquiries &amp; WhatsApp Bookings
+            </h2>
+            <p className="text-[11px] text-slate-400 mt-0.5">
+              Live stream of farmer requests, price inquiries, and clinical triage tickets awaiting commercial response.
+            </p>
           </div>
 
-          {/* Filter Pills + Search + Full Inbox Button */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
-            <div className="flex flex-wrap items-center gap-2">
-              {[
-                { id: 'all', label: `All Inquiries (${metrics.recentEnquiries.length})` },
-                { id: 'pending', label: `Pending Contact (${metrics.pendingCount})` },
-                { id: 'urgent', label: '🚨 Urgent / Vet Triage' },
-                { id: 'fulfilled', label: '⏱ Fulfilled / Quoted' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setInquiryFilter(tab.id)}
-                  className={`rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all ${
-                    inquiryFilter === tab.id
-                      ? 'bg-[#062413] text-white shadow-2xs'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+          {/* Right Controls: Filter Pills + Search + Desk Link */}
+          <div className="flex flex-wrap items-center gap-2">
+            {[
+              { id: 'all', label: `All Inquiries (${metrics.recentEnquiries.length})` },
+              { id: 'pending', label: `Pending Contact (${metrics.pendingCount})` },
+              { id: 'urgent', label: 'Urgent / Vet Triage', isUrgent: true },
+              { id: 'fulfilled', label: 'Fulfilled / Quoted', isFulfilled: true },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setInquiryFilter(tab.id)}
+                className={`rounded-full px-3 py-1 text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                  inquiryFilter === tab.id
+                    ? 'bg-[#062413] text-white shadow-2xs'
+                    : 'bg-slate-100/90 text-slate-700 hover:bg-slate-200/80'
+                }`}
+              >
+                {tab.isUrgent && <span className="h-2 w-2 rounded-full bg-rose-500 shrink-0" />}
+                {tab.isFulfilled && <span className="text-[10px] text-slate-400 font-mono">⊙</span>}
+                <span>{tab.label}</span>
+              </button>
+            ))}
+
+            {/* Pill Search */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+              <input
+                type="text"
+                placeholder="Search name, phone, state..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="rounded-full border border-slate-200 bg-slate-50/80 pl-8 pr-3 py-1 text-xs text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#00a854]/40 w-44 sm:w-52"
+              />
             </div>
 
-            <div className="flex items-center gap-2.5 w-full sm:w-auto">
-              <div className="relative w-full sm:w-64">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
-                <input
-                  type="text"
-                  placeholder="Search name, phone, state..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-8 pr-3 py-1.5 text-xs text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#00a854]/40"
-                />
-              </div>
-              <Link
-                href="/admin/enquiries"
-                className="shrink-0 inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-3.5 py-1.5 text-xs font-bold text-slate-800 shadow-2xs transition-all"
-              >
-                <span>Full Inbox Desk</span>
-                <span>→</span>
-              </Link>
-            </div>
+            {/* Full Inbox Link */}
+            <Link
+              href="/admin/enquiries"
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white hover:bg-slate-50 px-3.5 py-1 text-xs font-bold text-slate-800 shadow-2xs transition-all shrink-0"
+            >
+              <span>Full Inbox Desk</span>
+              <span>→</span>
+            </Link>
           </div>
         </div>
 
         {/* Content View: Empty State graphic matching attached UI, or Live Table */}
         {filteredEnquiries.length === 0 ? (
-          <div className="relative py-16 px-6 text-center overflow-hidden">
-            {/* Wavy Soft Landscape Vector Graphic Background */}
-            <div className="absolute inset-x-0 bottom-0 h-28 pointer-events-none opacity-40">
-              <svg viewBox="0 0 1440 200" fill="none" className="w-full h-full preserve-3d" preserveAspectRatio="none">
+          <div className="relative py-12 px-6 text-center overflow-hidden">
+            {/* Layered Gentle Green Hills Vector Background matching reference */}
+            <div className="absolute inset-x-0 bottom-0 h-24 pointer-events-none">
+              <svg viewBox="0 0 1440 180" fill="none" className="w-full h-full" preserveAspectRatio="none">
                 <path
-                  d="M0,100 C320,180 420,20 720,80 C1020,140 1120,40 1440,90 L1440,200 L0,200 Z"
-                  fill="#bbf7d0"
-                  fillOpacity="0.5"
+                  d="M0,90 C320,160 480,40 720,110 C960,180 1180,50 1440,80 L1440,180 L0,180 Z"
+                  fill="#c8f0d8"
+                  fillOpacity="0.55"
                 />
                 <path
-                  d="M0,130 C360,60 520,190 840,110 C1160,30 1280,150 1440,120 L1440,200 L0,200 Z"
-                  fill="#86efac"
-                  fillOpacity="0.4"
+                  d="M0,120 C360,50 540,170 820,95 C1100,20 1260,140 1440,105 L1440,180 L0,180 Z"
+                  fill="#a3e7be"
+                  fillOpacity="0.45"
+                />
+                <path
+                  d="M0,145 C420,95 640,170 960,130 C1200,90 1340,160 1440,140 L1440,180 L0,180 Z"
+                  fill="#7fd8a6"
+                  fillOpacity="0.35"
                 />
               </svg>
             </div>
 
-            {/* Central Sprout Illustration */}
+            {/* Central Dome/Plant Illustration matching reference */}
             <div className="relative z-10 space-y-2">
-              <div className="mx-auto h-16 w-16 rounded-full bg-[#d8f6e7] flex items-center justify-center shadow-xs">
-                <Sprout className="h-8 w-8 text-[#00a854]" />
+              <div className="mx-auto w-24 h-16 relative overflow-hidden rounded-t-full bg-gradient-to-t from-[#0e5c32] via-[#157a44] to-[#22a45d] p-1 flex items-end justify-center shadow-xs">
+                {/* Terraced curved lines */}
+                <svg viewBox="0 0 100 60" fill="none" className="w-full h-full absolute inset-0">
+                  <path d="M0,50 Q50,20 100,50" stroke="#2ee571" strokeWidth="2" strokeOpacity="0.4" />
+                  <path d="M10,55 Q50,30 90,55" stroke="#2ee571" strokeWidth="2" strokeOpacity="0.4" />
+                  <path d="M20,60 Q50,40 80,60" stroke="#2ee571" strokeWidth="2" strokeOpacity="0.4" />
+                </svg>
+                {/* Sprout atop the mound */}
+                <div className="relative z-10 pb-1">
+                  <Sprout className="h-7 w-7 text-white drop-shadow-sm" />
+                </div>
               </div>
-              <h3 className="text-base font-bold text-slate-900 font-heading">
+
+              <h3 className="text-sm sm:text-base font-extrabold text-slate-900 font-heading">
                 Inquiry Queue is Current
               </h3>
-              <p className="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+              <p className="text-[11px] sm:text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
                 No customer inquiries match your active filter. When new bookings arrive, they will stream here in real-time.
               </p>
             </div>
