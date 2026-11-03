@@ -24,6 +24,18 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse;
   }
 
+  const isAdminRoute = pathname.startsWith('/admin');
+  const allCookies = request.cookies.getAll();
+  const hasAuthCookie = allCookies.some(
+    (c) => c.name.startsWith('sb-') || c.name.includes('auth-token')
+  );
+
+  // FAST PATH: Storefront public navigation without auth cookies bypasses Supabase network calls entirely.
+  // This ensures instant page loads without blocking on external auth network round-trips.
+  if (!isAdminRoute && !hasAuthCookie) {
+    return supabaseResponse;
+  }
+
   try {
     const supabase = createServerClient(
       env.NEXT_PUBLIC_SUPABASE_URL,
