@@ -6,6 +6,7 @@ import {
   Search,
   Command,
   Bell,
+  MessageCircle,
   CalendarCheck,
   Package,
   Users,
@@ -14,6 +15,7 @@ import {
   TrendingUp,
   X,
   Menu,
+  ChevronDown,
 } from 'lucide-react';
 
 interface AdminTopbarProps {
@@ -24,10 +26,12 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
   const router = useRouter();
   const [commandOpen, setCommandOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [currentTime, setCurrentTime] = useState('');
-  const [currentDate, setCurrentDate] = useState('');
+  const [currentTime, setCurrentTime] = useState('2:31:23 PM');
+  const [currentDate, setCurrentDate] = useState('SAT, MAY 17');
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [whatsappOpen, setWhatsappOpen] = useState(false);
   const notifRef = useRef<HTMLDivElement>(null);
+  const waRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -35,7 +39,7 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
       setCurrentTime(
         now.toLocaleTimeString('en-US', {
           timeZone: 'Africa/Lagos',
-          hour: '2-digit',
+          hour: 'numeric',
           minute: '2-digit',
           second: '2-digit',
           hour12: true,
@@ -55,18 +59,21 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
     return () => clearInterval(timer);
   }, []);
 
-  // Click-outside to close dropdowns
+  // Click-outside listener
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (notifRef.current && !notifRef.current.contains(e.target as Node)) {
         setNotificationsOpen(false);
+      }
+      if (waRef.current && !waRef.current.contains(e.target as Node)) {
+        setWhatsappOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  // Keyboard shortcut (Cmd+K / Ctrl+K)
+  // Keyboard shortcut listener (Cmd+K / Ctrl+K)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -76,6 +83,7 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
       if (e.key === 'Escape') {
         setCommandOpen(false);
         setNotificationsOpen(false);
+        setWhatsappOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -101,12 +109,12 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
   return (
     <>
       {/* ======================================================
-          TOPBAR — exact match to design reference
+          TOPBAR — 100% exact match to design reference
           ====================================================== */}
-      <header className="sticky top-0 z-30 flex h-[56px] w-full items-center justify-between bg-white border-b border-slate-200/80 px-4 sm:px-5 shadow-xs">
+      <header className="sticky top-0 z-30 flex h-[62px] w-full items-center justify-between bg-white border-b border-slate-200/90 px-4 sm:px-6 shadow-2xs">
 
-        {/* LEFT: Mobile toggle + Search pill */}
-        <div className="flex items-center gap-2.5">
+        {/* LEFT: Mobile toggle & Search pill */}
+        <div className="flex items-center gap-3">
           <button
             onClick={onToggleSidebar}
             className="md:hidden inline-flex items-center justify-center rounded-lg p-1.5 text-slate-500 hover:bg-slate-100 transition-colors"
@@ -115,47 +123,99 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
             <Menu className="h-5 w-5" />
           </button>
 
-          {/* Search / Command palette trigger */}
+          {/* Search Input Bar with Command shortcut */}
           <button
             onClick={() => setCommandOpen(true)}
-            className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300 px-3 py-1.5 text-xs text-slate-400 hover:text-slate-700 transition-all shadow-xs"
+            className="flex items-center gap-2.5 rounded-xl border border-slate-200/90 bg-white hover:border-slate-300 px-3.5 py-2 text-xs text-slate-400 hover:text-slate-700 transition-all shadow-2xs w-64 sm:w-80 justify-between"
           >
-            <Search className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-            <span className="hidden sm:inline text-[11px] font-medium text-slate-400">
-              Quick Command or Farmer Lookup...
-            </span>
-            <span className="sm:hidden text-[11px]">Search...</span>
-            <kbd className="hidden sm:inline-flex items-center gap-0.5 ml-6 rounded border border-slate-200 bg-white px-1.5 py-0.5 font-mono text-[9px] text-slate-400 shadow-xs">
-              <Command className="h-2 w-2" />K
+            <div className="flex items-center gap-2 min-w-0">
+              <Search className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+              <span className="truncate text-[12px] font-normal text-slate-400">
+                Quick Command or Farmer Lookup...
+              </span>
+            </div>
+            <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 font-mono text-[10px] text-slate-500 shrink-0">
+              <Command className="h-2.5 w-2.5" /> K
             </kbd>
           </button>
         </div>
 
-        {/* CENTER: Clock only */}
-        <div className="hidden lg:flex items-center gap-2 text-xs">
-          {currentTime && (
-            <div className="text-right leading-tight">
-              <div className="text-[13px] font-bold text-slate-800 font-mono tracking-tight">
-                {currentTime}
-              </div>
-              <div className="text-[9px] font-bold text-slate-400 tracking-widest mt-px">
-                {currentDate}
-              </div>
+        {/* CENTER: Status Pills & Time Clock */}
+        <div className="hidden lg:flex items-center gap-3">
+          {/* Cloudflare Edge Pill */}
+          <div className="inline-flex items-center gap-2 rounded-xl border border-emerald-200/80 bg-[#eafaf1] px-3 py-1.5 text-[11px]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00a854]" />
+            </span>
+            <span className="font-bold text-slate-800">Cloudflare Edge:</span>
+            <span className="font-bold text-[#00a854]">Active</span>
+          </div>
+
+          {/* Supabase RLS Pill */}
+          <div className="inline-flex items-center gap-2 rounded-xl border border-emerald-200/80 bg-[#eafaf1] px-3 py-1.5 text-[11px]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00a854]" />
+            </span>
+            <span className="font-bold text-slate-800">Supabase RLS:</span>
+            <span className="font-bold text-[#00a854]">Armed</span>
+          </div>
+
+          {/* Time & Date Display */}
+          <div className="text-right leading-tight ml-1">
+            <div className="text-[13px] font-extrabold text-slate-900 font-mono tracking-tight">
+              {currentTime}
             </div>
-          )}
+            <div className="text-[9px] font-bold text-slate-400 tracking-wider">
+              {currentDate}
+            </div>
+          </div>
         </div>
 
-        {/* RIGHT: WhatsApp Desk + Bell + Profile */}
-        <div className="flex items-center gap-2">
+        {/* RIGHT: WhatsApp Desk + Notification Bell + Staff Badge */}
+        <div className="flex items-center gap-3">
+          {/* WhatsApp Desk Button */}
+          <div className="relative hidden sm:block" ref={waRef}>
+            <button
+              onClick={() => setWhatsappOpen((p) => !p)}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-3 py-2 text-xs font-bold text-slate-800 transition-all shadow-2xs"
+            >
+              <MessageCircle className="h-4 w-4 text-[#00a854]" />
+              <span>WhatsApp Desk</span>
+              <ChevronDown className="h-3 w-3 text-slate-400 ml-0.5" />
+            </button>
+
+            {whatsappOpen && (
+              <div className="absolute right-0 mt-2 w-60 rounded-2xl border border-slate-200 bg-white shadow-xl z-50 py-2 text-xs overflow-hidden">
+                <div className="px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100">
+                  Instant Support Hotline
+                </div>
+                <a
+                  href="https://wa.me/2348139169402"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-3.5 py-2.5 hover:bg-emerald-50 text-slate-800 hover:text-emerald-900 transition-colors"
+                >
+                  <MessageCircle className="h-4 w-4 text-[#00a854]" />
+                  <div>
+                    <div className="font-bold">Live Vet &amp; Sales Desk</div>
+                    <div className="text-[10px] text-slate-400">+234 813 916 9402</div>
+                  </div>
+                </a>
+              </div>
+            )}
+          </div>
+
           {/* Notification Bell */}
           <div className="relative" ref={notifRef}>
             <button
               onClick={() => setNotificationsOpen((p) => !p)}
-              className="relative rounded-lg border border-slate-200 bg-white p-1.5 text-slate-600 hover:bg-slate-50 transition-colors shadow-xs"
+              className="relative rounded-xl border border-slate-200 bg-white p-2 text-slate-700 hover:bg-slate-50 transition-colors shadow-2xs"
               aria-label="Notifications"
             >
               <Bell className="h-4 w-4" />
-              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[8px] font-extrabold text-white ring-2 ring-white">
+              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[9px] font-extrabold text-white ring-2 ring-white">
                 3
               </span>
             </button>
@@ -202,15 +262,14 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
             )}
           </div>
 
-          {/* Staff avatar + name */}
+          {/* Staff Avatar Badge */}
           <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
-            <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-600 to-teal-500 font-extrabold text-white text-xs shadow-xs shrink-0">
+            <div className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-[#063b1e] font-extrabold text-white text-xs shadow-xs shrink-0">
               AD
-              <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-emerald-400 ring-1 ring-white" />
             </div>
-            <div className="hidden xl:block leading-tight">
-              <div className="text-[11px] font-bold text-slate-800">Admin Operations</div>
-              <div className="text-[9px] font-semibold text-slate-400">Super Admin ▾</div>
+            <div className="hidden xl:block leading-tight text-left">
+              <div className="text-xs font-bold text-slate-900">Admin Operations</div>
+              <div className="text-[10px] font-medium text-slate-400">Super Admin ▾</div>
             </div>
           </div>
         </div>
@@ -228,7 +287,6 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
             className="relative w-full max-w-xl rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Search input */}
             <div className="flex items-center border-b border-slate-100 px-4 py-3.5 gap-3">
               <Search className="h-4 w-4 text-emerald-600 shrink-0" />
               <input
@@ -247,7 +305,6 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
               </button>
             </div>
 
-            {/* Results */}
             <div className="max-h-80 overflow-y-auto p-3 space-y-1">
               <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
                 Operations &amp; Admin Modules
@@ -286,7 +343,6 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
               )}
             </div>
 
-            {/* Footer */}
             <div className="flex items-center justify-between border-t border-slate-100 bg-slate-50 px-4 py-2 text-[11px] text-slate-500">
               <div className="flex items-center gap-3">
                 <span>

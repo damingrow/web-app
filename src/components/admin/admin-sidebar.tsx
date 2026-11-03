@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
@@ -20,9 +19,10 @@ import {
   ShieldAlert,
   Settings,
   ArrowLeft,
-  LogOut,
+  ArrowLeftRight,
   AlignJustify,
   X,
+  Sprout,
 } from 'lucide-react';
 
 interface AdminSidebarProps {
@@ -37,7 +37,7 @@ const OPS_ITEMS = [
     href: '/admin',
     icon: LayoutDashboard,
     badge: 'HQ',
-    badgeClass: 'bg-[#1a3d2b] text-emerald-300 border border-emerald-700/50',
+    badgeClass: 'bg-[#124027] text-emerald-300 border border-emerald-500/40',
   },
   {
     num: '02.',
@@ -45,7 +45,7 @@ const OPS_ITEMS = [
     href: '/admin/bookings',
     icon: CalendarCheck,
     badge: 'LIVE',
-    badgeClass: 'bg-emerald-500 text-white border-0',
+    badgeClass: 'bg-[#00c950] text-white font-bold',
   },
   {
     num: '',
@@ -53,7 +53,7 @@ const OPS_ITEMS = [
     href: '/admin/enquiries',
     icon: Inbox,
     badge: 'ACTIVE',
-    badgeClass: 'bg-[#2d2000] text-amber-300 border border-amber-700/50',
+    badgeClass: 'bg-[#3a2705] text-[#f59e0b] border border-[#f59e0b]/40',
   },
   {
     num: '05.',
@@ -61,18 +61,18 @@ const OPS_ITEMS = [
     href: '/admin/crm',
     icon: Users,
     badge: 'VIP Tiers',
-    badgeClass: 'bg-[#1e1030] text-purple-300 border border-purple-700/50',
+    badgeClass: 'bg-[#24133b] text-[#c084fc] border border-[#c084fc]/40',
   },
 ];
 
 const COMMERCE_ITEMS = [
   {
-    num: '',
+    num: '03.',
     name: 'Products & Stock',
     href: '/admin/products',
     icon: Package,
     badge: 'NAFDAC',
-    badgeClass: 'bg-[#002233] text-cyan-300 border border-cyan-700/50',
+    badgeClass: 'bg-[#0b2b3a] text-[#38bdf8] border border-[#38bdf8]/40',
   },
   {
     num: '',
@@ -80,7 +80,7 @@ const COMMERCE_ITEMS = [
     href: '/admin/chicks-pricing',
     icon: TrendingUp,
     badge: 'Rates',
-    badgeClass: 'bg-[#1a1f1b] text-slate-400 border border-slate-700/50',
+    badgeClass: 'bg-[#1a2920] text-[#94a3b8] border border-[#94a3b8]/40',
   },
   {
     num: '04.',
@@ -88,18 +88,15 @@ const COMMERCE_ITEMS = [
     href: '/admin/services',
     icon: Stethoscope,
     badge: 'VCN Vet',
-    badgeClass: 'bg-[#2d0a0a] text-rose-300 border border-rose-700/50',
+    badgeClass: 'bg-[#3a131b] text-[#fb7185] border border-[#fb7185]/40',
   },
 ];
 
 const UTILITY_ITEMS = [
-  { name: 'Staff Portal / Switch User', href: '/admin/login', icon: LogOut },
+  { name: 'Staff Portal / Switch User', href: '/admin/login', icon: ArrowLeftRight },
   { name: 'Return to Storefront', href: '/', icon: ArrowLeft },
 ];
 
-
-
-// Hidden extended sections (accessible via expanded view)
 const EXTENDED_SECTIONS = [
   {
     title: 'Governance & Analytics',
@@ -124,202 +121,94 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
       {isOpen && (
         <div
           onClick={onClose}
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-black/70 backdrop-blur-xs md:hidden"
         />
       )}
 
-      {/* Sidebar */}
+      {/* Main Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-[168px] flex flex-col shrink-0 md:static md:h-screen md:sticky md:top-0 transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 left-0 z-50 w-[240px] flex flex-col justify-between shrink-0 md:static md:h-screen md:sticky md:top-0 transition-transform duration-300 ease-in-out border-r border-[#0e2c1a] ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
-        style={{ background: 'linear-gradient(180deg, #0a1f0f 0%, #061409 100%)' }}
+        style={{ background: 'linear-gradient(180deg, #051a0e 0%, #031209 100%)' }}
       >
-        {/* Logo Header */}
-        <div className="flex items-center justify-between px-4 py-4 border-b border-white/5 shrink-0">
-          <Link href="/admin" className="flex items-center gap-2 group">
-            {/* Logo mark */}
-            <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg bg-[#d4ff4a] flex items-center justify-center shadow-md">
-              <Image
-                src="/Brand identity/damingrow logo.png"
-                alt="D-AminGrow"
-                fill
-                className="object-contain p-0.5"
-                sizes="32px"
-                priority
-              />
-            </div>
-            <div className="min-w-0">
-              <div className="text-[13px] font-extrabold text-white leading-none tracking-tight">
-                D-Amin<span className="text-[#a3e635]">Grow</span>
+        <div className="flex-1 overflow-y-auto scrollbar-hide">
+          {/* Logo Brand Header */}
+          <div className="flex items-center justify-between px-4 py-4 border-b border-white/5 shrink-0">
+            <Link href="/admin" className="flex items-center gap-2.5 group">
+              {/* Sprout Icon in lime box */}
+              <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#c8f742] to-[#99e622] flex items-center justify-center shadow-md shrink-0">
+                <Sprout className="h-5 w-5 text-[#0a3818]" />
               </div>
-              <div className="text-[8px] font-bold uppercase tracking-widest text-slate-500 mt-0.5">
-                Operations Centre
-              </div>
-            </div>
-          </Link>
-
-          {/* Menu toggle / close */}
-          <button
-            onClick={onClose}
-            className="text-slate-500 hover:text-slate-300 transition-colors p-0.5 md:hidden"
-            aria-label="Close sidebar"
-          >
-            <X className="h-4 w-4" />
-          </button>
-          <div className="hidden md:flex text-slate-600 hover:text-slate-400 cursor-pointer transition-colors">
-            <AlignJustify className="h-4 w-4" />
-          </div>
-        </div>
-
-        {/* Navigation */}
-        <div className="flex-1 overflow-y-auto scrollbar-hide py-3 space-y-1">
-          {/* Operations Desk */}
-          <div className="px-3 pt-1 pb-1">
-            <span className="text-[9px] font-bold uppercase tracking-widest text-slate-600">
-              Operations Desk
-            </span>
-          </div>
-
-          {OPS_ITEMS.map((item) => {
-            const Icon = item.icon;
-            const isActive =
-              item.href === '/admin'
-                ? pathname === '/admin'
-                : pathname.startsWith(item.href);
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => onClose && onClose()}
-                className={`flex items-center justify-between mx-2 rounded-lg px-2.5 py-2 text-[11px] font-semibold transition-all group ${
-                  isActive
-                    ? 'bg-[#0d3320] text-white border-l-2 border-emerald-400 shadow-sm'
-                    : 'text-slate-400 hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                <div className="flex items-center gap-2 min-w-0">
-                  <Icon
-                    className={`h-3.5 w-3.5 shrink-0 ${
-                      isActive ? 'text-emerald-400' : 'text-slate-600 group-hover:text-slate-400'
-                    }`}
-                  />
-                  <span className="truncate leading-none">
-                    {item.num && (
-                      <span className={`mr-0.5 ${isActive ? 'text-emerald-400' : 'text-slate-600'}`}>
-                        {item.num}{' '}
-                      </span>
-                    )}
-                    {item.name}
-                  </span>
+              <div className="min-w-0">
+                <div className="text-[15px] font-extrabold text-white leading-tight tracking-tight">
+                  D-Amin<span className="text-[#2ee571]">Grow</span>
                 </div>
-                {item.badge && (
-                  <span className={`ml-1.5 shrink-0 rounded px-1.5 py-0.5 text-[8px] font-bold leading-none ${item.badgeClass}`}>
-                    {item.badge}
-                  </span>
-                )}
-              </Link>
-            );
-          })}
-
-          {/* Commerce & Advisory */}
-          <div className="px-3 pt-3 pb-1">
-            <span className="text-[9px] font-bold uppercase tracking-widest text-slate-600">
-              Commerce &amp; Advisory
-            </span>
-          </div>
-
-          {COMMERCE_ITEMS.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname.startsWith(item.href);
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => onClose && onClose()}
-                className={`flex items-center justify-between mx-2 rounded-lg px-2.5 py-2 text-[11px] font-semibold transition-all group ${
-                  isActive
-                    ? 'bg-[#0d3320] text-white border-l-2 border-emerald-400 shadow-sm'
-                    : 'text-slate-400 hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                <div className="flex items-center gap-2 min-w-0">
-                  <Icon
-                    className={`h-3.5 w-3.5 shrink-0 ${
-                      isActive ? 'text-emerald-400' : 'text-slate-600 group-hover:text-slate-400'
-                    }`}
-                  />
-                  <span className="truncate leading-none">
-                    {item.num && (
-                      <span className={`mr-0.5 ${isActive ? 'text-emerald-400' : 'text-slate-600'}`}>
-                        {item.num}{' '}
-                      </span>
-                    )}
-                    {item.name}
-                  </span>
+                <div className="text-[8px] font-bold uppercase tracking-widest text-slate-400 mt-0.5">
+                  OPERATIONS CENTRE
                 </div>
-                {item.badge && (
-                  <span className={`ml-1.5 shrink-0 rounded px-1.5 py-0.5 text-[8px] font-bold leading-none ${item.badgeClass}`}>
-                    {item.badge}
-                  </span>
-                )}
-              </Link>
-            );
-          })}
+              </div>
+            </Link>
 
-          {/* Growth & Content (Staff utilities) */}
-          <div className="px-3 pt-3 pb-1">
-            <span className="text-[9px] font-bold uppercase tracking-widest text-slate-600">
-              Growth &amp; Content
-            </span>
+            {/* Close button on mobile / align icon on desktop */}
+            <button
+              onClick={onClose}
+              className="text-slate-400 hover:text-white md:hidden p-1"
+              aria-label="Close sidebar"
+            >
+              <X className="h-4 w-4" />
+            </button>
+            <div className="hidden md:flex text-slate-400 hover:text-white cursor-pointer transition-colors p-1">
+              <AlignJustify className="h-4 w-4" />
+            </div>
           </div>
 
-          {UTILITY_ITEMS.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => onClose && onClose()}
-                className="flex items-center gap-2 mx-2 rounded-lg px-2.5 py-2 text-[11px] font-medium text-slate-500 hover:bg-white/5 hover:text-slate-300 transition-all group"
-              >
-                <Icon className="h-3.5 w-3.5 shrink-0 text-slate-600 group-hover:text-slate-400" />
-                <span className="truncate">{item.name}</span>
-              </Link>
-            );
-          })}
-
-          {/* Hidden extended sections */}
-          {EXTENDED_SECTIONS.map((section) => (
-            <div key={section.title}>
-              <div className="px-3 pt-3 pb-1">
-                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-700">
-                  {section.title}
-                </span>
+          {/* Navigation Links */}
+          <nav className="p-3 space-y-4">
+            {/* Section 1: Operations Desk */}
+            <div className="space-y-1">
+              <div className="px-2.5 pb-1 text-[9px] font-bold uppercase tracking-widest text-slate-400">
+                OPERATIONS DESK
               </div>
-              {section.items.map((item) => {
+              {OPS_ITEMS.map((item) => {
                 const Icon = item.icon;
-                const isActive = pathname.startsWith(item.href);
+                const isActive =
+                  item.href === '/admin'
+                    ? pathname === '/admin'
+                    : pathname.startsWith(item.href);
+
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={() => onClose && onClose()}
-                    className={`flex items-center justify-between mx-2 rounded-lg px-2.5 py-1.5 text-[10px] font-semibold transition-all group ${
+                    className={`flex items-center justify-between rounded-xl px-2.5 py-2 text-xs font-semibold transition-all group ${
                       isActive
-                        ? 'bg-[#0d3320] text-white border-l-2 border-emerald-400'
-                        : 'text-slate-600 hover:bg-white/5 hover:text-slate-400'
+                        ? 'bg-[#0c2f1d] text-white border border-emerald-500/40 shadow-xs'
+                        : 'text-slate-300 hover:bg-white/5 hover:text-white'
                     }`}
                   >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <Icon className={`h-3 w-3 shrink-0 ${isActive ? 'text-emerald-400' : 'text-slate-700'}`} />
-                      <span className="truncate">{item.name}</span>
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <Icon
+                        className={`h-4 w-4 shrink-0 ${
+                          isActive ? 'text-[#2ee571]' : 'text-slate-400 group-hover:text-slate-200'
+                        }`}
+                      />
+                      <span className="truncate">
+                        {item.num && (
+                          <span className={isActive ? 'text-[#2ee571] font-bold' : 'text-slate-400'}>
+                            {item.num}{' '}
+                          </span>
+                        )}
+                        {item.name}
+                      </span>
                     </div>
                     {item.badge && (
-                      <span className={`ml-1 shrink-0 rounded px-1 py-0.5 text-[7px] font-bold leading-none ${item.badgeClass}`}>
+                      <span
+                        className={`ml-1.5 shrink-0 rounded px-1.5 py-0.5 text-[9px] font-bold leading-none ${
+                          item.badgeClass
+                        }`}
+                      >
                         {item.badge}
                       </span>
                     )}
@@ -327,41 +216,153 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
                 );
               })}
             </div>
-          ))}
+
+            {/* Section 2: Commerce & Advisory */}
+            <div className="space-y-1">
+              <div className="px-2.5 pb-1 text-[9px] font-bold uppercase tracking-widest text-slate-400">
+                COMMERCE &amp; ADVISORY
+              </div>
+              {COMMERCE_ITEMS.map((item) => {
+                const Icon = item.icon;
+                const isActive = pathname.startsWith(item.href);
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => onClose && onClose()}
+                    className={`flex items-center justify-between rounded-xl px-2.5 py-2 text-xs font-semibold transition-all group ${
+                      isActive
+                        ? 'bg-[#0c2f1d] text-white border border-emerald-500/40 shadow-xs'
+                        : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <Icon
+                        className={`h-4 w-4 shrink-0 ${
+                          isActive ? 'text-[#2ee571]' : 'text-slate-400 group-hover:text-slate-200'
+                        }`}
+                      />
+                      <span className="truncate">
+                        {item.num && (
+                          <span className={isActive ? 'text-[#2ee571] font-bold' : 'text-slate-400'}>
+                            {item.num}{' '}
+                          </span>
+                        )}
+                        {item.name}
+                      </span>
+                    </div>
+                    {item.badge && (
+                      <span
+                        className={`ml-1.5 shrink-0 rounded px-1.5 py-0.5 text-[9px] font-bold leading-none ${
+                          item.badgeClass
+                        }`}
+                      >
+                        {item.badge}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Section 3: Growth & Content */}
+            <div className="space-y-1">
+              <div className="px-2.5 pb-1 text-[9px] font-bold uppercase tracking-widest text-slate-400">
+                GROWTH &amp; CONTENT
+              </div>
+              {UTILITY_ITEMS.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => onClose && onClose()}
+                    className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-slate-300 hover:bg-white/5 hover:text-white transition-all group"
+                  >
+                    <Icon className="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-200" />
+                    <span className="truncate">{item.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Extended Governance links */}
+            {EXTENDED_SECTIONS.map((section) => (
+              <div key={section.title} className="space-y-1 pt-1">
+                <div className="px-2.5 pb-1 text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                  {section.title}
+                </div>
+                {section.items.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = pathname.startsWith(item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => onClose && onClose()}
+                      className={`flex items-center justify-between rounded-xl px-2.5 py-1.5 text-[11px] font-medium transition-all group ${
+                        isActive
+                          ? 'bg-[#0c2f1d] text-white border border-emerald-500/40'
+                          : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <Icon className={`h-3.5 w-3.5 shrink-0 ${isActive ? 'text-emerald-400' : 'text-slate-500'}`} />
+                        <span className="truncate">{item.name}</span>
+                      </div>
+                      {item.badge && (
+                        <span className={`ml-1 shrink-0 rounded px-1.5 py-0.5 text-[8px] font-bold leading-none ${item.badgeClass}`}>
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+            ))}
+          </nav>
         </div>
 
-        {/* Bottom Grow Together Card */}
-        <div className="mx-2 mb-2 mt-1 shrink-0">
-          <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0f3320] to-[#061a0d] border border-emerald-900/60 p-3.5">
-            {/* Farm image background */}
-            <div
-              className="absolute inset-0 opacity-20 bg-cover bg-center rounded-xl"
-              style={{ backgroundImage: "url('/images/farm-bg.jpg')" }}
-            />
-            <div className="relative z-10 space-y-2">
+        {/* Bottom Section: Grow Together card & Copyright */}
+        <div className="p-3 border-t border-white/5 space-y-3 shrink-0">
+          {/* Grow Together Banner */}
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#0a2f18] via-[#072414] to-[#041a0e] border border-emerald-500/30 p-3.5 shadow-md">
+            {/* Background Agriculture Field Illustration */}
+            <div className="relative z-10 space-y-1.5">
               <div className="flex items-center gap-1.5">
-                <div className="h-5 w-5 rounded-full bg-emerald-500/30 flex items-center justify-center">
-                  <span className="text-emerald-400 text-[10px]">🌱</span>
-                </div>
-                <span className="text-[11px] font-extrabold text-white">Grow Together</span>
+                <Sprout className="h-4 w-4 text-[#2ee571]" />
+                <span className="text-xs font-extrabold text-white">Grow Together</span>
               </div>
-              <p className="text-[9px] text-slate-400 leading-relaxed">
+              <p className="text-[10px] text-slate-300 leading-tight">
                 Building a more productive agricultural future.
               </p>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-400 hover:text-emerald-300 transition-colors"
-              >
-                Learn More →
-              </Link>
+              <div className="pt-1">
+                <Link
+                  href="/"
+                  className="inline-flex items-center gap-1 text-[10px] font-bold text-white bg-[#062413] hover:bg-[#09351c] border border-emerald-500/40 px-2.5 py-1 rounded-lg transition-colors"
+                >
+                  <span>Learn More</span>
+                  <span>→</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Crop Field Vector Graphic Pattern */}
+            <div className="mt-2 h-14 w-full relative overflow-hidden rounded-lg">
+              <div
+                className="absolute inset-0 bg-cover bg-center rounded-lg opacity-40 mix-blend-luminosity"
+                style={{ backgroundImage: "url('/images/farm-bg.jpg')" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#041a0e] via-transparent to-transparent" />
             </div>
           </div>
-        </div>
 
-        {/* Footer version */}
-        <div className="px-4 py-2.5 border-t border-white/5 shrink-0">
-          <div className="text-[8px] font-semibold text-slate-700">D-AminGrow v2.8.0</div>
-          <div className="text-[8px] text-slate-700">© 2025. All rights reserved.</div>
+          {/* Footer Version Notice */}
+          <div className="px-1 text-[9px] text-slate-400 leading-relaxed">
+            <div className="font-semibold text-slate-400">D-AminGrow <span className="text-slate-400">v2.8.0</span></div>
+            <div className="text-slate-400">© 2025. All rights reserved.</div>
+          </div>
         </div>
       </aside>
     </>
