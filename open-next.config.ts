@@ -1,5 +1,7 @@
 import { defineCloudflareConfig } from '@opennextjs/cloudflare';
 
-// OpenNext Cloudflare adapter configuration for D-AminGrow
-// Defaults provide edge-optimised runtime on Cloudflare Workers
-export default defineCloudflareConfig();
+// OpenNext Cloudflare edge adapter configuration for D-AminGrow
+// Optimised for edge-runtime caching and sub-50ms static delivery across Nigeria & West Africa
+export default defineCloudflareConfig({
+  enableCacheInterception: true,
+});

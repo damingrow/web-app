@@ -211,6 +211,42 @@ export default function ChicksCategoryPage() {
       </section>
 
       {/* ====================================================================
+          COMMITMENT DEPOSIT NOTICE — Zenith Bank
+          ==================================================================== */}
+      <section className="py-6 bg-amber-50 border-y border-amber-200" id="deposit-notice">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 bg-white rounded-2xl border border-amber-300 shadow-sm">
+            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
+              <Building2 className="h-5 w-5 text-amber-700" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold text-slate-800 mb-0.5">
+                50% Commitment Deposit Required to Confirm Your Booking
+              </p>
+              <p className="text-sm text-slate-600">
+                Pay via bank transfer to{' '}
+                <span className="font-semibold text-slate-800">Zenith Bank Plc</span>
+                {' — '}
+                Account: <span className="font-mono font-bold text-emerald-700">1017894562</span>
+                {' — '}
+                Name: <span className="font-semibold text-slate-800">D-AminGrow Agro-Allied Services</span>.
+                Send proof of payment via WhatsApp to confirm your slot.
+              </p>
+            </div>
+            <a
+              href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20have%20made%20my%2050%25%20commitment%20deposit%20and%20want%20to%20confirm%20my%20chick%20booking."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Send Proof
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
           INTERACTIVE HATCHERY BOOKING ENGINE
           ==================================================================== */}
       <section className="py-12 sm:py-16 bg-slate-50 border-y border-slate-200" id="booking-engine">
