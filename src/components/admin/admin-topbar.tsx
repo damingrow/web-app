@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
   Search,
@@ -23,6 +23,7 @@ import {
   ArrowUpRight,
   Sparkles,
   ExternalLink,
+  Send,
 } from 'lucide-react';
 
 interface AdminTopbarProps {
@@ -31,6 +32,8 @@ interface AdminTopbarProps {
 
 export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isEnquiriesPage = pathname?.startsWith('/admin/enquiries');
   const [commandOpen, setCommandOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentTime, setCurrentTime] = useState('2:31:23 PM');
@@ -138,7 +141,7 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
             <div className="flex items-center gap-2.5 min-w-0">
               <Search className="h-4 w-4 text-slate-400 group-hover:text-emerald-600 transition-colors shrink-0" />
               <span className="truncate text-[12px] font-medium text-slate-400 group-hover:text-slate-600">
-                Search farmers, bookings, hatcheries...
+                {isEnquiriesPage ? 'Search enquiries, customers, or order details...' : 'Search farmers, bookings, hatcheries...'}
               </span>
             </div>
             <kbd className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2 py-0.5 font-mono text-[10px] font-semibold text-slate-500 group-hover:border-slate-300 shadow-2xs shrink-0">
@@ -171,14 +174,28 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
 
         {/* RIGHT: Quick Action + Notifications + Executive Staff Avatar */}
         <div className="flex items-center gap-2.5 sm:gap-3">
-          {/* Quick Action: New Booking / Pricing Shortcut */}
-          <Link
-            href="/admin/bookings"
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs px-3.5 py-2 shadow-xs transition-all duration-200 hover:shadow-md transform hover:-translate-y-0.5"
-          >
-            <Plus className="h-3.5 w-3.5 stroke-[2.5]" />
-            <span>New Booking</span>
-          </Link>
+          {/* Quick Action: New Enquiry on Enquiries page or New Booking */}
+          {isEnquiriesPage ? (
+            <button
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('open-new-enquiry'));
+                }
+              }}
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#00a854] hover:bg-[#009249] text-white font-bold text-xs px-4 py-2 shadow-xs transition-all duration-200 hover:shadow-md"
+            >
+              <Send className="h-3.5 w-3.5" />
+              <span>New Enquiry</span>
+            </button>
+          ) : (
+            <Link
+              href="/admin/bookings"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-xl bg-[#059669] hover:bg-[#047857] text-white font-bold text-xs px-4 py-2 shadow-xs transition-all duration-200 hover:shadow-md"
+            >
+              <Plus className="h-4 w-4 stroke-[2.5]" />
+              <span>New Booking</span>
+            </Link>
+          )}
 
           {/* Notification Center */}
           <div className="relative" ref={notifRef}>

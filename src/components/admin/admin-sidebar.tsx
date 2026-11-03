@@ -48,12 +48,12 @@ const OPS_ITEMS = [
     badgeClass: 'bg-[#00c950] text-white font-bold',
   },
   {
-    num: '',
+    num: '03.',
     name: 'Enquiries Inbox',
     href: '/admin/enquiries',
     icon: Inbox,
-    badge: 'ACTIVE',
-    badgeClass: 'bg-[#3a2705] text-[#f59e0b] border border-[#f59e0b]/40',
+    badge: '12',
+    badgeClass: 'bg-[#ea580c] text-white font-extrabold rounded-full px-2 py-0.5 text-[10px]',
   },
   {
     num: '05.',
@@ -328,8 +328,8 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
         <div className="p-3 border-t border-white/5 space-y-3 shrink-0">
           {/* Grow Together Banner */}
           <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#0a2f18] via-[#072414] to-[#041a0e] border border-emerald-500/30 p-3.5 shadow-md">
-            {/* Background Agriculture Field Illustration */}
-            <div className="relative z-10 space-y-1.5">
+            {/* Content */}
+            <div className="relative z-10 space-y-1.5 pr-14">
               <div className="flex items-center gap-1.5">
                 <Sprout className="h-4 w-4 text-[#2ee571]" />
                 <span className="text-xs font-extrabold text-white">Grow Together</span>
@@ -340,7 +340,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
               <div className="pt-1">
                 <Link
                   href="/"
-                  className="inline-flex items-center gap-1 text-[10px] font-bold text-white bg-[#062413] hover:bg-[#09351c] border border-emerald-500/40 px-2.5 py-1 rounded-lg transition-colors"
+                  className="inline-flex items-center gap-1 text-[10px] font-bold text-white bg-[#0e3a1f] hover:bg-[#124d29] border border-emerald-500/40 px-2.5 py-1 rounded-lg transition-colors"
                 >
                   <span>Learn More</span>
                   <span>→</span>
@@ -348,14 +348,11 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
               </div>
             </div>
 
-            {/* Crop Field Vector Graphic Pattern */}
-            <div className="mt-2 h-14 w-full relative overflow-hidden rounded-lg">
-              <div
-                className="absolute inset-0 bg-cover bg-center rounded-lg opacity-40 mix-blend-luminosity"
-                style={{ backgroundImage: "url('/images/farm-bg.jpg')" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#041a0e] via-transparent to-transparent" />
-            </div>
+            {/* Cute Yellow Baby Chicks Photo Overlay */}
+            <div
+              className="absolute bottom-1 right-1 w-20 h-16 bg-contain bg-no-repeat bg-right-bottom pointer-events-none rounded-br-xl"
+              style={{ backgroundImage: "url('/images/sidebar-chicks.jpg')" }}
+            />
           </div>
 
           {/* Footer Version Notice */}
