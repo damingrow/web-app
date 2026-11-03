@@ -184,49 +184,49 @@ export function OverviewClient({
         <div className="absolute -left-20 -top-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Hero Content */}
-        <div className="relative z-10 p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="max-w-[540px] space-y-3.5">
+        <div className="relative z-10 p-4 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div className="max-w-[540px] space-y-2.5">
             {/* Top Badges Row */}
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#0a351d] border border-emerald-500/40 rounded-full px-3.5 py-1 shadow-2xs">
-                <Plus className="h-3.5 w-3.5 text-[#2ee571]" />
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-white bg-[#0a351d] border border-emerald-500/40 rounded-full px-3 py-0.5 shadow-2xs">
+                <Plus className="h-3 w-3 text-[#2ee571]" />
                 <span>WAT 24/7 Operations</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#0a351d] border border-emerald-500/40 rounded-full px-3.5 py-1 shadow-2xs">
-                <CheckCircle className="h-3.5 w-3.5 text-[#2ee571]" />
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-white bg-[#0a351d] border border-emerald-500/40 rounded-full px-3 py-0.5 shadow-2xs">
+                <CheckCircle className="h-3 w-3 text-[#2ee571]" />
                 <span>Zenith escrow Reconciled</span>
               </span>
             </div>
 
             {/* Main Headline */}
             <div>
-              <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-white leading-tight tracking-tight font-heading">
+              <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-white leading-tight tracking-tight font-heading">
                 Agri-Commercial <br />
                 <span className="text-[#2ee571]">Operations Cockpit</span>
               </h1>
-              <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed font-normal max-w-lg">
+              <p className="mt-1.5 text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal max-w-lg">
                 Real-time multi-hatchery chick allocation control, automated deposit clearing with Zenith Bank, VCN emergency clinical triaging, and nationwide motor park waybills.
               </p>
             </div>
           </div>
 
           {/* 3 Stacked Action Buttons on Right */}
-          <div className="flex flex-col gap-2.5 shrink-0 min-w-[260px]">
+          <div className="flex flex-col gap-2 shrink-0 min-w-[250px]">
             {/* Button 1: Solid Emerald Green */}
             <Link
               href="/admin/chicks-pricing"
-              className="flex items-center gap-3 rounded-2xl px-5 py-3 text-xs font-bold text-white bg-[#00a854] hover:bg-[#009249] transition-all shadow-md transform hover:-translate-y-0.5"
+              className="flex items-center gap-2.5 rounded-2xl px-4 py-2.5 text-xs font-bold text-white bg-[#00a854] hover:bg-[#009249] transition-all shadow-md transform hover:-translate-y-0.5"
             >
-              <TrendingUp className="h-4 w-4 text-white shrink-0" />
+              <TrendingUp className="h-3.5 w-3.5 text-white shrink-0" />
               <span>Sync Weekly Hatchery Rates</span>
             </Link>
 
             {/* Button 2: Translucent Dark Green with Border */}
             <Link
               href="/admin/bookings"
-              className="flex items-center gap-3 rounded-2xl bg-[#062916]/90 hover:bg-[#0a3a20] border border-emerald-500/40 px-5 py-3 text-xs font-bold text-white transition-all shadow-2xs"
+              className="flex items-center gap-2.5 rounded-2xl bg-[#062916]/90 hover:bg-[#0a3a20] border border-emerald-500/40 px-4 py-2.5 text-xs font-bold text-white transition-all shadow-2xs"
             >
-              <Layers className="h-4 w-4 text-emerald-400 shrink-0" />
+              <Layers className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
               <span>Dispatch Manifests &amp; Quotas</span>
             </Link>
 
@@ -235,9 +235,9 @@ export function OverviewClient({
               href="https://wa.me/2348139169402"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-2xl bg-[#062916]/90 hover:bg-[#0a3a20] border border-emerald-500/40 px-5 py-3 text-xs font-bold text-white transition-all shadow-2xs"
+              className="flex items-center gap-2.5 rounded-2xl bg-[#062916]/90 hover:bg-[#0a3a20] border border-emerald-500/40 px-4 py-2.5 text-xs font-bold text-white transition-all shadow-2xs"
             >
-              <MessageCircle className="h-4 w-4 text-[#2ee571] shrink-0" />
+              <MessageCircle className="h-3.5 w-3.5 text-[#2ee571] shrink-0" />
               <span>Live Vet Desk (+2348139169402)</span>
             </a>
           </div>
