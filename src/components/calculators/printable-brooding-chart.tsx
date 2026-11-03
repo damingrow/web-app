@@ -72,7 +72,7 @@ export function PrintableBroodingChart({ data }: PrintableBroodingChartProps) {
                   Commercial Flock Brooding Schedule & Target Chart
                 </h3>
                 <p className="text-slate-300 text-xs mt-0.5">
-                  Flock: {data.flockSize.toLocaleString()} {data.birdType.toUpperCase()}S · Space: {data.floorAreaSqM} m² ({data.floorAreaSqFt} sq. ft)
+                  Flock: {data.flockSize.toLocaleString()} {(data.birdType || data.breedType || 'broiler').toUpperCase()}S · Space: {data.floorAreaSqM} m² ({data.floorAreaSqFt} sq. ft)
                 </p>
               </div>
 

@@ -95,7 +95,7 @@ const SERVICES_MENU = [
         icon: ShieldCheck,
         label: 'Biosecurity Planning',
         desc: 'Quarantine protocols & pathogen containment',
-        href: '/services/technical',
+        href: '/services/technical#biosecurity',
       },
     ],
   },
@@ -299,7 +299,7 @@ export function Header() {
                           const Icon = item.icon;
                           return (
                             <Link
-                              key={item.href}
+                              key={`${item.href}-${item.label}`}
                               href={item.href}
                               className="flex items-start gap-3 px-2 py-2.5 rounded-xl hover:bg-emerald-50 group transition-colors"
                             >
@@ -547,7 +547,7 @@ export function Header() {
                     const Icon = item.icon;
                     return (
                       <Link
-                        key={item.href}
+                        key={`${item.href}-${item.label}`}
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
                         className="flex items-center gap-3 px-2 py-2.5 rounded-xl hover:bg-emerald-50 text-sm text-slate-700 font-medium transition-colors"

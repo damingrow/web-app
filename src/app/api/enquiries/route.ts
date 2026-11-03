@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createAdminClient } from '@/lib/supabase/server';
 import { env } from '@/lib/env';
+import { checkRateLimit, getClientIp } from '@/lib/security/rate-limiter';
 
 const enquiryInputSchema = z.object({
   fullName: z.string().min(2).max(100),
@@ -19,6 +20,26 @@ const enquiryInputSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    const clientIp = getClientIp(request);
+    const rateCheck = checkRateLimit(`enquiries:${clientIp}`, { maxRequests: 10, windowMs: 60000 });
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Too many requests. Please wait a moment before trying again or message us on WhatsApp.',
+          retryAfterSeconds: rateCheck.resetInSeconds,
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(rateCheck.resetInSeconds),
+            'X-RateLimit-Limit': String(rateCheck.limit),
+            'X-RateLimit-Remaining': String(rateCheck.remaining),
+          },
+        }
+      );
+    }
+
     const body = await request.json();
     const validated = enquiryInputSchema.parse(body);
 

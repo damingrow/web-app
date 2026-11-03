@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { createAdminClient } from '@/lib/supabase/server';
 import { env } from '@/lib/env';
 import { calculatePackagingBirds } from '@/lib/supabase/data-access';
+import { checkRateLimit, getClientIp } from '@/lib/security/rate-limiter';
 
 const bookingInputSchema = z.object({
   customerName: z.string().min(2).max(100),
@@ -26,6 +27,26 @@ const DEFAULT_RATES: Record<string, number> = {
 
 export async function POST(request: Request) {
   try {
+    const clientIp = getClientIp(request);
+    const rateCheck = checkRateLimit(`bookings:${clientIp}`, { maxRequests: 10, windowMs: 60000 });
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Too many booking reservation requests. Please wait a moment before trying again or message us on WhatsApp.',
+          retryAfterSeconds: rateCheck.resetInSeconds,
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(rateCheck.resetInSeconds),
+            'X-RateLimit-Limit': String(rateCheck.limit),
+            'X-RateLimit-Remaining': String(rateCheck.remaining),
+          },
+        }
+      );
+    }
+
     const body = await request.json();
     const validated = bookingInputSchema.parse(body);
 
