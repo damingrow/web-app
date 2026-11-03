@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { PRODUCTS } from '@/data/products';
 import { ARTICLES } from '@/data/articles';
+import { EDITORIAL_PILLARS } from '@/lib/editorial/pillars';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://damingrow.com';
 
@@ -174,5 +175,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...routes, ...productEntries, ...articleEntries];
+  // Dynamic 6-Pillar Authority Pages
+  const pillarEntries: MetadataRoute.Sitemap = EDITORIAL_PILLARS.map((p) => ({
+    url: `${SITE_URL}/knowledge/pillar/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  }));
+
+  return [...routes, ...productEntries, ...articleEntries, ...pillarEntries];
 }

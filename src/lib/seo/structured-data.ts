@@ -129,3 +129,41 @@ export function generateArticleSchema({
 
   return schema;
 }
+
+export function generatePillarCollectionSchema({
+  pillarName,
+  description,
+  url,
+  articles,
+}: {
+  pillarName: string;
+  description: string;
+  url: string;
+  articles: { title: string; slug: string; summary: string }[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `${pillarName} — Poultry Knowledge Pillar | D-AminGrow Nigeria`,
+    description,
+    url: url.startsWith('http') ? url : `https://damingrow.com${url}`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'D-AminGrow Agro-Allied Services',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://damingrow.com/Brand%20identity/damingrow%20logo.png',
+      },
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: articles.map((article, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `https://damingrow.com/knowledge/${article.slug}`,
+        name: article.title,
+        description: article.summary,
+      })),
+    },
+  };
+}

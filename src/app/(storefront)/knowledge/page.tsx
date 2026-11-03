@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ARTICLES } from '@/data/articles';
+import { EDITORIAL_PILLARS } from '@/lib/editorial/pillars';
 import { KnowledgeList } from './knowledge-list';
 import {
   Calendar,
@@ -14,6 +15,12 @@ import {
   MessageCircle,
   FileText,
   Users,
+  Syringe,
+  Stethoscope,
+  Flame,
+  Egg,
+  Scale,
+  Building2,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -131,8 +138,71 @@ export default function KnowledgeHubPage() {
       </section>
 
       {/* ====================================================================
-          INTERACTIVE TOOLS STRIP
+          6 CORE AUTHORITY PILLARS (PROGRAMMATIC TOPIC CLUSTERS)
           ==================================================================== */}
+      <section className="pt-16 pb-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
+          <div>
+            <div className="section-label mb-2">
+              <Sparkles className="h-3.5 w-3.5" />
+              E-E-A-T Programmatic Architecture
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-heading">
+              6 Core Agricultural Authority Pillars
+            </h2>
+          </div>
+          <p className="text-xs text-slate-500 max-w-md">
+            Specialized veterinary and engineering research clusters serving 500,000+ monthly poultry producers across West Africa.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {EDITORIAL_PILLARS.map((p) => {
+            let IconComp = BookOpen;
+            if (p.iconName === 'Syringe') IconComp = Syringe;
+            else if (p.iconName === 'Stethoscope') IconComp = Stethoscope;
+            else if (p.iconName === 'Flame') IconComp = Flame;
+            else if (p.iconName === 'Egg') IconComp = Egg;
+            else if (p.iconName === 'Scale') IconComp = Scale;
+            else if (p.iconName === 'Building2') IconComp = Building2;
+
+            return (
+              <Link
+                key={p.id}
+                href={`/knowledge/pillar/${p.slug}`}
+                className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-xl hover:border-emerald-500/40 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="h-12 w-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                      <IconComp className="h-6 w-6" />
+                    </div>
+                    <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full border ${p.badgeColor}`}>
+                      {p.badge}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-bold font-heading text-slate-900 group-hover:text-emerald-700 transition-colors">
+                      {p.name}
+                    </h3>
+                    <p className="text-xs text-slate-600 mt-2 line-clamp-3 leading-relaxed">
+                      {p.description}
+                    </p>
+                  </div>
+
+                  <div className="text-[11px] text-slate-500 pt-1 border-t border-slate-100 flex items-center justify-between">
+                    <span>Target: <strong className="text-slate-800">{(p.monthlyTrafficTarget / 1000).toFixed(0)}k/mo</strong></span>
+                    <span className="text-emerald-700 font-semibold group-hover:underline flex items-center gap-1">
+                      Explore Pillar <ArrowRight className="h-3 w-3" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
       <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
           <div>

@@ -47,16 +47,12 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse;
   }
 
-  // If viewing protected admin page with no auth cookie, redirect or allow preview in dev
+  // If viewing protected admin page with no auth cookie, redirect to login
   if (!pathname.startsWith('/admin/login') && !hasAuthCookie) {
-    const isDemoSession = request.cookies.get('damingrow_staff_demo')?.value === 'true';
-    if (!isDemoSession && process.env.NODE_ENV === 'production') {
-      const loginUrl = request.nextUrl.clone();
-      loginUrl.pathname = '/admin/login';
-      loginUrl.searchParams.set('redirectTo', pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-    return supabaseResponse;
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = '/admin/login';
+    loginUrl.searchParams.set('redirectTo', pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
   try {

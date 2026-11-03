@@ -11,8 +11,16 @@ const envSchema = z.object({
     .string()
     .regex(/^\+[1-9]\d{1,14}$/, 'Must be a valid E.164 phone number (e.g. +2348139169402)')
     .default('+2348139169402'),
-  NEXT_PUBLIC_SUPABASE_URL: z.string().url().default('https://placeholder.supabase.co'),
-  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1).default('placeholder-anon-key'),
+  NEXT_PUBLIC_SUPABASE_URL: z
+    .string()
+    .url()
+    .default('https://ullutbvytgllwechzfgx.supabase.co'),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: z
+    .string()
+    .min(1)
+    .default(
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsbHV0YnZ5dGdsbHdlY2h6Zmd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwMDk2OTMsImV4cCI6MjEwODU4NTY5M30.1yILOOpscyF--I7wovxm7XCzYaeLXmaO1pGBPZD-pOA'
+    ),
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().optional(),
 
   // Private Server Variables (Optional locally, required in production)
