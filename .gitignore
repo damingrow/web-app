@@ -32,6 +32,8 @@ Thumbs.db
 # Test coverage
 coverage/
 *.lcov
+test-results/
+playwright-report/
 
 # Supabase local config
 .supabase/

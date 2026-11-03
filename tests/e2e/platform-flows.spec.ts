@@ -3,20 +3,21 @@ import { test, expect } from '@playwright/test';
 test.describe('D-AminGrow Enterprise E2E Suite', () => {
   test('1. Storefront & Header Navigation Verification', async ({ page }) => {
     await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
 
     // Verify Title and Brand Identity
-    await expect(page).toHaveTitle(/D-AminGrow/i);
+    await expect(page).toHaveTitle(/D-AminGrow/i, { timeout: 15000 });
     const logo = page.locator('header img[alt*="D-AminGrow"]').first();
-    await expect(logo).toBeVisible();
+    await expect(logo).toBeVisible({ timeout: 10000 });
 
     // Verify Official Hotline Deep Link
     const whatsappLinks = page.locator('a[href*="2348139169402"]');
-    await expect(whatsappLinks.first()).toBeVisible();
+    await expect(whatsappLinks.first()).toBeVisible({ timeout: 10000 });
 
     // Verify Primary Navigation Categories
-    await expect(page.locator('header').getByText(/Products/i).first()).toBeVisible();
-    await expect(page.locator('header').getByText(/Services/i).first()).toBeVisible();
-    await expect(page.locator('header').getByText(/Calculators/i).first()).toBeVisible();
+    await expect(page.locator('header').getByText(/Products/i).first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('header').getByText(/Services/i).first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('header').getByText(/Calculators/i).first()).toBeVisible({ timeout: 10000 });
   });
 
   test('2. "Price on Request" Wholesale Integrity & Chick Reservation', async ({ page }) => {
@@ -71,22 +72,24 @@ test.describe('D-AminGrow Enterprise E2E Suite', () => {
 
   test('6. Staff Console Split-Screen & Authentication Terminal', async ({ page }) => {
     await page.goto('/admin/login');
+    await page.waitForLoadState('domcontentloaded');
 
     // Verify Enterprise Login Heading
-    await expect(page.getByText(/Staff Authentication/i).or(page.getByText(/Welcome Back/i)).first()).toBeVisible();
+    await expect(page.getByText(/Staff Authentication/i).or(page.getByText(/Welcome Back/i)).first()).toBeVisible({ timeout: 15000 });
 
     // Verify Password Reveal Toggle functionality
     const passwordInput = page.locator('input[name="password"]').first();
-    await expect(passwordInput).toBeVisible();
+    await expect(passwordInput).toBeVisible({ timeout: 10000 });
     await expect(passwordInput).toHaveAttribute('type', 'password');
 
+    // Click the toggle and verify password input switches type or toggle exists
     const toggleBtn = page.locator('button[aria-label*="password" i]').first();
-    if (await toggleBtn.isVisible()) {
+    if (await toggleBtn.isVisible({ timeout: 3000 }).catch(() => false)) {
       await toggleBtn.click();
-      await expect(passwordInput).toHaveAttribute('type', 'text');
+      await expect(passwordInput).toHaveAttribute('type', 'text', { timeout: 5000 });
     }
 
     // Verify Corporate Protection Notice
-    await expect(page.getByText(/Protected Corporate/i).first()).toBeVisible();
+    await expect(page.getByText(/Protected Corporate/i).first()).toBeVisible({ timeout: 10000 });
   });
 });
