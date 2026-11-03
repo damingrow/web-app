@@ -216,7 +216,7 @@ export function Header() {
     pathname === href || pathname.startsWith(href + '/');
 
   const navLinkClass = (active: boolean) =>
-    `px-3 py-2 text-sm font-medium rounded-xl transition-all duration-150 flex items-center gap-1 ${
+    `px-2.5 py-1.5 text-xs xl:text-sm font-medium rounded-lg transition-all duration-150 flex items-center gap-1 ${
       active
         ? 'text-emerald-700 bg-emerald-50 font-semibold'
         : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100/80'
@@ -230,7 +230,7 @@ export function Header() {
     >
       {/* ── Top Trust Bar ───────────────────────────────────────────── */}
       <div className="bg-[#050E08] text-slate-300 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between py-2 text-[11px]">
+        <div className="max-w-7xl mx-auto flex items-center justify-between py-1 text-[11px]">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1.5">
               <span className="relative flex h-2 w-2">
@@ -260,18 +260,18 @@ export function Header() {
 
       {/* ── Main Navigation Bar ─────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-[72px] items-center justify-between gap-4">
+        <div className="flex h-14 sm:h-[58px] items-center justify-between gap-3">
 
           {/* Logo */}
           <Link href="/" className="flex items-center group shrink-0" aria-label="D-AminGrow Home">
-            <div className="relative h-11 w-44 sm:h-12 sm:w-52 overflow-hidden group-hover:opacity-95 transition-opacity">
+            <div className="relative h-9 w-36 sm:h-10 sm:w-44 overflow-hidden group-hover:opacity-95 transition-opacity">
               <Image
                 src="/Brand identity/damingrow-header-logo.png"
                 alt="D-AminGrow — Your Satisfaction Is Our Priority"
                 fill
                 priority
                 className="object-contain object-left"
-                sizes="(max-width: 640px) 176px, 224px"
+                sizes="(max-width: 640px) 144px, 176px"
               />
             </div>
           </Link>
@@ -494,20 +494,20 @@ export function Header() {
             {/* Book Consultation CTA */}
             <Link
               href="/services/consultation"
-              className="hidden lg:flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5"
+              className="hidden lg:flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs xl:text-sm font-semibold px-3.5 py-1.5 rounded-lg transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5"
             >
-              <HeartHandshake className="h-4 w-4" />
+              <HeartHandshake className="h-3.5 w-3.5" />
               Book Consultation
             </Link>
 
             {/* Hamburger (mobile) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-1.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors"
               aria-label="Toggle Navigation Menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -515,7 +515,7 @@ export function Header() {
 
       {/* ── Mobile Drawer ───────────────────────────────────────────── */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[108px] z-40 bg-white overflow-y-auto border-t border-slate-100 shadow-2xl">
+        <div className="lg:hidden fixed inset-0 top-[80px] sm:top-[82px] z-40 bg-white overflow-y-auto border-t border-slate-100 shadow-2xl">
           <div className="max-w-lg mx-auto px-4 py-5 pb-24 space-y-1">
 
             {/* Section: Services */}
