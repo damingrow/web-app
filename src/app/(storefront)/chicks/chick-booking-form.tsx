@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Modal } from '@/components/ui/modal';
 import {
   Calendar,
   Truck,
@@ -11,23 +12,25 @@ import {
   CheckCircle2,
   Clock,
   Sparkles,
+  Building2,
+  Copy,
+  Check,
 } from 'lucide-react';
 
 const HATCHERY_BRANDS = [
-  'Amo Farm (Arbor Acres / Noiler)',
-  'Zartech (Cobb 500 / ISA Brown)',
-  'Chi Farms (Arbor Acres Plus)',
-  'Sayed Farms (Ross 308)',
-  'Agrited (Ross 308 / Novogen)',
-  'Any Certified Tier-1 Hatchery',
+  { code: 'CHI', name: 'Chi Hatchery Ltd (Arbor Acres Plus)' },
+  { code: 'ZAR', name: 'Zartech Farms (Cobb 500 / ISA Brown)' },
+  { code: 'AMO', name: 'Amo Farm Hatchery (Arbor Acres / Noiler)' },
+  { code: 'SAY', name: 'Sayed Farms Hatchery (Ross 308)' },
+  { code: 'VAL', name: 'Valentine Chicks Hatchery (Commercial Hybrids)' },
 ];
 
 const CHICK_BREEDS = [
-  { id: 'broiler', name: 'Commercial Day-Old Broilers (Cobb 500 / Arbor Acres)', cartons: '50 + 2 chicks/carton' },
-  { id: 'pullet', name: 'Commercial Day-Old Layer Pullets (ISA Brown / Lohmann)', cartons: '50 + 2 chicks/carton' },
-  { id: 'turkey', name: 'Day-Old Turkey Poults (Nicholas / Hybrid White)', cartons: '50 + 2 chicks/carton' },
-  { id: 'noiler', name: 'Dual-Purpose Hybrid Noiler Chicks', cartons: '50 + 2 chicks/carton' },
-  { id: 'cockerel', name: 'Commercial White & Black Cockerels', cartons: '50 + 2 chicks/carton' },
+  { id: 'broiler', name: 'Commercial Day-Old Broilers (Cobb 500 / Ross 308)', rule: '50 + 1 chick bonus per box' },
+  { id: 'pullet', name: 'Commercial Day-Old Layer Pullets (ISA Brown / Novogen)', rule: '50 + 1 chick bonus per box' },
+  { id: 'turkey', name: 'Commercial Day-Old Turkey Poults (Broad-Breasted)', rule: '25 poults per box' },
+  { id: 'duckling', name: 'Commercial Day-Old Ducklings (Keets)', rule: '50 + 1 duckling bonus per box' },
+  { id: 'pol', name: 'Point-of-Lay Birds (17–18 Weeks Old)', rule: 'Dispatched in specialized transport crates' },
 ];
 
 const NIGERIAN_STATES = [
@@ -38,69 +41,103 @@ const NIGERIAN_STATES = [
   'Taraba', 'Yobe', 'Zamfara'
 ];
 
+interface BookingConfirmation {
+  bookingRef: string;
+  cartonsCount: number;
+  totalBirdsCount: number;
+  birdsPerCarton: number;
+  estimatedTotalNgn: number;
+  requiredDepositNgn: number;
+  heldUntil: string;
+  bankDetails: {
+    bankName: string;
+    accountNumber: string;
+    accountName: string;
+    narration: string;
+  };
+  whatsappConfirmationUrl: string;
+}
+
 export default function ChickBookingForm() {
-  const [selectedBreed, setSelectedBreed] = useState<string>(CHICK_BREEDS[0]?.name ?? 'Commercial Day-Old Broilers (Cobb 500 / Arbor Acres)');
-  const [selectedHatchery, setSelectedHatchery] = useState<string>(HATCHERY_BRANDS[0] ?? 'Amo Farm (Arbor Acres / Noiler)');
-  const [cartonCount, setCartonCount] = useState<number>(10); // 10 cartons = 510 chicks
+  const [selectedBreedId, setSelectedBreedId] = useState<string>('broiler');
+  const [selectedHatcheryCode, setSelectedHatcheryCode] = useState<string>('CHI');
+  const [cartonCount, setCartonCount] = useState<number>(10);
   const [deliveryState, setDeliveryState] = useState<string>('Oyo');
-  const [deliveryCity, setDeliveryCity] = useState<string>('Ibadan');
+  const [deliveryCity, setDeliveryCity] = useState<string>('Ibadan (Bodija Depot)');
   const [preferredDay, setPreferredDay] = useState<'Tuesday' | 'Thursday'>('Tuesday');
   const [farmerName, setFarmerName] = useState<string>('');
   const [farmerPhone, setFarmerPhone] = useState<string>('');
+  const [farmName, setFarmName] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [confirmation, setConfirmation] = useState<BookingConfirmation | null>(null);
+  const [copiedAccount, setCopiedAccount] = useState<boolean>(false);
 
   const safeCartons = Math.max(1, cartonCount || 1);
-  const totalChicks = safeCartons * 51; // 50 + 1 or 2 bonus
+  const isTurkey = selectedBreedId === 'turkey';
+  const birdsPerBox = isTurkey ? 25 : 51;
+  const totalChicks = safeCartons * birdsPerBox;
+
+  const handleCopyAccount = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedAccount(true);
+    setTimeout(() => setCopiedAccount(false), 3000);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!farmerName.trim() || !farmerPhone.trim()) {
-      alert('Please provide your name and phone number so the dispatch team can contact you.');
+      alert('Please provide your name and phone number for the dispatch manifest.');
       return;
     }
 
     setIsSubmitting(true);
 
-    const bookingRef = `DOC-${Date.now().toString(36).toUpperCase()}-${Math.floor(100 + Math.random() * 900)}`;
-
-    // Persist to backend Supabase
     try {
-      await fetch('/api/enquiries', {
+      const response = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName: farmerName,
-          phone: farmerPhone,
-          state: deliveryState,
-          city: deliveryCity,
-          enquiryType: 'whatsapp_order',
-          notes: `Ref: ${bookingRef} | DOC Booking: ${safeCartons} Cartons (${totalChicks} chicks) of ${selectedBreed}. Hatchery: ${selectedHatchery}. Preferred Dispatch: ${preferredDay}. Notes: ${notes}`,
-          consentMarketing: true,
+          customerName: farmerName.trim(),
+          customerPhone: farmerPhone.trim(),
+          farmName: farmName.trim() || undefined,
+          deliveryState,
+          destinationHub: deliveryCity.trim() || `${deliveryState} Central Depot`,
+          breedType: selectedBreedId,
+          hatcheryCode: selectedHatcheryCode,
+          cartonsCount: safeCartons,
+          notes: `Preferred Dispatch: ${preferredDay} Morning. Notes: ${notes}`,
         }),
       });
-    } catch {
-      // Non-blocking
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setConfirmation(data);
+      } else {
+        // Fallback directly to WhatsApp deep link if reservation API returns an advisory
+        const fallbackRef = `DOC-${Date.now().toString(36).toUpperCase()}`;
+        const waMsg = encodeURIComponent(
+          `🐣 *DAY-OLD CHICK DIRECT RESERVATION — D-AMINGROW*\n\n` +
+          `*Ref:* ${fallbackRef}\n` +
+          `*Farmer:* ${farmerName.trim()} (${farmerPhone.trim()})\n` +
+          `*Breed:* ${selectedBreedId.toUpperCase()}\n` +
+          `*Hatchery:* ${selectedHatcheryCode}\n` +
+          `*Quantity:* ${safeCartons} Cartons (~${totalChicks} Chicks)\n` +
+          `*Destination:* ${deliveryState} (${deliveryCity})\n` +
+          `*Dispatch:* ${preferredDay} Morning\n\n` +
+          `Please confirm carton allocation and payment account.`
+        );
+        window.open(`https://wa.me/2348139169402?text=${waMsg}`, '_blank');
+      }
+    } catch (err) {
+      console.error('Reservation submission error:', err);
+      // Ensure the farmer is never stranded
+      const fallbackUrl = `https://wa.me/2348139169402?text=Hello%20D-AminGrow,%20I%20wish%20to%20book%20${safeCartons}%20cartons%20of%20${selectedBreedId}%20chicks.%20My%20name%20is%20${encodeURIComponent(farmerName)}%20(${encodeURIComponent(farmerPhone)}).`;
+      window.open(fallbackUrl, '_blank');
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
-
-    // Generate Pre-Filled WhatsApp Booking Slip
-    const waMessage = encodeURIComponent(
-      `🐣 *DAY-OLD CHICK DISPATCH BOOKING — D-AMINGROW*\n\n` +
-      `*Booking Ref:* ${bookingRef}\n` +
-      `*Farmer Name:* ${farmerName.trim()}\n` +
-      `*Phone Number:* ${farmerPhone.trim()}\n` +
-      `*Breed Selected:* ${selectedBreed}\n` +
-      `*Preferred Hatchery:* ${selectedHatchery}\n` +
-      `*Quantity:* ${safeCartons} Cartons (~${totalChicks} Chicks)\n` +
-      `*Delivery State / City:* ${deliveryState} State, ${deliveryCity}\n` +
-      `*Preferred Dispatch Day:* ${preferredDay} Morning\n` +
-      (notes ? `*Additional Notes:* ${notes}\n\n` : `\n`) +
-      `Please confirm current hatch day price per carton and payment account for slot reservation.`
-    );
-
-    window.open(`https://wa.me/2348139169402?text=${waMessage}`, '_blank');
   };
 
   return (
@@ -118,13 +155,13 @@ export default function ChickBookingForm() {
               Day-Old Chick Booking Slip
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Lock in your cartons for the upcoming Tuesday or Thursday nationwide dispatch.
+              Transactional reservation engine with live carton yield calculation and nationwide depot routing.
             </p>
           </div>
 
           <div className="flex items-center gap-2 rounded-2xl bg-amber-50 border border-amber-200/80 px-4 py-2 text-xs text-amber-900 shrink-0">
             <Clock className="h-4 w-4 text-amber-700 shrink-0" />
-            <span>Bookings close 48hrs before hatch</span>
+            <span>Bookings close 48hrs prior to hatch</span>
           </div>
         </div>
 
@@ -134,23 +171,23 @@ export default function ChickBookingForm() {
             <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
               1. Select Chick Variety & Breed
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
               {CHICK_BREEDS.map((breed) => (
                 <button
                   key={breed.id}
                   type="button"
-                  onClick={() => setSelectedBreed(breed.name)}
+                  onClick={() => setSelectedBreedId(breed.id)}
                   className={`text-left p-3.5 rounded-2xl border transition-all flex items-start justify-between ${
-                    selectedBreed === breed.name
-                      ? 'border-emerald-600 bg-emerald-50/70 text-slate-900 shadow-sm'
+                    selectedBreedId === breed.id
+                      ? 'border-emerald-600 bg-emerald-50/70 text-slate-900 shadow-sm ring-1 ring-emerald-600'
                       : 'border-slate-200 bg-slate-50/50 text-slate-700 hover:bg-slate-100'
                   }`}
                 >
                   <div>
                     <div className="text-xs font-bold leading-tight">{breed.name}</div>
-                    <div className="text-[10px] text-slate-400 mt-0.5">{breed.cartons}</div>
+                    <div className="text-[10px] text-slate-500 mt-1">{breed.rule}</div>
                   </div>
-                  {selectedBreed === breed.name && (
+                  {selectedBreedId === breed.id && (
                     <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 ml-2 mt-0.5" />
                   )}
                 </button>
@@ -162,22 +199,24 @@ export default function ChickBookingForm() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                2. Preferred Hatchery Partner
+                2. Select Partner Hatchery
               </label>
               <select
-                value={selectedHatchery}
-                onChange={(e) => setSelectedHatchery(e.target.value)}
+                value={selectedHatcheryCode}
+                onChange={(e) => setSelectedHatcheryCode(e.target.value)}
                 className="w-full text-xs rounded-xl border border-slate-200 bg-slate-50 p-3 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
               >
-                {HATCHERY_BRANDS.map((brand, i) => (
-                  <option key={i} value={brand}>{brand}</option>
+                {HATCHERY_BRANDS.map((brand) => (
+                  <option key={brand.code} value={brand.code}>
+                    {brand.name}
+                  </option>
                 ))}
               </select>
             </div>
 
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                3. Preferred Dispatch Day
+                3. Preferred Dispatch Run
               </label>
               <div className="grid grid-cols-2 gap-2">
                 {(['Tuesday', 'Thursday'] as const).map((day) => (
@@ -192,7 +231,7 @@ export default function ChickBookingForm() {
                     }`}
                   >
                     <Calendar className="h-3.5 w-3.5" />
-                    <span>{day} Morning</span>
+                    <span>{day} Departure</span>
                   </button>
                 ))}
               </div>
@@ -203,13 +242,13 @@ export default function ChickBookingForm() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <Input
-                label="Number of Cartons (50 chicks / box)"
+                label={`Number of Cartons (${birdsPerBox} chicks/box)`}
                 type="number"
                 min={1}
                 max={500}
                 value={cartonCount}
                 onChange={(e) => setCartonCount(Number(e.target.value))}
-                helperText={`Yield: ~${totalChicks.toLocaleString()} live chicks (+bonus)`}
+                helperText={`Yield: ${totalChicks.toLocaleString()} total live birds`}
               />
             </div>
 
@@ -231,19 +270,19 @@ export default function ChickBookingForm() {
             <div>
               <Input
                 label="City / Nearest Motor Park Depot"
-                placeholder="e.g. Sagamu, Kano Depot, Ikeja"
+                placeholder="e.g. Bodija Depot, Kano Luxury Bus Park, Oshodi"
                 value={deliveryCity}
                 onChange={(e) => setDeliveryCity(e.target.value)}
-                helperText="Where you will pick up the waybill box"
+                helperText="Designated destination collection depot"
               />
             </div>
           </div>
 
           {/* Farmer Contact Details */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-100">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-slate-100">
             <div>
               <Input
-                label="Your Full Name / Farm Name"
+                label="Farmer Full Name"
                 placeholder="e.g. Alhaji Musa Bello"
                 required
                 value={farmerName}
@@ -253,26 +292,35 @@ export default function ChickBookingForm() {
 
             <div>
               <Input
-                label="WhatsApp / Phone Number"
+                label="WhatsApp Phone Number"
                 placeholder="e.g. 08012345678"
                 type="tel"
                 required
                 value={farmerPhone}
                 onChange={(e) => setFarmerPhone(e.target.value)}
-                helperText="For SMS waybill tracking code & arrival alerts"
+                helperText="For arrival SMS & waybill code"
+              />
+            </div>
+
+            <div>
+              <Input
+                label="Farm / Enterprise Name (Optional)"
+                placeholder="e.g. Bello Integrated Farms Ltd"
+                value={farmName}
+                onChange={(e) => setFarmName(e.target.value)}
               />
             </div>
           </div>
 
           <div>
             <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">
-              Special Handling / Brooding Instructions (Optional)
+              Handling / Cold Pack Instructions (Optional)
             </label>
             <textarea
               rows={2}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="e.g. Include 2 vials of LaSota vaccine in cold box with chicks..."
+              placeholder="e.g. Add 2 vials of Newcastle LaSota vaccine in cold shipper alongside chicks..."
               className="w-full text-xs rounded-xl border border-slate-200 bg-slate-50 p-3 font-normal text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
           </div>
@@ -288,7 +336,7 @@ export default function ChickBookingForm() {
             >
               <MessageCircle className="h-5 w-5 mr-2" />
               <span>
-                {isSubmitting ? 'Processing Booking Slip...' : 'Generate WhatsApp Booking Slip & Get Confirmed Rate'}
+                {isSubmitting ? 'Holding Hatchery Allocation...' : 'Lock In Hatchery Quota & Reserve Cartons'}
               </span>
             </Button>
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-500 mt-3">
@@ -299,12 +347,104 @@ export default function ChickBookingForm() {
                 <Truck className="h-3.5 w-3.5 text-emerald-600" /> 36 States Motor Park Transit
               </span>
               <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" /> 51 Chicks/Box Guarantee
+                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" /> 50+1 Chick Bonus Standard
               </span>
             </div>
           </div>
         </form>
       </div>
+
+      {/* Confirmation Modal */}
+      {confirmation && (
+        <Modal
+          isOpen={Boolean(confirmation)}
+          onClose={() => setConfirmation(null)}
+          title="🎉 Hatchery Quota Reserved Successfully"
+          description="Your cartons are held under a 2-hour reservation window."
+          maxWidth="lg"
+        >
+          <div className="space-y-4 text-xs text-slate-700">
+            {/* Reservation Summary */}
+            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-emerald-800">Booking Reference:</span>
+                <span className="text-sm font-mono font-extrabold text-emerald-950">
+                  {confirmation.bookingRef}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs text-emerald-900 border-t border-emerald-200/60 pt-2">
+                <span>Allocated Cartons:</span>
+                <span className="font-bold">
+                  {confirmation.cartonsCount} Cartons ({confirmation.totalBirdsCount.toLocaleString()} Live Birds)
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs text-emerald-900">
+                <span>Commitment Deposit Required (50%):</span>
+                <span className="text-base font-extrabold text-emerald-900 font-heading">
+                  ₦{confirmation.requiredDepositNgn.toLocaleString()}
+                </span>
+              </div>
+            </div>
+
+            {/* Official Bank Account Details */}
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-slate-900 flex items-center gap-1">
+                  <Building2 className="h-4 w-4 text-slate-600" />
+                  Official Settlement Account
+                </span>
+                <span className="text-[10px] uppercase font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                  Hold Expires in 2 Hours
+                </span>
+              </div>
+              <div className="space-y-1 text-xs text-slate-600">
+                <div className="flex justify-between">
+                  <span>Bank:</span>
+                  <span className="font-bold text-slate-900">{confirmation.bankDetails.bankName}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Account Number:</span>
+                  <div className="flex items-center gap-1.5 font-mono font-extrabold text-slate-900 text-sm">
+                    <span>{confirmation.bankDetails.accountNumber}</span>
+                    <button
+                      type="button"
+                      onClick={() => handleCopyAccount(confirmation.bankDetails.accountNumber)}
+                      className="text-emerald-700 hover:text-emerald-800 p-1"
+                    >
+                      {copiedAccount ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+                    </button>
+                  </div>
+                </div>
+                <div className="flex justify-between">
+                  <span>Account Name:</span>
+                  <span className="font-bold text-slate-900">{confirmation.bankDetails.accountName}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Payment Narration:</span>
+                  <span className="font-mono text-emerald-700 font-bold">{confirmation.bookingRef}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="pt-2 space-y-2">
+              <a
+                href={confirmation.whatsappConfirmationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center rounded-xl bg-emerald-600 px-4 py-3 text-sm font-bold text-white shadow-lg hover:bg-emerald-700 transition-colors"
+              >
+                <MessageCircle className="h-4 w-4 mr-2" />
+                <span>Submit Deposit Evidence via WhatsApp Desk</span>
+              </a>
+
+              <p className="text-[11px] text-center text-slate-500">
+                Our sales desk will verify your deposit on the banking portal and confirm your waybill manifest slot.
+              </p>
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }

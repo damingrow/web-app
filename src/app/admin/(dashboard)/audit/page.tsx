@@ -1,43 +1,17 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
+import { getLiveAuditLogs } from '@/lib/supabase/data-access';
 import {
   ShieldAlert,
   ArrowLeft,
+  CheckCircle,
 } from 'lucide-react';
 
-const RECENT_AUDIT_LOGS = [
-  {
-    id: 'aud-001',
-    timestamp: '2026-11-02 09:45:12',
-    actorRole: 'sales_agent',
-    action: 'enquiry.status_updated',
-    resourceType: 'enquiry',
-    resourceId: 'DAG-M8K-902',
-    details: 'Status transitioned from pending_contact to contacted.',
-  },
-  {
-    id: 'aud-002',
-    timestamp: '2026-11-02 08:30:00',
-    actorRole: 'super_admin',
-    action: 'chick_pricing.bulk_updated',
-    resourceType: 'product_variants',
-    resourceId: 'weekly_batch_044',
-    details: 'Commercial Broiler updated to ₦48,000. Commercial Pullet updated to ₦52,000.',
-  },
-  {
-    id: 'aud-003',
-    timestamp: '2026-11-01 16:15:22',
-    actorRole: 'super_admin',
-    action: 'staff.role_assigned',
-    resourceType: 'staff_profiles',
-    resourceId: 'staff-adeleke-01',
-    details: 'Granted veterinary_consultant role with clinical enquiry view privileges.',
-  },
-];
+export const revalidate = 0; // Fresh audit trail on every visit
 
-export default function AdminAuditPage() {
+export default async function AdminAuditPage() {
+  const auditLogs = await getLiveAuditLogs(50);
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -55,7 +29,7 @@ export default function AdminAuditPage() {
             Administrative Audit Trail
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-            Immutable log of price modifications, staff permissions, and order lifecycle changes.
+            Immutable log of price modifications, staff permissions, and order lifecycle changes ({auditLogs.length} events recorded).
           </p>
         </div>
       </div>
@@ -66,7 +40,7 @@ export default function AdminAuditPage() {
         <div className="space-y-1">
           <span className="font-bold text-slate-900">Zero-Trust Audit Enforcement:</span>
           <p className="text-slate-600 leading-relaxed">
-            All price synchronizations and administrative alterations are permanently recorded in the <code>audit_events</code> PostgreSQL table with actor role, IP address, and payload diffs.
+            All price synchronizations, administrative actions, and order status transitions are permanently recorded in the <code>audit_events</code> PostgreSQL table with actor role, verified staff ID, and payload diffs.
           </p>
         </div>
       </div>
@@ -74,40 +48,57 @@ export default function AdminAuditPage() {
       {/* Audit Log Table */}
       <div className="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-700">
-            <thead className="bg-slate-50/70 text-[10px] uppercase font-bold text-slate-500 border-b border-slate-100">
-              <tr>
-                <th className="py-3.5 px-6">Timestamp</th>
-                <th className="py-3.5 px-6">Actor Role</th>
-                <th className="py-3.5 px-6">Action</th>
-                <th className="py-3.5 px-6">Resource</th>
-                <th className="py-3.5 px-6">Audit Details</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100 font-mono text-[11px]">
-              {RECENT_AUDIT_LOGS.map((log) => (
-                <tr key={log.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="py-4 px-6 text-slate-500 whitespace-nowrap">
-                    {log.timestamp}
-                  </td>
-                  <td className="py-4 px-6">
-                    <span className="rounded bg-slate-100 px-2 py-0.5 font-bold text-slate-800">
-                      {log.actorRole}
-                    </span>
-                  </td>
-                  <td className="py-4 px-6 font-semibold text-emerald-800">
-                    {log.action}
-                  </td>
-                  <td className="py-4 px-6 text-slate-600">
-                    {log.resourceType}:{log.resourceId}
-                  </td>
-                  <td className="py-4 px-6 text-slate-800 font-sans text-xs">
-                    {log.details}
-                  </td>
+          {auditLogs.length === 0 ? (
+            <div className="p-16 text-center text-slate-500 space-y-3">
+              <CheckCircle className="h-10 w-10 text-emerald-500 mx-auto" />
+              <div className="font-semibold text-sm text-slate-800">Audit Trail is Active</div>
+              <p className="text-xs max-w-sm mx-auto text-slate-500">
+                No administrative mutations have been recorded in the database yet. When staff update order statuses or synchronize chick rates, tamper-proof logs will appear here.
+              </p>
+            </div>
+          ) : (
+            <table className="w-full text-left text-xs text-slate-700">
+              <thead className="bg-slate-50/70 text-[10px] uppercase font-bold text-slate-500 border-b border-slate-100">
+                <tr>
+                  <th className="py-3.5 px-6">Timestamp</th>
+                  <th className="py-3.5 px-6">Actor Role</th>
+                  <th className="py-3.5 px-6">Action</th>
+                  <th className="py-3.5 px-6">Resource</th>
+                  <th className="py-3.5 px-6">Audit Details</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-mono text-[11px]">
+                {auditLogs.map((log) => (
+                  <tr key={log.id} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="py-4 px-6 text-slate-500 whitespace-nowrap">
+                      {new Date(log.created_at).toLocaleString('en-GB', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                      })}
+                    </td>
+                    <td className="py-4 px-6">
+                      <span className="rounded bg-slate-100 px-2 py-0.5 font-bold text-slate-800">
+                        {log.actor_role || 'system'}
+                      </span>
+                    </td>
+                    <td className="py-4 px-6 font-semibold text-emerald-800">
+                      {log.action}
+                    </td>
+                    <td className="py-4 px-6 text-slate-600">
+                      {log.resource_type}:{log.resource_id ? log.resource_id.slice(0, 8) : 'general'}
+                    </td>
+                    <td className="py-4 px-6 text-slate-800 font-sans text-xs max-w-md">
+                      {log.changes_json ? JSON.stringify(log.changes_json) : 'No payload diff'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

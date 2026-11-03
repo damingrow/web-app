@@ -10,6 +10,7 @@ import {
   ArrowLeft,
   UserCheck,
   LogOut,
+  Users,
 } from 'lucide-react';
 
 export default function AdminLayout({
@@ -20,6 +21,7 @@ export default function AdminLayout({
   const adminNav = [
     { name: 'Dashboard Overview', href: '/admin', icon: LayoutDashboard },
     { name: 'Customer Enquiries', href: '/admin/enquiries', icon: Inbox },
+    { name: 'Farmer CRM', href: '/admin/crm', icon: Users },
     { name: 'Chick Price Sync', href: '/admin/chicks-pricing', icon: TrendingUp },
     { name: 'Product Inventory', href: '/admin/products', icon: Package },
     { name: 'Audit Events', href: '/admin/audit', icon: ShieldAlert },

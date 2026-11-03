@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getProductsByCategory } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { PolBookingForm } from '@/components/forms/pol-booking-form';
 import {
   CheckCircle2,
   MessageCircle,
@@ -130,20 +131,27 @@ export default function PointOfLayPage() {
 
               <div className="flex flex-wrap gap-4">
                 <a
+                  href="#book-pol"
+                  className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-4 rounded-xl transition-all text-base shadow-lg shadow-emerald-900/30"
+                >
+                  <Egg className="h-5 w-5" />
+                  Reserve POL Pullets Now
+                </a>
+                <a
                   href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20inquire%20about%20Point-of-Lay%20pullets.%20Please%20share%20current%20pricing%20and%20availability."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-xl transition-all text-base shadow-lg shadow-[#25D366]/20"
+                  className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-6 py-4 rounded-xl transition-all text-sm shadow-lg shadow-[#25D366]/20"
                 >
                   <MessageCircle className="h-5 w-5" />
-                  Inquire Today&apos;s POL Price
+                  WhatsApp Desk
                 </a>
                 <Link
                   href="/chicks"
-                  className="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-6 py-4 rounded-xl border border-white/10 hover:border-white/20 transition-all text-sm"
+                  className="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-5 py-4 rounded-xl border border-white/10 hover:border-white/20 transition-all text-sm"
                 >
                   <Feather className="h-4 w-4" />
-                  View Day-Old Chicks
+                  Day-Old Chicks
                 </Link>
               </div>
             </div>
@@ -300,6 +308,28 @@ export default function PointOfLayPage() {
               Ask Our Advisory Desk
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          INTERACTIVE RESERVATION FORM
+          ==================================================================== */}
+      <section id="book-pol" className="py-16 sm:py-24 bg-gradient-to-b from-slate-50 to-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+            <div className="section-label mx-auto w-fit">
+              <Egg className="h-3.5 w-3.5" />
+              Online POL Reservation
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900">
+              Reserve Your Point-of-Lay Flock
+            </h2>
+            <p className="text-sm text-slate-600">
+              Select your layer breed, batch size, and preferred dispatch day to receive a reservation reference and commitment deposit invoice.
+            </p>
+          </div>
+
+          <PolBookingForm />
         </div>
       </section>
 

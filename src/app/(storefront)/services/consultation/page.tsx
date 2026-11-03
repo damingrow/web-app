@@ -21,6 +21,7 @@ import {
   MapPin,
   FileText,
 } from 'lucide-react';
+import { VeterinaryTriageForm } from '@/components/forms/veterinary-triage-form';
 
 export const metadata: Metadata = {
   title: 'Poultry Farm Consultation Services Nigeria — Housing, Health & Business Planning | D-AminGrow',
@@ -154,30 +155,57 @@ export default function ConsultationPage() {
               <span className="text-emerald-400">Services</span>
             </h1>
             <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-4 max-w-2xl">
-              Whether you&apos;re building your first pen, troubleshooting an outbreak, or planning a 10,000-bird expansion, D-AminGrow&apos;s agricultural consultants bring 20+ years of hands-on Nigerian poultry expertise directly to your farm.
+              Whether you&apos;re building your first pen, troubleshooting an outbreak, or planning a 10,000-bird expansion, D-AminGrow is backed by over 20 years of combined agricultural leadership and veterinary expertise brought directly to your farm.
             </p>
             <p className="text-sm text-slate-500 mb-10">
               Serving commercial broiler, layer, turkey, and mixed livestock operations across all 36 states.
             </p>
             <div className="flex flex-wrap gap-4">
               <a
+                href="#clinical-triage"
+                className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg shadow-emerald-950/40"
+              >
+                <Stethoscope className="h-5 w-5" />
+                Start Clinical Triage
+              </a>
+              <a
                 href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20need%20a%20farm%20consultation.%20My%20type%20of%20farm%20is%20%5BTYPE%5D.%20Please%20guide%20me%20on%20the%20next%20steps."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg"
+                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-6 py-4 rounded-2xl transition-all text-sm shadow-lg"
               >
                 <MessageCircle className="h-5 w-5" />
-                Book a Consultation
+                Book via WhatsApp
               </a>
               <a
                 href="tel:+2348139169402"
-                className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-7 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
+                className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-6 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
               >
                 <Phone className="h-5 w-5" />
-                Call Us Directly
+                Direct Hotline
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Clinical Diagnostic Triage Section */}
+      <section id="clinical-triage" className="py-20 sm:py-28 bg-gradient-to-b from-slate-50 to-white border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-full">
+              <Stethoscope className="h-3.5 w-3.5" />
+              Emergency & Diagnostic Intake
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
+              Interactive Clinical Health Triage
+            </h2>
+            <p className="text-slate-600 leading-relaxed text-sm">
+              Enter your flock size, age, mortality symptoms, and medication history. Receive an instant urgency score and connect directly with a qualified veterinary specialist.
+            </p>
+          </div>
+
+          <VeterinaryTriageForm />
         </div>
       </section>
 

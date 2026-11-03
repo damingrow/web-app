@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getProductsByCategory } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { PolBookingForm } from '@/components/forms/pol-booking-form';
 import {
   Egg,
   ShieldCheck,
@@ -134,17 +135,24 @@ export default function ServicePointOfLayPage() {
 
             <div className="flex flex-wrap gap-4">
               <a
+                href="#order-form"
+                className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg shadow-teal-900/30"
+              >
+                <Egg className="h-5 w-5" />
+                Reserve POL Pullets
+              </a>
+              <a
                 href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20order%20Point-of-Lay%20pullets.%20I%20need%20%5BQUANTITY%5D%20birds.%20Please%20send%20availability%20and%20price."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg"
+                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-6 py-4 rounded-2xl transition-all text-sm shadow-lg"
               >
                 <MessageCircle className="h-5 w-5" />
-                Order POL Birds Now
+                WhatsApp Desk
               </a>
               <Link
                 href="/point-of-lay"
-                className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-7 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
+                className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-6 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
               >
                 Full POL Catalog <ArrowRight className="h-4 w-4" />
               </Link>
@@ -246,6 +254,26 @@ export default function ServicePointOfLayPage() {
             ))}
           </div>
           <p className="text-xs text-slate-500 mt-4 text-center">* Vaccination schedule may vary slightly by source farm. Records provided with each batch delivery.</p>
+        </div>
+      </section>
+
+      {/* Interactive Reservation Form */}
+      <section id="order-form" className="py-20 sm:py-24 bg-gradient-to-b from-white to-slate-50 border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-teal-700 bg-teal-50 border border-teal-200 px-4 py-2 rounded-full">
+              <Egg className="h-3.5 w-3.5" />
+              Online POL Booking Desk
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
+              Book Your Point-of-Lay Pullets
+            </h2>
+            <p className="text-slate-600 leading-relaxed text-sm">
+              Configure your batch size, layer breed, and dispatch day to receive an official reservation code and deposit invoice.
+            </p>
+          </div>
+
+          <PolBookingForm />
         </div>
       </section>
 

@@ -12,7 +12,8 @@ const enquiryInputSchema = z.object({
   enquiryType: z
     .enum(['whatsapp_order', 'bulk_quote', 'veterinary_consultation', 'farm_setup_inquiry', 'general'])
     .default('whatsapp_order'),
-  notes: z.string().max(2000).optional(),
+  notes: z.string().max(4000).optional(),
+  priority: z.enum(['low', 'normal', 'high', 'urgent']).optional(),
   consentMarketing: z.boolean().default(true),
 });
 
@@ -25,32 +26,87 @@ export async function POST(request: Request) {
       100 + Math.random() * 900
     )}`;
 
-    // If Supabase service role or client is configured and live, persist into database
+    // Build emergency fallback WhatsApp link in case of network or database downtime
+    const fallbackWhatsAppUrl = `https://wa.me/${env.NEXT_PUBLIC_WHATSAPP_NUMBER.replace(/\+/g, '')}?text=Hello%20D-AminGrow,%20my%20name%20is%20${encodeURIComponent(validated.fullName)}%20(${encodeURIComponent(validated.phone)})%20from%20${encodeURIComponent(validated.state)}.%20I%20am%20inquiring%20about%20${encodeURIComponent(validated.enquiryType.replace(/_/g, ' '))}.%20Ref:%20${referenceNumber}`;
+
+    // If Supabase service role is configured, persist transactionally into the database
     if (env.SUPABASE_SERVICE_ROLE_KEY) {
       try {
         const supabase = createAdminClient();
-        await supabase.from('enquiries').insert({
-          reference_number: referenceNumber,
+
+        // 1. Insert enquiry with aligned database schema (enquiry_ref)
+        const { error: insertError } = await supabase.from('enquiries').insert({
+          enquiry_ref: referenceNumber,
           enquiry_type: validated.enquiryType,
           customer_name: validated.fullName,
           customer_phone: validated.phone,
           farm_name: validated.farmName || null,
           delivery_state: validated.state,
           delivery_city: validated.city || validated.state,
+          delivery_country: 'Nigeria',
           user_notes: validated.notes || null,
-          consent_given: validated.consentMarketing,
           status: 'pending_contact',
+          priority: validated.priority || (validated.enquiryType === 'veterinary_consultation' ? 'high' : 'normal'),
         });
+
+        if (insertError) {
+          console.error('Critical database enquiry insert error:', insertError);
+          return NextResponse.json(
+            {
+              success: false,
+              message: 'Database storage error. Please contact our desk directly on WhatsApp.',
+              fallbackWhatsAppUrl,
+            },
+            { status: 500 }
+          );
+        }
+
+        // 2. Persist consent in consent_records if agreed
+        if (validated.consentMarketing) {
+          try {
+            await supabase.from('consent_records').insert({
+              user_identifier: validated.phone,
+              consent_type: 'marketing_communication',
+              consented: true,
+            });
+          } catch (consentErr) {
+            console.warn('Consent record non-fatal logging warning:', consentErr);
+          }
+        }
+
+        // 3. Auto-sync to CRM customer table
+        try {
+          await supabase.rpc('sync_customer_from_activity', {
+            p_phone: validated.phone,
+            p_name: validated.fullName,
+            p_farm: validated.farmName || null,
+            p_state: validated.state,
+            p_city: validated.city || validated.state,
+            p_order_value: 0,
+            p_is_booking: false,
+          });
+        } catch (crmErr) {
+          console.warn('CRM sync non-fatal warning in /api/enquiries:', crmErr);
+        }
       } catch (dbErr) {
-        // Log error but do not fail customer WhatsApp experience
-        console.error('Database enquiry insert error:', dbErr);
+        console.error('Database connection exception in /api/enquiries:', dbErr);
+        return NextResponse.json(
+          {
+            success: false,
+            message: 'Unable to connect to database. Please use direct WhatsApp ordering.',
+            fallbackWhatsAppUrl,
+          },
+          { status: 500 }
+        );
       }
     }
 
     return NextResponse.json({
       success: true,
       referenceNumber,
+      enquiryRef: referenceNumber,
       message: 'Enquiry received successfully.',
+      fallbackWhatsAppUrl,
     });
   } catch (err) {
     if (err instanceof z.ZodError) {

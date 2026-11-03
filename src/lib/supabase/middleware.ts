@@ -13,26 +13,49 @@ export async function updateSession(request: NextRequest) {
   });
 
   const pathname = request.nextUrl.pathname;
+  const isAdminRoute = pathname.startsWith('/admin');
+
+  // FAST PATH: All public storefront routes bypass session management completely.
+  if (!isAdminRoute) {
+    return supabaseResponse;
+  }
+
   const isPlaceholder =
     !env.NEXT_PUBLIC_SUPABASE_URL ||
     env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder') ||
     !env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     env.NEXT_PUBLIC_SUPABASE_ANON_KEY.includes('placeholder');
 
-  // If Supabase is unconfigured, pass through immediately
+  // If Supabase is unconfigured, protect admin routes
   if (isPlaceholder) {
+    if (!pathname.startsWith('/admin/login')) {
+      const loginUrl = request.nextUrl.clone();
+      loginUrl.pathname = '/admin/login';
+      loginUrl.searchParams.set('redirectTo', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
     return supabaseResponse;
   }
 
-  const isAdminRoute = pathname.startsWith('/admin');
   const allCookies = request.cookies.getAll();
   const hasAuthCookie = allCookies.some(
     (c) => c.name.startsWith('sb-') || c.name.includes('auth-token')
   );
 
-  // FAST PATH: Storefront public navigation without auth cookies bypasses Supabase network calls entirely.
-  // This ensures instant page loads without blocking on external auth network round-trips.
-  if (!isAdminRoute && !hasAuthCookie) {
+  // If viewing admin login with no auth cookie, render login page instantly
+  if (pathname === '/admin/login' && !hasAuthCookie) {
+    return supabaseResponse;
+  }
+
+  // If viewing protected admin page with no auth cookie, redirect or allow preview in dev
+  if (!pathname.startsWith('/admin/login') && !hasAuthCookie) {
+    const isDemoSession = request.cookies.get('damingrow_staff_demo')?.value === 'true';
+    if (!isDemoSession && process.env.NODE_ENV === 'production') {
+      const loginUrl = request.nextUrl.clone();
+      loginUrl.pathname = '/admin/login';
+      loginUrl.searchParams.set('redirectTo', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
     return supabaseResponse;
   }
 
@@ -58,24 +81,28 @@ export async function updateSession(request: NextRequest) {
       }
     );
 
-    // Refresh auth token safely with error handling
+    // Refresh auth token safely with 1200ms timeout to guarantee fast response
     let user = null;
     try {
-      const { data } = await supabase.auth.getUser();
+      const authTimeout = new Promise<{ data: { user: null } }>((resolve) =>
+        setTimeout(() => resolve({ data: { user: null } }), 1200)
+      );
+      const { data } = await Promise.race([supabase.auth.getUser(), authTimeout]);
       user = data?.user ?? null;
-    } catch (authError) {
-      // Supabase network / auth error is non-fatal for public navigation
-      console.warn('Supabase auth session refresh warning (continuing):', authError);
+    } catch {
+      // Non-blocking fallback
     }
 
     // Protect administrative routes
     if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
-      const isDemoSession = request.cookies.get('damingrow_staff_demo')?.value === 'true';
-      if (!user && !isDemoSession && process.env.NODE_ENV === 'production') {
-        const loginUrl = request.nextUrl.clone();
-        loginUrl.pathname = '/admin/login';
-        loginUrl.searchParams.set('redirectTo', pathname);
-        return NextResponse.redirect(loginUrl);
+      if (!user) {
+        const isDemoSession = request.cookies.get('damingrow_staff_demo')?.value === 'true';
+        if (!isDemoSession && process.env.NODE_ENV === 'production') {
+          const loginUrl = request.nextUrl.clone();
+          loginUrl.pathname = '/admin/login';
+          loginUrl.searchParams.set('redirectTo', pathname);
+          return NextResponse.redirect(loginUrl);
+        }
       }
     }
 

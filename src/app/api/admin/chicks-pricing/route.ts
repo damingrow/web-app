@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createAdminClient } from '@/lib/supabase/server';
 import { env } from '@/lib/env';
+import { requireStaffSession } from '@/lib/auth/server-guard';
 
 const priceSyncSchema = z.object({
   effectiveDate: z.string(),
@@ -18,6 +19,12 @@ const priceSyncSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  // 1. Enforce Server-Side Authentication & Super Admin Role
+  const { errorResponse, staff } = await requireStaffSession(['super_admin']);
+  if (errorResponse) {
+    return errorResponse;
+  }
+
   try {
     const body = await request.json();
     const validated = priceSyncSchema.parse(body);
@@ -27,18 +34,20 @@ export async function POST(request: Request) {
       try {
         const supabase = createAdminClient();
         await supabase.from('audit_events').insert({
-          actor_role: 'super_admin',
+          actor_id: staff!.userId,
+          actor_role: staff!.role,
           action: 'chick_pricing.bulk_updated',
           resource_type: 'product_variants',
-          resource_id: `batch-${validated.effectiveDate}`,
+          resource_id: undefined,
           changes_json: {
             effectiveDate: validated.effectiveDate,
             note: validated.note,
             rates: validated.rates,
+            authorizedBy: staff!.fullName,
           },
         });
       } catch (dbErr) {
-        console.error('Failed to log audit event:', dbErr);
+        console.error('Failed to log chick pricing audit event:', dbErr);
       }
     }
 
@@ -47,6 +56,7 @@ export async function POST(request: Request) {
       message: 'Weekly chick rates synchronized successfully.',
       updatedCount: validated.rates.length,
       effectiveDate: validated.effectiveDate,
+      synchronizedBy: staff!.fullName,
     });
   } catch (err) {
     if (err instanceof z.ZodError) {
