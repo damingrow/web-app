@@ -6,7 +6,6 @@ import {
   Search,
   Command,
   Bell,
-  MessageCircle,
   CalendarCheck,
   Package,
   Users,
@@ -15,7 +14,6 @@ import {
   TrendingUp,
   X,
   Menu,
-  ChevronDown,
 } from 'lucide-react';
 
 interface AdminTopbarProps {
@@ -29,9 +27,7 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
   const [notificationsOpen, setNotificationsOpen] = useState(false);
-  const [whatsappOpen, setWhatsappOpen] = useState(false);
   const notifRef = useRef<HTMLDivElement>(null);
-  const waRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -65,9 +61,6 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
       if (notifRef.current && !notifRef.current.contains(e.target as Node)) {
         setNotificationsOpen(false);
       }
-      if (waRef.current && !waRef.current.contains(e.target as Node)) {
-        setWhatsappOpen(false);
-      }
     };
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
@@ -83,7 +76,6 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
       if (e.key === 'Escape') {
         setCommandOpen(false);
         setNotificationsOpen(false);
-        setWhatsappOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -139,29 +131,8 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
           </button>
         </div>
 
-        {/* CENTER: Status pills + clock */}
+        {/* CENTER: Clock only */}
         <div className="hidden lg:flex items-center gap-2 text-xs">
-          {/* Cloudflare pill */}
-          <div className="inline-flex items-center gap-1.5 rounded border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="font-semibold text-slate-700">Cloudflare Edge:</span>
-            <span className="text-emerald-600 font-bold">Active</span>
-          </div>
-
-          {/* Supabase RLS pill */}
-          <div className="inline-flex items-center gap-1.5 rounded border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="font-semibold text-slate-700">Supabase RLS:</span>
-            <span className="text-emerald-600 font-bold">Armed</span>
-          </div>
-
-          {/* Live WAT clock */}
           {currentTime && (
             <div className="text-right leading-tight">
               <div className="text-[13px] font-bold text-slate-800 font-mono tracking-tight">
@@ -176,50 +147,6 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
 
         {/* RIGHT: WhatsApp Desk + Bell + Profile */}
         <div className="flex items-center gap-2">
-          {/* WhatsApp Desk button with dropdown */}
-          <div className="relative hidden sm:block" ref={waRef}>
-            <button
-              onClick={() => setWhatsappOpen((p) => !p)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 px-2.5 py-1.5 text-[11px] font-semibold text-slate-700 transition-all shadow-xs"
-            >
-              <MessageCircle className="h-3.5 w-3.5 text-green-500" />
-              <span>WhatsApp Desk</span>
-              <ChevronDown className="h-3 w-3 text-slate-400" />
-            </button>
-
-            {whatsappOpen && (
-              <div className="absolute right-0 mt-1.5 w-56 rounded-xl border border-slate-200 bg-white shadow-lg z-50 py-1.5 text-xs overflow-hidden">
-                <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100">
-                  Quick Connect
-                </div>
-                <a
-                  href="https://wa.me/2348139169402"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-3 py-2 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 transition-colors"
-                >
-                  <MessageCircle className="h-3.5 w-3.5 text-green-500" />
-                  <div>
-                    <div className="font-bold">Live Vet Desk</div>
-                    <div className="text-[10px] text-slate-400">+234 813 916 9402</div>
-                  </div>
-                </a>
-                <a
-                  href="https://wa.me/2348139169402?text=Commercial%20Inquiry%20from%20Admin%20Panel"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-3 py-2 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 transition-colors"
-                >
-                  <MessageCircle className="h-3.5 w-3.5 text-green-500" />
-                  <div>
-                    <div className="font-bold">Sales Hotline</div>
-                    <div className="text-[10px] text-slate-400">+234 813 916 9402</div>
-                  </div>
-                </a>
-              </div>
-            )}
-          </div>
-
           {/* Notification Bell */}
           <div className="relative" ref={notifRef}>
             <button
