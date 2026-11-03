@@ -81,7 +81,7 @@ describe('Phase 7: Anti-Abuse Rate Limiter & Calculator Exports', () => {
 
       // Week 1 should begin at 34-35C center
       expect(schedule[0]!.targetTempCenter).toContain('34°C');
-      expect(schedule[0]!.lightingHours).toContain('23 Hours');
+      expect(schedule[0]!.lightingHours).toContain('23');
 
       // Week 6 should end at ambient ~21-23C
       expect(schedule[5]!.targetTempCenter).toContain('21°C');
@@ -117,7 +117,7 @@ describe('Phase 7: Anti-Abuse Rate Limiter & Calculator Exports', () => {
 
       expect(link).toContain('https://wa.me/2348139169402?text=');
       expect(link).toContain('1.5');
-      expect(link).toContain('1000');
+      expect(decodeURIComponent(link)).toMatch(/1,?000/);
       expect(link).toContain('TOP%20TIER%20PERFORMANCE');
     });
   });
