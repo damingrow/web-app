@@ -41,27 +41,35 @@ const CONSULTATION_AREAS = [
     desc: 'Turnkey engineering advisory for open-sided tropical pens, closed-house ventilation broiler sheds, and multi-tier layer battery cage infrastructure. Includes material cost estimation, ventilation design, and equipment specification.',
     color: 'bg-amber-100 text-amber-700',
     deliverables: ['Pen layout blueprint', 'Material cost estimation', 'Ventilation design spec', 'Equipment list'],
-  },
-  {
-    icon: Syringe,
-    title: 'Custom Vaccination Timetable Development',
-    desc: 'Site-specific immunization programs designed around endemic viral disease challenges in your agricultural zone. Factors in flock age, maternal antibody titer levels, and local Newcastle and Gumboro field strains.',
-    color: 'bg-cyan-100 text-cyan-700',
-    deliverables: ['Custom vaccine timetable', 'Disease risk zone assessment', 'Biosecurity protocol', 'Record-keeping templates'],
+    href: '/services/consultation/farm-setup',
+    ctaText: 'Launch Farm Setup Blueprint Tool',
   },
   {
     icon: Stethoscope,
-    title: 'Flock Health Diagnostics & Clinical Reports',
-    desc: 'Systematic field investigation combining clinical examination, post-mortem necropsy, feed quality review, and water analysis. Produces a comprehensive health status report with differential diagnosis and targeted treatment plan.',
-    color: 'bg-violet-100 text-violet-700',
-    deliverables: ['Clinical health report', 'Necropsy findings', 'Treatment protocol', 'Prevention strategy'],
+    title: 'Emergency Flock Health Diagnostics & Triage',
+    desc: 'Systematic clinical scoring for acute mortality, post-mortem necropsy protocols, and urgent viral challenge escalation directly to our duty VCN-certified veterinary clinicians.',
+    color: 'bg-red-100 text-red-700',
+    deliverables: ['Emergency triage score', 'Differential diagnosis', 'Treatment protocol', 'Direct VCN escalation'],
+    href: '/services/consultation/disease-triage',
+    ctaText: 'Start Emergency Disease Triage',
   },
   {
     icon: Wheat,
     title: 'Feed & Nutrition Program Optimization',
-    desc: 'Analysis of current feed program, raw material quality, and feeding schedule against breed-specific nutrient requirements. Identifies energy, protein, amino acid, and mineral gaps reducing production performance.',
+    desc: 'Analysis of current feed program, raw material quality, and Pearson Square Crude Protein formulation. Identifies amino acid gaps (Lysine, Methionine) and calcium balance to reduce production cost.',
     color: 'bg-lime-100 text-lime-700',
-    deliverables: ['Nutrient analysis report', 'Feed program revision', 'Cost-per-kg feed review', 'FCR improvement targets'],
+    deliverables: ['Pearson square calculation', 'Feed program revision', 'Cost-per-kg feed review', 'FCR improvement targets'],
+    href: '/services/consultation/feed-formulation',
+    ctaText: 'Open Feed Formulation Tool',
+  },
+  {
+    icon: Syringe,
+    title: 'Farm Biosecurity & Viral Disease Defence Audit',
+    desc: '10-point barrier assessment evaluating perimeter fencing, disinfectant footbaths, water chlorination, and wild bird exclusion to eliminate viral breach risks.',
+    color: 'bg-cyan-100 text-cyan-700',
+    deliverables: ['10-point defence scorecard', 'Biosecurity index', 'Custom vaccination timetable', 'Barrier protocol'],
+    href: '/services/consultation/biosecurity-audit',
+    ctaText: 'Perform Biosecurity Audit',
   },
   {
     icon: TrendingUp,
@@ -69,6 +77,8 @@ const CONSULTATION_AREAS = [
     desc: 'Full farm economic model including startup capital estimation, monthly operating costs, break-even analysis, projected revenue from eggs or meat, and sensitivity analysis for feed price fluctuations common in Nigeria.',
     color: 'bg-emerald-100 text-emerald-700',
     deliverables: ['Investment cost sheet', 'Break-even analysis', 'Monthly cash flow model', '12-month profit projection'],
+    href: '#triage-form',
+    ctaText: 'Request Financial Model',
   },
 ];
 
@@ -234,7 +244,18 @@ export default function ConsultationPage() {
                     <Icon className="h-7 w-7" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-slate-900 font-heading mb-2">{area.title}</h3>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                      <h3 className="text-lg font-bold text-slate-900 font-heading">{area.title}</h3>
+                      {area.href && (
+                        <Link
+                          href={area.href}
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-white border border-emerald-200 px-3 py-1.5 rounded-xl shadow-sm shrink-0 transition-colors w-fit"
+                        >
+                          <span>{area.ctaText}</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      )}
+                    </div>
                     <p className="text-sm text-slate-600 leading-relaxed mb-4">{area.desc}</p>
                     <div className="flex flex-wrap gap-2">
                       {area.deliverables.map((d, j) => (

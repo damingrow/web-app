@@ -590,7 +590,7 @@ export function calculatePackagingBirds(cartons: number, breedType: string): {
 /**
  * Helper to compute upcoming Tuesday or Thursday in YYYY-MM-DD.
  */
-function getNextDispatchDate(targetDay: 'Tuesday' | 'Thursday'): string {
+export function getNextDispatchDate(targetDay: 'Tuesday' | 'Thursday'): string {
   const d = new Date();
   const dayIndex = targetDay === 'Tuesday' ? 2 : 4;
   const currentDay = d.getDay();

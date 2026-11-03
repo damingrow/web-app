@@ -6,6 +6,7 @@
 
 import { createAdminClient } from '@/lib/supabase/admin';
 import { env } from '@/lib/env';
+export { getNextDispatchDate } from '@/lib/supabase/data-access';
 
 export interface PackagingRule {
   breedType: string;
