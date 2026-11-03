@@ -1,4 +1,8 @@
 import { z } from 'zod';
+import {
+  validateNafdacNumber,
+  screenBannedVeterinarySubstances,
+} from '@/lib/compliance/nafdac-audit';
 
 export const productComplianceSchema = z
   .object({
@@ -14,6 +18,9 @@ export const productComplianceSchema = z
 
     // Compliance Fields
     regulatoryStatus: z.enum(['nafdac_registered', 'pending_registration', 'exempt_accessory', 'not_applicable']),
+    verificationState: z
+      .enum(['verified_for_sale', 'awaiting_verification', 'documentation_incomplete', 'restricted_from_publication'])
+      .default('verified_for_sale'),
     nafdacRegNumber: z.string().optional(),
     isPrescriptionRequired: z.boolean().default(false),
     isAntimicrobial: z.boolean().default(false),
@@ -22,18 +29,42 @@ export const productComplianceSchema = z
     storageTempMaxCelsius: z.number().optional(),
     meatWithdrawalPeriodDays: z.number().int().nonnegative().default(0),
     eggWithdrawalPeriodDays: z.number().int().nonnegative().default(0),
+    activeIngredients: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    // 1. Pharmaceutical NAFDAC registration rule
-    if (['drugs', 'vaccines'].includes(data.categorySlug) && data.regulatoryStatus === 'nafdac_registered' && !data.nafdacRegNumber) {
+    // 1. Prohibited & Banned Substances Screening
+    const textToScan = `${data.name} ${data.description} ${data.activeIngredients || ''}`;
+    const bannedScan = screenBannedVeterinarySubstances(textToScan);
+    if (bannedScan.flagged) {
+      const substanceNames = bannedScan.matchedSubstances.map((s) => s.name).join(', ');
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        path: ['nafdacRegNumber'],
-        message: 'NAFDAC Registration Number is required when regulatory status is marked as registered.',
+        path: ['description'],
+        message: `NAFDAC BANNED SUBSTANCE VIOLATION: Contains prohibited veterinary compound (${substanceNames}). Restricted from publication.`,
       });
     }
 
-    // 2. Vaccine Cold-Chain Rule
+    // 2. Pharmaceutical NAFDAC registration rule & format validation
+    if (['drugs', 'vaccines'].includes(data.categorySlug) && data.regulatoryStatus === 'nafdac_registered') {
+      if (!data.nafdacRegNumber) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['nafdacRegNumber'],
+          message: 'NAFDAC Registration Number is required when regulatory status is marked as registered.',
+        });
+      } else {
+        const formatCheck = validateNafdacNumber(data.nafdacRegNumber);
+        if (!formatCheck.valid) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['nafdacRegNumber'],
+            message: formatCheck.reason || 'Invalid NAFDAC registration number format.',
+          });
+        }
+      }
+    }
+
+    // 3. Vaccine Cold-Chain Rule (+2°C to +8°C)
     if (data.categorySlug === 'vaccines') {
       if (!data.isColdChainRequired) {
         ctx.addIssue({
@@ -51,7 +82,7 @@ export const productComplianceSchema = z
       }
     }
 
-    // 3. Antimicrobial Growth Promoter (AMR) Stewardship Rule
+    // 4. Antimicrobial Growth Promoter (AMR) Stewardship Rule
     if (data.isAntimicrobial) {
       const lowerDesc = data.description.toLowerCase();
       const bannedTerms = ['growth promoter', 'weight booster', 'fattening', 'growth promotion'];

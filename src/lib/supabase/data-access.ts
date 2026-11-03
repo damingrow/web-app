@@ -1,4 +1,4 @@
-import { createAdminClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { env } from '@/lib/env';
 import { PRODUCTS } from '@/data/products';
 import { normalizeNigerianPhone, calculateCustomerTier } from '@/lib/crm/customer-utils';

@@ -4,7 +4,7 @@
  * concurrency conflict prevention, and bank deposit reconciliation.
  */
 
-import { createAdminClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { env } from '@/lib/env';
 
 export interface PackagingRule {
