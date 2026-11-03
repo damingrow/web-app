@@ -6,6 +6,7 @@ import { useCart } from '@/context/cart-context';
 import { PRODUCTS } from '@/data/products';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { PrintableBroodingChart } from '@/components/calculators/printable-brooding-chart';
 import {
   ShoppingBag,
   CheckCircle2,
@@ -291,6 +292,29 @@ export default function BrooderCalculatorClient() {
                     <span className="font-semibold">Pricing Policy:</span>
                     <span className="text-emerald-800 font-extrabold">Weekly Verified Hatchery & Manufacturer Rates</span>
                   </div>
+                </div>
+
+                {/* Export & PDF Brooding Management Chart */}
+                <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                  <div className="text-xs font-bold text-slate-900 font-heading">
+                    Export & Pen Wall Brooding Chart:
+                  </div>
+                  <p className="text-[11px] text-slate-500 leading-relaxed">
+                    Generate an official brooding schedule with temperature, feeding, and vaccine milestones sized specifically for your {safeFlock.toLocaleString()} chicks.
+                  </p>
+                  <PrintableBroodingChart
+                    data={{
+                      flockSize: safeFlock,
+                      birdType,
+                      gasBrooders: gasBrooderCount,
+                      feedingTrays: feedingTrayCount,
+                      drinkers: drinkerCount,
+                      floorAreaSqM,
+                      floorAreaSqFt,
+                      starterFeedKg,
+                      starterBags25kg,
+                    }}
+                  />
                 </div>
 
                 {/* Conversion Buttons */}
