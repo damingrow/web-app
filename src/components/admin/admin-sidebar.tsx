@@ -18,8 +18,6 @@ import {
   BarChart3,
   ShieldAlert,
   Settings,
-  ArrowLeft,
-  ArrowLeftRight,
   AlignJustify,
   X,
   Sprout,
@@ -90,11 +88,6 @@ const COMMERCE_ITEMS = [
     badge: 'VCN Vet',
     badgeClass: 'bg-[#3a131b] text-[#fb7185] border border-[#fb7185]/40',
   },
-];
-
-const UTILITY_ITEMS = [
-  { name: 'Staff Portal / Switch User', href: '/admin/login', icon: ArrowLeftRight },
-  { name: 'Return to Storefront', href: '/', icon: ArrowLeft },
 ];
 
 const EXTENDED_SECTIONS = [
@@ -261,27 +254,6 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
                         {item.badge}
                       </span>
                     )}
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Section 3: Growth & Content */}
-            <div className="space-y-1">
-              <div className="px-2.5 pb-1 text-[9px] font-bold uppercase tracking-widest text-slate-400">
-                GROWTH &amp; CONTENT
-              </div>
-              {UTILITY_ITEMS.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => onClose && onClose()}
-                    className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-slate-300 hover:bg-white/5 hover:text-white transition-all group"
-                  >
-                    <Icon className="h-4 w-4 shrink-0 text-slate-400 group-hover:text-slate-200" />
-                    <span className="truncate">{item.name}</span>
                   </Link>
                 );
               })}
