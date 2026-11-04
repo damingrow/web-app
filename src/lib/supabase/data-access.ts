@@ -17,6 +17,9 @@ export interface DbEnquiry {
   user_notes?: string | null;
   status: string;
   priority?: string | null;
+  utm_source?: string | null;
+  utm_medium?: string | null;
+  utm_campaign?: string | null;
   created_at: string;
 }
 
@@ -160,6 +163,9 @@ export async function getLiveEnquiries(limit = 50): Promise<DbEnquiry[]> {
         user_notes,
         status,
         priority,
+        utm_source,
+        utm_medium,
+        utm_campaign,
         created_at
       `)
       .order('created_at', { ascending: false })
