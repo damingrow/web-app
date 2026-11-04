@@ -5,8 +5,11 @@ import ContentClient from './content-client';
 
 export const metadata: Metadata = {
   title: 'Content & Editorial SEO Engine — Admin Operations | D-AminGrow',
-  description: 'Manage agricultural guides, VCN veterinary clinical reviews, keyword authority pillars, and publishing schedules.',
+  description:
+    'Manage agricultural guides, VCN veterinary clinical reviews, keyword authority pillars, 500k organic traffic trajectory, and seasonal publishing schedules.',
 };
+
+export const revalidate = 0;
 
 export default function AdminContentPage() {
   return <ContentClient articles={ARTICLES} />;
