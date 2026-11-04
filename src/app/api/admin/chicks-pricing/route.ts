@@ -3,6 +3,9 @@ import { z } from 'zod';
 import { createAdminClient } from '@/lib/supabase/server';
 import { env } from '@/lib/env';
 import { requireStaffSession } from '@/lib/auth/server-guard';
+import { getPartnerHatcheries, getUpcomingQuotas } from '@/lib/supabase/data-access';
+
+export const revalidate = 0;
 
 const priceSyncSchema = z.object({
   effectiveDate: z.string(),
@@ -18,9 +21,57 @@ const priceSyncSchema = z.object({
   ),
 });
 
+export async function GET() {
+  const { errorResponse } = await requireStaffSession(['super_admin', 'sales_agent']);
+  if (errorResponse) {
+    return errorResponse;
+  }
+
+  try {
+    const [hatcheries, quotas] = await Promise.all([
+      getPartnerHatcheries().catch(() => []),
+      getUpcomingQuotas('broiler').catch(() => []),
+    ]);
+
+    let latestAudit = null;
+    if (env.SUPABASE_SERVICE_ROLE_KEY) {
+      try {
+        const supabase = createAdminClient();
+        const { data } = await supabase
+          .from('audit_events')
+          .select('*')
+          .eq('action', 'chick_pricing.bulk_updated')
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+        if (data) {
+          latestAudit = data;
+        }
+      } catch {
+        // non-blocking
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      hatcheries,
+      quotas,
+      latestAudit,
+      serverTime: new Date().toISOString(),
+    });
+  } catch (err) {
+    console.error('Error fetching chick pricing data:', err);
+    return NextResponse.json(
+      { success: false, message: 'Internal server error fetching chick pricing data' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: Request) {
-  // 1. Enforce Server-Side Authentication & Super Admin Role
-  const { errorResponse, staff } = await requireStaffSession(['super_admin']);
+  // 1. Enforce Server-Side Authentication & Super Admin or Sales Agent Role
+  const { errorResponse, staff } = await requireStaffSession(['super_admin', 'sales_agent']);
   if (errorResponse) {
     return errorResponse;
   }
