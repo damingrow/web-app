@@ -21,7 +21,6 @@ import {
   Settings,
   LogOut,
   ArrowUpRight,
-  Sparkles,
   ExternalLink,
   Send,
 } from 'lucide-react';
@@ -345,14 +344,6 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
                   >
                     <Settings className="h-4 w-4 text-slate-400" />
                     <span>Platform Settings</span>
-                  </Link>
-                  <Link
-                    href="/admin/audit"
-                    onClick={() => setProfileOpen(false)}
-                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors font-medium"
-                  >
-                    <Sparkles className="h-4 w-4 text-slate-400" />
-                    <span>Audit Logs &amp; Activity</span>
                   </Link>
                   <Link
                     href="/"

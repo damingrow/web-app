@@ -16,7 +16,6 @@ import {
   Calculator,
   LifeBuoy,
   BarChart3,
-  ShieldAlert,
   Settings,
   AlignJustify,
   X,
@@ -99,8 +98,7 @@ const EXTENDED_SECTIONS = [
       { num: '08.', name: 'Farm Calculators', href: '/admin/tools', icon: Calculator, badge: 'Bio Math', badgeClass: 'bg-[#1a1f1b] text-slate-400 border border-slate-700/50' },
       { num: '09.', name: 'Post-Dispatch Support', href: '/admin/support', icon: LifeBuoy, badge: 'Cold Chain', badgeClass: 'bg-[#1a1f1b] text-slate-400 border border-slate-700/50' },
       { num: '10.', name: 'Reports & Analytics', href: '/admin/reports', icon: BarChart3, badge: 'Financials', badgeClass: 'bg-emerald-500/20 text-emerald-300 border border-emerald-700/40' },
-      { num: '11.', name: 'Staff Audit Logs', href: '/admin/audit', icon: ShieldAlert, badge: 'Zero-Trust', badgeClass: 'bg-[#1a1f1b] text-slate-400 border border-slate-700/50' },
-      { num: '12.', name: 'Platform Settings', href: '/admin/settings', icon: Settings, badge: 'Zenith API', badgeClass: 'bg-[#1a1f1b] text-slate-400 border border-slate-700/50' },
+      { num: '11.', name: 'Platform Settings', href: '/admin/settings', icon: Settings, badge: 'Zenith API', badgeClass: 'bg-[#1a1f1b] text-slate-400 border border-slate-700/50' },
     ],
   },
 ];
