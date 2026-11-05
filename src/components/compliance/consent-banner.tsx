@@ -48,39 +48,39 @@ export function ConsentBanner() {
     <aside
       role="region"
       aria-label="Privacy and data protection consent notice"
-      className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-xl z-50 animate-in fade-in slide-in-from-bottom-5 duration-300"
+      className="fixed bottom-4 left-4 z-50 w-[calc(100vw-2rem)] sm:w-80 max-w-[340px] animate-in fade-in slide-in-from-bottom-3 duration-300"
     >
-      <div className="rounded-3xl border border-slate-200 bg-white/95 backdrop-blur-md p-5 sm:p-6 shadow-2xl space-y-4 text-slate-800">
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center space-x-2 text-emerald-800 font-bold text-xs uppercase tracking-wider font-heading">
-            <ShieldCheck className="h-4 w-4 text-emerald-600" />
-            <span>NDPA 2023 Data Protection Notice</span>
+      <div className="rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-md p-3.5 sm:p-4 shadow-xl space-y-2.5 text-slate-800">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center space-x-1.5 text-emerald-800 font-extrabold text-[11px] uppercase tracking-wider font-heading">
+            <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+            <span className="truncate">NDPA 2023 Data Protection Notice</span>
           </div>
 
           <button
             type="button"
             onClick={handleEssentialOnly}
             aria-label="Dismiss consent banner"
-            className="text-slate-400 hover:text-slate-600 p-1 -mr-1 rounded-lg transition-colors"
+            className="text-slate-400 hover:text-slate-600 p-0.5 rounded-lg transition-colors shrink-0"
           >
-            <X className="h-4 w-4" />
+            <X className="h-3.5 w-3.5" />
           </button>
         </div>
 
-        <p className="text-xs text-slate-600 leading-relaxed">
-          D-AminGrow complies with the <strong>Nigeria Data Protection Act (NDPA) 2023</strong>. We use local device storage to preserve your active cart items and process your contact details solely to generate livestock quotes and arrange delivery. We do not deploy third-party advertising cookies.
+        <p className="text-[11px] text-slate-600 leading-snug">
+          D-AminGrow complies with the <strong>NDPA 2023</strong>. Local storage is used for cart & quotes. No third-party ad tracking.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-1">
-          <div className="flex gap-2">
+        <div className="flex items-center justify-between gap-2 pt-0.5">
+          <div className="flex items-center gap-1.5">
             <Button
               type="button"
               variant="primary"
               size="sm"
               onClick={handleAccept}
-              className="text-xs"
+              className="h-7 px-2.5 text-[11px] font-bold rounded-lg"
             >
-              Accept & Continue
+              Accept
             </Button>
 
             <Button
@@ -88,17 +88,17 @@ export function ConsentBanner() {
               variant="outline"
               size="sm"
               onClick={handleEssentialOnly}
-              className="text-xs"
+              className="h-7 px-2 text-[11px] font-medium rounded-lg text-slate-600"
             >
-              Essential Only
+              Essential
             </Button>
           </div>
 
           <Link
             href="/policies/privacy"
-            className="text-[11px] text-slate-500 hover:text-emerald-700 underline text-center sm:text-right"
+            className="text-[10px] text-slate-500 hover:text-emerald-700 underline shrink-0"
           >
-            Read Privacy Policy →
+            Privacy Policy
           </Link>
         </div>
       </div>
