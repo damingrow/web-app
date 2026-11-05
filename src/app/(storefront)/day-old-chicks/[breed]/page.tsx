@@ -38,8 +38,8 @@ const BREED_DATA: Record<string, BreedDetail> = {
     slug: 'broilers',
     bookingParam: 'broiler',
     title: 'Commercial Broilers',
-    seoTitle: 'Commercial Broilers in Nigeria (Cobb 500 / Ross 308) | D-AminGrow',
-    subTitle: 'First-Generation Parent Stock · Rapid Weight Deposition · Exceptional Breast Meat Yield',
+    seoTitle: 'Day-Old Broiler Chicks Price in Nigeria | Ross 308 & Cobb 500 - D-AminGrow',
+    subTitle: 'Ross 308, Cobb 500 & Arbor Acres Plus · Rapid 2.2kg–2.8kg Weight Deposition',
     metaDesc:
       'Order commercial broilers in Nigeria. High livability, FCR 1.60-1.75, 2.2kg-2.8kg at 6-7 weeks. Dispatched nationwide every Monday & Thursday.',
     image: '/products/Chicks/day old broiler.jpeg',
