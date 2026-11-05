@@ -288,7 +288,7 @@ export default function SettingsClient() {
               <span>OPERATIONS DESK • MODULE 12</span>
             </div>
             <h1 className="text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-950 font-heading">
-              Platform Settings & Operational Integrations
+              Platform Settings
             </h1>
             <p className="max-w-2xl text-xs sm:text-sm text-slate-600 leading-relaxed">
               Enterprise parameters for Zenith Bank commercial settlement, interstate motor park logistics corridors, NAFDAC regulatory compliance locks, and WhatsApp notifications.
