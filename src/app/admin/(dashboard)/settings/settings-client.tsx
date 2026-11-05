@@ -563,7 +563,7 @@ export default function SettingsClient() {
                     </h2>
                   </div>
                   <p className="mt-1 text-xs text-slate-500 max-w-xl">
-                    Official destination account for live day-old chick reservation deposits (50%), hatchery invoice settlements, and automated hold windows.
+                    Official destination account for live day-old chick reservation deposits (50%), invoice settlements, and automated hold windows.
                   </p>
                 </div>
                 <button
@@ -841,7 +841,7 @@ export default function SettingsClient() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
                     <h3 className="text-xs font-bold uppercase tracking-wider text-slate-800">
-                      Active Interstate Hatchery Dispatch Days
+                      Active Interstate Dispatch Days
                     </h3>
                     <p className="text-xs text-slate-500">
                       Days when live day-old chicks are boxed at dawn and dispatched to interstate motor park terminals.
@@ -888,7 +888,7 @@ export default function SettingsClient() {
                     onChange={(e) => setLogistics({ ...logistics, ibadanDepot: e.target.value })}
                     className="w-full rounded-2xl border border-slate-200 px-3.5 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#00c950]"
                   />
-                  <div className="text-[10px] font-semibold text-emerald-700">Transit: 0 hrs (Origin Hatchery Pen)</div>
+                  <div className="text-[10px] font-semibold text-emerald-700">Transit: 0 hrs (Origin Depot)</div>
                 </div>
 
                 {/* Hub 2: Lagos Coastal */}
@@ -1027,7 +1027,7 @@ export default function SettingsClient() {
                     { name: 'AMO Farm Sieberer', loc: 'Awe, Oyo State', breed: 'Cobb 500 & ISA Brown', code: 'AMO' },
                     { name: 'Zartech Farms', loc: 'Oluyole, Ibadan', breed: 'Cobb 500 Fast Growth', code: 'ZAR' },
                     { name: 'Supreme Poultry', loc: 'Ibadan, Oyo State', breed: 'Marshall & Hubbard', code: 'SUP' },
-                    { name: 'AGRITED Hatchery', loc: 'Ajebo / Ogun Depot', breed: 'Ross 308 White', code: 'AGR' },
+                    { name: 'AGRITED Farms', loc: 'Ajebo / Ogun Depot', breed: 'Ross 308 White', code: 'AGR' },
                   ].map((p) => (
                     <div key={p.code} className="rounded-2xl border border-slate-100 bg-slate-50/60 p-4 space-y-1.5">
                       <div className="flex items-center justify-between">
@@ -1254,7 +1254,7 @@ export default function SettingsClient() {
                   {/* Dispatch Coordinator */}
                   <div className="space-y-2 pt-2">
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
-                      Hatchery Waybill & Dispatch Coordinator Line
+                      Waybill & Dispatch Coordinator Line
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
@@ -1450,7 +1450,7 @@ export default function SettingsClient() {
                       className="w-full rounded-2xl border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#00c950]"
                     />
                     <span className="text-[10px] text-slate-500 block mt-1">
-                      All dispatch cutoffs and hatchery deadlines calculate using WAT (UTC+1).
+                      All dispatch cutoffs and order deadlines calculate using WAT (UTC+1).
                     </span>
                   </div>
 

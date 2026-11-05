@@ -37,32 +37,32 @@ const BREED_DATA: Record<string, BreedDetail> = {
   broilers: {
     slug: 'broilers',
     bookingParam: 'broiler',
-    title: 'Commercial Day-Old Broiler Chicks',
-    seoTitle: 'Day-Old Broiler Chicks in Nigeria (Cobb 500 / Ross 308) | D-AminGrow',
+    title: 'Commercial Broilers',
+    seoTitle: 'Commercial Broilers in Nigeria (Cobb 500 / Ross 308) | D-AminGrow',
     subTitle: 'First-Generation Parent Stock · Rapid Weight Deposition · Exceptional Breast Meat Yield',
     metaDesc:
-      'Order commercial day-old broiler chicks (Cobb 500, Ross 308) in Nigeria. High livability, FCR 1.60-1.75, 2.2kg-2.8kg at 6-7 weeks. Dispatched nationwide every Tuesday & Thursday.',
+      'Order commercial broilers in Nigeria. High livability, FCR 1.60-1.75, 2.2kg-2.8kg at 6-7 weeks. Dispatched nationwide every Monday & Thursday.',
     image: '/products/Chicks/day old broiler.jpeg',
     targetHarvest: '2.2kg – 2.8kg at 6 to 7 weeks',
     fcr: '1.60 – 1.75 Feed Conversion Ratio',
     broodingTemp: '32°C – 35°C on Day 1, reduce 2.5°C weekly',
-    vaccination: 'Marek’s Disease (HVT) vaccinated at hatchery',
-    packagingRule: '51 birds per carton (50 + 1 free chick buffer)',
-    dispatchDays: 'Every Tuesday & Thursday nationwide',
+    vaccination: 'Marek’s Disease (HVT) vaccinated at day 1',
+    packagingRule: '50 birds per carton · ₦2,000 / chick (₦100,000 / carton)',
+    dispatchDays: 'Every Monday & Thursday nationwide',
     description:
-      'Our commercial day-old broiler chicks originate exclusively from biosecure, certified parent-stock hatcheries across Nigeria (Chi, Amo, Zartech, Supreme, Agrited). Bred specifically for exceptional tropical hardiness, early frame development, and rapid muscle deposition. Inspected for uniform weight and navel closure prior to climate-controlled vehicle loading.',
+      'Our commercial broiler chicks originate exclusively from biosecure, certified parent-stock farms across Nigeria (Chi, Amo, Zartech, Supreme, Agrited). Bred specifically for exceptional tropical hardiness, early frame development, and rapid muscle deposition. Inspected for uniform weight and navel closure prior to climate-controlled vehicle loading.',
     highlights: [
       'Certified Cobb 500 and Ross 308 first-generation commercial parent lineages',
-      'Pre-vaccinated at hatchery against Marek’s Disease with bio-monitored titre levels',
-      '50+1 packaging formula guarantees 51 active birds in every carton',
+      'Pre-vaccinated against Marek’s Disease with bio-monitored titre levels',
+      '50 chicks per carton standard packaging',
       'Coordinated motor park transfer via trusted interstate transport routes',
     ],
     specs: [
       { label: 'Target Harvest Weight', value: '2.2kg – 2.8kg (42–49 days)' },
       { label: 'Feed Conversion (FCR)', value: '1.60 – 1.75' },
       { label: 'Brooding Temperature', value: '33°C – 35°C (Week 1)' },
-      { label: 'Hatchery Vaccination', value: 'Marek’s Disease (HVT Subcutaneous)' },
-      { label: 'Carton Packaging', value: 'Ventilated Cardboard Carton of 51 chicks' },
+      { label: 'Day 1 Vaccination', value: 'Marek’s Disease (HVT Subcutaneous)' },
+      { label: 'Carton Packaging', value: 'Ventilated Cardboard Carton of 50 chicks' },
       { label: 'Stocking Density', value: '10 – 12 birds / m² in open-sided tropical pens' },
     ],
     feedingAdvice:
@@ -71,20 +71,20 @@ const BREED_DATA: Record<string, BreedDetail> = {
   pullets: {
     slug: 'pullets',
     bookingParam: 'pullet',
-    title: 'Commercial Day-Old Layer Pullets',
-    seoTitle: 'Day-Old Pullets Nigeria (ISA Brown / Bovans) Egg Layers | D-AminGrow',
+    title: 'Zartech Pullet',
+    seoTitle: 'Zartech Pullet Nigeria (ISA Brown / Zartech Strains) Egg Layers | D-AminGrow',
     subTitle: 'High-Laying Commercial Brown Egg Genetics · 310–325 Eggs/Hen Potential',
     metaDesc:
-      'Book commercial day-old layer pullets (ISA Brown, Bovans) in Nigeria. Peak egg production 94-96%, superior brown shell strength, docile temperament. Hatchery dispatch Tuesdays & Thursdays.',
+      'Book Zartech pullets in Nigeria. Peak egg production 94-96%, superior brown shell strength, docile temperament. Monday & Thursday dispatch runs.',
     image: '/products/Chicks/Pullet day old.jpeg',
     targetHarvest: 'Point-of-Lay at 18–19 weeks; Peak lay to 72+ weeks',
     fcr: 'Low feed consumption (105g–115g/hen/day at peak)',
     broodingTemp: '33°C – 35°C on Day 1, strictly controlled lighting',
     vaccination: 'Marek’s Disease (HVT) vaccinated at hatch',
-    packagingRule: '51 birds per carton (50 + 1 free pullet buffer)',
-    dispatchDays: 'Every Tuesday & Thursday nationwide',
+    packagingRule: '50 birds per carton · ₦2,700 / chick (₦135,000 / carton)',
+    dispatchDays: 'Every Monday & Thursday nationwide',
     description:
-      'Our commercial day-old layer pullets feature world-class ISA Brown and Bovans lineage genetics. Known for docile behavior in both cage systems and deep litter pens, early sexual maturity, high persistence of lay beyond 80 weeks, and uniform, strong-shelled brown eggs with exceptional market appeal in Nigerian food markets.',
+      'Our Zartech pullets feature world-class lineage genetics. Known for docile behavior in both cage systems and deep litter pens, early sexual maturity, high persistence of lay beyond 80 weeks, and uniform, strong-shelled brown eggs with exceptional market appeal in Nigerian food markets.',
     highlights: [
       'Documented potential of 310 to 325 marketable eggs per hen housed',
       'Peak lay efficiency consistently exceeding 94% under proper nutrition',
@@ -96,7 +96,7 @@ const BREED_DATA: Record<string, BreedDetail> = {
       { label: 'Peak Lay Rate', value: '94% – 96%' },
       { label: 'Egg Shell Colour', value: 'Rich Uniform Brown' },
       { label: 'Feed Consumption at Peak', value: '110g – 115g / bird / day' },
-      { label: 'Carton Packaging', value: '51 pullets per carton' },
+      { label: 'Carton Packaging', value: '50 pullets per carton' },
       { label: 'Expected First Egg', value: 'Week 18 – Week 20' },
     ],
     feedingAdvice:
@@ -105,23 +105,23 @@ const BREED_DATA: Record<string, BreedDetail> = {
   turkeys: {
     slug: 'turkeys',
     bookingParam: 'turkey',
-    title: 'Commercial Day-Old Turkey Poults (Keets)',
-    seoTitle: 'Day-Old Turkey Poults in Nigeria (Broad-Breasted White) | D-AminGrow',
+    title: 'Hybrid Turkey',
+    seoTitle: 'Hybrid Turkey Poults in Nigeria (Broad-Breasted White) | D-AminGrow',
     subTitle: 'Heavy Commercial Meat Poults · 6kg–9kg Carcass Weight at 16–20 Weeks',
     metaDesc:
-      'Order vigorous commercial broad-breasted day-old turkey poults in Nigeria. 25 poults/carton ventilation standard. High meat conversion for commercial and festive markets.',
+      'Order vigorous commercial broad-breasted hybrid turkey poults in Nigeria. 30 in carton standard. High meat conversion for commercial and festive markets.',
     image: '/products/Chicks/Day old Turkey.jpeg',
     targetHarvest: '6kg – 9kg at 16 to 20 weeks',
     fcr: '2.40 – 2.70 Feed Conversion',
     broodingTemp: '35°C – 37°C on Day 1 (higher heat required than chicks)',
     vaccination: 'Marek’s Disease pre-treated; Newcastle schedule advised',
-    packagingRule: '25 poults per carton (Heavy breed ventilation rule)',
-    dispatchDays: 'Tuesdays & Thursdays (Batch allocations)',
+    packagingRule: '30 poults per carton · ₦5,500 / poult (₦165,000 / carton)',
+    dispatchDays: 'Mondays & Thursdays (Batch allocations)',
     description:
-      'High-performance commercial white turkey poults (keets) sourced from specialized parent-stock hatcheries. Turkeys require intensive early brooding temperature (35°C–37°C) and higher protein starter rations (28% Crude Protein). Broad-breasted genetics ensure rapid breast meat and thigh development for high-margin festive and hotel markets.',
+      'High-performance hybrid turkey poults sourced from specialized parent-stock farms. Turkeys require intensive early brooding temperature (35°C–37°C) and higher protein starter rations (28% Crude Protein). Broad-breasted genetics ensure rapid breast meat and thigh development for high-margin festive and hotel markets.',
     highlights: [
       'Heavy broad-breasted genetics capable of reaching 8kg+ live weight',
-      'Carefully packed in specialized 25-capacity ventilated cardboard boxes',
+      'Carefully packed in specialized 30-capacity ventilated cardboard boxes',
       'Inspected for robust navels, leg strength, and alertness prior to dispatch',
       'Includes specialized turkey brooding advisory sheet with every booking',
     ],
@@ -129,7 +129,7 @@ const BREED_DATA: Record<string, BreedDetail> = {
       { label: 'Harvest Weight (Toms)', value: '8kg – 11kg at 18–22 weeks' },
       { label: 'Harvest Weight (Hens)', value: '5.5kg – 7.5kg at 16–18 weeks' },
       { label: 'Brooding Temperature', value: '35°C – 37°C (Week 1)' },
-      { label: 'Carton Packaging', value: '25 poults per carton' },
+      { label: 'Carton Packaging', value: '30 poults per carton' },
       { label: 'Starter Protein Level', value: '28% Crude Protein Starter Crumble' },
       { label: 'Key Disease Risk', value: 'Newcastle & Blackhead (Histomoniasis)' },
     ],
@@ -139,8 +139,8 @@ const BREED_DATA: Record<string, BreedDetail> = {
   cockerels: {
     slug: 'cockerels',
     bookingParam: 'cockerel',
-    title: 'Commercial Day-Old Cockerels',
-    seoTitle: 'Commercial Day-Old Cockerels Nigeria (White & Brown) | D-AminGrow',
+    title: 'Cockerel',
+    seoTitle: 'Commercial Day-Old Cockerels Nigeria | D-AminGrow',
     subTitle: 'Hardy Low-Mortality Commercial Growers · Highly Demanded for Festive Sales',
     metaDesc:
       'Buy day-old cockerels in Nigeria. Extremely low early mortality, hardy natural immunity, low medication cost. Perfect for rural & peri-urban festive poultry farming.',
@@ -148,16 +148,16 @@ const BREED_DATA: Record<string, BreedDetail> = {
     targetHarvest: '2.0kg – 2.5kg at 20 to 24 weeks',
     fcr: 'Low feed cost grower model',
     broodingTemp: '32°C – 34°C on Day 1',
-    vaccination: 'Hatchery Marek’s Disease vaccinated',
-    packagingRule: '51 birds per carton (50 + 1 free buffer)',
-    dispatchDays: 'Every Tuesday & Thursday nationwide',
+    vaccination: 'Marek’s Disease pre-vaccinated',
+    packagingRule: '50 birds per carton · ₦100 / chick (₦5,000 / carton)',
+    dispatchDays: 'Every Monday & Thursday nationwide',
     description:
       'Commercial day-old cockerels are the premier low-risk poultry farming option in Nigeria. Known for rugged physical hardiness, cockerels tolerate temperature fluctuations and rural housing conditions far better than broilers, making them ideal for budget-conscious farmers targeting Christmas, Easter, and festive season live-bird markets.',
     highlights: [
       'Exceptional natural livability (>96% survival rates with basic brooding)',
       'Significantly lower medication and biosecurity expenses than broilers',
       'Premium live-weight pricing in traditional Nigerian open markets',
-      'Packed in 51-count sturdy cardboard boxes for secure transit',
+      'Packed in 50-count sturdy cardboard boxes for secure transit',
     ],
     specs: [
       { label: 'Target Harvest Weight', value: '2.0kg – 2.5kg at 20–24 weeks' },
@@ -213,7 +213,7 @@ export default async function BreedBuyerIntentPage({
     notFound();
   }
 
-  const nextTuesday = getNextDispatchDate('Tuesday');
+  const nextMonday = getNextDispatchDate('Monday');
   const nextThursday = getNextDispatchDate('Thursday');
 
   return (
@@ -261,8 +261,8 @@ export default async function BreedBuyerIntentPage({
               {/* Next Dispatch Date Bar */}
               <div className="grid grid-cols-2 gap-3 pt-2 max-w-md">
                 <div className="p-3 bg-white/10 rounded-xl border border-white/10">
-                  <span className="text-[10px] uppercase font-bold text-emerald-400 block">Next Tuesday Run</span>
-                  <span className="text-sm font-bold text-white mt-0.5 block">{nextTuesday}</span>
+                  <span className="text-[10px] uppercase font-bold text-emerald-400 block">Next Monday Run</span>
+                  <span className="text-sm font-bold text-white mt-0.5 block">{nextMonday}</span>
                 </div>
                 <div className="p-3 bg-white/10 rounded-xl border border-white/10">
                   <span className="text-[10px] uppercase font-bold text-cyan-400 block">Next Thursday Run</span>
@@ -368,7 +368,7 @@ export default async function BreedBuyerIntentPage({
           <div className="lg:col-span-4 space-y-6">
             <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-5 sticky top-24">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
-                Instant Hatchery Allocation
+                Instant Order Allocation
               </span>
 
               <h3 className="text-xl font-bold font-heading text-slate-900">

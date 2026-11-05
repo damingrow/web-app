@@ -58,7 +58,7 @@ const POL_ADVANTAGES = [
 ];
 
 const VACCINATION_SCHEDULE = [
-  { age: 'Day 1 (Hatchery)', vaccine: 'Marek\'s Disease (HVT strain)', route: 'Subcutaneous injection at hatchery' },
+  { age: 'Day 1', vaccine: 'Marek\'s Disease (HVT strain)', route: 'Subcutaneous injection at day 1' },
   { age: 'Day 5–7', vaccine: 'Newcastle B1 Live (Prime)', route: 'Eye-drop or drinking water' },
   { age: 'Day 10–14', vaccine: 'Gumboro IBD Intermediate Plus (1st dose)', route: 'Drinking water with skimmed milk' },
   { age: 'Day 18–21', vaccine: 'Gumboro IBD Intermediate Plus (Booster)', route: 'Drinking water with skimmed milk' },

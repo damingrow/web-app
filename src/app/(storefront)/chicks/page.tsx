@@ -29,10 +29,10 @@ import {
 export const metadata: Metadata = {
   title: 'Day-Old Chicks (DOC) Sales & Nationwide Dispatch | D-AminGrow Nigeria',
   description:
-    'Order premium commercial day-old broilers and layer pullets from certified Nigerian hatcheries. Pre-vaccinated for Marek\'s Disease with temperature-controlled dispatch every Tuesday and Thursday nationwide.',
+    'Order premium commercial day-old broilers, layer pullets, and turkeys from certified Nigerian hatcheries. Pre-vaccinated for Marek\'s Disease with temperature-controlled dispatch every Monday and Thursday nationwide.',
   openGraph: {
     title: 'Premium Day-Old Chicks Sales & Distribution | D-AminGrow',
-    description: 'Certified broiler and layer chicks. Tuesday & Thursday dispatch to all 36 Nigerian states.',
+    description: 'Certified broiler, layer, and turkey chicks. Monday & Thursday dispatch to all 36 Nigerian states.',
   },
 };
 
@@ -42,8 +42,8 @@ export default function ChicksCategoryPage() {
   const dispatchFeatures = [
     {
       icon: Calendar,
-      title: 'Tuesday & Thursday Dispatch',
-      desc: 'Nationwide shipments depart every Tuesday and Thursday morning. Bookings close 48 hours prior.',
+      title: 'Monday & Thursday Dispatch',
+      desc: 'Nationwide shipments depart every Monday and Thursday morning. Bookings close 48 hours prior.',
       color: 'bg-emerald-100 text-emerald-700',
     },
     {
@@ -102,12 +102,12 @@ export default function ChicksCategoryPage() {
               </h1>
 
               <p className="text-lg text-slate-400 leading-relaxed">
-                Direct hatchery partnerships across Nigeria providing vigorous, high-livability commercial broilers and brown layer pullets. Dispatched in specialized ventilated cartons with Marek&apos;s disease pre-vaccination certification.
+                Direct partnerships across Nigeria providing vigorous, high-livability commercial broilers and brown layer pullets. Dispatched in specialized ventilated cartons with Marek&apos;s disease pre-vaccination certification.
               </p>
 
               <div className="flex flex-wrap gap-3">
                 {[
-                  "Marek's Hatchery Vaccinated",
+                  "Marek's Pre-Vaccinated",
                   '51 Chicks per Carton',
                   'Climate-Monitored Transit',
                   'Nationwide Delivery',
@@ -121,7 +121,7 @@ export default function ChicksCategoryPage() {
 
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20inquire%20about%20current%20hatchery%20prices%20for%20Day-Old%20Chicks."
+                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20inquire%20about%20current%20prices%20for%20Day-Old%20Chicks."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-xl transition-all text-base shadow-lg"
@@ -321,7 +321,7 @@ export default function ChicksCategoryPage() {
                 <div className="space-y-2 text-xs text-slate-200">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                    <span>Hatchery Marek&apos;s HVT 0.2ml verified pre-delivery</span>
+                    <span>Marek&apos;s HVT 0.2ml verified pre-delivery</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
@@ -369,20 +369,20 @@ export default function ChicksCategoryPage() {
       </section>
 
       {/* ====================================================================
-          HATCHERIES WE WORK WITH
+          SUPPLIERS WE WORK WITH
           ==================================================================== */}
       <section className="py-16 sm:py-24 bg-slate-50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <div className="section-label mx-auto w-fit">
               <Building2 className="h-3.5 w-3.5" />
-              Certified Hatchery Network
+              Certified Supplier Network
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
-              Hatcheries We Work With
+              Bird Suppliers We Work With
             </h2>
             <p className="text-base text-slate-600 leading-relaxed">
-              We partner directly with Nigeria&apos;s leading grandparent and parent-stock hatcheries to guarantee genuine genetics, strict bio-security, and high livability.
+              We partner directly with Nigeria&apos;s leading grandparent and parent-stock farms to guarantee genuine genetics, strict bio-security, and high livability.
             </p>
           </div>
 

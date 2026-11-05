@@ -52,86 +52,86 @@ export interface PriceRow {
 const SEED_PRICES: PriceRow[] = [
   {
     id: 'brl-cobb500',
-    breed: 'Commercial White Broiler',
-    breedCode: 'COBB-500',
-    hatcheryBrand: 'Chi / Zartech Certified Grade',
-    hatcheryCode: 'CHI/ZAR',
-    currentPriceNgn: 48000,
-    newPriceNgn: 48000,
-    dispatchDays: 'Tue & Thu',
+    breed: 'Commercial Broilers',
+    breedCode: 'BRL-COMM',
+    hatcheryBrand: 'Chi / Amo / Zartech Certified Grade',
+    hatcheryCode: 'CHI/AMO/ZAR',
+    currentPriceNgn: 100000,
+    newPriceNgn: 100000,
+    dispatchDays: 'Mon & Thu',
     status: 'active',
     category: 'broiler',
     birdsPerCarton: 50,
     depositPct: 50,
   },
   {
-    id: 'brl-ross308',
-    breed: 'Ross 308 Premium Broiler',
-    breedCode: 'ROSS-308',
-    hatcheryBrand: 'Amo Hatchery Premium Line',
-    hatcheryCode: 'AMO',
-    currentPriceNgn: 51500,
-    newPriceNgn: 51500,
-    dispatchDays: 'Tue & Thu',
+    id: 'tky-hybrid',
+    breed: 'Hybrid Turkey',
+    breedCode: 'TKY-HYB',
+    hatcheryBrand: 'Amo / Zartech Hybrid Line',
+    hatcheryCode: 'AMO/ZAR',
+    currentPriceNgn: 165000,
+    newPriceNgn: 165000,
+    dispatchDays: 'Mon & Thu',
     status: 'active',
-    category: 'broiler',
-    birdsPerCarton: 50,
-    depositPct: 50,
-  },
-  {
-    id: 'lay-isabrown',
-    breed: 'Commercial Brown Layer Pullet',
-    breedCode: 'ISA-BROWN',
-    hatcheryBrand: 'Isa Brown / Lohmann Grade',
-    hatcheryCode: 'SAY',
-    currentPriceNgn: 52000,
-    newPriceNgn: 52000,
-    dispatchDays: 'Tuesday',
-    status: 'active',
-    category: 'layer',
-    birdsPerCarton: 50,
+    category: 'turkey',
+    birdsPerCarton: 30,
     depositPct: 50,
   },
   {
     id: 'lay-zarblack',
-    breed: 'Zartech Black Layer Pullet',
-    breedCode: 'ZAR-BLACK',
-    hatcheryBrand: 'Zartech Farms — Black Strain',
+    breed: 'Zartech Pullet',
+    breedCode: 'ZAR-PLT',
+    hatcheryBrand: 'Zartech Farms — Certified Pullets',
     hatcheryCode: 'ZAR',
-    currentPriceNgn: 54000,
-    newPriceNgn: 54000,
-    dispatchDays: 'Thursday',
-    status: 'limited_allocation',
+    currentPriceNgn: 135000,
+    newPriceNgn: 135000,
+    dispatchDays: 'Mon & Thu',
+    status: 'active',
     category: 'layer',
     birdsPerCarton: 50,
     depositPct: 50,
   },
   {
     id: 'ckr-heavy',
-    breed: 'Commercial Heavy Cockerel',
-    breedCode: 'CCK-HVY',
-    hatcheryBrand: 'White Cockerel Brooder Grade',
-    hatcheryCode: 'AMO',
-    currentPriceNgn: 18500,
-    newPriceNgn: 18500,
-    dispatchDays: 'Tuesday',
+    breed: 'Cockerel',
+    breedCode: 'CKR-STD',
+    hatcheryBrand: 'Certified Cockerel Brooder Grade',
+    hatcheryCode: 'AMO/CHI',
+    currentPriceNgn: 5000,
+    newPriceNgn: 5000,
+    dispatchDays: 'Mon & Thu',
     status: 'active',
     category: 'cockerel',
-    birdsPerCarton: 100,
-    depositPct: 40,
+    birdsPerCarton: 50,
+    depositPct: 50,
   },
   {
     id: 'noi-kuroiler',
-    breed: 'Dual-Purpose Noiler / Kuroiler',
-    breedCode: 'NOI-KURO',
-    hatcheryBrand: 'Heavy Dual-Yield Strain',
-    hatcheryCode: 'VAL',
-    currentPriceNgn: 34000,
-    newPriceNgn: 34000,
-    dispatchDays: 'Thursday',
-    status: 'limited_allocation',
+    breed: 'Noiler',
+    breedCode: 'NOI-STD',
+    hatcheryBrand: 'Dual-Yield Heavy Line',
+    hatcheryCode: 'AMO/VAL',
+    currentPriceNgn: 37500,
+    newPriceNgn: 37500,
+    dispatchDays: 'Mon & Thu',
+    status: 'active',
     category: 'noiler',
     birdsPerCarton: 50,
+    depositPct: 50,
+  },
+  {
+    id: 'tky-local',
+    breed: 'Local Turkey',
+    breedCode: 'TKY-LOC',
+    hatcheryBrand: 'Indigenous Improved Turkey Line',
+    hatcheryCode: 'VAL',
+    currentPriceNgn: 69000,
+    newPriceNgn: 69000,
+    dispatchDays: 'Mon & Thu',
+    status: 'active',
+    category: 'turkey',
+    birdsPerCarton: 30,
     depositPct: 50,
   },
 ];
@@ -142,18 +142,18 @@ function fmt(n: number) {
   return '₦' + n.toLocaleString('en-NG');
 }
 
-function getNextDispatch(day: 'Tuesday' | 'Thursday') {
+function getNextDispatch(day: 'Monday' | 'Thursday') {
   const today = new Date();
-  const target = day === 'Tuesday' ? 2 : 4;
+  const target = day === 'Monday' ? 1 : 4;
   const diff = (target - today.getDay() + 7) % 7 || 7;
   const d = new Date(today);
   d.setDate(today.getDate() + diff);
   return d.toLocaleDateString('en-NG', { weekday: 'short', month: 'short', day: 'numeric' });
 }
 
-function daysUntil(day: 'Tuesday' | 'Thursday') {
+function daysUntil(day: 'Monday' | 'Thursday') {
   const today = new Date();
-  const target = day === 'Tuesday' ? 2 : 4;
+  const target = day === 'Monday' ? 1 : 4;
   const diff = (target - today.getDay() + 7) % 7 || 7;
   return diff;
 }
@@ -561,9 +561,9 @@ export default function ChicksPricingClient({
     ? Math.round(activePrices.reduce((s, r) => s + r.newPriceNgn, 0) / activePrices.length)
     : 0;
   const totalOpenCartons = quotas.reduce((s, q) => s + (q.available_cartons ?? 0), 0);
-  const tueDays = daysUntil('Tuesday');
+  const monDays = daysUntil('Monday');
   const thuDays = daysUntil('Thursday');
-  const nextDispatchDays = Math.min(tueDays, thuDays);
+  const nextDispatchDays = Math.min(monDays, thuDays);
   const activeHatcheryCount = hatcheries.filter((h) => h.is_active).length || hatcheries.length || 5;
 
   // ── Edit & Publish ──
@@ -603,7 +603,7 @@ export default function ChicksPricingClient({
   // ── Filtered rates ──
   const filteredRates = rates.filter((r) => {
     if (categoryFilter !== 'all' && r.category !== categoryFilter) return false;
-    if (dispatchFilter === 'tuesday' && !r.dispatchDays.toLowerCase().includes('tue')) return false;
+    if (dispatchFilter === 'monday' && !r.dispatchDays.toLowerCase().includes('mon')) return false;
     if (dispatchFilter === 'thursday' && !r.dispatchDays.toLowerCase().includes('thu')) return false;
     return true;
   });
@@ -626,21 +626,21 @@ export default function ChicksPricingClient({
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 rounded-full px-3 py-1">
               <span className="w-2 h-2 rounded-full bg-[#2ee571] animate-pulse" />
-              <span className="text-[10px] font-extrabold text-[#2ee571] uppercase tracking-widest">Real-Time Hatchery Sync</span>
+              <span className="text-[10px] font-extrabold text-[#2ee571] uppercase tracking-widest">Real-Time Pricing Sync</span>
               <span className="text-[10px] text-emerald-300">· 50+1 Standard Rules</span>
             </div>
             <h1 className="text-3xl font-black text-white font-heading tracking-tight">
               Weekly Chicks Pricing & Quota Command
             </h1>
             <p className="text-emerald-200/80 text-xs sm:text-sm max-w-2xl leading-relaxed">
-              Synchronize commercial day-old chick rates across verified partner hatcheries (CHI, ZAR, AMO, SAY, VAL). 
-              Strict bi-weekly dispatch rhythm: <span className="text-[#2ee571] font-bold">Tuesday & Thursday only.</span>
+              Synchronize commercial day-old chick rates across verified partner suppliers (CHI, ZAR, AMO, SAY, VAL). 
+              Strict bi-weekly dispatch rhythm: <span className="text-[#2ee571] font-bold">Monday & Thursday only.</span>
             </p>
 
             {/* Meta capsules */}
             <div className="flex flex-wrap gap-2 pt-1.5">
               <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 text-[10px] font-bold text-white/90 border border-white/10">
-                <Calendar className="w-3 h-3 text-[#2ee571]" /> Next Tue: {getNextDispatch('Tuesday')} ({tueDays}d)
+                <Calendar className="w-3 h-3 text-[#2ee571]" /> Next Mon: {getNextDispatch('Monday')} ({monDays}d)
               </span>
               <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 text-[10px] font-bold text-white/90 border border-white/10">
                 <Calendar className="w-3 h-3 text-[#2ee571]" /> Next Thu: {getNextDispatch('Thursday')} ({thuDays}d)
@@ -760,11 +760,11 @@ export default function ChicksPricingClient({
             </span>
           </div>
           <p className="text-2xl font-black text-white font-heading">
-            {nextDispatchDays === tueDays ? 'Tuesday Run' : 'Thursday Run'}
+            {nextDispatchDays === monDays ? 'Monday Run' : 'Thursday Run'}
           </p>
           <p className="text-xs text-emerald-200/90 font-extrabold mt-0.5">Upcoming Loading Day</p>
           <p className="text-[10px] text-emerald-300/80 mt-1">
-            {getNextDispatch(nextDispatchDays === tueDays ? 'Tuesday' : 'Thursday')}
+            {getNextDispatch(nextDispatchDays === monDays ? 'Monday' : 'Thursday')}
           </p>
         </div>
       </div>
@@ -811,10 +811,11 @@ export default function ChicksPricingClient({
                 className="rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
               >
                 <option value="all">All Genetics / Categories</option>
-                <option value="broiler">Broilers (Cobb/Ross)</option>
-                <option value="layer">Layers (Isa Brown/Zartech)</option>
-                <option value="cockerel">Cockerels (Heavy)</option>
-                <option value="noiler">Noilers / Dual-Yield</option>
+                <option value="broiler">Broilers (Commercial)</option>
+                <option value="layer">Layers (Pullets)</option>
+                <option value="turkey">Turkeys (Hybrid / Local)</option>
+                <option value="cockerel">Cockerels</option>
+                <option value="noiler">Noilers</option>
               </select>
 
               <select
@@ -823,7 +824,7 @@ export default function ChicksPricingClient({
                 className="rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
               >
                 <option value="all">All Dispatch Cycles</option>
-                <option value="tuesday">Tuesday Loading Only</option>
+                <option value="monday">Monday Loading Only</option>
                 <option value="thursday">Thursday Loading Only</option>
               </select>
             </div>
@@ -836,7 +837,7 @@ export default function ChicksPricingClient({
                 <tr>
                   <th className="py-3.5 px-6">Genetic Strain & Breed</th>
                   <th className="py-3.5 px-4">Genetics</th>
-                  <th className="py-3.5 px-4">Primary Hatchery</th>
+                  <th className="py-3.5 px-4">Bird Supplier</th>
                   <th className="py-3.5 px-4">Dispatch Schedule</th>
                   <th className="py-3.5 px-4">Current Rate / Carton</th>
                   <th className="py-3.5 px-4">Deposit (50%)</th>
@@ -926,10 +927,10 @@ export default function ChicksPricingClient({
             <Activity className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
             <div>
               <p className="text-xs font-black text-emerald-950 uppercase tracking-wider">
-                Hatchery Dispatch & Carton Capacity Health
+                Dispatch & Carton Capacity Health
               </p>
               <p className="text-xs text-emerald-800 mt-1 leading-relaxed">
-                Cartons reserved, confirmed with 50% deposits, and remaining open allocations across weekly Tuesday & Thursday runs. 
+                Cartons reserved, confirmed with 50% deposits, and remaining open allocations across weekly Monday & Thursday runs. 
                 Any quota slot with less than 25% remaining capacity is highlighted for emergency allocation requests.
               </p>
             </div>

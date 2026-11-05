@@ -44,7 +44,7 @@ describe('Product Catalog Data Integrity', () => {
   it('correctly retrieves product by slug', () => {
     const product = getProductBySlug('commercial-day-old-broiler-chicks');
     expect(product).toBeDefined();
-    expect(product?.name).toBe('Commercial Day-Old Broiler Chicks');
+    expect(product?.name).toBe('Commercial Broilers');
     expect(product?.category).toBe('chicks');
   });
 });

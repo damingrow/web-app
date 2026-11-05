@@ -52,7 +52,7 @@ export interface DbQuota {
   hatchery_code?: string;
   breed_type: string;
   dispatch_date: string;
-  dispatch_day: 'Tuesday' | 'Thursday' | 'Special_Run';
+  dispatch_day: 'Monday' | 'Tuesday' | 'Thursday' | 'Special_Run';
   total_cartons_quota: number;
   reserved_cartons: number;
   confirmed_cartons: number;
@@ -372,38 +372,38 @@ export async function getPartnerHatcheries(): Promise<DbHatchery[]> {
  * Fetch live or upcoming dispatch quotas.
  */
 export async function getUpcomingQuotas(breedType = 'broiler'): Promise<DbQuota[]> {
-  const nextTuesday = getNextDispatchDate('Tuesday');
+  const nextMonday = getNextDispatchDate('Monday');
   const nextThursday = getNextDispatchDate('Thursday');
 
   const fallbackQuotas: DbQuota[] = [
     {
-      id: 'quota-tue-chi',
+      id: 'quota-mon-chi',
       hatchery_id: 'hatch-chi',
       hatchery_name: 'Chi Hatchery Ltd',
       hatchery_code: 'CHI',
       breed_type: breedType,
-      dispatch_date: nextTuesday,
-      dispatch_day: 'Tuesday',
+      dispatch_date: nextMonday,
+      dispatch_day: 'Monday',
       total_cartons_quota: 150,
       reserved_cartons: 42,
       confirmed_cartons: 88,
       available_cartons: 20,
-      estimated_price_per_carton: 48000,
+      estimated_price_per_carton: 100000,
       status: 'open',
     },
     {
-      id: 'quota-tue-zar',
+      id: 'quota-mon-zar',
       hatchery_id: 'hatch-zar',
       hatchery_name: 'Zartech Farms',
       hatchery_code: 'ZAR',
       breed_type: breedType,
-      dispatch_date: nextTuesday,
-      dispatch_day: 'Tuesday',
+      dispatch_date: nextMonday,
+      dispatch_day: 'Monday',
       total_cartons_quota: 100,
       reserved_cartons: 15,
       confirmed_cartons: 60,
       available_cartons: 25,
-      estimated_price_per_carton: 48500,
+      estimated_price_per_carton: 100000,
       status: 'open',
     },
     {
@@ -418,7 +418,7 @@ export async function getUpcomingQuotas(breedType = 'broiler'): Promise<DbQuota[
       reserved_cartons: 10,
       confirmed_cartons: 70,
       available_cartons: 40,
-      estimated_price_per_carton: 47500,
+      estimated_price_per_carton: 100000,
       status: 'open',
     },
   ];
@@ -594,11 +594,11 @@ export function calculatePackagingBirds(cartons: number, breedType: string): {
 }
 
 /**
- * Helper to compute upcoming Tuesday or Thursday in YYYY-MM-DD.
+ * Helper to compute upcoming Monday, Tuesday, or Thursday in YYYY-MM-DD.
  */
-export function getNextDispatchDate(targetDay: 'Tuesday' | 'Thursday'): string {
+export function getNextDispatchDate(targetDay: 'Monday' | 'Tuesday' | 'Thursday'): string {
   const d = new Date();
-  const dayIndex = targetDay === 'Tuesday' ? 2 : 4;
+  const dayIndex = targetDay === 'Monday' ? 1 : targetDay === 'Tuesday' ? 2 : 4;
   const currentDay = d.getDay();
   let daysUntil = dayIndex - currentDay;
   if (daysUntil <= 0) {

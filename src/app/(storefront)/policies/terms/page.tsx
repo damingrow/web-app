@@ -64,17 +64,17 @@ export default function TermsOfServicePage() {
             </h2>
             <div className="space-y-2.5">
               <p>
-                <strong>Weekly Price Volatility:</strong> Day-old chick prices in Nigeria reflect dynamic market movements based on breeder parent-stock production, grain costs, and hatchery allocations. Published prices on our website update weekly. The price applicable to your order is the confirmed rate at the time your deposit is verified by our sales desk.
+                <strong>Weekly Price Volatility:</strong> Day-old chick prices in Nigeria reflect dynamic market movements based on breeder parent-stock production, grain costs, and commercial allocations. Published prices on our website update weekly. The price applicable to your order is the confirmed rate at the time your deposit is verified by our sales desk.
               </p>
               <p>
                 <strong>Booking & Payment Cycles:</strong> Chick allocations are strictly reserved on a first-paid, first-secured basis:
               </p>
               <ul className="list-disc pl-5 space-y-1 text-slate-600">
-                <li><strong>Tuesday Dispatch:</strong> Orders and payment confirmations must be finalized by 12:00 PM Monday.</li>
+                <li><strong>Monday Dispatch:</strong> Orders and payment confirmations must be finalized by 12:00 PM Saturday.</li>
                 <li><strong>Thursday Dispatch:</strong> Orders and payment confirmations must be finalized by 12:00 PM Wednesday.</li>
               </ul>
               <p>
-                <strong>Hatchery Extra Birds Allowance:</strong> Certified primary hatcheries (Amo, Zartech, Chi, etc.) pack <strong>50 + 1 or 50 + 2 chicks</strong> per carton to cover statistical transit stress. These additional birds constitute the agreed transit mortality buffer.
+                <strong>Extra Birds Allowance:</strong> Certified primary breeders (Amo, Zartech, Chi, etc.) pack <strong>50 + 1 or 50 + 2 chicks</strong> per carton to cover statistical transit stress. These additional birds constitute the agreed transit mortality buffer.
               </p>
             </div>
           </section>
@@ -90,15 +90,15 @@ export default function TermsOfServicePage() {
                 <span>Strict 2-Hour Claims Notification Window:</span>
               </div>
               <p className="leading-relaxed">
-                Because day-old chicks are vulnerable live animals whose health rapidly deteriorates if left unattended in motor parks or unventilated vehicles, all claims for mortality exceeding the standard hatchery buffer must strictly adhere to the following protocol:
+                Because day-old chicks are vulnerable live animals whose health rapidly deteriorates if left unattended in motor parks or unventilated vehicles, all claims for mortality exceeding the standard supplier buffer must strictly adhere to the following protocol:
               </p>
               <ol className="list-decimal pl-5 space-y-1 text-slate-700">
                 <li>Inspect all chick cartons immediately upon receiving them from the transport driver or collection depot.</li>
                 <li>Report any excess mortality to our WhatsApp support line within <strong>two (2) hours of arrival</strong>.</li>
-                <li>Provide clear, unedited video footage and photographs showing: (a) the original intact hatchery carton label and security seal, and (b) all dead birds arranged side-by-side for verified counting.</li>
+                <li>Provide clear, unedited video footage and photographs showing: (a) the original intact carton label and security seal, and (b) all dead birds arranged side-by-side for verified counting.</li>
               </ol>
               <p className="text-[11px] text-slate-500 italic">
-                Claims submitted after the 2-hour collection window or after chicks have been transferred into the brooder pen cannot be verified against transit causes and are ineligible for hatchery credit.
+                Claims submitted after the 2-hour collection window or after chicks have been transferred into the brooder pen cannot be verified against transit causes and are ineligible for credit.
               </p>
             </div>
           </section>
@@ -133,7 +133,7 @@ export default function TermsOfServicePage() {
               <div className="rounded-2xl border border-rose-100 bg-rose-50/50 p-4 space-y-1.5">
                 <span className="font-bold text-rose-900 text-xs">Strictly Non-Returnable</span>
                 <p className="text-xs text-slate-600">
-                  <strong>Day-Old Chicks & Vaccines:</strong> Due to extreme biosecurity regulations and cold-chain integrity, live birds and biological vaccines are strictly non-returnable once they leave the hatchery or cold-storage depot.
+                  <strong>Day-Old Chicks & Vaccines:</strong> Due to extreme biosecurity regulations and cold-chain integrity, live birds and biological vaccines are strictly non-returnable once they leave the dispatch depot or cold-storage depot.
                 </p>
               </div>
               <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-4 space-y-1.5">

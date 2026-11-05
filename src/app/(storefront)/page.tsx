@@ -273,7 +273,7 @@ export default function HomePage() {
             {/* Trust Badges */}
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
               {[
-                { icon: CheckCircle2, text: 'Certified Hatchery Genetics' },
+                { icon: CheckCircle2, text: 'Certified Pureline Genetics' },
                 { icon: CheckCircle2, text: '2°C–8°C Cold-Chain' },
                 { icon: CheckCircle2, text: 'NAFDAC Compliant' },
                 { icon: CheckCircle2, text: 'Nationwide Dispatch' },
@@ -860,7 +860,7 @@ export default function HomePage() {
           <div className="mb-16">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-lg font-bold font-heading text-slate-900">Partner Hatcheries</h3>
+                <h3 className="text-lg font-bold font-heading text-slate-900">Partner Breeder Operations</h3>
                 <p className="text-xs text-slate-500">Certified breeding operations and day-old chick sources</p>
               </div>
               <Link

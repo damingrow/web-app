@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 const VACCINATION_HISTORY = [
-  { disease: 'Marek’s Disease (HVT)', timing: 'Day 1 (Hatchery subcutaneous)' },
+  { disease: 'Marek’s Disease (HVT)', timing: 'Day 1 (Subcutaneous)' },
   { disease: 'Newcastle Disease (HB1 / LaSota)', timing: 'Day 7, Day 21 & Week 8' },
   { disease: 'Infectious Bursal Disease (IBD Gumboro)', timing: 'Day 10, Day 18 & Day 28' },
   { disease: 'Fowl Pox (Wing Web)', timing: 'Week 6' },

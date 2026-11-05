@@ -55,7 +55,7 @@ export default function VaccinationCalculatorClient() {
               </span>
               <span className="inline-flex items-center gap-1.5 text-xs text-amber-400 font-semibold bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 rounded-full">
                 <Syringe className="h-3.5 w-3.5" />
-                Direct Hatchery Integration
+                Verified Genetics Integration
               </span>
             </div>
           </div>

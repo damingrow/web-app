@@ -4,8 +4,8 @@ import { getLiveEnquiries } from '@/lib/supabase/data-access';
 import ServicesClient from './services-client';
 
 export const metadata: Metadata = {
-  title: 'Services & Veterinary Consultations Desk — Admin Operations | D-AminGrow',
-  description: 'Manage commercial poultry farm setup requests, least-cost feed formulations, biosecurity audits, and emergency veterinary triage tickets across Nigeria.',
+  title: 'Services & Consultations Desk — Admin Operations | D-AminGrow',
+  description: 'Manage commercial poultry farm setup requests, least-cost feed formulations, biosecurity audits, and consultation tickets across Nigeria.',
 };
 
 export const revalidate = 0;

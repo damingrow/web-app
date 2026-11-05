@@ -327,7 +327,7 @@ export default function AboutPage() {
       </section>
 
       {/* ====================================================================
-          HATCHERY PARTNERSHIPS
+          BREEDING & FARM PARTNERSHIPS
           ==================================================================== */}
       <section className="py-20 sm:py-28 bg-slate-50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -337,7 +337,7 @@ export default function AboutPage() {
               Sourcing Integrity
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
-              Hatcheries We Work With
+              Breeding Partners We Work With
             </h2>
             <p className="text-base text-slate-600 leading-relaxed">
               We collaborate with premier grandparent and parent-stock breeding centers across Nigeria to ensure commercial farmers receive genuine first-generation genetics with verified biosecurity and maternal immunity.

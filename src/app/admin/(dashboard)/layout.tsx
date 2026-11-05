@@ -4,7 +4,7 @@ import { AdminShell } from '@/components/admin/admin-shell';
 
 export const metadata: Metadata = {
   title: 'Operations Cockpit — D-AminGrow Enterprise Admin',
-  description: 'Enterprise poultry commercial operations, hatchery allocations, NAFDAC regulatory compliance, and VCN veterinary clinical desk.',
+  description: 'Enterprise poultry commercial operations, NAFDAC regulatory compliance, and commercial consultations desk.',
 };
 
 export default function AdminLayout({

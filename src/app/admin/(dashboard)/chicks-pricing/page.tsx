@@ -6,7 +6,7 @@ import ChicksPricingClient from './chicks-pricing-client';
 export const metadata: Metadata = {
   title: 'Chicks Pricing & Quota Command — Admin Operations | D-AminGrow',
   description:
-    'Live synchronizer for commercial day-old chick rates across partner hatcheries (CHI, Zartech, Amo, Sayed, Valentine), bi-weekly Tuesday & Thursday dispatch allocations, and pricing matrix.',
+    'Live synchronizer for commercial day-old chick rates across partner hatcheries (CHI, Zartech, Amo, Sayed, Valentine), bi-weekly Monday & Thursday dispatch allocations, and pricing matrix.',
 };
 
 export const revalidate = 0;

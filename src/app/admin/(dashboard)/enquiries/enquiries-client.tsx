@@ -1128,7 +1128,7 @@ export function EnquiriesClient({ initialEnquiries }: EnquiriesClientProps) {
                 rows={4}
                 value={replyMessage}
                 onChange={(e) => setReplyMessage(e.target.value)}
-                placeholder="Type your official commercial response, hatchery allocation dates, or Zenith Bank escrow details..."
+                placeholder="Type your official commercial response, booking allocation dates, or Zenith Bank escrow details..."
                 className="w-full rounded-xl border border-slate-300 p-2.5 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#00a854]"
               />
             </div>

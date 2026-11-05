@@ -92,7 +92,7 @@ export default function PrivacyPolicyPage() {
               <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 space-y-1.5">
                 <span className="font-bold text-slate-900 text-xs">Contractual Performance</span>
                 <p className="text-xs text-slate-600">
-                  Processing your delivery location, phone number, and chick allocation to generate quotations, reserve hatchery batches, and organize interstate courier dispatch.
+                  Processing your delivery location, phone number, and chick allocation to generate quotations, reserve chick batches, and organize interstate courier dispatch.
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 space-y-1.5">

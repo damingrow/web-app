@@ -21,58 +21,67 @@ import {
 export const metadata: Metadata = {
   title: 'Day-Old Chick Booking Service Nigeria — Broilers, Pullets, Turkeys | D-AminGrow',
   description:
-    'Book day-old chicks in Nigeria from D-AminGrow. Commercial broilers (Cobb 500), layer pullets (ISA Brown), turkey poults, noiler, and ducklings. Nationwide dispatch every Tuesday and Thursday from certified hatcheries.',
+    'Book day-old chicks in Nigeria from D-AminGrow. Commercial broilers, Zartech pullets, hybrid & local turkeys, noiler, and cockerels. Nationwide dispatch every Monday and Thursday from certified hatcheries.',
   openGraph: {
-    title: 'Day-Old Chick Booking — Nationwide Tuesday & Thursday Dispatch | D-AminGrow',
-    description: 'Book commercial broilers, layer pullets, turkey poults, and noiler chicks. Nationwide dispatch every Tuesday and Thursday.',
+    title: 'Day-Old Chick Booking — Nationwide Monday & Thursday Dispatch | D-AminGrow',
+    description: 'Book commercial broilers, Zartech pullets, hybrid & local turkeys, and noiler chicks. Nationwide dispatch every Monday and Thursday.',
   },
 };
 
 const CHICK_BREEDS = [
   {
-    name: 'Commercial Day-Old Broilers',
+    name: 'Commercial Broilers',
     strain: 'Cobb 500 / Arbor Acres / Ross 308',
     harvest: '2.2kg–2.8kg at 6–7 weeks',
     fcr: '1.60–1.75',
-    pack: '50 + 1 chicks per carton',
+    pack: '50 chicks per carton · ₦2,000/chick (₦100,000/carton)',
     emoji: '🐔',
     color: 'border-amber-200 bg-amber-50/50',
   },
   {
-    name: 'Commercial Layer Pullets',
-    strain: 'ISA Brown / Lohmann Brown / Novogen',
+    name: 'Zartech Pullet',
+    strain: 'ISA Brown / Zartech Certified Strains',
     harvest: '310–325 eggs per hen to 72 weeks',
     fcr: 'Peak lay 94%–96%',
-    pack: '50 + 1 chicks per carton',
+    pack: '50 pullets per carton · ₦2,700/chick (₦135,000/carton)',
     emoji: '🥚',
     color: 'border-yellow-200 bg-yellow-50/50',
   },
   {
-    name: 'Day-Old Turkey Poults',
-    strain: 'Hybrid White / Nicholas Commercial',
+    name: 'Hybrid Turkey',
+    strain: 'Broad-Breasted White Commercial Keets',
     harvest: '6kg–9kg at 16–20 weeks',
     fcr: '2.3–2.8 FCR',
-    pack: '25 poults per carton',
+    pack: '30 poults in carton · ₦5,500/poult (₦165,000/carton)',
     emoji: '🦃',
     color: 'border-orange-200 bg-orange-50/50',
   },
   {
-    name: 'Dual-Purpose Noiler Chicks',
-    strain: 'Amo Farm Noiler Hybrid',
-    harvest: '1.8kg–2.3kg meat + egg production',
+    name: 'Local Turkey',
+    strain: 'Improved Indigenous Hardy Turkey Stock',
+    harvest: '4.5kg–7kg festive market yield',
+    fcr: 'High foraging resilience',
+    pack: '30 in a carton · ₦2,300/poult (₦69,000/carton)',
+    emoji: '🦃',
+    color: 'border-emerald-200 bg-emerald-50/50',
+  },
+  {
+    name: 'Noiler',
+    strain: 'Dual-Yield Meat & Egg Hybrid',
+    harvest: '1.8kg–2.3kg meat + 150-180 eggs/yr',
     fcr: '2.1–2.5 FCR',
-    pack: '50 + 1 chicks per carton',
+    pack: '50 in a carton · ₦750/chick (₦37,500/carton)',
     emoji: '🐓',
     color: 'border-green-200 bg-green-50/50',
   },
   {
-    name: 'Day-Old Ducklings',
-    strain: 'Commercial Pekin / Muscovy Cross',
-    harvest: '2.8kg–3.5kg at 8–10 weeks',
-    fcr: '2.2–2.5 FCR',
-    pack: '50 + 1 ducklings per carton',
-    emoji: '🦆',
-    color: 'border-sky-200 bg-sky-50/50',
+    name: 'Cockerel',
+    strain: 'Commercial Hardy Grower Cockerels',
+    harvest: '2.0kg–2.5kg at 20–24 weeks',
+    fcr: 'Low mortality, high holiday margins',
+    pack: '50 in a carton · ₦100/chick (₦5,000/carton)',
+    emoji: '🐓',
+    color: 'border-purple-200 bg-purple-50/50',
   },
 ];
 
@@ -89,19 +98,19 @@ const BOOKING_STEPS = [
     step: '01',
     icon: MessageCircle,
     title: 'Contact Us',
-    desc: 'WhatsApp or call to tell us your breed, quantity (cartons), and preferred dispatch day (Tuesday or Thursday).',
+    desc: 'WhatsApp or call to tell us your breed, quantity (cartons), and preferred dispatch day (Monday or Thursday).',
   },
   {
     step: '02',
     icon: CheckCircle2,
     title: 'Confirm & Price',
-    desc: 'We confirm current weekly hatchery price, carton availability, and your delivery motor park destination.',
+    desc: 'We confirm current weekly price, carton availability, and your delivery motor park destination.',
   },
   {
     step: '03',
     icon: Calendar,
     title: 'Pay & Schedule Dispatch',
-    desc: 'Secure your cartons with payment. Dispatch scheduled for the confirmed Tuesday or Thursday pickup.',
+    desc: 'Secure your cartons with payment. Dispatch scheduled for the confirmed Monday or Thursday pickup.',
   },
   {
     step: '04',
@@ -114,14 +123,14 @@ const BOOKING_STEPS = [
 const DISPATCH_FEATURES = [
   {
     icon: ShieldCheck,
-    title: 'Certified Hatchery Sources',
-    desc: 'All chicks sourced from biosecure parent-stock hatcheries with documented veterinary health certificates.',
+    title: 'Certified Breeder Sources',
+    desc: 'All chicks sourced from biosecure parent-stock breeding farms with documented veterinary health certificates.',
     color: 'bg-emerald-100 text-emerald-700',
   },
   {
     icon: Feather,
     title: 'Marek\'s Vaccinated at Hatch',
-    desc: 'Every chick pre-vaccinated against Marek\'s Disease (HVT strain) at the hatchery before packaging.',
+    desc: 'Every chick pre-vaccinated against Marek\'s Disease (HVT strain) at day 1 before packaging.',
     color: 'bg-amber-100 text-amber-700',
   },
   {
@@ -337,11 +346,11 @@ export default function ServiceChicksPage() {
             Ready to Book Your Next Batch?
           </h2>
           <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
-            Contact us for today&apos;s confirmed hatchery price and to reserve your cartons for Tuesday or Thursday dispatch.
+            Contact us for today&apos;s confirmed live chick price and to reserve your cartons for Monday or Thursday dispatch.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20book%20day-old%20chicks.%20Breed%3A%20%5BBREED%5D%2C%20Quantity%3A%20%5BQTY%5D%20cartons.%20Preferred%20dispatch%3A%20%5BTUESDAY%2FTHURSDAY%5D.%20State%3A%20%5BSTATE%5D."
+              href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20book%20day-old%20chicks.%20Breed%3A%20%5BBREED%5D%2C%20Quantity%3A%20%5BQTY%5D%20cartons.%20Preferred%20dispatch%3A%20%5BMONDAY%2FTHURSDAY%5D.%20State%3A%20%5BSTATE%5D."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-8 py-4 rounded-2xl transition-all text-sm"

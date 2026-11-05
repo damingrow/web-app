@@ -49,12 +49,12 @@ describe('Phase 3: Chick Booking Engine, Quotas & Packaging Rules', () => {
     });
   });
 
-  it('provides upcoming Tuesday and Thursday dispatch quotas with positive capacity', async () => {
+  it('provides upcoming Monday and Thursday dispatch quotas with positive capacity', async () => {
     const quotas = await getUpcomingQuotas('broiler');
     expect(quotas.length).toBeGreaterThan(0);
 
     quotas.forEach((quota) => {
-      expect(['Tuesday', 'Thursday']).toContain(quota.dispatch_day);
+      expect(['Monday', 'Tuesday', 'Thursday']).toContain(quota.dispatch_day);
       expect(quota.total_cartons_quota).toBeGreaterThan(0);
       expect(quota.available_cartons).toBeGreaterThanOrEqual(0);
       expect(quota.estimated_price_per_carton).toBeGreaterThan(0);

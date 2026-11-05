@@ -190,10 +190,10 @@ export default function AdminLoginPage() {
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-                    Hatchery Allocation Engine
+                    Chick Booking Engine
                   </h4>
                   <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
-                    Real-time quota management for CHI, Amo, Zartech, Agrited, and Sayed Farms with 51-bird box packaging logic.
+                    Real-time booking management for Commercial Broilers, Pullets, Turkeys, Noilers, and Cockerels with Monday & Thursday dispatch runs.
                   </p>
                 </div>
               </div>

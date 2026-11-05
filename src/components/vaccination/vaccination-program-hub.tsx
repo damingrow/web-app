@@ -577,10 +577,10 @@ https://damingrow.com/vaccination-program`;
               Verified Sourcing Lineage
             </div>
             <h3 className="text-xl sm:text-2xl font-extrabold font-heading text-slate-950">
-              Hatcheries We Work With
+              Breeding Partners We Work With
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
-              D-AminGrow sources day-old chicks directly from Nigeria&apos;s licensed tier-1 parent-stock hatcheries. Every chick arrives pre-vaccinated against Marek&apos;s Disease with verified hatchery health certificates.
+              D-AminGrow sources day-old chicks directly from Nigeria&apos;s licensed tier-1 parent-stock breeding operations. Every chick arrives pre-vaccinated against Marek&apos;s Disease with verified health certificates.
             </p>
           </div>
 

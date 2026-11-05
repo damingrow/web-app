@@ -47,7 +47,7 @@ interface OverviewClientProps {
 const DISPATCH_HUBS = [
   {
     name: 'Ibadan Central Hub (Iwo Road / Ojoo)',
-    schedule: 'Tue & Thurs 05:30 WAT  |  Southwest (6 States)',
+    schedule: 'Mon & Thurs 05:30 WAT  |  Southwest (6 States)',
     badge: 'Same Day',
     badgeClass: 'bg-[#e8f7ee] text-emerald-700 border border-emerald-300',
     dotLabel: 'Active ✓',
@@ -55,7 +55,7 @@ const DISPATCH_HUBS = [
   },
   {
     name: 'Lagos Gateway Hub (Berger / Ojota)',
-    schedule: 'Tue & Thurs 06:15 WAT  |  Lagos & Ogun Coastal',
+    schedule: 'Mon & Thurs 06:15 WAT  |  Lagos & Ogun Coastal',
     badge: 'Same Day',
     badgeClass: 'bg-[#e8f7ee] text-emerald-700 border border-emerald-300',
     dotLabel: 'Active ✓',
@@ -63,7 +63,7 @@ const DISPATCH_HUBS = [
   },
   {
     name: 'Eastern Express Hub (Onitsha / Owerri)',
-    schedule: 'Tues & Thurs 12:00 WAT  |  Southeast (5 States)',
+    schedule: 'Mon & Thurs 12:00 WAT  |  Southeast (5 States)',
     badge: '18 Hours',
     badgeClass: 'bg-[#fef3dc] text-amber-800 border border-amber-300',
     dotLabel: 'Scheduled 🕒',
@@ -71,7 +71,7 @@ const DISPATCH_HUBS = [
   },
   {
     name: 'North-Central Transit Hub (Abuja)',
-    schedule: 'Tues & Thurs 14:00 WAT  |  FCT & Middle Belt',
+    schedule: 'Mon & Thurs 14:00 WAT  |  FCT & Middle Belt',
     badge: '24 Hours',
     badgeClass: 'bg-[#fef3dc] text-amber-800 border border-amber-300',
     dotLabel: 'Scheduled 🕒',
@@ -116,7 +116,7 @@ export function OverviewClient({
     if (quotas.length > 0) {
       return quotas.slice(0, 3).map((q) => ({
         name: q.hatchery_name || 'Partner Hatchery',
-        breed: `${q.breed_type?.toUpperCase() || 'BROILER'} · ${q.dispatch_day?.toUpperCase() || 'TUESDAY'}`,
+        breed: `${q.breed_type?.toUpperCase() || 'BROILER'} · ${q.dispatch_day?.toUpperCase() || 'MONDAY'}`,
         total: q.total_cartons_quota,
         reserved: q.reserved_cartons,
         pct: Math.min(Math.round((q.reserved_cartons / Math.max(q.total_cartons_quota, 1)) * 100), 100),
@@ -199,7 +199,7 @@ export function OverviewClient({
                 <span className="text-[#2ee571]">Operations Cockpit</span>
               </h1>
               <p className="mt-1.5 text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal max-w-lg">
-                Real-time multi-hatchery chick allocation control, automated deposit clearing with Zenith Bank, VCN emergency clinical triaging, and nationwide motor park waybills.
+                Real-time chick booking control, automated deposit clearing with Zenith Bank, emergency clinical triaging, and nationwide motor park waybills.
               </p>
             </div>
           </div>
@@ -212,7 +212,7 @@ export function OverviewClient({
               className="flex items-center gap-2.5 rounded-2xl px-4 py-2.5 text-xs font-bold text-white bg-[#00a854] hover:bg-[#009249] transition-all shadow-md transform hover:-translate-y-0.5"
             >
               <TrendingUp className="h-3.5 w-3.5 text-white shrink-0" />
-              <span>Sync Weekly Hatchery Rates</span>
+              <span>Sync Weekly Chick Pricing</span>
             </Link>
 
             {/* Button 2: Translucent Dark Green with Border */}
@@ -281,7 +281,7 @@ export function OverviewClient({
           </div>
         </div>
 
-        {/* ── Card 2: Hatchery Commitments — warm amber/peach gradient ── */}
+        {/* ── Card 2: Active Commitments — warm amber/peach gradient ── */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#fffbf0] via-[#fef6e0] to-[#fde8b6] border border-amber-100 p-5 shadow-sm hover:shadow-md transition-all group">
           <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-amber-200/40 rounded-full blur-2xl pointer-events-none" />
           <div className="relative flex items-start justify-between gap-2">
@@ -290,7 +290,7 @@ export function OverviewClient({
                 🐔
               </div>
               <span className="text-xs font-semibold text-slate-600 leading-snug">
-                Hatchery Commitments
+                Active Commitments
               </span>
             </div>
             <Link
@@ -415,7 +415,7 @@ export function OverviewClient({
             </Link>
           </div>
 
-          {/* Hatchery Capacity Rows — 3 column horizontal layout matching reference */}
+          {/* Capacity Rows — 3 column horizontal layout matching reference */}
           <div className="divide-y divide-slate-100 px-5 py-1">
             {hatcheries.length > 0 ? (
               hatcheries.map((h) => (

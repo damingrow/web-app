@@ -235,12 +235,12 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
                 <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
                   {[
                     {
-                      title: 'Chi Hatchery Quota Alert',
+                      title: 'Chi Allocation Alert',
                       time: '12m ago',
-                      body: 'Tuesday broiler allocation at 84% capacity. Only 160 cartons unreserved.',
+                      body: 'Monday broiler allocation at 84% capacity. Only 160 cartons unreserved.',
                       color: 'text-slate-900',
                       bg: 'bg-amber-50/60 border-amber-200/70',
-                      tag: 'Hatchery Capacity',
+                      tag: 'Breed Quota',
                     },
                     {
                       title: 'Deposit Received · Zenith Bank',

@@ -66,7 +66,7 @@ export function PolBookingForm() {
   const [birdCount, setBirdCount] = useState<number>(100);
   const [deliveryState, setDeliveryState] = useState<string>('Oyo');
   const [deliveryCity, setDeliveryCity] = useState<string>('Ibadan (Bodija Depot / Farm Gate)');
-  const [preferredDay, setPreferredDay] = useState<'Tuesday' | 'Thursday'>('Tuesday');
+  const [preferredDay, setPreferredDay] = useState<'Monday' | 'Thursday'>('Monday');
   const [farmerName, setFarmerName] = useState<string>('');
   const [farmerPhone, setFarmerPhone] = useState<string>('');
   const [farmName, setFarmName] = useState<string>('');
@@ -322,7 +322,7 @@ export function PolBookingForm() {
           <div className="space-y-1.5">
             <label className="text-xs font-bold text-slate-700">Preferred Dispatch Day</label>
             <div className="grid grid-cols-2 gap-2">
-              {(['Tuesday', 'Thursday'] as const).map((day) => (
+              {(['Monday', 'Thursday'] as const).map((day) => (
                 <button
                   type="button"
                   key={day}

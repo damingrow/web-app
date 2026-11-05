@@ -15,9 +15,9 @@ import {
 import { getNextDispatchDate } from '@/lib/booking/booking-service';
 
 export const metadata: Metadata = {
-  title: 'Day-Old Chicks in Nigeria — Certified Hatchery Booking & Live Prices | D-AminGrow',
+  title: 'Day-Old Chicks in Nigeria — Certified Booking & Live Prices | D-AminGrow',
   description:
-    'Book healthy, biosecure day-old broiler chicks, layer pullets, turkey poults, and cockerels from accredited Nigerian hatcheries (Chi, Amo, Zartech, Supreme, Agrited). Nationwide dispatch every Tuesday & Thursday.',
+    'Book healthy, biosecure day-old broiler chicks, Zartech pullets, hybrid & local turkey poults, noiler, and cockerels from accredited Nigerian farms. Nationwide dispatch every Monday & Thursday.',
   keywords: [
     'day old chicks nigeria',
     'day old broiler chicks ibadan',
@@ -26,57 +26,81 @@ export const metadata: Metadata = {
     'amo pullets booking',
     'zartech day old chicks',
     'turkey poults ibadan',
-    'poultry hatcheries nigeria',
+    'poultry farms nigeria',
   ],
 };
 
 const BREED_CHANNELS = [
   {
     slug: 'broilers',
-    name: 'Commercial Day-Old Broilers',
+    name: 'Commercial Broilers',
     subTitle: 'Cobb 500 · Ross 308 · Arbor Acres',
     desc: 'Bred for rapid muscle deposition and low FCR (1.60–1.75). Reaches 2.2kg–2.8kg harvest weight within 6–7 weeks.',
-    packaging: '51 birds / carton (50 + 1 free mortality buffer)',
-    dispatch: 'Tuesdays & Thursdays',
+    packaging: '50 birds / carton · ₦2,000 / chick (₦100,000 / carton)',
+    dispatch: 'Mondays & Thursdays',
     accentColor: 'from-emerald-900 to-slate-900',
-    badge: 'Fastest Meat Conversion',
+    badge: '₦2,000 / Chick',
     image: '/products/Chicks/day old broiler.jpeg',
     href: '/day-old-chicks/broilers',
   },
   {
     slug: 'pullets',
-    name: 'Commercial Day-Old Pullets',
-    subTitle: 'ISA Brown · Bovans Brown · Lohmann',
+    name: 'Zartech Pullet',
+    subTitle: 'ISA Brown · Zartech Certified Strains',
     desc: 'Industry-standard brown egg layers. Yields 310–325 eggs per hen with high shell strength and low rearing feed intake.',
-    packaging: '51 birds / carton (50 + 1 free mortality buffer)',
-    dispatch: 'Tuesdays & Thursdays',
+    packaging: '50 birds / carton · ₦2,700 / chick (₦135,000 / carton)',
+    dispatch: 'Mondays & Thursdays',
     accentColor: 'from-amber-900 to-slate-900',
-    badge: 'Peak Lay 94%–96%',
+    badge: '₦2,700 / Chick',
     image: '/products/Chicks/Pullet day old.jpeg',
     href: '/day-old-chicks/pullets',
   },
   {
     slug: 'turkeys',
-    name: 'Day-Old Turkey Poults',
-    subTitle: 'Broad-Breasted White Commercial Keets',
-    desc: 'Heavy commercial meat poults achieving 6kg–9kg carcass weight at 16–20 weeks under tropical Nigerian conditions.',
-    packaging: '25 poults / carton (Ventilation standard)',
-    dispatch: 'Tuesdays & Thursdays (Batch runs)',
+    name: 'Hybrid Turkey',
+    subTitle: 'Broad-Breasted Commercial Meat Keets',
+    desc: 'Heavy commercial hybrid turkey poults achieving 6kg–9kg carcass weight at 16–20 weeks under tropical Nigerian conditions.',
+    packaging: '30 poults / carton · ₦5,500 / poult (₦165,000 / carton)',
+    dispatch: 'Mondays & Thursdays (Batch runs)',
     accentColor: 'from-blue-900 to-slate-900',
-    badge: 'Premium Festive Meat',
+    badge: '₦5,500 / Poult',
     image: '/products/Chicks/Day old Turkey.jpeg',
     href: '/day-old-chicks/turkeys',
   },
   {
+    slug: 'local-turkeys',
+    name: 'Local Turkey',
+    subTitle: 'Indigenous Improved Hardy Keets',
+    desc: 'Selected improved local turkey poults bred for climate hardiness, free-range survivability, and high natural disease resistance.',
+    packaging: '30 poults / carton · ₦2,300 / poult (₦69,000 / carton)',
+    dispatch: 'Mondays & Thursdays',
+    accentColor: 'from-teal-900 to-slate-900',
+    badge: '₦2,300 / Poult',
+    image: '/products/Chicks/Day old Turkey1.jpeg',
+    href: '/chicks',
+  },
+  {
+    slug: 'noiler',
+    name: 'Noiler',
+    subTitle: 'Dual-Purpose Meat & Egg Hybrid',
+    desc: 'Vigorous dual-yield Noiler chicks bred for Nigerian smallholder and commercial multi-purpose farming.',
+    packaging: '50 birds / carton · ₦750 / chick (₦37,500 / carton)',
+    dispatch: 'Mondays & Thursdays',
+    accentColor: 'from-green-900 to-slate-900',
+    badge: '₦750 / Chick',
+    image: '/products/Chicks/day old pullet.jpeg',
+    href: '/chicks',
+  },
+  {
     slug: 'cockerels',
-    name: 'Day-Old Commercial Cockerels',
+    name: 'Cockerel',
     subTitle: 'White & Brown Hardy Grower Cockerels',
     desc: 'Exceptional natural disease resistance and low early mortality. Ideal for extensive deep litter and festive markets.',
-    packaging: '51 birds / carton (50 + 1 free mortality buffer)',
-    dispatch: 'Tuesdays & Thursdays',
+    packaging: '50 birds / carton · ₦100 / chick (₦5,000 / carton)',
+    dispatch: 'Mondays & Thursdays',
     accentColor: 'from-purple-900 to-slate-900',
-    badge: 'Low Mortality Hardiness',
-    image: '/products/Chicks/day old pullet.jpeg',
+    badge: '₦100 / Chick',
+    image: '/products/Chicks/day old broiler.jpeg',
     href: '/day-old-chicks/cockerels',
   },
 ];
@@ -101,7 +125,7 @@ const CLIENT_FARMS = [
 ];
 
 export default function DayOldChicksHubPage() {
-  const nextTuesday = getNextDispatchDate('Tuesday');
+  const nextMonday = getNextDispatchDate('Monday');
   const nextThursday = getNextDispatchDate('Thursday');
 
   return (
@@ -127,7 +151,7 @@ export default function DayOldChicksHubPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-400/30 px-3.5 py-1.5 text-xs font-bold text-emerald-300 mb-6">
               <Building2 className="h-4 w-4" />
-              <span>Certified Hatchery Direct · 50+1 Packaging Guarantee</span>
+              <span>Certified Primary Lineage · Standard Packaging</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-extrabold font-heading tracking-tight text-white leading-tight">
@@ -135,18 +159,18 @@ export default function DayOldChicksHubPage() {
             </h1>
 
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              Order vaccinated, vigorous Day-Old Broilers, Layer Pullets, Turkey Poults, and Cockerels directly from
-              Nigeria&apos;s leading accredited hatcheries with guaranteed quota reservations and temperature-controlled
+              Order vaccinated, vigorous Day-Old Broilers, Zartech Pullets, Hybrid &amp; Local Turkeys, Noilers, and Cockerels directly from
+              Nigeria&apos;s leading accredited suppliers with guaranteed quota reservations and temperature-controlled
               interstate dispatch.
             </p>
 
-            {/* Next Hatchery Runs Bar */}
+            {/* Next Dispatch Runs Bar */}
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
               <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 p-4">
                 <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block">
-                  Next Tuesday Dispatch
+                  Next Monday Dispatch
                 </span>
-                <span className="text-lg font-extrabold text-white mt-0.5 block">{nextTuesday}</span>
+                <span className="text-lg font-extrabold text-white mt-0.5 block">{nextMonday}</span>
                 <span className="text-[11px] text-slate-300 block">Cutoff: 48h prior to hatch</span>
               </div>
 
@@ -224,7 +248,7 @@ export default function DayOldChicksHubPage() {
             Select Your Production Lineage
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-2">
-            Every carton is packed according to strict Nigerian poultry packaging standards with certified hatchery Marek&apos;s vaccination.
+            Every carton is packed according to strict Nigerian poultry packaging standards with certified Marek&apos;s vaccination.
           </p>
         </div>
 
@@ -265,7 +289,7 @@ export default function DayOldChicksHubPage() {
                     </div>
 
                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Hatchery Dispatch</span>
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Dispatch Schedule</span>
                       <span className="font-bold text-emerald-800 mt-0.5 block">{breed.dispatch}</span>
                     </div>
                   </div>
@@ -372,7 +396,7 @@ export default function DayOldChicksHubPage() {
             </div>
             <h4 className="font-bold text-slate-900 text-sm font-heading">50% Zenith Bank Deposit Lock</h4>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Reservations are locked in institutional hatchery quotas upon 50% deposit confirmation into Zenith Bank (Account 1017894562).
+              Reservations are locked in institutional partner quotas upon 50% deposit confirmation into Zenith Bank (Account 1017894562).
             </p>
           </div>
 

@@ -81,7 +81,7 @@ const REVIEWS: ReviewItem[] = [
     rating: 5,
     date: 'October 2026',
     verified: true,
-    highlight: 'Reliable Booking Desk & Hatchery Parent-Stock Vigor',
+    highlight: 'Reliable Booking Desk & Parent-Stock Vigor',
     review:
       'Loveday Farm has placed repeat orders for broilers and turkeys. D-AminGrow coordinates directly with top hatcheries so we always receive genuine first-generation parent-stock chicks. Their waybill tracking and phone updates keep us completely at ease.',
     category: 'chicks',
@@ -158,7 +158,7 @@ const REVIEWS: ReviewItem[] = [
     verified: true,
     highlight: 'Weekly Batch Placements with Uniform Growth Curves',
     review:
-      'Taghini Farm runs continuous broiler cycles. D-AminGrow ensures our weekly hatchery bookings with CHI, Amo, and Zartech are locked in at fair market rates without unexpected cancellations. True agribusiness professionals.',
+      'Taghini Farm runs continuous broiler cycles. D-AminGrow ensures our weekly chick bookings with CHI, Amo, and Zartech are locked in at fair market rates without unexpected cancellations. True agribusiness professionals.',
     category: 'chicks',
   },
 ];

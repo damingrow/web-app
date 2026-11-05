@@ -18,8 +18,8 @@ export interface PackagingRule {
 
 export interface UpcomingDispatchDate {
   date: string; // YYYY-MM-DD
-  formattedDate: string; // e.g. "Tuesday, 10 Nov 2026"
-  dayOfWeek: 'Tuesday' | 'Thursday';
+  formattedDate: string; // e.g. "Monday, 10 Nov 2026"
+  dayOfWeek: 'Monday' | 'Thursday' | 'Tuesday';
   isBookingOpen: boolean;
   bookingClosesAt: string; // 48hrs prior
 }
@@ -31,7 +31,7 @@ export interface HatcheryQuotaBatch {
   hatcheryName: string;
   breedType: string;
   dispatchDate: string;
-  dispatchDay: 'Tuesday' | 'Thursday';
+  dispatchDay: 'Monday' | 'Thursday' | 'Tuesday' | 'Special_Run';
   totalCartonsQuota: number;
   reservedCartons: number;
   confirmedCartons: number;
@@ -99,9 +99,13 @@ export interface DepositVerificationResult {
 }
 
 const DEFAULT_RATES: Record<string, number> = {
-  broiler: 48000,
-  pullet: 52000,
-  turkey: 65000,
+  broiler: 100000,
+  pullet: 135000,
+  hybrid_turkey: 165000,
+  local_turkey: 69000,
+  turkey: 165000,
+  noiler: 37500,
+  cockerel: 5000,
   duckling: 45000,
   pol: 140000,
 };
@@ -117,11 +121,11 @@ export function calculatePackaging(cartonsCount: number, breedType: string) {
   let unit = 'carton';
   let description = '50 + 1 chick bonus per box standard';
 
-  if (type === 'turkey') {
-    birdsPerCarton = 25;
+  if (type.includes('turkey')) {
+    birdsPerCarton = 30;
     bonusChicks = 0;
-    unit = 'box';
-    description = '25 poults per specialized carton';
+    unit = 'carton';
+    description = '30 poults in a carton standard';
   } else if (type === 'pol') {
     birdsPerCarton = 10;
     bonusChicks = 0;
@@ -147,14 +151,14 @@ export function getUpcomingDispatchDates(weeksAhead = 6): UpcomingDispatchDate[]
   const dates: UpcomingDispatchDate[] = [];
   const now = new Date();
 
-  // Find upcoming Tuesdays and Thursdays
+  // Find upcoming Mondays and Thursdays
   for (let dayOffset = 1; dayOffset <= weeksAhead * 7; dayOffset++) {
     const candidate = new Date(now);
     candidate.setDate(now.getDate() + dayOffset);
-    const day = candidate.getDay(); // 2 is Tuesday, 4 is Thursday
+    const day = candidate.getDay(); // 1 is Monday, 4 is Thursday
 
-    if (day === 2 || day === 4) {
-      const dayName = day === 2 ? 'Tuesday' : 'Thursday';
+    if (day === 1 || day === 4) {
+      const dayName = day === 1 ? 'Monday' : 'Thursday';
       const isoDate = candidate.toISOString().slice(0, 10);
       const formatted = candidate.toLocaleDateString('en-GB', {
         weekday: 'long',

@@ -174,7 +174,7 @@ export function CartDrawer() {
                 <div className="flex items-start space-x-2.5 rounded-lg border border-amber-200 bg-amber-50/80 p-3 text-xs text-amber-900">
                   <Calendar className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-semibold">Live Day-Old Chicks:</span> Depart certified hatcheries every Tuesday & Thursday. 50% deposit required for allocation confirmation.
+                    <span className="font-semibold">Live Day-Old Chicks:</span> Depart certified hatcheries every Monday & Thursday. 50% deposit required for allocation confirmation.
                   </div>
                 </div>
               )}
@@ -253,7 +253,7 @@ export function CartDrawer() {
             <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 space-y-1.5 text-xs text-slate-700">
               <span className="font-bold text-emerald-950 block">Market Rate Quotation:</span>
               <p className="leading-relaxed">
-                Prices for livestock products and day-old chicks are confirmed daily upon booking based on hatchery availability and delivery state.
+                Prices for livestock products and day-old chicks are confirmed daily upon booking based on supplier availability and delivery state.
               </p>
             </div>
 
@@ -328,7 +328,7 @@ export function CartDrawer() {
             />
             <Input
               label="Preferred Delivery Day"
-              placeholder="e.g. Next Tuesday / Urgent"
+              placeholder="e.g. Next Monday / Urgent"
               value={preferredDate}
               onChange={(e) => setPreferredDate(e.target.value)}
             />

@@ -7,7 +7,7 @@ import { VaccinationProgramHub } from '@/components/vaccination/vaccination-prog
 export const metadata: Metadata = {
   title: 'Official Poultry Vaccination Programs — Broilers & Layers | D-AminGrow Nigeria',
   description:
-    'Download and print official calibrated poultry vaccination programs for commercial broilers and layers in Nigeria. Real-time calendar dates, cold-chain guidelines, and hatchery Marek protocols.',
+    'Download and print official calibrated poultry vaccination programs for commercial broilers and layers in Nigeria. Real-time calendar dates, cold-chain guidelines, and day 1 Marek protocols.',
   openGraph: {
     title: 'Poultry Vaccination Programs Nigeria | D-AminGrow',
     description:

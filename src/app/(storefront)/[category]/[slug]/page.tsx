@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${product.name} — Current Price & Specs | D-AminGrow Nigeria`,
-    description: `${product.shortDescription} Verified NAFDAC/Hatchery quality. Inquire for today's market rate and nationwide dispatch.`,
+    description: `${product.shortDescription} Verified NAFDAC/Breeder quality. Inquire for today's market rate and nationwide dispatch.`,
     openGraph: {
       title: `${product.name} | D-AminGrow Agro-Allied Nigeria`,
       description: product.shortDescription,
@@ -235,7 +235,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   </span>
                 </div>
                 <p className="text-xs text-slate-700 leading-relaxed">
-                  Due to variable grain feed prices, hatchery production cycles, and cold-chain transport costs, product rates are refreshed weekly. <strong>Contact our veterinary sales desk on WhatsApp for today&apos;s confirmed rate and availability.</strong>
+                  Due to variable grain feed prices, supplier production cycles, and cold-chain transport costs, product rates are refreshed weekly. <strong>Contact our veterinary sales desk on WhatsApp for today&apos;s confirmed rate and availability.</strong>
                 </p>
               </div>
 
@@ -269,7 +269,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   <div className="rounded-xl border border-emerald-200 bg-emerald-50/80 p-3.5 text-xs text-emerald-900 flex items-start space-x-2.5 sm:col-span-2">
                     <Calendar className="h-4 w-4 text-emerald-700 shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-bold block">Hatchery Dispatch Schedule:</span>
+                      <span className="font-bold block">Dispatch Schedule:</span>
                       Nationwide dispatch departures every <strong>{product.dispatchDays.join(' and ')}</strong>. Please place reservations at least 48h in advance.
                     </div>
                   </div>

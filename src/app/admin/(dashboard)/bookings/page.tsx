@@ -4,8 +4,8 @@ import { getLiveBookings, getUpcomingQuotas } from '@/lib/supabase/data-access';
 import BookingsClient from './bookings-client';
 
 export const metadata: Metadata = {
-  title: 'Chick Bookings & Hatchery Allocations — Admin Operations | D-AminGrow',
-  description: 'Manage Day-Old Chick reservations, deposit verifications, hatchery quotas, and motor park dispatch manifests.',
+  title: 'Chick Bookings & Management — Admin Operations | D-AminGrow',
+  description: 'Manage Day-Old Chick reservations, deposit verifications, weekly quotas, and motor park dispatch manifests.',
 };
 
 export default async function AdminBookingsPage() {

@@ -110,7 +110,7 @@ export default function ShippingPolicyPage() {
               3. Day-Old Chick Dispatch Schedule & Interstate Hubs
             </h2>
             <p>
-              Day-old chicks are hatched and dispatched on fixed weekly days: <strong>Tuesdays and Thursdays</strong>. Shipments arrive at designated major collection depots across the country:
+              Day-old chicks are hatched and dispatched on fixed weekly days: <strong>Mondays and Thursdays</strong>. Shipments arrive at designated major collection depots across the country:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
               <div className="rounded-xl border border-slate-100 bg-slate-50 p-3.5 space-y-1">
@@ -150,7 +150,7 @@ export default function ShippingPolicyPage() {
               4. Interstate Transport Fares & Waybill Charges
             </h2>
             <p>
-              Product prices listed on the storefront are ex-depot/hatchery rates and do not include interstate road waybill charges. Transport fees vary depending on the destination state, volume of cartons, and current motor-park union tariffs:
+              Product prices listed on the storefront are ex-depot rates and do not include interstate road waybill charges. Transport fees vary depending on the destination state, volume of cartons, and current motor-park union tariffs:
             </p>
             <ul className="list-disc pl-5 space-y-1 text-slate-600">
               <li>Our sales desk provides an exact transport quote upon reviewing your order city and carton quantity.</li>

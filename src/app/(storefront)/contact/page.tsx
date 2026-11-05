@@ -37,7 +37,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Do you deliver across all Nigerian states?',
-    a: 'Yes. We dispatch to all 36 states and FCT via registered motor parks. Day-old chicks depart every Tuesday and Thursday.',
+    a: 'Yes. We dispatch to all 36 states and FCT via registered motor parks. Day-old chicks depart every Monday and Thursday.',
   },
   {
     q: 'Are your vaccines properly cold-chained?',
@@ -434,7 +434,7 @@ export default function ContactPage() {
                         <textarea
                           name="message"
                           rows={5}
-                          placeholder="Tell us what you need — e.g. 'I want to book 200 cartons of broiler chicks for next Tuesday, what is the current price?'"
+                          placeholder="Tell us what you need — e.g. 'I want to book 200 cartons of broiler chicks for next Monday, what is the current price?'"
                           value={formData.message}
                           onChange={handleChange}
                           className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all resize-none"

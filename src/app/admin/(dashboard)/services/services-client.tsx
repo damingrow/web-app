@@ -286,7 +286,7 @@ export default function ServicesClient({ initialEnquiries }: ServicesClientProps
               <span>OPERATIONS DESK • MODULE 04</span>
             </div>
             <h1 className="text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-950 font-heading">
-              Services &amp; Veterinary Consultations Desk
+              Services &amp; Consultations Desk
             </h1>
             <p className="max-w-2xl text-xs sm:text-sm text-slate-600 leading-relaxed">
               VCN-supervised commercial poultry farm setup engineering, least-cost feed formulation advisory, on-site biosecurity audits, and acute pathology triage across Nigerian farm zones.

@@ -290,7 +290,7 @@ export default function BrooderCalculatorClient() {
 
                   <div className="flex justify-between py-3 border-t-2 border-slate-200 text-xs text-slate-600">
                     <span className="font-semibold">Pricing Policy:</span>
-                    <span className="text-emerald-800 font-extrabold">Weekly Verified Hatchery & Manufacturer Rates</span>
+                    <span className="text-emerald-800 font-extrabold">Weekly Verified Commercial Breeder & Manufacturer Rates</span>
                   </div>
                 </div>
 

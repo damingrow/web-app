@@ -20,18 +20,21 @@ import { getUpcomingDispatchDates, UpcomingDispatchDate } from '@/lib/booking/bo
 
 const HATCHERY_BRANDS = [
   { code: 'CHI', name: 'CHI Farms Limited (Arbor Acres Plus / ISA Brown)', location: 'Ajanla, Ibadan' },
-  { code: 'AMO', name: 'Amo Farm Sieberer Hatchery Ltd (Broilers / Noiler)', location: 'Awe / Oyo' },
+  { code: 'AMO', name: 'Amo Farm Sieberer Ltd (Broilers / Noiler)', location: 'Awe / Oyo' },
   { code: 'ZAR', name: 'Zartech Farms Limited (Cobb 500 / Black & Brown Pullets)', location: 'Oluyole, Ibadan' },
   { code: 'SUP', name: 'Supreme Poultry Farms (Supreme Broilers & Pullets)', location: 'Oyo / Ogun Corridor' },
   { code: 'AGR', name: 'AGRITED Limited (Ross 308 / Novogen Brown)', location: 'Oyo State Operations' },
 ];
 
 const CHICK_BREEDS = [
-  { id: 'broiler', name: 'Commercial Day-Old Broilers (Cobb 500 / Ross 308 / Arbor Acres)', rule: '50 + 1 chick bonus per box', ratePerCarton: 48000 },
-  { id: 'pullet', name: 'Commercial Day-Old Layer Pullets (ISA Brown / Novogen)', rule: '50 + 1 chick bonus per box', ratePerCarton: 52000 },
-  { id: 'turkey', name: 'Commercial Day-Old Turkey Poults (Broad-Breasted)', rule: '25 poults per box', ratePerCarton: 65000 },
-  { id: 'duckling', name: 'Commercial Day-Old Ducklings (Keets)', rule: '50 + 1 duckling bonus per box', ratePerCarton: 45000 },
-  { id: 'pol', name: 'Point-of-Lay Birds (17–18 Weeks Old)', rule: '10 birds per specialized crate', ratePerCarton: 140000 },
+  { id: 'broiler', name: 'Commercial Broilers', rule: '50 per carton', ratePerCarton: 100000, pricePerBird: 2000, birdsPerBox: 50 },
+  { id: 'pullet', name: 'Zartech Pullet', rule: '50 per carton', ratePerCarton: 135000, pricePerBird: 2700, birdsPerBox: 50 },
+  { id: 'hybrid-turkey', name: 'Hybrid Turkey', rule: '30 in carton', ratePerCarton: 165000, pricePerBird: 5500, birdsPerBox: 30 },
+  { id: 'local-turkey', name: 'Local Turkey', rule: '30 in a carton', ratePerCarton: 69000, pricePerBird: 2300, birdsPerBox: 30 },
+  { id: 'noiler', name: 'Noiler', rule: '50 in a carton', ratePerCarton: 37500, pricePerBird: 750, birdsPerBox: 50 },
+  { id: 'cockerel', name: 'Cockerel', rule: '50 in a carton', ratePerCarton: 5000, pricePerBird: 100, birdsPerBox: 50 },
+  { id: 'duckling', name: 'Commercial Day-Old Ducklings (Keets)', rule: '50 per carton', ratePerCarton: 45000, pricePerBird: 900, birdsPerBox: 50 },
+  { id: 'pol', name: 'Point-of-Lay Birds (17–18 Weeks Old)', rule: '10 birds per specialized crate', ratePerCarton: 140000, pricePerBird: 14000, birdsPerBox: 10 },
 ];
 
 const NIGERIAN_STATES = [
@@ -77,7 +80,7 @@ export default function ChickBookingForm() {
   const [copiedAccount, setCopiedAccount] = useState<boolean>(false);
 
   useEffect(() => {
-    // Generate the next 6 upcoming Tuesday/Thursday dates
+    // Generate the next 6 upcoming Monday/Thursday dates
     const dates = getUpcomingDispatchDates(6);
     setUpcomingDates(dates);
     if (dates.length > 0) {
@@ -86,12 +89,10 @@ export default function ChickBookingForm() {
   }, []);
 
   const safeCartons = Math.max(1, cartonCount || 1);
-  const selectedBreedObj = CHICK_BREEDS.find((b) => b.id === selectedBreedId) || CHICK_BREEDS[0];
-  const isTurkey = selectedBreedId === 'turkey';
-  const isPol = selectedBreedId === 'pol';
-  const birdsPerBox = isTurkey ? 25 : (isPol ? 10 : 51);
+  const selectedBreedObj = CHICK_BREEDS.find((b) => b.id === selectedBreedId) ?? CHICK_BREEDS[0]!;
+  const birdsPerBox = selectedBreedObj.birdsPerBox;
   const totalChicks = safeCartons * birdsPerBox;
-  const estimatedTotal = safeCartons * (selectedBreedObj?.ratePerCarton || 48000);
+  const estimatedTotal = safeCartons * selectedBreedObj.ratePerCarton;
   const requiredDeposit = Math.round(estimatedTotal * 0.5);
 
   const handleCopyAccount = (text: string) => {
@@ -125,7 +126,7 @@ export default function ChickBookingForm() {
           hatcheryCode: selectedHatcheryCode,
           cartonsCount: safeCartons,
           dispatchDate: selectedDateObj?.date,
-          notes: `Preferred Dispatch Date: ${selectedDateObj?.formattedDate || 'Upcoming Tuesday'}. Notes: ${notes}`,
+          notes: `Preferred Dispatch Date: ${selectedDateObj?.formattedDate || 'Upcoming Monday'}. Notes: ${notes}`,
         }),
       });
 
@@ -147,7 +148,7 @@ export default function ChickBookingForm() {
           `*Ref:* ${fallbackRef}\n` +
           `*Farmer:* ${farmerName.trim()} (${farmerPhone.trim()})\n` +
           `*Breed:* ${selectedBreedId.toUpperCase()}\n` +
-          `*Hatchery:* ${selectedHatcheryCode}\n` +
+          `*Supplier:* ${selectedHatcheryCode}\n` +
           `*Quantity:* ${safeCartons} Cartons (~${totalChicks} Chicks)\n` +
           `*Destination:* ${deliveryState} (${deliveryCity})\n` +
           `*Dispatch Date:* ${selectedDateObj?.formattedDate || 'Upcoming Run'}\n\n` +
@@ -180,7 +181,7 @@ export default function ChickBookingForm() {
               Day-Old Chick Booking Engine
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Select verified grandparent hatcheries, reserve your cartons with concurrency protection, and lock in Tuesday/Thursday nationwide dispatch.
+              Select verified grandparent hatcheries, reserve your cartons with concurrency protection, and lock in Monday/Thursday nationwide dispatch.
             </p>
           </div>
 
@@ -234,10 +235,10 @@ export default function ChickBookingForm() {
             </div>
           </div>
 
-          {/* 2. Partner Hatchery Selection */}
+          {/* 2. Bird Supplier Selection */}
           <div className="space-y-2.5">
             <label className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-              2. Select Certified Partner Hatchery
+              2. Select Bird Supplier
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {HATCHERY_BRANDS.map((brand) => (
@@ -270,7 +271,7 @@ export default function ChickBookingForm() {
           <div className="space-y-2.5">
             <div className="flex items-center justify-between">
               <label className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                3. Choose Upcoming Dispatch Date (Tuesday / Thursday Runs)
+                3. Choose Upcoming Dispatch Date (Monday / Thursday Runs)
               </label>
               <span className="text-[11px] text-slate-500">Pick next available hatch day</span>
             </div>
@@ -319,7 +320,7 @@ export default function ChickBookingForm() {
                 max={500}
                 value={cartonCount}
                 onChange={(e) => setCartonCount(Number(e.target.value))}
-                helperText={`Yield: ${totalChicks.toLocaleString()} live birds (${safeCartons * (isTurkey ? 0 : 1)} free bonus chicks)`}
+                helperText={`Yield: ${totalChicks.toLocaleString()} live birds total`}
               />
             </div>
 
@@ -370,7 +371,7 @@ export default function ChickBookingForm() {
             <div>
               <div className="text-[11px] text-emerald-400 font-semibold uppercase tracking-wider">Dispatch Run</div>
               <div className="text-sm font-bold text-white mt-1">
-                {selectedDateObj?.formattedDate || 'Upcoming Tuesday'}
+                {selectedDateObj?.formattedDate || 'Upcoming Monday'}
               </div>
               <div className="text-[10px] text-slate-300 mt-0.5">Temperature-monitored vehicle waybill</div>
             </div>
@@ -434,7 +435,7 @@ export default function ChickBookingForm() {
             >
               <MessageCircle className="h-5 w-5 mr-2" />
               <span>
-                {isSubmitting ? 'Holding Hatchery Allocation...' : `Reserve ${safeCartons} Cartons for ${selectedDateObj?.formattedDate || 'Upcoming Run'}`}
+                {isSubmitting ? 'Placing Booking Request...' : `Reserve ${safeCartons} Cartons for ${selectedDateObj?.formattedDate || 'Upcoming Run'}`}
               </span>
             </Button>
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-500 mt-3">

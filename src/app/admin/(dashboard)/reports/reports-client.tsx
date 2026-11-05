@@ -167,7 +167,7 @@ export default function ReportsClient({
   /* ── CSV Export ── */
   const handleExportCSV = () => {
     const headers = [
-      'Booking Ref','Customer','Phone','Farm','Breed','Hatchery',
+      'Booking Ref','Customer','Phone','Farm','Breed','Collection Hub',
       'Cartons','Birds','Total NGN','Deposit NGN','Deposit Status',
       'Booking Status','State','Hub','Created',
     ];
@@ -570,7 +570,7 @@ export default function ReportsClient({
               <table className="w-full text-left text-xs">
                 <thead className="bg-slate-50 border-b border-slate-100">
                   <tr>
-                    {['Ref', 'Customer', 'Breed / Hatchery', 'Cartons', 'Est. Total', 'Deposit', 'Status', 'State'].map((h) => (
+                    {['Ref', 'Customer', 'Breed / Supplier', 'Cartons', 'Est. Total', 'Deposit', 'Status', 'State'].map((h) => (
                       <th key={h} className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 whitespace-nowrap">{h}</th>
                     ))}
                   </tr>
@@ -689,13 +689,13 @@ export default function ReportsClient({
               </div>
             </div>
 
-            {/* Hatchery Booking Share */}
+            {/* Booking Share by Breed */}
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex items-center justify-between mb-5">
                 <div>
                   <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                     <Building2 className="h-4 w-4 text-emerald-600" />
-                    Hatchery Booking Allocation
+                    Booking Allocation by Breed
                   </h2>
                   <p className="text-[11px] text-slate-400 mt-0.5">Share from confirmed bookings</p>
                 </div>
@@ -1019,7 +1019,7 @@ export default function ReportsClient({
                       { kw: 'Cobb 500 chick price per carton', pos: 1, vol: '3.9K', up: true },
                       { kw: 'poultry feed formulation Nigeria', pos: 4, vol: '6.2K', up: false },
                       { kw: 'broiler brooding temperature guide', pos: 5, vol: '2.8K', up: true },
-                      { kw: 'VCN accredited hatchery Ibadan', pos: 2, vol: '1.9K', up: true },
+                      { kw: 'VCN accredited poultry dealer Ibadan', pos: 2, vol: '1.9K', up: true },
                       { kw: 'chick booking online delivery', pos: 6, vol: '4.1K', up: true },
                     ].map((row) => (
                       <tr key={row.kw} className="hover:bg-slate-50/60">
@@ -1066,7 +1066,7 @@ export default function ReportsClient({
                 { pillar: 'Feed Formulation', icon: '🌾', desc: 'Pearson Square calculator · NRC protein standards', articles: 31, color: 'emerald' },
                 { pillar: 'Disease & VCN Vet', icon: '💊', desc: 'Clinical triage & outbreak response protocols', articles: 15, color: 'red' },
                 { pillar: 'Farm Calculators', icon: '📊', desc: 'Revenue, FCR, mortality & profit projections', articles: 12, color: 'purple' },
-                { pillar: 'Market Intelligence', icon: '📈', desc: 'Seasonal demand, state pricing & hatchery alerts', articles: 9, color: 'cyan' },
+                { pillar: 'Market Intelligence', icon: '📈', desc: 'Seasonal demand, state pricing & dispatch alerts', articles: 9, color: 'cyan' },
               ].map((p) => (
                 <div key={p.pillar} className={`p-4 rounded-xl border bg-gradient-to-br from-${p.color}-50/60 to-white border-${p.color}-100/50 hover:shadow-sm transition-all`}>
                   <div className="text-2xl mb-2">{p.icon}</div>

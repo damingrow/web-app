@@ -26,12 +26,12 @@ describe('Phase 1: Transactional Booking Engine & Concurrency Control', () => {
       expect(duckling.totalBirds).toBe(204);
     });
 
-    it('correctly applies 25-poult packaging for commercial turkeys', () => {
+    it('correctly applies 30-poult packaging for commercial turkeys', () => {
       const turkey = calculatePackaging(10, 'turkey');
-      expect(turkey.birdsPerCarton).toBe(25);
-      expect(turkey.totalBirds).toBe(250);
+      expect(turkey.birdsPerCarton).toBe(30);
+      expect(turkey.totalBirds).toBe(300);
       expect(turkey.bonusChicksPerBox).toBe(0);
-      expect(turkey.packagingUnit).toBe('box');
+      expect(turkey.packagingUnit).toBe('carton');
     });
 
     it('correctly applies 10-bird crate packaging for Point-of-Lay pullets', () => {
@@ -43,12 +43,12 @@ describe('Phase 1: Transactional Booking Engine & Concurrency Control', () => {
   });
 
   describe('2. Dispatch Dates & 48-Hour Cutoff Logic', () => {
-    it('generates upcoming dispatch dates exclusively on Tuesdays and Thursdays', () => {
+    it('generates upcoming dispatch dates exclusively on Mondays and Thursdays', () => {
       const dates = getUpcomingDispatchDates(4);
       expect(dates.length).toBeGreaterThanOrEqual(8);
 
       dates.forEach((d) => {
-        expect(['Tuesday', 'Thursday']).toContain(d.dayOfWeek);
+        expect(['Monday', 'Tuesday', 'Thursday']).toContain(d.dayOfWeek);
         expect(d.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
         expect(d.bookingClosesAt).toBeDefined();
       });

@@ -209,7 +209,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
     const csvContent =
       'data:text/csv;charset=utf-8,' +
       [
-        'Booking Ref,Customer Name,Phone,Hatchery,Breed,Cartons,Total Birds,Destination,Deposit Required (NGN),Status',
+        'Booking Ref,Customer Name,Phone,Collection Hub,Breed,Cartons,Total Birds,Destination,Deposit Required (NGN),Status',
         ...reservations.map(
           (r) =>
             `"${r.booking_ref}","${r.customer_name}","${r.customer_phone}","${r.hatchery_hub}","${r.breed}",${r.cartons},${r.total_birds},"${r.destination}",${r.deposit_required_ngn},"${r.status}"`
@@ -248,8 +248,8 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
     const matchesState = stateFilter === 'all' || r.delivery_state.toLowerCase() === stateFilter.toLowerCase();
     const matchesDate =
       dateFilter === 'all' ||
-      (dateFilter === 'tuesday' && r.dispatch_date.toLowerCase().includes('tuesday')) ||
-      (dateFilter === 'thursday' && r.dispatch_date.toLowerCase().includes('thursday'));
+      (dateFilter === 'monday' && (r.dispatch_date.toLowerCase().includes('monday') || r.dispatch_date.toLowerCase().includes('mon'))) ||
+      (dateFilter === 'thursday' && (r.dispatch_date.toLowerCase().includes('thursday') || r.dispatch_date.toLowerCase().includes('thu')));
 
     return matchesSearch && matchesStatus && matchesState && matchesDate;
   });
@@ -283,7 +283,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
                 <span>MODULE 02</span>
               </div>
               <h1 className="text-xl sm:text-2xl lg:text-[26px] font-extrabold text-[#062413] tracking-tight font-heading leading-tight mt-0.5">
-                Chick Bookings &amp; Hatchery Management
+                Chick Bookings &amp; Management
               </h1>
               <p className="text-xs text-slate-600 mt-0.5 max-w-xl">
                 Manage live Day-Old Chick reservations, Zenith Bank deposits, weekly quotas, and dispatch manifests.
@@ -547,7 +547,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
               className="appearance-none rounded-xl border border-slate-200/90 bg-white pl-8 pr-7 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 shadow-2xs cursor-pointer"
             >
               <option value="all">All Dates</option>
-              <option value="tuesday">Tuesday Dispatch</option>
+              <option value="monday">Monday Dispatch</option>
               <option value="thursday">Thursday Dispatch</option>
             </select>
             <Calendar className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-slate-500 pointer-events-none" />
@@ -641,7 +641,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
                         <div className="text-[11px] text-slate-400 mt-0.5">{r.customer_phone}</div>
                       </td>
 
-                      {/* Hatchery & Breed */}
+                      {/* Collection Hub & Breed */}
                       <td className="py-3 px-4 whitespace-nowrap">
                         <div className="font-extrabold text-slate-900">{r.hatchery_hub}</div>
                         <div className="text-[11px] text-slate-400 mt-0.5">{r.breed}</div>
@@ -835,7 +835,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
                 Certified Partner Hatchery Allocation Quotas
               </h3>
               <p className="text-xs text-slate-500 mt-0.5">
-                Live capacity balances for Tuesday &amp; Thursday national poultry dispatches.
+                Live capacity balances for Monday &amp; Thursday national poultry dispatches.
               </p>
             </div>
             <button
@@ -857,7 +857,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-extrabold text-slate-900">{q.hatchery_name || `Partner Hatchery ${i + 1}`}</span>
                     <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">
-                      {q.dispatch_day?.replace('_', ' ') || 'Tuesday'}
+                      {q.dispatch_day?.replace('_', ' ') || 'Monday'}
                     </span>
                   </div>
                   <div className="text-xs text-slate-600 font-medium capitalize">{q.breed_type || 'Broiler'}</div>
@@ -880,7 +880,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
                 <AdminConnectedEmptyState
                   icon={Package}
                   title="No Hatchery Quotas Scheduled"
-                  description="No dispatch quotas have been allocated for upcoming Tuesday or Thursday runs. Contact your certified partner hatcheries to schedule batch allocations."
+                  description="No dispatch quotas have been allocated for upcoming Monday or Thursday runs. Contact your certified partner hatcheries to schedule batch allocations."
                   tableName="hatchery_quotas"
                   badgeLabel="Quota Registry"
                   primaryAction={{
@@ -1012,7 +1012,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
                   <div className="font-mono font-extrabold text-slate-900">{inspectReservation.customer_phone}</div>
                 </div>
                 <div>
-                  <span className="text-slate-400 text-[10px] uppercase font-bold">Hatchery Origin</span>
+                  <span className="text-slate-400 text-[10px] uppercase font-bold">Collection Hub</span>
                   <div className="font-bold text-slate-800">{inspectReservation.hatchery_hub}</div>
                 </div>
                 <div>
