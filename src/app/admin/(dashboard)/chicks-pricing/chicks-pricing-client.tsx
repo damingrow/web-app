@@ -302,12 +302,17 @@ function EditPriceModal({
 
           {/* Price Slider + Input */}
           <div>
-            <label className="block text-xs font-extrabold text-slate-700 mb-2">Exact Price Per Carton (₦)</label>
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-xs font-extrabold text-slate-700">Exact Price Per Carton (₦)</label>
+              <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
+                ₦{Math.round(price / (row.birdsPerCarton || 50)).toLocaleString()} per bird
+              </span>
+            </div>
             <div className="relative">
               <span className="absolute left-3.5 top-3 text-slate-400 font-bold text-sm">₦</span>
               <input
                 type="number"
-                min={5000}
+                min={1000}
                 step={500}
                 value={price}
                 onChange={(e) => setPrice(Number(e.target.value))}
@@ -316,17 +321,17 @@ function EditPriceModal({
             </div>
             <input
               type="range"
-              min={10000}
-              max={100000}
+              min={1000}
+              max={250000}
               step={500}
               value={price}
               onChange={(e) => setPrice(Number(e.target.value))}
               className="w-full mt-3 accent-emerald-600 cursor-pointer"
             />
             <div className="flex justify-between text-[10px] text-slate-400 font-bold mt-1">
-              <span>₦10,000</span>
-              <span>₦50,000</span>
+              <span>₦1,000 (Min)</span>
               <span>₦100,000</span>
+              <span>₦250,000 (Max)</span>
             </div>
           </div>
 
@@ -574,25 +579,46 @@ export default function ChicksPricingClient({
   const handlePublish = async () => {
     setSaving(true);
     try {
-      await fetch('/api/admin/chicks-pricing', {
+      const payloadRates = rates.map((r) => ({
+        id: r.id,
+        breed: r.breed,
+        hatcheryBrand: r.hatcheryBrand,
+        priceNgn: r.newPriceNgn,
+        status: r.status,
+        birdsPerCarton: r.birdsPerCarton,
+        category: r.category,
+        breedCode: r.breedCode,
+        dispatchDays: r.dispatchDays,
+      }));
+
+      const res = await fetch('/api/admin/chicks-pricing', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           effectiveDate,
           note: publishNote || 'Routine weekly price sync',
-          rates: rates.map((r) => ({
-            id: r.id,
-            breed: r.breed,
-            hatcheryBrand: r.hatcheryBrand,
-            priceNgn: r.newPriceNgn,
-            status: r.status,
-          })),
+          rates: payloadRates,
         }),
       });
-      // Commit new rates to current
+
+      // Commit new rates to current in client state
       setRates((prev) => prev.map((r) => ({ ...r, currentPriceNgn: r.newPriceNgn })));
-      setPublishedOk(true);
-      setTimeout(() => setPublishedOk(false), 5000);
+
+      // Broadcast immediately to localStorage for instant same-browser cross-tab updates without delay
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('damingrow_chick_rates', JSON.stringify(payloadRates));
+          localStorage.setItem('damingrow_chick_rates_timestamp', new Date().toISOString());
+          window.dispatchEvent(new Event('damingrow_chick_rates_updated'));
+        } catch {
+          // ignore
+        }
+      }
+
+      if (res.ok) {
+        setPublishedOk(true);
+        setTimeout(() => setPublishedOk(false), 5000);
+      }
     } catch {
       // Non-blocking fallback
     }

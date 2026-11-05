@@ -36,6 +36,8 @@ import {
   Check,
 } from 'lucide-react';
 import { ARTICLES } from '@/data/articles';
+import { LiveChickPricingSection } from '@/components/home/live-chick-pricing-section';
+import { BASELINE_CHICK_RATES } from '@/lib/chicks/pricing-store';
 
 export const metadata: Metadata = {
   title: 'D-AminGrow | Livestock Inputs, Day-Old Chicks & Poultry Solutions in Africa',
@@ -69,64 +71,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const featuredProducts = PRODUCTS.slice(0, 4);
   const latestArticles = ARTICLES.slice(0, 3);
-
-  // Live Dynamic Chick Pricing (Updated per verified market allotments)
-  const chickPricing = [
-    {
-      breed: 'Commercial Broilers',
-      rate: '₦2,000',
-      unit: 'per chick',
-      cartonQty: '50 in carton',
-      cartonTotal: '₦100,000',
-      badge: 'Fast FCR (1.60)',
-      accent: 'border-emerald-300 bg-emerald-50/50',
-    },
-    {
-      breed: 'Zartech Pullet',
-      rate: '₦2,700',
-      unit: 'per chick',
-      cartonQty: '50 in carton',
-      cartonTotal: '₦135,000',
-      badge: 'High Egg Yield',
-      accent: 'border-teal-300 bg-teal-50/50',
-    },
-    {
-      breed: 'Hybrid Turkey',
-      rate: '₦5,500',
-      unit: 'per poult',
-      cartonQty: '30 in carton',
-      cartonTotal: '₦165,000',
-      badge: 'Heavyweight',
-      accent: 'border-amber-300 bg-amber-50/50',
-    },
-    {
-      breed: 'Local Turkey',
-      rate: '₦2,300',
-      unit: 'per poult',
-      cartonQty: '30 in carton',
-      cartonTotal: '₦69,000',
-      badge: 'High Hardiness',
-      accent: 'border-orange-300 bg-orange-50/50',
-    },
-    {
-      breed: 'Noiler',
-      rate: '₦750',
-      unit: 'per chick',
-      cartonQty: '50 in carton',
-      cartonTotal: '₦37,500',
-      badge: 'Dual Purpose',
-      accent: 'border-lime-300 bg-lime-50/50',
-    },
-    {
-      breed: 'Cockerel',
-      rate: '₦100',
-      unit: 'per chick',
-      cartonQty: '50 in carton',
-      cartonTotal: '₦5,000',
-      badge: 'Budget Friendly',
-      accent: 'border-slate-300 bg-slate-50/50',
-    },
-  ];
 
   const stats = [
     { value: '98.4%', label: 'Brooding Livability Rate', sub: 'Target benchmark across client farms' },
@@ -474,73 +418,9 @@ export default function HomePage() {
       </section>
 
       {/* ====================================================================
-          LIVE BREED PRICING & CARTON BREAKDOWN — Transparency Engine
+          LIVE BREED PRICING & CARTON BREAKDOWN — Connected to Admin Command
           ==================================================================== */}
-      <section className="py-16 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-10 space-y-3">
-            <div className="section-label mx-auto w-fit">
-              <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
-              Live Allotment Pricing
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
-              Current Day-Old Chick & Poult Rates
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600">
-              Clear pricing per bird and per carton. Nationwide collection points and direct farm-gate delivery available every <strong>Monday & Thursday</strong>.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {chickPricing.map((item, idx) => (
-              <div
-                key={idx}
-                className={`rounded-2xl border p-5 flex flex-col justify-between transition-all hover:shadow-md ${item.accent}`}
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-white px-2.5 py-1 rounded-md border border-emerald-200">
-                      {item.badge}
-                    </span>
-                    <span className="text-xs text-slate-500 font-medium">{item.cartonQty}</span>
-                  </div>
-                  <h3 className="text-lg font-bold font-heading text-slate-900 mb-1">{item.breed}</h3>
-                  <div className="flex items-baseline gap-1.5 mb-2">
-                    <span className="text-2xl font-extrabold text-slate-900 font-heading">{item.rate}</span>
-                    <span className="text-xs text-slate-500">{item.unit}</span>
-                  </div>
-                  <div className="text-xs text-slate-600 mb-4 bg-white/80 rounded-lg p-2 border border-slate-200/80">
-                    Carton Total: <strong className="text-slate-900">{item.cartonTotal}</strong>
-                  </div>
-                </div>
-
-                <a
-                  href={`https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20book%20${encodeURIComponent(item.breed)}%20at%20${encodeURIComponent(item.rate)}%20for%20the%20next%20dispatch.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full text-center bg-slate-900 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded-lg transition-colors flex items-center justify-center gap-1.5"
-                >
-                  <MessageCircle className="h-3.5 w-3.5" />
-                  Book This Breed
-                </a>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-amber-900">
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-amber-700 shrink-0" />
-              <span><strong>Dispatch Notice:</strong> Orders close Sunday 2:00 PM (for Monday) and Wednesday 2:00 PM (for Thursday).</span>
-            </div>
-            <Link
-              href="/chicks"
-              className="font-bold text-amber-800 hover:text-amber-950 inline-flex items-center gap-1 shrink-0"
-            >
-              View Full Booking Calendar <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <LiveChickPricingSection initialRates={BASELINE_CHICK_RATES} />
 
       {/* ====================================================================
           PROBLEM EXPLANATION & WHY MOST FARMS FAIL — The Brutal Reality

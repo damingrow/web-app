@@ -1,9 +1,17 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { createAdminClient } from '@/lib/supabase/server';
 import { env } from '@/lib/env';
 import { requireStaffSession } from '@/lib/auth/server-guard';
 import { getPartnerHatcheries, getUpcomingQuotas } from '@/lib/supabase/data-access';
+import {
+  BASELINE_CHICK_RATES,
+  formatPriceItem,
+  getInMemoryChickRates,
+  setInMemoryChickRates,
+  ChickRateItem,
+} from '@/lib/chicks/pricing-store';
 
 export const revalidate = 0;
 
@@ -14,9 +22,13 @@ const priceSyncSchema = z.object({
     z.object({
       id: z.string(),
       breed: z.string(),
-      hatcheryBrand: z.string(),
+      hatcheryBrand: z.string().optional().default('Certified Partner'),
       priceNgn: z.number().positive(),
       status: z.enum(['active', 'limited_allocation', 'sold_out']),
+      birdsPerCarton: z.number().optional(),
+      category: z.string().optional(),
+      breedCode: z.string().optional(),
+      dispatchDays: z.string().optional(),
     })
   ),
 });
@@ -34,7 +46,8 @@ export async function GET() {
     ]);
 
     let latestAudit = null;
-    let savedRates = null;
+    let savedRates = getInMemoryChickRates();
+
     if (env.SUPABASE_SERVICE_ROLE_KEY) {
       try {
         const supabase = createAdminClient();
@@ -56,11 +69,11 @@ export async function GET() {
         if (auditData) {
           latestAudit = auditData;
         }
-        if (settingsData && settingsData.value_json) {
+        if (settingsData && settingsData.value_json && Array.isArray(settingsData.value_json)) {
           savedRates = settingsData.value_json;
         }
       } catch {
-        // non-blocking
+        // non-blocking fallback
       }
     }
 
@@ -92,7 +105,24 @@ export async function POST(request: Request) {
     const body = await request.json();
     const validated = priceSyncSchema.parse(body);
 
-    // If Supabase service role is present, record in audit_events and update database
+    // Update in-memory cache immediately for zero-delay synchronization across storefront
+    const updatedRates: ChickRateItem[] = BASELINE_CHICK_RATES.map((base) => {
+      const match = validated.rates.find(
+        (r) => r.id === base.id || r.breed.toLowerCase() === base.breed.toLowerCase()
+      );
+      if (match) {
+        return formatPriceItem({
+          ...base,
+          priceNgn: match.priceNgn,
+          status: match.status,
+        });
+      }
+      return base;
+    });
+
+    setInMemoryChickRates(updatedRates);
+
+    // If Supabase service role is present, persist in audit_events and application_settings
     if (env.SUPABASE_SERVICE_ROLE_KEY) {
       try {
         const supabase = createAdminClient();
@@ -121,12 +151,22 @@ export async function POST(request: Request) {
       }
     }
 
+    // Instantly invalidate ISR cache for storefront pages
+    try {
+      revalidatePath('/', 'page');
+      revalidatePath('/home', 'page');
+      revalidatePath('/chicks', 'page');
+    } catch {
+      // non-blocking
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Weekly chick rates synchronized successfully.',
       updatedCount: validated.rates.length,
       effectiveDate: validated.effectiveDate,
       synchronizedBy: staff!.fullName,
+      rates: updatedRates,
     });
   } catch (err) {
     if (err instanceof z.ZodError) {
