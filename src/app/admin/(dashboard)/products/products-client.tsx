@@ -277,7 +277,7 @@ export default function ProductsClient({ initialProducts }: ProductsClientProps)
               <span>OPERATIONS DESK • MODULE 03</span>
             </div>
             <h1 className="text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-950 font-heading">
-              Product Inventory &amp; NAFDAC Regulatory Clearance Desk
+              Product Inventory Center
             </h1>
             <p className="max-w-2xl text-xs sm:text-sm text-slate-600 leading-relaxed">
               Enterprise agricultural inventory governance, cold-chain biological integrity (2°C–8°C), NAFDAC pharmaceutical dossiers, withdrawal timeline monitoring, and zero-tolerance prohibited substance screening.

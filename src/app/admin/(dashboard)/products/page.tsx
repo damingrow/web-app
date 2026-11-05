@@ -4,7 +4,7 @@ import { PRODUCTS } from '@/data/products';
 import ProductsClient from './products-client';
 
 export const metadata: Metadata = {
-  title: 'NAFDAC Veterinary Inventory & Regulatory Controls — Admin Operations | D-AminGrow',
+  title: 'Product Inventory Center — Admin Operations | D-AminGrow',
   description: 'Manage agricultural products, NAFDAC regulatory compliance dossiers, cold-chain specifications, and withdrawal timelines.',
 };
 
