@@ -536,8 +536,7 @@ export default function SupportClient({ initialEnquiries = [], initialBookings =
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight font-heading">
-              Customer Support &amp;{' '}
-              <span className="text-[#2ee571]">Issue Resolution Desk</span>
+              Customer Support <span className="text-[#2ee571]">Center</span>
             </h1>
             <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
               Track post-dispatch arrival inquiries, transit mortality escalations, waybill tracking, cold chain validation,

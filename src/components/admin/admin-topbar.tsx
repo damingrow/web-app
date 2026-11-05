@@ -106,7 +106,7 @@ export function AdminTopbar({ onToggleSidebar }: AdminTopbarProps) {
     { name: '04. Farmer CRM & Lifetime Accounts', href: '/admin/crm', icon: Users, category: 'Customer Base' },
     { name: '05. Products Catalog & NAFDAC Gate', href: '/admin/products', icon: Package, category: 'Commerce' },
     { name: '06. Live Chick Market Rates Sync', href: '/admin/chicks-pricing', icon: TrendingUp, category: 'Commerce' },
-    { name: '07. 6-Pillar Editorial & Traffic Hub', href: '/admin/content', icon: Package, category: 'Growth & SEO' },
+    { name: '07. Blog Editorial & Traffic Engine', href: '/admin/content', icon: Package, category: 'Growth & SEO' },
     { name: '08. Marketing & Lead Attribution', href: '/admin/marketing', icon: Package, category: 'Growth & SEO' },
     { name: '09. Executive Reports & Financials', href: '/admin/reports', icon: TrendingUp, category: 'Analytics' },
   ];

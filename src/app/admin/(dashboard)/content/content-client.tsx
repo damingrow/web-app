@@ -287,7 +287,7 @@ export default function ContentClient({ articles: initialArticles }: ContentClie
               </div>
 
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight font-heading">
-                6-Pillar Editorial Publishing &amp;{' '}
+                Blog Editorial &amp;{' '}
                 <span className="text-[#2ee571]">Traffic Engine</span>
               </h1>
               <p className="text-xs sm:text-sm text-white/70 leading-relaxed">

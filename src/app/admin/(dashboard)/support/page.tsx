@@ -4,7 +4,7 @@ import { getLiveEnquiries, getLiveBookings } from '@/lib/supabase/data-access';
 import SupportClient from './support-client';
 
 export const metadata: Metadata = {
-  title: 'Customer Support & Issue Resolution Desk — Admin Operations | D-AminGrow',
+  title: 'Customer Support Center — Admin Operations | D-AminGrow',
   description:
     'Manage post-dispatch chick arrival tickets, transit mortality reviews, waybill tracking, cold chain verification, and VCN clinical triage.',
 };
