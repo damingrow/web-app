@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Us | Leading Agro-Allied & Livestock Health Company Nigeria',
     description:
-      "D-AminGrow is the farmer's knowledgeable partner in Nigeria. Direct certified hatchery bookings, cold-chain vaccines, and professional livestock consultancy.",
+      "D-AminGrow: Your Reliable Partners in Africa. Direct certified hatchery bookings, cold-chain vaccines, and professional livestock consultancy.",
     url: 'https://damingrow.com/about',
     siteName: 'D-AminGrow',
     locale: 'en_NG',
@@ -266,8 +266,8 @@ export default function AboutPage() {
               {/* Exact H1 Directive */}
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.12]">
-                  About D-AminGrow: The Farmer&apos;s Knowledgeable{' '}
-                  <span className="text-gradient-green">Partner in Nigeria</span>
+                  D-AminGrow: Your Reliable{' '}
+                  <span className="text-gradient-green">Partners in Africa</span>
                 </h1>
                 <p className="text-base sm:text-lg text-slate-300 font-medium max-w-2xl leading-relaxed">
                   We exist to eliminate the costly guesswork in African animal farming. Through verified parent-stock chick allotments, 2°C–8°C vaccine cold-chain protection, authentic NAFDAC veterinary medications, and practical flock management guidance, we protect your farm investments from brooding to market day.
