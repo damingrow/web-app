@@ -27,12 +27,16 @@ import {
   Layers,
   Thermometer,
   Award,
+  Target,
+  HeartHandshake,
+  Globe,
+  Sparkles,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us | Leading Agro-Allied & Livestock Health Company Nigeria',
+  title: 'About Us | Leading Agro-Allied Company in Nigeria',
   description:
-    'About D-AminGrow: Leading agro-allied company in Nigeria providing certified day-old chicks, 2°C–8°C cold-chain vaccines, NAFDAC-approved livestock drugs, and farm advisory across Africa.',
+    'About D-AminGrow: Leading agro-allied company in Nigeria specialized in livestock vaccines, drugs, farmhouse accessories, technical consultation services, and sales and distribution of day-old chicks across Africa.',
   keywords: [
     'agro allied company in nigeria',
     'agricultural enterprise Nigeria',
@@ -46,9 +50,9 @@ export const metadata: Metadata = {
     'damingrow company profile and mission',
   ],
   openGraph: {
-    title: 'About Us | Leading Agro-Allied & Livestock Health Company Nigeria',
+    title: 'About Us | Leading Agro-Allied Company in Nigeria',
     description:
-      "D-AminGrow: Your Reliable Partners in Africa. Direct certified hatchery bookings, cold-chain vaccines, and professional livestock consultancy.",
+      'D-AminGrow: Reliable Agro-Allied Company in Africa. Specialized in livestock vaccines, drugs, farmhouse accessories, technical consultation services, and sales and distribution of day-old chicks.',
     url: 'https://damingrow.com/about',
     siteName: 'D-AminGrow',
     locale: 'en_NG',
@@ -65,7 +69,8 @@ export default function AboutPage() {
     url: 'https://damingrow.com',
     logo: 'https://damingrow.com/Brand%20identity/damingrow%20logo.png',
     description:
-      'Premier agro-allied livestock health partner, poultry distributor, and agricultural consultancy enterprise in Nigeria and West Africa.',
+      'D-AminGrow is an agro-allied company specialized in livestock vaccines, Drugs, farmhouse accessories, offers technical consultation services, and sales and distribution of day-old chicks across Nigeria and Africa.',
+    slogan: 'Your satisfaction is our priority',
     founder: {
       '@type': 'Person',
       name: 'D-AminGrow Executive Team',
@@ -208,34 +213,6 @@ export default function AboutPage() {
       />
 
       {/* ====================================================================
-          TOP DISPATCH ANNOUNCEMENT BAR
-          ==================================================================== */}
-      <div className="bg-emerald-950 text-white border-b border-emerald-800/60 py-2.5 px-4 text-xs font-medium">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="text-emerald-300 font-semibold">Agricultural Enterprise Nigeria:</span>
-            <span>Direct partner hatchery allotments dispatched every <strong>Monday & Thursday</strong>.</span>
-          </div>
-          <div className="flex items-center gap-4 text-slate-300">
-            <span>Zenith Bank: 1017894562</span>
-            <span className="text-slate-600">|</span>
-            <a
-              href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20learn%20more%20about%20your%20company%20and%20supplies."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1"
-            >
-              Connect With Technical Desk <ArrowRight className="h-3 w-3" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* ====================================================================
           1. HERO SECTION — 2-Grid Columns matching Homepage
           ==================================================================== */}
       <section className="relative hero-mesh overflow-hidden min-h-[85vh] flex items-center bg-[#050E08] text-white">
@@ -259,27 +236,27 @@ export default function AboutPage() {
               <div>
                 <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 rounded-full">
                   <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                  Leading Agro-Allied & Livestock Health Company Nigeria
+                  Leading Agro-Allied Company in Nigeria
                 </div>
               </div>
 
               {/* Exact H1 Directive */}
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.12]">
-                  D-AminGrow: Your Reliable{' '}
-                  <span className="text-gradient-green">Partners in Africa</span>
+                  D-AminGrow: Reliable{' '}
+                  <span className="text-gradient-green">Agro-Allied Company in Africa</span>
                 </h1>
                 <p className="text-base sm:text-lg text-slate-300 font-medium max-w-2xl leading-relaxed">
-                  We exist to eliminate the costly guesswork in African animal farming. Through verified parent-stock chick allotments, 2°C–8°C vaccine cold-chain protection, authentic NAFDAC veterinary medications, and practical flock management guidance, we protect your farm investments from brooding to market day.
+                  D-AminGrow is an agro-allied company specialized in livestock vaccines, Drugs, farmhouse accessories, offers technical consultation services, and sales and distribution of day-old chicks.
                 </p>
               </div>
 
-              {/* Brand Motto Pill */}
+              {/* Brand Motto / Slogan Pill */}
               <div>
                 <div className="inline-flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-full px-5 py-2 text-xs">
-                  <span className="text-slate-400 font-medium uppercase tracking-wider">Our Operating Creed</span>
+                  <span className="text-slate-400 font-medium uppercase tracking-wider">Motor / Slogan</span>
                   <span className="text-slate-500">•</span>
-                  <span className="text-emerald-400 font-bold italic">&ldquo;Your Satisfaction Is Our Priority&rdquo;</span>
+                  <span className="text-emerald-400 font-bold italic">&ldquo;Your satisfaction is our priority&rdquo;</span>
                 </div>
               </div>
 
@@ -330,34 +307,45 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Right Column (5 cols): Visual Showcase Card with Telemetry Badges */}
+            {/* Right Column (5 cols): Visual Showcase Card with Logo & Credential Badges */}
             <div className="lg:col-span-5 relative mt-6 lg:mt-0">
-              <div className="relative rounded-3xl overflow-hidden border border-emerald-500/30 bg-gradient-to-b from-emerald-950/60 to-black/80 p-3 shadow-2xl backdrop-blur-md">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                  <Image
-                    src="/images/poultry-hero.jpg"
-                    alt="D-AminGrow livestock health and commercial poultry operations in Nigeria"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 500px"
-                    className="object-cover"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+              <div className="relative rounded-3xl overflow-hidden border border-emerald-500/30 bg-gradient-to-b from-emerald-950/70 via-slate-950/80 to-black p-3 shadow-2xl backdrop-blur-md">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-black/90 via-emerald-950/40 to-black/95 flex items-center justify-center p-6 border border-emerald-500/10">
+                  {/* Subtle radial emerald illumination */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-500/20 via-transparent to-transparent pointer-events-none" />
 
-                  {/* Float capsule 1 */}
-                  <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md border border-white/15 rounded-xl px-3.5 py-2 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#2ee571] animate-pulse" />
-                    <span className="text-xs font-bold text-white tracking-wide">Direct Hatchery Liaison</span>
+                  {/* Logo with high-end framing */}
+                  <div className="relative w-4/5 h-4/5 max-w-[280px] max-h-[280px]">
+                    <Image
+                      src="/Brand identity/damingrow logo.png"
+                      alt="D-AminGrow Logo — Reliable Agro-Allied Company in Africa"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="object-contain drop-shadow-[0_12px_30px_rgba(46,229,113,0.35)]"
+                      priority
+                    />
                   </div>
 
-                  {/* Float capsule 2 */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-emerald-950/85 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-4 text-white">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#2ee571]">Field Credential</span>
-                      <span className="text-[11px] text-emerald-200">Across 36 States</span>
+                  {/* Top Slogan / Motor Badge */}
+                  <div className="absolute top-3.5 left-3.5 bg-black/80 backdrop-blur-md border border-emerald-500/30 rounded-xl px-3.5 py-1.5 flex items-center gap-2 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-[#2ee571] animate-pulse" />
+                    <span className="text-xs font-bold text-white tracking-wide">
+                      Your satisfaction is our priority
+                    </span>
+                  </div>
+
+                  {/* Bottom Specialization Capsule */}
+                  <div className="absolute bottom-3.5 left-3.5 right-3.5 bg-emerald-950/90 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-3.5 text-white shadow-xl">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#2ee571]">
+                        Specialized Agro-Allied Enterprise
+                      </span>
+                      <span className="text-[10px] text-emerald-300 font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/30">
+                        Nigeria & Africa
+                      </span>
                     </div>
                     <p className="text-xs font-medium text-slate-200 leading-snug">
-                      Authorized commercial distributor of day-old chicks, licensed cold-chain biologics, and NAFDAC-approved therapeutics.
+                      Livestock vaccines, Drugs, farmhouse accessories, technical consultation, &amp; sales and distribution of day-old chicks.
                     </p>
                   </div>
                 </div>
@@ -403,6 +391,128 @@ export default function AboutPage() {
 
         </div>
       </section>
+
+      {/* ====================================================================
+          STRATEGIC FOUNDATION: Goal, Aim, Vision & Slogan
+          ==================================================================== */}
+      <section className="py-20 sm:py-24 bg-gradient-to-b from-[#050E08] via-slate-950 to-slate-900 text-white border-b border-emerald-950/60 relative overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          {/* Header block with Core Specialization Definition */}
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 rounded-full">
+              <Sparkles className="h-4 w-4 text-emerald-400" />
+              Strategic Foundation &amp; Corporate Direction
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white tracking-tight">
+              Our Goal, Aim, Vision &amp; Operating Creed
+            </h2>
+            <p className="text-base text-slate-300 leading-relaxed">
+              D-AminGrow is an agro-allied company specialized in livestock vaccines, Drugs, farmhouse accessories, offers technical consultation services, and sales and distribution of day-old chicks across Nigeria, West Africa, and the continent.
+            </p>
+          </div>
+
+          {/* 4 Strategic Direction Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Our Goal */}
+            <div className="rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/40 p-7 flex flex-col justify-between transition-all hover:-translate-y-1 backdrop-blur-sm group">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                    <Target className="h-6 w-6" />
+                  </div>
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
+                    Our Goal
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold font-heading text-white">Our Goal</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Our goal is to help improve the livestock sector in Nigeria and Africa by introducing the latest information and healthy solutions to the livestock market.
+                </p>
+              </div>
+              <div className="pt-6 mt-6 border-t border-white/10 flex items-center gap-2 text-xs font-semibold text-emerald-400">
+                <Check className="h-4 w-4" />
+                <span>Sector Modernization</span>
+              </div>
+            </div>
+
+            {/* Our Aim */}
+            <div className="rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/40 p-7 flex flex-col justify-between transition-all hover:-translate-y-1 backdrop-blur-sm group">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-teal-500/15 border border-teal-500/30 flex items-center justify-center text-teal-400 group-hover:scale-110 transition-transform">
+                    <HeartHandshake className="h-6 w-6" />
+                  </div>
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-teal-300 bg-teal-500/10 border border-teal-500/20 px-3 py-1 rounded-full">
+                    Our Aim
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold font-heading text-white">Our Aim</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Our aim is to build communities of healthy livestock and in general, healthy living of the people.
+                </p>
+              </div>
+              <div className="pt-6 mt-6 border-t border-white/10 flex items-center gap-2 text-xs font-semibold text-teal-300">
+                <Check className="h-4 w-4" />
+                <span>Healthy Communities</span>
+              </div>
+            </div>
+
+            {/* Our Vision */}
+            <div className="rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/40 p-7 flex flex-col justify-between transition-all hover:-translate-y-1 backdrop-blur-sm group">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                    <Globe className="h-6 w-6" />
+                  </div>
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">
+                    Our Vision
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold font-heading text-white">Our Vision</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Our vision is to see the African livestock market becoming better and stronger globally.
+                </p>
+              </div>
+              <div className="pt-6 mt-6 border-t border-white/10 flex items-center gap-2 text-xs font-semibold text-cyan-300">
+                <Check className="h-4 w-4" />
+                <span>Global Competitiveness</span>
+              </div>
+            </div>
+
+            {/* Motor / Slogan */}
+            <div className="rounded-3xl bg-gradient-to-br from-emerald-950/80 via-white/5 to-emerald-900/40 border border-emerald-500/40 p-7 flex flex-col justify-between transition-all hover:-translate-y-1 backdrop-blur-sm group shadow-xl shadow-emerald-950/50">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-300 group-hover:scale-110 transition-transform">
+                    <Award className="h-6 w-6" />
+                  </div>
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-300 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full">
+                    Motor / Slogan
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold font-heading text-white">Motor / Slogan</h3>
+                <div className="bg-black/50 border border-emerald-500/30 rounded-2xl p-4">
+                  <p className="text-base font-extrabold text-emerald-400 font-heading italic">
+                    &ldquo;Your satisfaction is our priority&rdquo;
+                  </p>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Every product verification, certified cold-chain shipment, and veterinary consultation is guided by this unchanging commitment.
+                </p>
+              </div>
+              <div className="pt-6 mt-6 border-t border-white/10 flex items-center gap-2 text-xs font-semibold text-amber-300">
+                <Check className="h-4 w-4" />
+                <span>Customer Priority</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
 
       {/* ====================================================================
           2. EMOTIONALLY COMPELLING HOOK & FARM REALITY
