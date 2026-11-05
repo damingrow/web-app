@@ -38,25 +38,27 @@ import {
 import { ARTICLES } from '@/data/articles';
 
 export const metadata: Metadata = {
-  title: 'D-AminGrow | Livestock Inputs, Day-Old Chicks & Poultry Solutions Nigeria',
+  title: 'D-AminGrow | Livestock Inputs, Day-Old Chicks & Poultry Solutions in Africa',
   description:
-    'Dependable livestock inputs, day-old chick bookings, NAFDAC-approved veterinary products, and poultry solutions across Nigeria. Sourced from certified hatcheries with Monday & Thursday nationwide dispatch.',
+    'Dependable livestock inputs, day-old chick bookings, NAFDAC-approved veterinary products, and poultry solutions across Africa. Sourced from certified hatcheries with Monday & Thursday synchronized dispatch.',
   keywords: [
+    'livestock inputs and poultry solutions in africa',
     'livestock inputs and poultry solutions in nigeria',
     'agro-allied company',
     'day-old chick booking',
     'livestock veterinary supplier',
     'poultry equipment distributor',
     'farm consultancy Nigeria',
+    'african poultry solutions',
     'best poultry input supplier in nigeria',
     'online agro allied store nigeria',
     'where to buy poultry inputs in nigeria',
     'damingrow agro allied livestock solutions',
   ],
   openGraph: {
-    title: 'D-AminGrow | Livestock Inputs, Day-Old Chicks & Poultry Solutions Nigeria',
+    title: 'D-AminGrow | Livestock Inputs, Day-Old Chicks & Poultry Solutions in Africa',
     description:
-      'Dependable livestock inputs, day-old chick bookings, NAFDAC-approved veterinary products, and poultry solutions across Nigeria. Sourced from certified hatcheries with Monday & Thursday nationwide dispatch.',
+      'Dependable livestock inputs, day-old chick bookings, NAFDAC-approved veterinary products, and poultry solutions across Africa. Sourced from certified hatcheries with Monday & Thursday synchronized dispatch.',
     url: 'https://damingrow.com',
     siteName: 'D-AminGrow',
     locale: 'en_NG',
@@ -316,93 +318,146 @@ export default function HomePage() {
       </div>
 
       {/* ====================================================================
-          HERO SECTION — High Conversion, Mobile First, Benefit-Driven
+          HERO SECTION — High Conversion, Mobile First, 2-Column Grid
           ==================================================================== */}
-      <section className="relative hero-mesh overflow-hidden min-h-[88vh] flex items-center bg-[#050E08] text-white">
+      <section className="relative hero-mesh overflow-hidden min-h-[90vh] flex items-center bg-[#050E08] text-white">
         <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="max-w-4xl mx-auto text-center space-y-7">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
-            {/* Credibility Tag */}
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 rounded-full">
-                <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                Nigeria&apos;s Dedicated Agro-Allied Supply & Farm Advisory Partner
+            {/* Left Column (7 cols): Benefit-Driven Copy, Hook, CTAs */}
+            <div className="lg:col-span-7 space-y-7 text-left">
+
+              {/* Credibility Tag */}
+              <div>
+                <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 rounded-full">
+                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                  Africa&apos;s Dedicated Agro-Allied Supply & Farm Advisory Partner
+                </div>
               </div>
+
+              {/* Exact Primary H1 Directive targeting Africa */}
+              <div className="space-y-4">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.12]">
+                  Dependable Livestock Inputs, Day-Old Chicks &{' '}
+                  <span className="text-gradient-green">Poultry Solutions</span> in Africa
+                </h1>
+                <p className="text-base sm:text-lg text-slate-300 font-medium max-w-2xl leading-relaxed">
+                  Protect your farm capital from day one. Direct allocations from verified partner hatcheries, 2°C–8°C cold-chain vaccines, NAFDAC-approved medications, and commercial rearing equipment — serving farmers across Nigeria and all African markets.
+                </p>
+              </div>
+
+              {/* Brand Motto Pill */}
+              <div>
+                <div className="inline-flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-full px-5 py-2 text-xs">
+                  <span className="text-slate-400 font-medium uppercase tracking-wider">Our Commitment</span>
+                  <span className="text-slate-500">•</span>
+                  <span className="text-emerald-400 font-bold italic">&ldquo;Your Satisfaction Is Our Priority&rdquo;</span>
+                </div>
+              </div>
+
+              {/* Primary Action Zone — High Visual Weight */}
+              <div className="flex flex-wrap items-center gap-4 pt-1">
+                <a
+                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20confirm%20today%27s%20chick%20rates%20and%20book%20my%20order."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-[#25D366]/25 hover:shadow-[#25D366]/40 hover:-translate-y-0.5"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  Check Today&apos;s Rates on WhatsApp
+                </a>
+                <Link
+                  href="/chicks"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold px-6 py-4 rounded-xl transition-all duration-200 text-base border border-white/15 hover:-translate-y-0.5"
+                >
+                  Book Day-Old Chicks
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+                <Link
+                  href="/drugs"
+                  className="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-4 py-4 rounded-xl transition-all duration-200 text-sm hover:underline"
+                >
+                  Veterinary Products
+                </Link>
+              </div>
+
+              {/* Trust Assurances */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-xs text-slate-400 border-t border-white/10">
+                <div className="flex items-center gap-1.5 py-1">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                  <span>Chi, Amo, Zartech & Supreme</span>
+                </div>
+                <div className="flex items-center gap-1.5 py-1">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                  <span>2°C–8°C Insulated Packs</span>
+                </div>
+                <div className="flex items-center gap-1.5 py-1">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                  <span>Monday & Thursday Routes</span>
+                </div>
+                <div className="flex items-center gap-1.5 py-1">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                  <span>Zero Fake or Diluted Drugs</span>
+                </div>
+              </div>
+
             </div>
 
-            {/* Exact Primary H1 Directive */}
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.12]">
-                Dependable Livestock Inputs, Day-Old Chicks &{' '}
-                <span className="text-gradient-green">Poultry Solutions</span> in Nigeria
-              </h1>
-              <p className="text-lg sm:text-xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed">
-                Protect your farm capital from day one. Direct allocations from verified partner hatcheries, 2°C–8°C cold-chain vaccines, NAFDAC-approved medications, and commercial rearing equipment.
-              </p>
-            </div>
+            {/* Right Column (5 cols): Visual Hero Image with Floating Telemetry */}
+            <div className="lg:col-span-5 relative mt-6 lg:mt-0">
+              <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-sm p-2.5 shadow-2xl group">
+                <div className="relative h-[420px] sm:h-[480px] w-full rounded-2xl overflow-hidden">
+                  <Image
+                    src="/images/poultry-hero.jpg"
+                    alt="Dependable Livestock Inputs, Day-Old Chicks and Poultry Solutions in Africa"
+                    fill
+                    priority
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                  {/* Subtle vignette gradients for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-slate-950/40" />
 
-            {/* Brand Motto Pill */}
-            <div className="flex justify-center">
-              <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-full px-5 py-2 text-xs">
-                <span className="text-slate-400 font-medium uppercase tracking-wider">Our Commitment</span>
-                <span className="text-slate-500">•</span>
-                <span className="text-emerald-400 font-bold italic">&ldquo;Your Satisfaction Is Our Priority&rdquo;</span>
-              </div>
-            </div>
+                  {/* Top Floating Badge: Pan-African Dispatch */}
+                  <div className="absolute top-4 right-4 bg-slate-950/85 backdrop-blur-md border border-white/20 rounded-full px-3.5 py-1.5 flex items-center gap-2 shadow-lg">
+                    <span className="flex h-2 w-2 relative">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                    </span>
+                    <span className="text-[11px] font-bold text-white tracking-wide">Pan-African Dispatch</span>
+                  </div>
 
-            {/* Primary Action Zone — High Visual Weight */}
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-3">
-              <a
-                href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20confirm%20today%27s%20chick%20rates%20and%20book%20my%20order."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-[#25D366]/25 hover:shadow-[#25D366]/40 hover:-translate-y-0.5"
-              >
-                <MessageCircle className="h-5 w-5" />
-                Check Today&apos;s Rates on WhatsApp
-              </a>
-              <Link
-                href="/chicks"
-                className="flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold px-6 py-4 rounded-xl transition-all duration-200 text-base border border-white/15 hover:-translate-y-0.5"
-              >
-                Book Day-Old Chicks
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-              <Link
-                href="/drugs"
-                className="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-4 py-4 rounded-xl transition-all duration-200 text-sm hover:underline"
-              >
-                Veterinary Products
-              </Link>
-            </div>
+                  {/* Top Left Floating Badge: Cold-Chain */}
+                  <div className="absolute top-4 left-4 bg-emerald-950/80 backdrop-blur-md border border-emerald-500/30 rounded-full px-3 py-1 flex items-center gap-1.5 text-[10px] font-semibold text-emerald-300">
+                    <Thermometer className="h-3 w-3 text-emerald-400" />
+                    <span>2°C–8°C Cold-Chain</span>
+                  </div>
 
-            {/* Trust Assurances */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-xs text-slate-400 max-w-3xl mx-auto border-t border-white/10">
-              <div className="flex items-center justify-center gap-1.5 py-1">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>Chi, Amo, Zartech & Supreme</span>
-              </div>
-              <div className="flex items-center justify-center gap-1.5 py-1">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>2°C–8°C Insulated Vaccine Packs</span>
-              </div>
-              <div className="flex items-center justify-center gap-1.5 py-1">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>Monday & Thursday Dispatch</span>
-              </div>
-              <div className="flex items-center justify-center gap-1.5 py-1">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>Zero Fake or Diluted Drugs</span>
+                  {/* Bottom Floating Telemetry Card */}
+                  <div className="absolute bottom-4 inset-x-4 bg-slate-950/90 backdrop-blur-md border border-white/15 rounded-xl p-3.5 space-y-2 shadow-xl">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-slate-300 font-medium">Brooding Livability</span>
+                      <span className="font-extrabold text-emerald-400">98.4% Target</span>
+                    </div>
+                    <div className="flex items-center justify-between text-[11px] text-slate-400 border-t border-white/10 pt-2">
+                      <div className="flex items-center gap-1.5">
+                        <ShieldCheck className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                        <span>Direct Hatchery Allotments</span>
+                      </div>
+                      <span className="text-slate-300 font-semibold">Mon & Thu</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
           </div>
 
           {/* Operational Benchmarks */}
-          <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="mt-14 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {stats.map((stat, i) => (
               <div
                 key={i}
