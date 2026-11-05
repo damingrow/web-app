@@ -193,7 +193,7 @@ const PRODUCTS_MEGA_MENU = {
   },
 };
 
-const PRODUCTS_MENU = [
+export const PRODUCTS_MENU = [
   ...PRODUCTS_MEGA_MENU.breeds.items,
   ...PRODUCTS_MEGA_MENU.health.items,
   ...PRODUCTS_MEGA_MENU.stock.items,

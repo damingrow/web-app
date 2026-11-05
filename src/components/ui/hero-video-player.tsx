@@ -56,7 +56,6 @@ export function HeroVideoPlayer() {
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [hasLoaded, setHasLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const current = (HERO_VIDEOS[activeVideoIndex] ?? HERO_VIDEOS[0]) as VideoOption;
@@ -108,7 +107,6 @@ export function HeroVideoPlayer() {
           loop
           playsInline
           preload="auto"
-          onLoadedData={() => setHasLoaded(true)}
           className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
         >
           Your browser does not support HTML5 video playback.

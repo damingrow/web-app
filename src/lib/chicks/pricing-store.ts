@@ -169,7 +169,6 @@ export function formatPriceItem(item: Partial<ChickRateItem> & { priceNgn: numbe
 
 // In-memory cache for ultra-fast serverless/local synchronization
 declare global {
-  // eslint-disable-next-line no-var
   var __damingrow_live_chick_rates: ChickRateItem[] | undefined;
 }
 

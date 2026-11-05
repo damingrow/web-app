@@ -8,8 +8,6 @@ import {
   Clock,
   ArrowRight,
   RefreshCw,
-  ShieldCheck,
-  AlertCircle,
 } from 'lucide-react';
 import { ChickRateItem, BASELINE_CHICK_RATES, formatPriceItem } from '@/lib/chicks/pricing-store';
 

@@ -822,7 +822,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
                 title="No Bookings Match Current Filters"
                 description="Adjust your search query, status, state, or date filters to show matching reservations."
                 tableName="chick_bookings"
-                isFiltered
+                isFiltered={isFiltered}
                 onClearFilters={clearAllFilters}
               />
             </div>

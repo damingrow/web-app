@@ -11,7 +11,6 @@ import {
   Building2,
   MessageCircle,
   Truck,
-  Phone,
   Feather,
   ChevronRight,
   Clock,
@@ -19,7 +18,6 @@ import {
   Layers,
   Thermometer,
   XCircle,
-  Users,
   Copy,
   Check,
   TrendingUp,
@@ -29,7 +27,6 @@ import {
   AlertTriangle,
   Calculator,
   HelpCircle,
-  Info,
   DollarSign,
   Flame,
 } from 'lucide-react';

@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { PRODUCTS } from '@/data/products';
-import { ProductCard } from '@/components/product/product-card';
 import { HATCHERY_PARTNERS, CLIENT_FARMS } from '@/data/partners-and-clients';
 import {
   ArrowRight,
@@ -10,8 +8,6 @@ import {
   Phone,
   Sparkles,
   Target,
-  Compass,
-  Globe2,
   Stethoscope,
   Truck,
   Building,
@@ -19,11 +15,7 @@ import {
   ShieldCheck,
   MessageCircle,
   Syringe,
-  Star,
-  TrendingUp,
   Zap,
-  ChevronRight,
-  BookOpen,
   Calculator,
   Feather,
   Thermometer,
@@ -35,7 +27,6 @@ import {
   XCircle,
   Check,
 } from 'lucide-react';
-import { ARTICLES } from '@/data/articles';
 import { LiveChickPricingSection } from '@/components/home/live-chick-pricing-section';
 import { BASELINE_CHICK_RATES } from '@/lib/chicks/pricing-store';
 import { HeroVideoPlayer } from '@/components/ui/hero-video-player';
@@ -70,9 +61,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const featuredProducts = PRODUCTS.slice(0, 4);
-  const latestArticles = ARTICLES.slice(0, 3);
-
   const stats = [
     { value: '98.4%', label: 'Brooding Livability Rate', sub: 'Target benchmark across client farms' },
     { value: '36', label: 'States Dispatched', sub: 'Synchronized Monday & Thursday routes' },

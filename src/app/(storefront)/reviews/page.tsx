@@ -22,7 +22,7 @@ import {
   Quote,
   BarChart3,
   Truck,
-  Clock,
+
   BadgeCheck,
   Layers,
   Users,

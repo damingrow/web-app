@@ -6,8 +6,6 @@ import {
   Pause,
   Volume2,
   VolumeX,
-  ShieldCheck,
-  Sparkles,
 } from 'lucide-react';
 
 export interface MediaVideoPlayerProps {

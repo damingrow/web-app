@@ -6,15 +6,11 @@ import Image from 'next/image';
 import {
   Calendar,
   CheckCircle2,
-  ArrowRight,
   ShieldCheck,
-  Building2,
   MessageCircle,
   Truck,
   Phone,
-  Feather,
   ChevronRight,
-  Clock,
   Sparkles,
   Layers,
   Thermometer,
@@ -22,15 +18,12 @@ import {
   Users,
   Copy,
   Check,
-  TrendingUp,
   Zap,
   Scale,
   Award,
   AlertTriangle,
   Calculator,
-  HelpCircle,
   Info,
-  DollarSign,
   Flame,
 } from 'lucide-react';
 
@@ -811,15 +804,15 @@ export default function TurkeyLandingClient({
                     </label>
                     <div className="grid grid-cols-3 gap-2">
                       {[
-                        { id: 'christmas', label: 'Christmas Peak', price: 95000 },
-                        { id: 'easter', label: 'Easter Festival', price: 85000 },
-                        { id: 'bbq', label: 'Hotel / BBQ Routine', price: 75000 },
+                        { id: 'christmas' as const, label: 'Christmas Peak', price: 95000 },
+                        { id: 'easter' as const, label: 'Easter Festival', price: 85000 },
+                        { id: 'bbq' as const, label: 'Hotel / BBQ Routine', price: 75000 },
                       ].map((item) => (
                         <button
                           key={item.id}
                           type="button"
                           onClick={() => {
-                            setTargetSeason(item.id as any);
+                            setTargetSeason(item.id);
                             setCustomPricePerBird(item.price);
                           }}
                           className={`py-2.5 px-2 rounded-xl text-xs font-bold text-center border transition-all ${

@@ -10,8 +10,6 @@ import {
   ShieldCheck,
   Building2,
   MessageCircle,
-  Truck,
-  Phone,
   Feather,
   ChevronRight,
   Clock,
@@ -19,19 +17,15 @@ import {
   Layers,
   Thermometer,
   XCircle,
-  Users,
   Copy,
   Check,
   TrendingUp,
-  Zap,
   Scale,
   Award,
   AlertTriangle,
   Egg,
   Calculator,
   HelpCircle,
-  Info,
-  DollarSign,
 } from 'lucide-react';
 
 interface StrainDetail {

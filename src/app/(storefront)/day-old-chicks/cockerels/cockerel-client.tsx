@@ -2,22 +2,18 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   Calendar,
   CheckCircle2,
   ArrowRight,
   ShieldCheck,
-  Building2,
   MessageCircle,
   Truck,
   Phone,
   Feather,
   ChevronRight,
   Clock,
-  Sparkles,
   Layers,
-  Thermometer,
   XCircle,
   Users,
   Copy,
@@ -25,8 +21,6 @@ import {
   TrendingUp,
   Zap,
   Scale,
-  Award,
-  AlertTriangle,
 } from 'lucide-react';
 
 interface StrainInfo {

@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   Phone,
-  Mail,
   MapPin,
   MessageCircle,
   Send,
@@ -13,8 +12,6 @@ import {
   ArrowRight,
   ShieldCheck,
   Feather,
-  Syringe,
-  Home,
   Stethoscope,
   ChevronRight,
   AlertTriangle,
@@ -114,7 +111,6 @@ export function ContactClient() {
   const [error, setError] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [copiedBank, setCopiedBank] = useState(false);
-  const [activeTab, setActiveTab] = useState<'all' | 'booking' | 'logistics' | 'veterinary'>('all');
 
   const selectedReasonMeta = CONTACT_REASONS.find((r) => r.value === formData.reason) || CONTACT_REASONS[0];
 
