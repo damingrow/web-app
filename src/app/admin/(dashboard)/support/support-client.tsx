@@ -1610,7 +1610,7 @@ export default function SupportClient({ initialEnquiries = [], initialBookings =
                 <span>50:1 Buffer Chick Rule</span>
               </div>
               <p>
-                Every accredited institutional hatchery partner (Chi, Amo, Zartech, Supreme, Agrited) packages 51 chicks
+                Every accredited supplier partner (Chi, Amo, Zartech, Supreme) packages 51 chicks
                 per half-carton compartment. The extra bird functions as a pre-funded buffer for transit stress.
               </p>
             </div>

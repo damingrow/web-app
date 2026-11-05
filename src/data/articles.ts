@@ -850,7 +850,7 @@ D-AminGrow serves as an authorized primary distribution powerhouse, partnering d
 - **Zartech:** Renowned for fast-growing Cobb 500 broilers and high-laying ISA Brown pullets.
 - **Amo Farm Sieberer:** Famous for hardy Arbor Acres Plus broilers and dual-purpose Amo Noilers.
 - **Chi Farms:** Preferred for disease-resistant Arbor Acres broilers.
-- **Sayed & Agrited:** Leading suppliers of Ross 308 broilers and Novogen Brown layers.
+- **Sayed Farms:** Leading suppliers of Ross 308 broilers and Novogen Brown layers.
 
 ---
 

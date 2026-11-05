@@ -23,7 +23,6 @@ const HATCHERY_BRANDS = [
   { code: 'AMO', name: 'Amo Farm Sieberer Ltd (Broilers / Noiler)', location: 'Awe / Oyo' },
   { code: 'ZAR', name: 'Zartech Farms Limited (Cobb 500 / Black & Brown Pullets)', location: 'Oluyole, Ibadan' },
   { code: 'SUP', name: 'Supreme Poultry Farms (Supreme Broilers & Pullets)', location: 'Oyo / Ogun Corridor' },
-  { code: 'AGR', name: 'AGRITED Limited (Ross 308 / Novogen Brown)', location: 'Oyo State Operations' },
 ];
 
 const CHICK_BREEDS = [

@@ -50,7 +50,7 @@ const BREED_DATA: Record<string, BreedDetail> = {
     packagingRule: '50 birds per carton · ₦2,000 / chick (₦100,000 / carton)',
     dispatchDays: 'Every Monday & Thursday nationwide',
     description:
-      'Our commercial broiler chicks originate exclusively from biosecure, certified parent-stock farms across Nigeria (Chi, Amo, Zartech, Supreme, Agrited). Bred specifically for exceptional tropical hardiness, early frame development, and rapid muscle deposition. Inspected for uniform weight and navel closure prior to climate-controlled vehicle loading.',
+      'Our commercial broiler chicks originate exclusively from biosecure, certified parent-stock farms across Nigeria (Chi, Amo, Zartech, Supreme). Bred specifically for exceptional tropical hardiness, early frame development, and rapid muscle deposition. Inspected for uniform weight and navel closure prior to climate-controlled vehicle loading.',
     highlights: [
       'Certified Cobb 500 and Ross 308 first-generation commercial parent lineages',
       'Pre-vaccinated against Marek’s Disease with bio-monitored titre levels',

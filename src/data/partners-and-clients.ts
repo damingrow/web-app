@@ -71,17 +71,6 @@ export const HATCHERY_PARTNERS: HatcheryPartner[] = [
     establishedRole: 'Commercial Broiler & Pullet Supply Partner',
     badge: 'Pasgar Score Verified (>9.0)',
   },
-  {
-    id: 'agrited',
-    name: 'AGRITED (Agricultural and Technology Development Ltd)',
-    shortName: 'AGRITED',
-    location: 'Oyo State & Western Operations',
-    specialtyBreeds: ['Ross 308 Broilers', 'Cobb 500 Broilers', 'Novogen Brown Layers'],
-    description:
-      'Internationally certified hatchery operation supplying millions of premium commercial day-old chicks weekly across Nigeria with biometric biosecurity safeguards.',
-    establishedRole: 'Authorized Commercial Day-Old Distribution Partner',
-    badge: 'ISO-Standard Biosecurity',
-  },
 ];
 
 export const CLIENT_FARMS: ClientFarm[] = [

@@ -352,7 +352,7 @@ export const EDITORIAL_PILLARS: EditorialPillar[] = [
     badgeColor: 'bg-teal-500/10 text-teal-700 border-teal-500/20',
     iconName: 'Building2',
     description:
-      'Verified performance benchmarks across Zartech, Amo, Chi, Supreme, and Agrited parent stocks. Tuesday & Thursday dispatch logistics, boxing counts (50+1), and transit stress recovery.',
+      'Verified performance benchmarks across Zartech, Amo, Chi, and Supreme parent stocks. Monday & Thursday dispatch logistics, boxing counts (50+1), and transit stress recovery.',
     targetAudience: 'Broiler growers, layer farmers, turkey rearers, and commercial livestock cooperative procurement officers.',
     monthlyTrafficTarget: 135000,
     clinicalReviewStandard: 'Biosecurity inspection and maternal immunity verification for parent breeding flocks.',

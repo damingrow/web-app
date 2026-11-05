@@ -113,6 +113,9 @@ export default function TermsOfServicePage() {
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-slate-600">
               <li>
+                <strong>Distributor &amp; Reseller Status:</strong> D-AminGrow is an authorized commercial distributor and reseller of poultry equipment, feed supplements, and veterinary biologicals. We are not the pharmaceutical manufacturer or producer, and we do not sponsor regulatory dossiers. All distributed products are sourced from licensed manufacturers and supplied in their original approved manufacturer packaging with verified NAFDAC registrations.
+              </li>
+              <li>
                 <strong>No Clinical Veterinary Relationship:</strong> Product descriptions, dosages, and knowledge articles published on this platform are for technical reference only. They do not constitute an official veterinary diagnosis or a client-patient relationship.
               </li>
               <li>

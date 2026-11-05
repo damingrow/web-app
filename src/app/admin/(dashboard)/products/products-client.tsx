@@ -280,7 +280,7 @@ export default function ProductsClient({ initialProducts }: ProductsClientProps)
               Product Inventory Center
             </h1>
             <p className="max-w-2xl text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Enterprise agricultural inventory governance, cold-chain biological integrity (2°C–8°C), NAFDAC pharmaceutical dossiers, withdrawal timeline monitoring, and zero-tolerance prohibited substance screening.
+              Commercial agricultural inventory oversight, cold-chain biological integrity (2°C–8°C), verified approved products from licensed manufacturers, withdrawal timeline guidelines, and quality compliance tracking.
             </p>
           </div>
 
@@ -298,7 +298,7 @@ export default function ProductsClient({ initialProducts }: ProductsClientProps)
               className="inline-flex items-center gap-2 rounded-full bg-[#00a854] px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-[#009249] transition-all"
             >
               <Download className="h-4 w-4" />
-              <span>Export Regulatory Ledger</span>
+              <span>Export Inventory Ledger</span>
             </button>
           </div>
         </div>
@@ -736,7 +736,7 @@ export default function ProductsClient({ initialProducts }: ProductsClientProps)
                               className="inline-flex items-center rounded-full bg-slate-900 px-3 py-1 text-xs font-bold text-white hover:bg-slate-800 transition-colors shadow-xs"
                             >
                               <FileText className="h-3 w-3 mr-1" />
-                              <span>Inspect Dossier</span>
+                              <span>Inspect Product</span>
                             </button>
                             <Link
                               href={`/${item.category}/${item.slug}`}
@@ -855,7 +855,7 @@ export default function ProductsClient({ initialProducts }: ProductsClientProps)
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-slate-900 font-heading">
-                    NAFDAC Regulatory Dossier Review
+                    Product Regulatory &amp; Batch Review
                   </h3>
                   <p className="text-xs text-slate-500 font-mono">
                     {selectedProduct.sku} • {selectedProduct.categoryName}
@@ -990,7 +990,7 @@ export default function ProductsClient({ initialProducts }: ProductsClientProps)
                   className="w-1/2 sm:w-auto inline-flex items-center justify-center rounded-full bg-[#00a854] px-5 py-2.5 text-xs font-bold text-white hover:bg-[#009249] transition-colors shadow-xs disabled:opacity-50"
                 >
                   {modalLoading && <RefreshCw className="h-3.5 w-3.5 mr-1.5 animate-spin" />}
-                  <span>Verify Regulatory Clearance</span>
+                  <span>Verify Product Clearance</span>
                 </button>
               </div>
             </div>

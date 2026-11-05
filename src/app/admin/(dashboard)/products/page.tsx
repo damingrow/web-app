@@ -5,7 +5,7 @@ import ProductsClient from './products-client';
 
 export const metadata: Metadata = {
   title: 'Product Inventory Center — Admin Operations | D-AminGrow',
-  description: 'Manage agricultural products, NAFDAC regulatory compliance dossiers, cold-chain specifications, and withdrawal timelines.',
+  description: 'Manage agricultural products, approved manufacturer inventory, cold-chain specifications, and withdrawal timelines.',
 };
 
 export default function AdminProductsPage() {

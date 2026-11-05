@@ -197,7 +197,6 @@ export function generateMockQuotasForDates(
     { code: 'AMO', name: 'Amo Farms / Amo ByNG', baseCapacity: 100 },
     { code: 'ZAR', name: 'Zartech Farms Limited', baseCapacity: 110 },
     { code: 'SUP', name: 'Supreme Poultry Farms', baseCapacity: 80 },
-    { code: 'AGR', name: 'AGRITED Limited', baseCapacity: 90 },
   ];
 
   const batches: HatcheryQuotaBatch[] = [];

@@ -45,7 +45,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Are your drugs NAFDAC registered?',
-    a: 'Yes. Every veterinary pharmaceutical we supply is NAFDAC-registered with batch numbers traceable to the manufacturer.',
+    a: 'Yes. Every veterinary pharmaceutical we supply is NAFDAC-registered with batch numbers traceable to the manufacturer. As an authorized distributor and reseller, we only stock genuine, verified, and field-tested products from approved pharmaceutical producers.',
   },
   {
     q: 'Can you help me set up a commercial poultry farm?',

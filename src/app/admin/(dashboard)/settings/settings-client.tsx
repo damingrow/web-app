@@ -1017,17 +1017,16 @@ export default function SettingsClient() {
                     </p>
                   </div>
                   <span className="rounded-full bg-emerald-50 text-emerald-800 px-3 py-1 text-xs font-bold border border-emerald-200">
-                    5 Primary Feeders Connected
+                    4 Primary Feeders Connected
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
                   {[
                     { name: 'CHI Farms Limited', loc: 'Ajanla, Ibadan', breed: 'Ross 308 & Arbor Acres', code: 'CHI' },
                     { name: 'AMO Farm Sieberer', loc: 'Awe, Oyo State', breed: 'Cobb 500 & ISA Brown', code: 'AMO' },
                     { name: 'Zartech Farms', loc: 'Oluyole, Ibadan', breed: 'Cobb 500 Fast Growth', code: 'ZAR' },
                     { name: 'Supreme Poultry', loc: 'Ibadan, Oyo State', breed: 'Marshall & Hubbard', code: 'SUP' },
-                    { name: 'AGRITED Farms', loc: 'Ajebo / Ogun Depot', breed: 'Ross 308 White', code: 'AGR' },
                   ].map((p) => (
                     <div key={p.code} className="rounded-2xl border border-slate-100 bg-slate-50/60 p-4 space-y-1.5">
                       <div className="flex items-center justify-between">

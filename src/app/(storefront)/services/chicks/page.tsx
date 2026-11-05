@@ -90,7 +90,6 @@ const HATCHERIES = [
   'Zartech Nigeria (Cobb 500 / ISA Brown)',
   'Chi Farms (Arbor Acres Plus)',
   'Sayed Farms (Ross 308)',
-  'Agrited (Ross 308 / Novogen)',
 ];
 
 const BOOKING_STEPS = [

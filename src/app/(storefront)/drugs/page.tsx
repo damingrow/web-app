@@ -170,7 +170,7 @@ export default function DrugsPage() {
                   <h3 className="text-base font-bold text-white font-heading">NAFDAC Compliance Statement</h3>
                 </div>
                 <p className="text-sm text-slate-400 leading-relaxed">
-                  Every veterinary pharmaceutical we supply is officially registered with the National Agency for Food and Drug Administration and Control (NAFDAC). Batch numbers are traceable to the manufacturer.
+                  Every veterinary pharmaceutical we supply is officially registered with the National Agency for Food and Drug Administration and Control (NAFDAC). As an authorized distributor and reseller, we only source and stock genuine, verified, and field-tested products from approved manufacturers with batch numbers traceable directly to the producer.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {['Antibiotics', 'Anticoccidials', 'Vitamins', 'Amino Acids', 'Ectoparasiticides'].map((cat, i) => (

@@ -147,7 +147,7 @@ export async function POST(request: Request) {
     }
 
     if (action === 'flag_incomplete') {
-      const incompleteReason = reason || 'Documentation incomplete: pending NAFDAC dossier verification.';
+      const incompleteReason = reason || 'Documentation incomplete: pending NAFDAC registration verification.';
 
       product.compliance.verificationState = 'documentation_incomplete';
       product.compliance.restrictionReason = incompleteReason;

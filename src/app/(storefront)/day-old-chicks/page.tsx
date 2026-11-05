@@ -110,7 +110,6 @@ const HATCHERY_PARTNERS = [
   { name: 'AMO Farm Sieberer', code: 'AMO', hub: 'Awe, Oyo State', breedSpecialty: 'Amo Broilers & Commercial Pullets' },
   { name: 'Zartech Farms', code: 'ZAR', hub: 'Oluyole, Ibadan', breedSpecialty: 'Ross 308 Broilers & Breeder Stock' },
   { name: 'Supreme Poultry', code: 'SUP', hub: 'Ibadan Depot', breedSpecialty: 'Broilers & Commercial Layers' },
-  { name: 'AGRITED Hatcheries', code: 'AGR', hub: 'Ajebo / Ogun Depot', breedSpecialty: 'Ross 308 Parent Lineage & Layers' },
 ];
 
 const CLIENT_FARMS = [
