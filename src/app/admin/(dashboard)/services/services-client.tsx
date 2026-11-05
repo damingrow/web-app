@@ -22,6 +22,7 @@ import {
   DollarSign,
 } from 'lucide-react';
 import { DbEnquiry } from '@/lib/supabase/data-access';
+import { AdminConnectedEmptyState } from '@/components/admin/connected-empty-state';
 
 interface ServicesClientProps {
   initialEnquiries: DbEnquiry[];
@@ -50,172 +51,7 @@ interface ServiceTicket {
   created_at: string;
 }
 
-// 8 High-fidelity reference consultations matching the executive standard
-const REFERENCE_SERVICES: ServiceTicket[] = [
-  {
-    id: 'srv-ref-1',
-    enquiry_ref: 'SRV-20261104-VET1',
-    customer_name: 'Alhaji Rasheed Balogun',
-    customer_phone: '0803 456 7890',
-    farm_name: 'Balogun Apex Farms',
-    delivery_state: 'Oyo',
-    delivery_city: 'Ibadan (Akinyele)',
-    enquiry_type: 'veterinary_consultation',
-    service_category: 'triage',
-    status: 'pending_contact',
-    priority: 'urgent',
-    flock_size: 4500,
-    bird_type: 'Day-Old Broilers (4 Weeks Old)',
-    clinical_differential: 'Acute Coccidiosis with Secondary E. coli Enteritis',
-    treatment_advisory: 'Immediate Toltrazuril 2.5% administration in drinking water for 48 hours. Follow up with broad-spectrum electrolyte hydration.',
-    nafdac_withdrawal: '3-Day meat withdrawal period required prior to harvest.',
-    user_notes: 'Sudden bloody droppings observed in Pen 2 this morning. 28 birds dead within 6 hours. High mortality panic.',
-    estimated_budget_ngn: 145000,
-    created_at: '2026-11-04T09:15:00Z',
-  },
-  {
-    id: 'srv-ref-2',
-    enquiry_ref: 'SRV-20261104-VET2',
-    customer_name: 'Dr. Chinedu Eze',
-    customer_phone: '0812 789 0123',
-    farm_name: 'Eze & Sons Integrated Poultry',
-    delivery_state: 'Enugu',
-    delivery_city: 'Enugu Urban (9th Mile)',
-    enquiry_type: 'veterinary_consultation',
-    service_category: 'triage',
-    status: 'contacted',
-    priority: 'urgent',
-    flock_size: 2200,
-    bird_type: 'Point-of-Lay Pullets (18 Weeks)',
-    clinical_differential: 'Chronic Respiratory Disease (CRD / Mycoplasma gallisepticum)',
-    treatment_advisory: 'Tylosin tartrate soluble powder + Doxycycline in water for 5 days. Inspect curtain airflow and ammonia levels.',
-    nafdac_withdrawal: '7-Day egg discard period during intensive curative cycle.',
-    user_notes: 'Audible tracheal rales, coughing, and facial edema. Egg production dropped from 82% to 64% in 4 days.',
-    estimated_budget_ngn: 95000,
-    created_at: '2026-11-04T07:45:00Z',
-  },
-  {
-    id: 'srv-ref-3',
-    enquiry_ref: 'SRV-20261103-SET1',
-    customer_name: 'Chief Babatunde Adeyemi',
-    customer_phone: '0802 345 6789',
-    farm_name: 'Greenfield Agri-Complex',
-    delivery_state: 'Ogun',
-    delivery_city: 'Sagamu Interchange',
-    enquiry_type: 'farm_setup_inquiry',
-    service_category: 'setup',
-    status: 'quoted',
-    priority: 'high',
-    flock_size: 15000,
-    bird_type: 'Turnkey Broiler Housing',
-    clinical_differential: 'Tunnel-Ventilated Closed Pen Engineering Design',
-    treatment_advisory: 'Architectural bill of quantities (BOQ) with automated nipple drinking lines and cooling pad layout.',
-    user_notes: 'Acquired 2 acres along Lagos-Ibadan expressway. Requires turnkey design for 3 closed pens (5,000 birds each).',
-    estimated_budget_ngn: 18500000,
-    created_at: '2026-11-03T16:20:00Z',
-  },
-  {
-    id: 'srv-ref-4',
-    enquiry_ref: 'SRV-20261103-FEED',
-    customer_name: 'Engr. Mustapha Kano',
-    customer_phone: '0809 112 2334',
-    farm_name: 'Arewa Gold Farms',
-    delivery_state: 'Kano',
-    delivery_city: 'Dawakin Kudu',
-    enquiry_type: 'feed_formulation',
-    service_category: 'feed',
-    status: 'contacted',
-    priority: 'normal',
-    flock_size: 8000,
-    bird_type: 'Broiler Starter & Finisher',
-    clinical_differential: 'Least-Cost Feed Formulation with GNC & Soy substitution',
-    treatment_advisory: 'Formulated 22.5% CP Broiler Starter at ₦13,400/25kg vs market benchmark ₦16,800. Net savings: ₦1.8M/batch.',
-    user_notes: 'Has bulk local white maize and groundnut cake. Needs optimized nutritional balancing to reduce feeding costs.',
-    estimated_budget_ngn: 85000,
-    created_at: '2026-11-03T11:00:00Z',
-  },
-  {
-    id: 'srv-ref-5',
-    enquiry_ref: 'SRV-20261102-BIO1',
-    customer_name: 'Mrs. Folake Oshodi',
-    customer_phone: '0813 998 8776',
-    farm_name: 'Oshodi Family Homestead',
-    delivery_state: 'Lagos',
-    delivery_city: 'Epe Farm Settlement',
-    enquiry_type: 'biosecurity_audit',
-    service_category: 'biosecurity',
-    status: 'fulfilled',
-    priority: 'normal',
-    flock_size: 3000,
-    bird_type: 'ISA Brown Layers',
-    clinical_differential: 'Comprehensive Biosecurity & Cold-Chain Vaccine Audit',
-    treatment_advisory: 'Implemented three-zone footbath barriers with Virkon-S disinfectant and installed digital fridge logger.',
-    user_notes: 'Routine pre-laying biosecurity inspection prior to stocking 3,000 16-week pullets.',
-    estimated_budget_ngn: 60000,
-    created_at: '2026-11-02T14:30:00Z',
-  },
-  {
-    id: 'srv-ref-6',
-    enquiry_ref: 'SRV-20261102-SET2',
-    customer_name: 'Pastor Samuel Ogundipe',
-    customer_phone: '0703 556 7788',
-    farm_name: 'Grace & Truth Agritech',
-    delivery_state: 'Osun',
-    delivery_city: 'Osogbo Outer Ring',
-    enquiry_type: 'farm_setup_inquiry',
-    service_category: 'setup',
-    status: 'pending_contact',
-    priority: 'high',
-    flock_size: 6000,
-    bird_type: 'A-Frame Battery Cage Installation',
-    clinical_differential: '3-Tier Hot-Dipped Galvanized Cage Layout',
-    treatment_advisory: 'Site inspection scheduled for Friday morning to measure concrete floor slope and manure drainage gutter.',
-    user_notes: 'Requires battery cages for 6,000 commercial layers with semi-automated nipple drinker lines.',
-    estimated_budget_ngn: 4800000,
-    created_at: '2026-11-02T10:10:00Z',
-  },
-  {
-    id: 'srv-ref-7',
-    enquiry_ref: 'SRV-20261101-VET3',
-    customer_name: 'Ibrahim Danladi',
-    customer_phone: '0806 778 9900',
-    farm_name: 'Danladi Livestock Hub',
-    delivery_state: 'Kaduna',
-    delivery_city: 'Zaria Road',
-    enquiry_type: 'veterinary_consultation',
-    service_category: 'triage',
-    status: 'fulfilled',
-    priority: 'urgent',
-    flock_size: 3500,
-    bird_type: 'Broiler Flock (Week 3)',
-    clinical_differential: 'Infectious Bursal Disease (Gumboro / IBD Field Challenge)',
-    treatment_advisory: 'High-dose Vitamin C + Kidney flusher electrolytes. Immediate strict biosecurity quarantine. Avoid antibiotic overload.',
-    nafdac_withdrawal: 'Non-antibiotic supportive protocol.',
-    user_notes: 'Severe prostration, whitish diarrhea, soiled vents. Mortality peaked at 35 birds on Day 23.',
-    estimated_budget_ngn: 110000,
-    created_at: '2026-11-01T15:40:00Z',
-  },
-  {
-    id: 'srv-ref-8',
-    enquiry_ref: 'SRV-20261031-BIO2',
-    customer_name: 'Emmanuel Udoh',
-    customer_phone: '0817 223 3445',
-    farm_name: 'South-South Broiler Hub',
-    delivery_state: 'Rivers',
-    delivery_city: 'Port Harcourt (Oyigbo)',
-    enquiry_type: 'biosecurity_audit',
-    service_category: 'biosecurity',
-    status: 'contacted',
-    priority: 'normal',
-    flock_size: 5000,
-    bird_type: 'Day-Old Broilers',
-    clinical_differential: 'VCN Supervised Brooding Pen Disinfection Protocol',
-    treatment_advisory: 'Formalin + potassium permanganate fumigation 48 hours prior to chick delivery.',
-    user_notes: 'Previous batch suffered 12% mortality due to poor pen hygiene. Requests professional biosecurity sign-off.',
-    estimated_budget_ngn: 75000,
-    created_at: '2026-10-31T13:00:00Z',
-  },
-];
+
 
 export default function ServicesClient({ initialEnquiries }: ServicesClientProps) {
   const [activeTab, setActiveTab] = useState<'triage' | 'setup' | 'feed' | 'biosecurity' | 'schedule'>('triage');
@@ -271,15 +107,7 @@ export default function ServicesClient({ initialEnquiries }: ServicesClientProps
       };
     });
 
-    // Deduplicate against reference entries
-    const combined = [...dbTickets];
-    REFERENCE_SERVICES.forEach((ref) => {
-      if (!combined.some((t) => t.enquiry_ref === ref.enquiry_ref)) {
-        combined.push(ref);
-      }
-    });
-
-    return combined;
+    return dbTickets;
   });
 
   const showToast = (msg: string) => {
@@ -762,15 +590,34 @@ export default function ServicesClient({ initialEnquiries }: ServicesClientProps
       {activeTab !== 'schedule' && (
         <div className="space-y-4">
           {filteredTickets.length === 0 ? (
-            <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-xs space-y-3">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
-                <Search className="h-6 w-6" />
-              </div>
-              <h3 className="text-base font-bold text-slate-900">No consultation requests match this filter</h3>
-              <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                Try adjusting your search query, priority selector, or switch between service categories above.
-              </p>
-            </div>
+            tickets.length === 0 ? (
+              <AdminConnectedEmptyState
+                icon={Stethoscope}
+                title="Clinical & Consultation Queue is Current"
+                description="No active veterinary triage or commercial consultation requests exist in the database. As farmers submit inquiries or clinical alerts, they stream here in real time."
+                tableName="enquiries"
+                badgeLabel="VCN Clinical Desk"
+                primaryAction={{
+                  label: 'Log Consultation Ticket',
+                  icon: Plus,
+                  onClick: () => setActiveTab('schedule'),
+                }}
+              />
+            ) : (
+              <AdminConnectedEmptyState
+                icon={Stethoscope}
+                title="No Consultation Requests Match Filter"
+                description="Try adjusting your search query, priority selector, or switch between service categories above."
+                tableName="enquiries"
+                isFiltered
+                onClearFilters={() => {
+                  setSearchQuery('');
+                  setPriorityFilter('all');
+                  setStatusFilter('all');
+                  setActiveTab('triage');
+                }}
+              />
+            )
           ) : (
             <div className="space-y-3.5">
               {filteredTickets.map((ticket) => (

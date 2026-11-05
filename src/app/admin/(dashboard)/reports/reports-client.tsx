@@ -681,32 +681,10 @@ export default function ReportsClient({
                     </div>
                   );
                 }) : (
-                  /* Static fallback quota cards */
-                  [
-                    { name: 'Chi Hatchery Ltd', breed: 'Broiler', pct: 28, used: 42, total: 150, open: 108 },
-                    { name: 'Zartech Farms', breed: 'Broiler', pct: 15, used: 15, total: 100, open: 85 },
-                    { name: 'Amo Hatchery', breed: 'Broiler', pct: 8, used: 10, total: 120, open: 110 },
-                  ].map((q) => {
-                    const satColor = q.pct >= 80 ? '#ef4444' : q.pct >= 50 ? '#f59e0b' : '#10b981';
-                    return (
-                      <div key={q.name} className="p-3 rounded-xl border border-slate-100 hover:border-slate-200 transition-colors">
-                        <div className="flex items-center justify-between mb-2">
-                          <div>
-                            <span className="text-xs font-bold text-slate-900">{q.name}</span>
-                            <span className="ml-2 text-[10px] text-slate-400 uppercase">{q.breed}</span>
-                          </div>
-                          <span className="text-xs font-bold" style={{ color: satColor }}>{q.pct}% filled</span>
-                        </div>
-                        <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                          <div className="h-full rounded-full" style={{ width: `${q.pct}%`, background: satColor }} />
-                        </div>
-                        <div className="mt-1.5 flex items-center justify-between text-[10px] text-slate-400">
-                          <span>{q.used} / {q.total} cartons</span>
-                          <span className="font-semibold" style={{ color: satColor }}>{q.open} open</span>
-                        </div>
-                      </div>
-                    );
-                  })
+                  <div className="py-8 text-center text-slate-400">
+                    <p className="text-xs font-bold text-slate-700">No Quota Balances Recorded</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">Quota capacity tracking will populate once batch quotas are initialized in Chicks Pricing.</p>
+                  </div>
                 )}
               </div>
             </div>
@@ -722,44 +700,43 @@ export default function ReportsClient({
                   <p className="text-[11px] text-slate-400 mt-0.5">Share from confirmed bookings</p>
                 </div>
                 <span className="rounded-full bg-emerald-50 border border-emerald-100 px-2.5 py-1 text-[10px] font-bold text-emerald-700">
-                  {hatcheryStats.length || 5} Partners
+                  {hatcheryStats.length} Partners
                 </span>
               </div>
               <div className="space-y-4">
-                {(hatcheryStats.length > 0 ? hatcheryStats : [
-                  { 0: 'CHI Farms', 1: { bookings: 34, cartons: 85 } },
-                  { 0: 'AMO Farm Sieberer', 1: { bookings: 28, cartons: 70 } },
-                  { 0: 'Zartech Farms', 1: { bookings: 18, cartons: 45 } },
-                  { 0: 'Supreme Poultry', 1: { bookings: 12, cartons: 30 } },
-                  { 0: 'AGRITED', 1: { bookings: 8, cartons: 20 } },
-                ]).slice(0, 5).map((entry, i) => {
-                  const name = Array.isArray(entry) ? entry[0] : (entry as Record<string, unknown>)[0] as string;
-                  const stats = Array.isArray(entry) ? entry[1] as { bookings: number; cartons: number } : (entry as Record<string, unknown>)[1] as { bookings: number; cartons: number };
-                  const totalCartons = hatcheryStats.length > 0
-                    ? hatcheryStats.reduce((s, [, v]) => s + v.cartons, 0)
-                    : 250;
-                  const pct = totalCartons > 0 ? Math.round((stats.cartons / totalCartons) * 100) : 0;
-                  const colors = ['#00a854', '#3b82f6', '#f59e0b', '#8b5cf6', '#06b6d4'];
-                  return (
-                    <div key={String(name) + i}>
-                      <div className="flex items-center justify-between mb-1.5">
-                        <div className="flex items-center gap-2">
-                          <span className="h-5 w-5 rounded text-white font-mono text-[9px] font-black flex items-center justify-center" style={{ background: colors[i % colors.length] }}>
-                            {String(name).substring(0, 2).toUpperCase()}
-                          </span>
-                          <span className="text-xs font-semibold text-slate-800">{String(name)}</span>
+                {hatcheryStats.length > 0 ? (
+                  hatcheryStats.slice(0, 5).map((entry, i) => {
+                    const name = Array.isArray(entry) ? entry[0] : (entry as Record<string, unknown>)[0] as string;
+                    const stats = Array.isArray(entry) ? entry[1] as { bookings: number; cartons: number } : (entry as Record<string, unknown>)[1] as { bookings: number; cartons: number };
+                    const totalCartons = hatcheryStats.reduce((s, [, v]) => s + v.cartons, 0);
+                    const pct = totalCartons > 0 ? Math.round((stats.cartons / totalCartons) * 100) : 0;
+                    const colors = ['#00a854', '#3b82f6', '#f59e0b', '#8b5cf6', '#06b6d4'];
+                    return (
+                      <div key={String(name) + i}>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <div className="flex items-center gap-2">
+                            <span className="h-5 w-5 rounded text-white font-mono text-[9px] font-black flex items-center justify-center" style={{ background: colors[i % colors.length] }}>
+                              {String(name).substring(0, 2).toUpperCase()}
+                            </span>
+                            <span className="text-xs font-semibold text-slate-800">{String(name)}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-[11px]">
+                            <span className="text-slate-400">{stats.bookings} bookings</span>
+                            <span className="font-bold text-slate-900">{pct}%</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2 text-[11px]">
-                          <span className="text-slate-400">{stats.bookings} bookings</span>
-                          <span className="font-bold text-slate-900">{pct}%</span>
+                        <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                          <div className="h-full rounded-full" style={{ width: `${pct}%`, background: colors[i % colors.length] }} />
                         </div>
                       </div>
-                      <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                        <div className="h-full rounded-full" style={{ width: `${pct}%`, background: colors[i % colors.length] }} />
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                ) : (
+                  <div className="py-8 text-center text-slate-400">
+                    <p className="text-xs font-bold text-slate-700">No Booking Allocations</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">Partner hatchery distribution will chart automatically from confirmed customer reservations.</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

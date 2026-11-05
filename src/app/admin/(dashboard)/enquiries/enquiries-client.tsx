@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Modal } from '@/components/ui/modal';
 import { DbEnquiry } from '@/lib/supabase/data-access';
+import { AdminConnectedEmptyState } from '@/components/admin/connected-empty-state';
 import {
   Mail,
   Clock,
@@ -54,150 +55,10 @@ interface DisplayEnquiry {
   notes?: string | null;
 }
 
-// 6 Exact reference entries matching attached billion-dollar executive dashboard UI
-const REFERENCE_ENQUIRIES: DisplayEnquiry[] = [
-  {
-    id: 'ref-enq-1',
-    enquiry_ref: 'ENQ-7821',
-    avatar: '/images/avatar-1.jpg',
-    customer_name: 'Chinwe Okafor',
-    customer_phone: '0803 123 4567',
-    details: 'Do you have 1,000 day-old broiler chicks in stock?',
-    type: {
-      label: 'Chick Order',
-      icon: 'chick',
-      badgeClass: 'bg-[#eafaf0] text-[#059669] border border-emerald-200/60',
-      iconColor: 'text-[#00a854]',
-    },
-    priority: 'High',
-    status: 'New',
-    timeAgo: '2m ago',
-    timestamp: '10:36 AM',
-    delivery_city: 'Awka',
-    delivery_state: 'Anambra',
-    farm_name: 'Okafor Integrated Poultry',
-    notes: 'Inquiring for 1,000 Broiler chicks delivery next Tuesday. Wants Chi or Amo stock.',
-  },
-  {
-    id: 'ref-enq-2',
-    enquiry_ref: 'ENQ-7822',
-    avatar: '/images/avatar-2.jpg',
-    customer_name: 'Emeka Nwosu',
-    customer_phone: '0812 345 6789',
-    details: 'Price for 500 layers and delivery to Enugu?',
-    type: {
-      label: 'Order Query',
-      icon: 'cart',
-      badgeClass: 'bg-[#eff6ff] text-[#2563eb] border border-blue-200/60',
-      iconColor: 'text-[#2563eb]',
-    },
-    priority: 'Medium',
-    status: 'In Progress',
-    timeAgo: '5m ago',
-    timestamp: '10:33 AM',
-    delivery_city: 'Enugu Urban',
-    delivery_state: 'Enugu',
-    farm_name: 'Nwosu Farmsteads',
-    notes: 'Requested current Zartech black pullet rates and bus waybill costs to Holy Ghost Terminal.',
-  },
-  {
-    id: 'ref-enq-3',
-    enquiry_ref: 'ENQ-7823',
-    avatar: '/images/avatar-3.jpg',
-    customer_name: 'Aisha Mohammed',
-    customer_phone: '0706 987 6543',
-    details: 'Do you offer veterinary support?',
-    type: {
-      label: 'Support',
-      icon: 'support',
-      badgeClass: 'bg-[#faf5ff] text-[#7e22ce] border border-purple-200/60',
-      iconColor: 'text-[#7e22ce]',
-    },
-    priority: 'Low',
-    status: 'Resolved',
-    timeAgo: '12m ago',
-    timestamp: '10:27 AM',
-    delivery_city: 'Kano',
-    delivery_state: 'Kano',
-    farm_name: 'Arewa Modern Farms',
-    notes: 'Clinical triage ticket answered by resident vet Dr. Bello. Advised Gumboro schedule.',
-  },
-  {
-    id: 'ref-enq-4',
-    enquiry_ref: 'ENQ-7824',
-    avatar: '/images/avatar-4.jpg',
-    customer_name: 'Daniel Adekunle',
-    customer_phone: '0903 456 7890',
-    details: 'How soon can I get delivery in Lagos?',
-    type: {
-      label: 'Delivery',
-      icon: 'delivery',
-      badgeClass: 'bg-[#fff7ed] text-[#c2410c] border border-orange-200/60',
-      iconColor: 'text-[#ea580c]',
-    },
-    priority: 'Medium',
-    status: 'In Progress',
-    timeAgo: '18m ago',
-    timestamp: '10:21 AM',
-    delivery_city: 'Ikorodu',
-    delivery_state: 'Lagos',
-    farm_name: 'Lagos Lagoon Agritech',
-    notes: 'Dispatched notification via Berger Interstate Express Terminal. Same day arrival.',
-  },
-  {
-    id: 'ref-enq-5',
-    enquiry_ref: 'ENQ-7825',
-    avatar: '/images/avatar-5.jpg',
-    customer_name: 'Grace Eze',
-    customer_phone: '0814 567 8901',
-    details: 'Do you have feeds for broilers?',
-    type: {
-      label: 'Product Info',
-      icon: 'product',
-      badgeClass: 'bg-[#f0fdfa] text-[#0f766e] border border-teal-200/60',
-      iconColor: 'text-[#0d9488]',
-    },
-    priority: 'Low',
-    status: 'New',
-    timeAgo: '22m ago',
-    timestamp: '10:17 AM',
-    delivery_city: 'Asaba',
-    delivery_state: 'Delta',
-    farm_name: 'Delta Greens Feeders',
-    notes: 'Asking for 50kg Starter mash bag quotations & TopFeeds distributor availability.',
-  },
-  {
-    id: 'ref-enq-6',
-    enquiry_ref: 'ENQ-7826',
-    avatar: '/images/avatar-6.jpg',
-    customer_name: 'Musa Bello',
-    customer_phone: '0809 876 5432',
-    details: 'Can I get a discount for bulk purchase?',
-    type: {
-      label: 'Sales Query',
-      icon: 'sales',
-      badgeClass: 'bg-[#f0fdf4] text-[#15803d] border border-emerald-200/60',
-      iconColor: 'text-[#16a34a]',
-    },
-    priority: 'High',
-    status: 'Pending',
-    timeAgo: '30m ago',
-    timestamp: '10:09 AM',
-    delivery_city: 'Ibadan',
-    delivery_state: 'Oyo',
-    farm_name: 'Bello Commercial Layer Brood',
-    notes: 'Commercial producer purchasing 3,000 birds weekly. Transferred to Commercial VIP Desk.',
-  },
-];
-
 export function EnquiriesClient({ initialEnquiries }: EnquiriesClientProps) {
-  // Merge live database enquiries if present, else default to full reference set
+  // Map live database enquiries strictly from database
   const initialItems: DisplayEnquiry[] = useMemo(() => {
-    if (!initialEnquiries || initialEnquiries.length === 0) {
-      return REFERENCE_ENQUIRIES;
-    }
-
-    const mappedLive: DisplayEnquiry[] = initialEnquiries.map((db, idx) => {
+    return (initialEnquiries || []).map((db, idx) => {
       const avatarIdx = (idx % 6) + 1;
       const isUrgent = db.priority === 'urgent' || db.enquiry_type === 'veterinary_consultation';
       const isHigh = db.priority === 'high';
@@ -260,12 +121,6 @@ export function EnquiriesClient({ initialEnquiries }: EnquiriesClientProps) {
         notes: db.user_notes,
       };
     });
-
-    // Ensure we keep the reference benchmark items if live records are fewer than 6
-    if (mappedLive.length < 6) {
-      return [...mappedLive, ...REFERENCE_ENQUIRIES.slice(mappedLive.length)];
-    }
-    return mappedLive;
   }, [initialEnquiries]);
 
   const [items, setItems] = useState<DisplayEnquiry[]>(initialItems);
@@ -741,8 +596,28 @@ export function EnquiriesClient({ initialEnquiries }: EnquiriesClientProps) {
               <tbody className="divide-y divide-slate-100/90">
                 {filteredItems.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="py-12 text-center text-slate-400 text-xs">
-                      No customer enquiries found matching your criteria.
+                    <td colSpan={8} className="p-8">
+                      {items.length === 0 ? (
+                        <AdminConnectedEmptyState
+                          icon={Mail}
+                          title="Inquiry Queue is Current"
+                          description="No incoming inquiries are currently pending in the database. When prospective poultry farmers contact via WhatsApp, website forms, or phone, tickets stream here in real-time."
+                          tableName="enquiries"
+                          badgeLabel="Live Ingestion Desk"
+                        />
+                      ) : (
+                        <AdminConnectedEmptyState
+                          icon={Mail}
+                          title="No Enquiries Match Criteria"
+                          description="No inbound customer inquiries match your active tab or search query. Reset filters to view all entries."
+                          tableName="enquiries"
+                          isFiltered
+                          onClearFilters={() => {
+                            setSearchQuery('');
+                            setActiveTab('all');
+                          }}
+                        />
+                      )}
                     </td>
                   </tr>
                 ) : (

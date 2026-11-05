@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Modal } from '@/components/ui/modal';
 import { DbBooking, DbEnquiry } from '@/lib/supabase/data-access';
+import { AdminConnectedEmptyState } from '@/components/admin/connected-empty-state';
 import {
   HelpCircle,
   CheckCircle2,
@@ -71,155 +72,10 @@ interface SupportClientProps {
   initialBookings?: DbBooking[];
 }
 
-// Benchmark reference support tickets matching enterprise poultry operations
-const REFERENCE_TICKETS: DisplaySupportTicket[] = [
-  {
-    id: 'tkt-01',
-    ticketRef: 'TCK-202611-001',
-    customerName: 'Alhaji M. Ajila',
-    customerPhone: '0803 912 3456',
-    farmName: 'Ajila Farm',
-    deliveryState: 'Oyo',
-    deliveryCity: 'Bodija, Ibadan',
-    avatar: '/images/avatar-1.jpg',
-    category: 'waybill_tracking',
-    categoryLabel: 'Waybill Tracking',
-    categoryIcon: 'waybill',
-    categoryBadgeClass: 'bg-[#fff7ed] text-[#c2410c] border border-orange-200/60',
-    categoryIconColor: 'text-[#ea580c]',
-    subject: 'Tuesday morning chick waybill arrival at Bodija Depot',
-    description:
-      'Customer requesting motor park driver phone number and bus registration number for pickup of 20 cartons Broiler chicks at Ibadan Central Terminal.',
-    priority: 'High',
-    status: 'In Progress',
-    timeAgo: '4m ago',
-    timestamp: '10:48 AM',
-    linkedRef: 'WYB-IB-9021',
-  },
-  {
-    id: 'tkt-02',
-    ticketRef: 'TCK-202611-002',
-    customerName: 'Dr. Austin',
-    customerPhone: '0805 678 9012',
-    farmName: 'Dr Austin Farm',
-    deliveryState: 'Ogun',
-    deliveryCity: 'Sagamu',
-    avatar: '/images/avatar-2.jpg',
-    category: 'dosage_query',
-    categoryLabel: 'VCN Clinical / Dosage',
-    categoryIcon: 'dosage',
-    categoryBadgeClass: 'bg-[#faf5ff] text-[#7e22ce] border border-purple-200/60',
-    categoryIconColor: 'text-[#7e22ce]',
-    subject: 'Clarification on Gumboro IBD water withdrawal in 34°C weather',
-    description:
-      'Ambient shed temp exceeding 33°C. Farmer requested protocol on reducing thirsting duration from 2 hours to 90 minutes to prevent heat stress dehydration.',
-    priority: 'High',
-    status: 'Escalated',
-    timeAgo: '12m ago',
-    timestamp: '10:40 AM',
-    linkedRef: 'VET-IBD-304',
-  },
-  {
-    id: 'tkt-03',
-    ticketRef: 'TCK-202611-003',
-    customerName: 'Loveday Agro',
-    customerPhone: '0802 345 6789',
-    farmName: 'Loveday Farm',
-    deliveryState: 'Rivers',
-    deliveryCity: 'Port Harcourt',
-    avatar: '/images/avatar-3.jpg',
-    category: 'cold_chain_check',
-    categoryLabel: 'Cold Chain Check',
-    categoryIcon: 'coldchain',
-    categoryBadgeClass: 'bg-[#f0fdfa] text-[#0f766e] border border-teal-200/60',
-    categoryIconColor: 'text-[#0d9488]',
-    subject: 'Ice pack temperature check on Newcastle LaSota delivery',
-    description:
-      'Thermal styrofoam box arrived at PH Hub. Farmer verified ice pack condition intact with thermometer at 4°C. Requesting certificate confirmation.',
-    priority: 'Low',
-    status: 'Resolved',
-    timeAgo: '28m ago',
-    timestamp: '10:24 AM',
-    linkedRef: 'MED-COLD-102',
-    resolutionNote: 'Cold chain verified via photo evidence of thermometer. Approved for immediate administration.',
-  },
-  {
-    id: 'tkt-04',
-    ticketRef: 'TCK-202611-004',
-    customerName: 'Emeka Nwosu',
-    customerPhone: '0812 345 6789',
-    farmName: 'Nwosu Farmsteads',
-    deliveryState: 'Enugu',
-    deliveryCity: 'Enugu Urban',
-    avatar: '/images/avatar-4.jpg',
-    category: 'transit_mortality',
-    categoryLabel: 'Transit Mortality',
-    categoryIcon: 'mortality',
-    categoryBadgeClass: 'bg-[#fff1f2] text-[#e11d48] border border-rose-200/60',
-    categoryIconColor: 'text-[#e11d48]',
-    subject: 'Mortality report: 3 DOA chicks in box #4 out of 10 cartons',
-    description:
-      'Farmer submitted unboxing video showing 3 deceased chicks upon carton opening at Holy Ghost Terminal. 50:1 buffer bird covered 2; requesting 1 replacement credit.',
-    priority: 'High',
-    status: 'New',
-    timeAgo: '35m ago',
-    timestamp: '10:17 AM',
-    linkedRef: 'BK-EN-8841',
-  },
-  {
-    id: 'tkt-05',
-    ticketRef: 'TCK-202611-005',
-    customerName: 'Chief Adebayo Grace',
-    customerPhone: '0814 567 8901',
-    farmName: 'Grace Farm',
-    deliveryState: 'Lagos',
-    deliveryCity: 'Epe Hub',
-    avatar: '/images/avatar-5.jpg',
-    category: 'deposit_escrow',
-    categoryLabel: 'Zenith Escrow',
-    categoryIcon: 'escrow',
-    categoryBadgeClass: 'bg-[#eff6ff] text-[#2563eb] border border-blue-200/60',
-    categoryIconColor: 'text-[#2563eb]',
-    subject: 'Deposit payment confirmation on Zenith Bank 1017894562',
-    description:
-      'Transferred ₦450,000 for 50 cartons Cobb 500 reservation. Awaiting automated transaction ID reconciliation from commercial desk.',
-    priority: 'Medium',
-    status: 'Resolved',
-    timeAgo: '1h ago',
-    timestamp: '09:50 AM',
-    linkedRef: 'ZEN-TXN-491',
-    resolutionNote: 'Zenith Bank clearing reconciled. Deposit status marked VERIFIED in operations database.',
-  },
-  {
-    id: 'tkt-06',
-    ticketRef: 'TCK-202611-006',
-    customerName: 'Anita Farm Limited',
-    customerPhone: '0809 876 5432',
-    farmName: 'Anita Farm',
-    deliveryState: 'Osun',
-    deliveryCity: 'Osogbo Depot',
-    avatar: '/images/avatar-6.jpg',
-    category: 'arrival_inspection',
-    categoryLabel: 'Arrival Inspection',
-    categoryIcon: 'arrival',
-    categoryBadgeClass: 'bg-[#ecfdf5] text-[#059669] border border-emerald-200/60',
-    categoryIconColor: 'text-[#059669]',
-    subject: 'Venting and beak conformity validation on 15 boxes Chi Broiler',
-    description:
-      'Inspected day-old chicks on arrival at Olaiya Terminal. Average weight measured at 41g, navel healing clean. Confirming receipt handover signature.',
-    priority: 'Low',
-    status: 'Resolved',
-    timeAgo: '2h ago',
-    timestamp: '08:45 AM',
-    linkedRef: 'BK-OS-2041',
-    resolutionNote: 'Handover manifest signed by transit lead and farmer representative.',
-  },
-];
-
 export default function SupportClient({ initialEnquiries = [], initialBookings = [] }: SupportClientProps) {
-  // Merge live enquiries/bookings with benchmark tickets
+  // Derive live support tickets strictly from database enquiries and bookings
   const initialTickets = useMemo<DisplaySupportTicket[]>(() => {
-    const list: DisplaySupportTicket[] = [...REFERENCE_TICKETS];
+    const list: DisplaySupportTicket[] = [];
 
     // Convert live enquiries with clinical or support intent into live tickets
     initialEnquiries.forEach((enq, idx) => {
@@ -955,12 +811,33 @@ export default function SupportClient({ initialEnquiries = [], initialBookings =
               <tbody className="divide-y divide-slate-100/80">
                 {paginatedTickets.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="py-16 text-center text-slate-400">
-                      <div className="max-w-xs mx-auto space-y-2">
-                        <HelpCircle className="h-8 w-8 text-slate-300 mx-auto" />
-                        <p className="font-extrabold text-slate-700 text-sm">No support tickets found</p>
-                        <p className="text-xs text-slate-400">Try adjusting your active filter or search keywords.</p>
-                      </div>
+                    <td colSpan={8} className="p-8">
+                      {tickets.length === 0 ? (
+                        <AdminConnectedEmptyState
+                          icon={HelpCircle}
+                          title="Support Desk Queue is Clear"
+                          description="No customer support tickets, waybill inquiries, or mortality review requests are currently open in the database. Customer issues stream here in real-time."
+                          tableName="enquiries"
+                          badgeLabel="Client Care Desk"
+                          primaryAction={{
+                            label: 'Log New Support Ticket',
+                            icon: Plus,
+                            onClick: () => setIsNewTicketModalOpen(true),
+                          }}
+                        />
+                      ) : (
+                        <AdminConnectedEmptyState
+                          icon={HelpCircle}
+                          title="No Tickets Match Search Filters"
+                          description="Try adjusting your active category filter, status selector, or search keywords."
+                          tableName="enquiries"
+                          isFiltered
+                          onClearFilters={() => {
+                            setSearchQuery('');
+                            setSelectedCategory('all');
+                          }}
+                        />
+                      )}
                     </td>
                   </tr>
                 ) : (

@@ -44,12 +44,6 @@ interface OverviewClientProps {
   customers: DbCustomer[];
 }
 
-const DEMO_HATCHERIES = [
-  { name: 'Chi Hatchery Ltd', breed: 'BROILER · TUESDAY', total: 150, reserved: 42, pct: 28, open: 20 },
-  { name: 'Zartech Farms', breed: 'BROILER · TUESDAY', total: 100, reserved: 15, pct: 15, open: 25 },
-  { name: 'Amo Hatchery', breed: 'BROILER · THURSDAY', total: 120, reserved: 10, pct: 8, open: 40 },
-];
-
 const DISPATCH_HUBS = [
   {
     name: 'Ibadan Central Hub (Iwo Road / Ojoo)',
@@ -109,8 +103,8 @@ export function OverviewClient({
       deposits += b.verified_deposit_ngn || 0;
     });
     return {
-      totalCartons: cartons || 540,
-      totalDeposits: deposits || 18450000,
+      totalCartons: cartons,
+      totalDeposits: deposits,
     };
   }, [bookings]);
 
@@ -129,7 +123,7 @@ export function OverviewClient({
         open: q.available_cartons,
       }));
     }
-    return DEMO_HATCHERIES;
+    return [];
   }, [quotas]);
 
   const filteredEnquiries = useMemo(() => {
@@ -423,46 +417,53 @@ export function OverviewClient({
 
           {/* Hatchery Capacity Rows — 3 column horizontal layout matching reference */}
           <div className="divide-y divide-slate-100 px-5 py-1">
-            {hatcheries.map((h) => (
-              <div key={h.name} className="py-3 flex items-center justify-between gap-4">
-                {/* Column 1: Icon & Name */}
-                <div className="flex items-center gap-3 w-44 sm:w-48 shrink-0">
-                  <div className="h-9 w-9 rounded-full bg-[#dcf5e7] flex items-center justify-center shrink-0">
-                    <Sprout className="h-4 w-4 text-[#00a854]" />
+            {hatcheries.length > 0 ? (
+              hatcheries.map((h) => (
+                <div key={h.name} className="py-3 flex items-center justify-between gap-4">
+                  {/* Column 1: Icon & Name */}
+                  <div className="flex items-center gap-3 w-44 sm:w-48 shrink-0">
+                    <div className="h-9 w-9 rounded-full bg-[#dcf5e7] flex items-center justify-center shrink-0">
+                      <Sprout className="h-4 w-4 text-[#00a854]" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xs sm:text-sm font-bold text-slate-900 truncate">{h.name}</div>
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{h.breed}</div>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-xs sm:text-sm font-bold text-slate-900 truncate">{h.name}</div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{h.breed}</div>
-                  </div>
-                </div>
 
-                {/* Column 2: Progress bar & saturation label */}
-                <div className="flex-1 max-w-[200px] px-2 space-y-1">
-                  <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-[#00a854] rounded-full transition-all duration-700"
-                      style={{ width: `${h.pct}%` }}
-                    />
+                  {/* Column 2: Progress bar & saturation label */}
+                  <div className="flex-1 max-w-[200px] px-2 space-y-1">
+                    <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-[#00a854] rounded-full transition-all duration-700"
+                        style={{ width: `${h.pct}%` }}
+                      />
+                    </div>
+                    <div className="text-[10px] font-bold text-[#00a854]">
+                      {h.pct}% Saturation
+                    </div>
                   </div>
-                  <div className="text-[10px] font-bold text-[#00a854]">
-                    {h.pct}% Saturation
-                  </div>
-                </div>
 
-                {/* Column 3: Count & open cartons */}
-                <div className="text-right shrink-0">
-                  <div className="text-xs sm:text-sm font-extrabold text-slate-900 font-mono leading-none">
-                    {h.reserved} / {h.total}
-                  </div>
-                  <div className="text-[10px] font-medium text-slate-400 mt-1">
-                    {h.pct}% Saturation
-                  </div>
-                  <div className="text-[11px] font-bold text-[#00a854] mt-0.5">
-                    {h.open} cartons open
+                  {/* Column 3: Count & open cartons */}
+                  <div className="text-right shrink-0">
+                    <div className="text-xs sm:text-sm font-extrabold text-slate-900 font-mono leading-none">
+                      {h.reserved} / {h.total}
+                    </div>
+                    <div className="text-[10px] font-medium text-slate-400 mt-1">
+                      {h.pct}% Saturation
+                    </div>
+                    <div className="text-[11px] font-bold text-[#00a854] mt-0.5">
+                      {h.open} cartons open
+                    </div>
                   </div>
                 </div>
+              ))
+            ) : (
+              <div className="py-8 text-center text-slate-400 space-y-1">
+                <p className="text-xs font-bold text-slate-700">No Hatchery Quotas Allocated</p>
+                <p className="text-[11px] text-slate-400">Weekly allocation quotas from CHI, Amo, and Zartech will appear here once scheduled.</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
 

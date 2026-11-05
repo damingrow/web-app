@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   TrendingUp,
   TrendingDown,
@@ -540,6 +540,9 @@ export default function ChicksPricingClient({
         const data = await res.json();
         if (data?.hatcheries?.length) setHatcheries(data.hatcheries);
         if (data?.quotas?.length) setQuotas(data.quotas);
+        if (data?.savedRates && Array.isArray(data.savedRates) && data.savedRates.length > 0) {
+          setRates(data.savedRates);
+        }
       }
     } catch {
       // Keep state
@@ -547,6 +550,10 @@ export default function ChicksPricingClient({
     setLoading(false);
     setLastSync(new Date());
   }, []);
+
+  useEffect(() => {
+    refreshData();
+  }, [refreshData]);
 
   // ── Derived KPIs ──
   const activePrices = rates.filter((r) => r.status === 'active');

@@ -34,19 +34,30 @@ export async function GET() {
     ]);
 
     let latestAudit = null;
+    let savedRates = null;
     if (env.SUPABASE_SERVICE_ROLE_KEY) {
       try {
         const supabase = createAdminClient();
-        const { data } = await supabase
-          .from('audit_events')
-          .select('*')
-          .eq('action', 'chick_pricing.bulk_updated')
-          .order('created_at', { ascending: false })
-          .limit(1)
-          .maybeSingle();
+        const [{ data: auditData }, { data: settingsData }] = await Promise.all([
+          supabase
+            .from('audit_events')
+            .select('*')
+            .eq('action', 'chick_pricing.bulk_updated')
+            .order('created_at', { ascending: false })
+            .limit(1)
+            .maybeSingle(),
+          supabase
+            .from('application_settings')
+            .select('value_json')
+            .eq('key', 'chick_pricing_rates')
+            .maybeSingle(),
+        ]);
 
-        if (data) {
-          latestAudit = data;
+        if (auditData) {
+          latestAudit = auditData;
+        }
+        if (settingsData && settingsData.value_json) {
+          savedRates = settingsData.value_json;
         }
       } catch {
         // non-blocking
@@ -58,6 +69,7 @@ export async function GET() {
       hatcheries,
       quotas,
       latestAudit,
+      savedRates,
       serverTime: new Date().toISOString(),
     });
   } catch (err) {
@@ -84,21 +96,28 @@ export async function POST(request: Request) {
     if (env.SUPABASE_SERVICE_ROLE_KEY) {
       try {
         const supabase = createAdminClient();
-        await supabase.from('audit_events').insert({
-          actor_id: staff!.userId,
-          actor_role: staff!.role,
-          action: 'chick_pricing.bulk_updated',
-          resource_type: 'product_variants',
-          resource_id: undefined,
-          changes_json: {
-            effectiveDate: validated.effectiveDate,
-            note: validated.note,
-            rates: validated.rates,
-            authorizedBy: staff!.fullName,
-          },
-        });
+        await Promise.all([
+          supabase.from('audit_events').insert({
+            actor_id: staff!.userId,
+            actor_role: staff!.role,
+            action: 'chick_pricing.bulk_updated',
+            resource_type: 'product_variants',
+            resource_id: undefined,
+            changes_json: {
+              effectiveDate: validated.effectiveDate,
+              note: validated.note,
+              rates: validated.rates,
+              authorizedBy: staff!.fullName,
+            },
+          }),
+          supabase.from('application_settings').upsert({
+            key: 'chick_pricing_rates',
+            value_json: validated.rates,
+            updated_at: new Date().toISOString(),
+          }),
+        ]);
       } catch (dbErr) {
-        console.error('Failed to log chick pricing audit event:', dbErr);
+        console.error('Failed to log chick pricing audit event or settings:', dbErr);
       }
     }
 

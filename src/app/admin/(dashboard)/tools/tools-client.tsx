@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Calculator,
@@ -290,6 +290,30 @@ export default function ToolsClient() {
   const [calibTargetWeightKg, setCalibTargetWeightKg] = useState<number>(2.2);
   const [calibCratePriceNgn, setCalibCratePriceNgn] = useState<number>(4200);
   const [isCalibrating, setIsCalibrating] = useState<boolean>(false);
+
+  // Load saved calibration from database
+  useEffect(() => {
+    async function loadCalibration() {
+      try {
+        const res = await fetch('/api/admin/tools/calibrate');
+        if (res.ok) {
+          const json = await res.json();
+          if (json?.calibration) {
+            const c = json.calibration;
+            if (c.broilerFloorSqM) setCalibBroilerFloorSqM(c.broilerFloorSqM);
+            if (c.birdsPerGasBrooder) setCalibBirdsPerBrooder(c.birdsPerGasBrooder);
+            if (c.starterFeedPerBirdKg) setCalibStarterFeedKg(c.starterFeedPerBirdKg);
+            if (c.feedBagPriceNgn) setCalibFeedBagPriceNgn(c.feedBagPriceNgn);
+            if (c.targetHarvestWeightKg) setCalibTargetWeightKg(c.targetHarvestWeightKg);
+            if (c.standardCratePriceNgn) setCalibCratePriceNgn(c.standardCratePriceNgn);
+          }
+        }
+      } catch {
+        // use defaults
+      }
+    }
+    loadCalibration();
+  }, []);
 
   const handleSaveCalibration = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -21,104 +21,18 @@ export interface MarketingCampaign {
   notes?: string;
 }
 
-const DEFAULT_CAMPAIGNS: MarketingCampaign[] = [
-  {
-    id: 'camp-1',
-    campaign: 'tuesday_hatch_broiler_nov26',
-    title: 'Tuesday Hatch Broiler Surge (CHI & AMO)',
-    source: 'whatsapp_broadcast',
-    medium: 'direct_msg',
-    targetUrl: 'https://damingrow.com/chicks/commercial-day-old-broiler-chicks',
-    status: 'active',
-    clicks: 480,
-    leads: 78,
-    conversions: 34,
-    budgetNgn: 45000,
-    revenueAttributedNgn: 4590000,
-    createdAt: '2026-10-28T08:00:00Z',
-    notes: 'Direct broadcast to verified commercial broiler farmers in Oyo, Lagos, and Ogun.',
-  },
-  {
-    id: 'camp-2',
-    campaign: 'free_vaccination_calendar_promo',
-    title: 'Poultry Vaccination Calendar Lead Magnet',
-    source: 'google_organic',
-    medium: 'editorial_guide',
-    targetUrl: 'https://damingrow.com/knowledge/poultry-vaccination-schedule-nigeria',
-    status: 'active',
-    clicks: 1250,
-    leads: 142,
-    conversions: 52,
-    budgetNgn: 0,
-    revenueAttributedNgn: 3640000,
-    createdAt: '2026-10-15T09:30:00Z',
-    notes: 'High organic search ranking for "poultry vaccination schedule nigeria". Zero paid spend.',
-  },
-  {
-    id: 'camp-3',
-    campaign: 'fcr_bio_math_calculator',
-    title: 'Interactive Feed Conversion (FCR) Simulator',
-    source: 'calculator_referral',
-    medium: 'bio_math_tool',
-    targetUrl: 'https://damingrow.com/calculators/fcr',
-    status: 'active',
-    clicks: 890,
-    leads: 64,
-    conversions: 28,
-    budgetNgn: 0,
-    revenueAttributedNgn: 2850000,
-    createdAt: '2026-10-20T11:00:00Z',
-    notes: 'Farmers calculating feed wastage and contacting WhatsApp for feed formulation advisory.',
-  },
-  {
-    id: 'camp-4',
-    campaign: 'point_of_lay_black_pullet_nov',
-    title: 'Black Pullet 16-Week POL Special Run',
-    source: 'poultry_association',
-    medium: 'referral_banner',
-    targetUrl: 'https://damingrow.com/chicks/commercial-day-old-layer-pullets',
-    status: 'active',
-    clicks: 340,
-    leads: 38,
-    conversions: 16,
-    budgetNgn: 25000,
-    revenueAttributedNgn: 2160000,
-    createdAt: '2026-11-01T14:15:00Z',
-    notes: 'Partnership with Poultry Association of Nigeria (PAN) Oyo & Ogun state chapters.',
-  },
-  {
-    id: 'camp-5',
-    campaign: 'december_xmas_broiler_surge',
-    title: 'December Festive Season Early Hatch Booking',
-    source: 'facebook_ads',
-    medium: 'cpc',
-    targetUrl: 'https://damingrow.com/chicks',
-    status: 'active',
-    clicks: 980,
-    leads: 56,
-    conversions: 21,
-    budgetNgn: 60000,
-    revenueAttributedNgn: 2835000,
-    createdAt: '2026-11-02T10:00:00Z',
-    notes: 'Targeting farm managers in South-West & South-East preparing for Christmas market runs.',
-  },
-  {
-    id: 'camp-6',
-    campaign: 'cold_chain_lasota_gumboro_drive',
-    title: 'NAFDAC Cold-Chain Vaccine Distribution',
-    source: 'whatsapp_broadcast',
-    medium: 'clinical_alert',
-    targetUrl: 'https://damingrow.com/vaccines',
-    status: 'paused',
-    clicks: 210,
-    leads: 22,
-    conversions: 9,
-    budgetNgn: 15000,
-    revenueAttributedNgn: 780000,
-    createdAt: '2026-10-10T12:00:00Z',
-    notes: 'Batch insulated box delivery notification for Gumboro & LaSota biologicals.',
-  },
-];
+export interface ChannelAttribution {
+  channel: string;
+  source: string;
+  count: number;
+  share: string;
+  leads: number;
+  conversionRate: string;
+  revenueAttributedNgn: number;
+  color: string;
+  bg: string;
+  badge: string;
+}
 
 const createCampaignSchema = z.object({
   campaign: z.string().min(3).regex(/^[a-z0-9_-]+$/, 'Campaign must use lowercase alphanumeric, hyphens or underscores'),
@@ -135,41 +49,106 @@ const updateCampaignStatusSchema = z.object({
   status: z.enum(['active', 'paused', 'completed']),
 });
 
+/** Derive channel attribution analytics from live enquiries UTM data */
+async function computeChannelAttribution(supabase: ReturnType<typeof createAdminClient>): Promise<ChannelAttribution[]> {
+  const { data: enquiries } = await supabase
+    .from('enquiries')
+    .select('utm_source, utm_medium, utm_campaign, estimated_subtotal_ngn, status')
+    .order('created_at', { ascending: false })
+    .limit(500);
+
+  if (!enquiries || enquiries.length === 0) return [];
+
+  // Aggregate by channel
+  const channelMap = new Map<string, { count: number; leads: number; revenue: number }>();
+  for (const e of enquiries) {
+    const src = (e.utm_source as string | null) || 'direct';
+    const existing = channelMap.get(src) || { count: 0, leads: 0, revenue: 0 };
+    existing.count++;
+    if (e.status === 'fulfilled' || e.status === 'deposit_received') {
+      existing.leads++;
+      existing.revenue += (e.estimated_subtotal_ngn as number | null) || 0;
+    }
+    channelMap.set(src, existing);
+  }
+
+  const totalCount = enquiries.length;
+  const colorMap: Record<string, { color: string; bg: string; badge: string }> = {
+    whatsapp:    { color: '#25D366', bg: 'bg-green-500',  badge: 'Direct Conversion' },
+    google:      { color: '#4285F4', bg: 'bg-blue-500',   badge: 'Organic Search' },
+    google_ads:  { color: '#FBBC04', bg: 'bg-yellow-500', badge: 'Paid Acquisition' },
+    facebook:    { color: '#1877F2', bg: 'bg-blue-600',   badge: 'Social Media' },
+    referral:    { color: '#8B5CF6', bg: 'bg-purple-500', badge: 'Referral Network' },
+    calculator:  { color: '#10B981', bg: 'bg-emerald-500',badge: 'Bio-Math Tool' },
+    direct:      { color: '#6B7280', bg: 'bg-slate-500',  badge: 'Direct Traffic' },
+  };
+
+  const result: ChannelAttribution[] = [];
+  channelMap.forEach((stats, src) => {
+    const pct = totalCount > 0 ? ((stats.count / totalCount) * 100).toFixed(1) : '0';
+    const convRate = stats.count > 0 ? ((stats.leads / stats.count) * 100).toFixed(1) : '0';
+    const c = colorMap[src] || { color: '#6B7280', bg: 'bg-slate-500', badge: 'Other Channel' };
+    result.push({
+      channel: src.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+      source: src,
+      count: stats.count,
+      share: `${pct}%`,
+      leads: stats.leads,
+      conversionRate: `${convRate}%`,
+      revenueAttributedNgn: stats.revenue,
+      color: c.color,
+      bg: c.bg,
+      badge: c.badge,
+    });
+  });
+
+  return result.sort((a, b) => b.count - a.count);
+}
+
 export async function GET() {
+  const { errorResponse } = await requireStaffSession(['super_admin', 'sales_agent', 'content_editor']);
+  if (errorResponse) return errorResponse;
+
   try {
-    let campaigns: MarketingCampaign[] = [...DEFAULT_CAMPAIGNS];
+    let campaigns: MarketingCampaign[] = [];
+    let channelAttribution: ChannelAttribution[] = [];
 
     if (env.SUPABASE_SERVICE_ROLE_KEY) {
       try {
         const supabase = createAdminClient();
-        const { data: row } = await supabase
-          .from('application_settings')
-          .select('value_json')
-          .eq('key', 'marketing_campaigns')
-          .single();
 
-        if (row && Array.isArray(row.value_json) && row.value_json.length > 0) {
-          campaigns = row.value_json as MarketingCampaign[];
+        const [settingsResult, channelResult] = await Promise.all([
+          supabase
+            .from('application_settings')
+            .select('value_json')
+            .eq('key', 'marketing_campaigns')
+            .maybeSingle(),
+          computeChannelAttribution(supabase),
+        ]);
+
+        if (settingsResult.data && Array.isArray(settingsResult.data.value_json)) {
+          campaigns = settingsResult.data.value_json as MarketingCampaign[];
         }
+        channelAttribution = channelResult;
       } catch (dbErr) {
-        console.warn('Could not read marketing_campaigns from DB:', dbErr);
+        console.warn('Could not read marketing data from DB:', dbErr);
       }
     }
 
-    // Compute aggregated KPI totals
+    // Compute aggregated KPI totals from actual campaigns only
     const totalClicks = campaigns.reduce((acc, c) => acc + (c.clicks || 0), 0);
     const totalLeads = campaigns.reduce((acc, c) => acc + (c.leads || 0), 0);
     const totalConversions = campaigns.reduce((acc, c) => acc + (c.conversions || 0), 0);
     const totalBudget = campaigns.reduce((acc, c) => acc + (c.budgetNgn || 0), 0);
     const totalPipelineValue = campaigns.reduce((acc, c) => acc + (c.revenueAttributedNgn || 0), 0);
-
     const overallConversionRate = totalLeads > 0 ? +((totalConversions / totalLeads) * 100).toFixed(1) : 0;
     const blendedCAC = totalConversions > 0 ? Math.round(totalBudget / totalConversions) : 0;
-    const overallROAS = totalBudget > 0 ? +((totalPipelineValue / totalBudget)).toFixed(1) : 0;
+    const overallROAS = totalBudget > 0 ? +(totalPipelineValue / totalBudget).toFixed(1) : 0;
 
     return NextResponse.json({
       success: true,
       campaigns,
+      channelAttribution,
       kpis: {
         totalClicks,
         totalLeads,
@@ -221,37 +200,33 @@ export async function POST(request: Request) {
     if (env.SUPABASE_SERVICE_ROLE_KEY) {
       try {
         const supabase = createAdminClient();
-        
-        // Fetch existing campaigns
         const { data: existing } = await supabase
           .from('application_settings')
           .select('value_json')
           .eq('key', 'marketing_campaigns')
-          .single();
+          .maybeSingle();
 
-        let currentList: MarketingCampaign[] = [...DEFAULT_CAMPAIGNS];
-        if (existing && Array.isArray(existing.value_json)) {
-          currentList = existing.value_json as MarketingCampaign[];
-        }
+        const currentList: MarketingCampaign[] = (existing && Array.isArray(existing.value_json))
+          ? (existing.value_json as MarketingCampaign[])
+          : [];
 
         const updatedList = [newCampaign, ...currentList.filter(c => c.campaign !== newCampaign.campaign)];
 
-        await supabase.from('application_settings').upsert({
-          key: 'marketing_campaigns',
-          value_json: updatedList,
-          updated_by_staff_id: staff?.userId || null,
-          updated_at: new Date().toISOString(),
-        });
-
-        // Audit log
-        await supabase.from('audit_events').insert({
-          actor_id: staff?.userId,
-          actor_role: staff?.role || 'super_admin',
-          action: 'marketing.campaign_created',
-          resource_type: 'marketing_campaigns',
-          resource_id: newCampaign.campaign,
-          changes_json: newCampaign as unknown as Record<string, unknown>,
-        });
+        await Promise.all([
+          supabase.from('application_settings').upsert({
+            key: 'marketing_campaigns',
+            value_json: updatedList,
+            updated_at: new Date().toISOString(),
+          }),
+          supabase.from('audit_events').insert({
+            actor_id: staff?.userId,
+            actor_role: staff?.role || 'super_admin',
+            action: 'marketing.campaign_created',
+            resource_type: 'marketing_campaigns',
+            resource_id: newCampaign.campaign,
+            changes_json: newCampaign as unknown as Record<string, unknown>,
+          }),
+        ]);
       } catch (dbErr) {
         console.error('Failed to persist campaign in Supabase:', dbErr);
       }
@@ -293,35 +268,33 @@ export async function PATCH(request: Request) {
           .from('application_settings')
           .select('value_json')
           .eq('key', 'marketing_campaigns')
-          .single();
+          .maybeSingle();
 
-        let currentList: MarketingCampaign[] = [...DEFAULT_CAMPAIGNS];
-        if (existing && Array.isArray(existing.value_json)) {
-          currentList = existing.value_json as MarketingCampaign[];
-        }
+        const currentList: MarketingCampaign[] = (existing && Array.isArray(existing.value_json))
+          ? (existing.value_json as MarketingCampaign[])
+          : [];
 
-        const updatedList = currentList.map((c) => {
-          if (c.id === validated.campaignId || c.campaign === validated.campaignId) {
-            return { ...c, status: validated.status };
-          }
-          return c;
-        });
+        const updatedList = currentList.map(c =>
+          (c.id === validated.campaignId || c.campaign === validated.campaignId)
+            ? { ...c, status: validated.status }
+            : c
+        );
 
-        await supabase.from('application_settings').upsert({
-          key: 'marketing_campaigns',
-          value_json: updatedList,
-          updated_by_staff_id: staff?.userId || null,
-          updated_at: new Date().toISOString(),
-        });
-
-        await supabase.from('audit_events').insert({
-          actor_id: staff?.userId,
-          actor_role: staff?.role || 'super_admin',
-          action: 'marketing.campaign_status_updated',
-          resource_type: 'marketing_campaigns',
-          resource_id: validated.campaignId,
-          changes_json: { status: validated.status },
-        });
+        await Promise.all([
+          supabase.from('application_settings').upsert({
+            key: 'marketing_campaigns',
+            value_json: updatedList,
+            updated_at: new Date().toISOString(),
+          }),
+          supabase.from('audit_events').insert({
+            actor_id: staff?.userId,
+            actor_role: staff?.role || 'super_admin',
+            action: 'marketing.campaign_status_updated',
+            resource_type: 'marketing_campaigns',
+            resource_id: validated.campaignId,
+            changes_json: { status: validated.status },
+          }),
+        ]);
       } catch (dbErr) {
         console.error('Failed to update campaign status in Supabase:', dbErr);
       }

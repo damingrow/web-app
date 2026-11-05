@@ -21,142 +21,11 @@ import {
 } from 'lucide-react';
 import { DbCustomer } from '@/lib/supabase/data-access';
 import { getTierBadgeConfig } from '@/lib/crm/customer-utils';
+import { AdminConnectedEmptyState } from '@/components/admin/connected-empty-state';
 
 interface CrmClientProps {
   initialCustomers: DbCustomer[];
 }
-
-// 8 Rich reference farmers matching the executive standard
-const REFERENCE_CUSTOMERS: DbCustomer[] = [
-  {
-    id: 'cust-ref-1',
-    phone_normalized: '+2348034567890',
-    raw_phone: '0803 456 7890',
-    full_name: 'Alhaji Rasheed Balogun',
-    farm_name: 'Balogun Apex Commercial Farms',
-    primary_state: 'Oyo',
-    primary_city: 'Ibadan (Akinyele)',
-    total_orders_count: 14,
-    total_bookings_count: 22,
-    lifetime_value_ngn: 14850000,
-    customer_tier: 'vip_commercial',
-    staff_notes: 'Priority bi-weekly broiler allocation (120 cartons). Prefers Chi Farms Ross 308 stock. Always settles 50% deposit via Zenith Bank transfer within 2 hours.',
-    last_activity_at: '2026-11-04T09:15:00Z',
-    created_at: '2026-03-12T10:00:00Z',
-  },
-  {
-    id: 'cust-ref-2',
-    phone_normalized: '+2348023456789',
-    raw_phone: '0802 345 6789',
-    full_name: 'Chief Babatunde Adeyemi',
-    farm_name: 'Greenfield Agri-Complex Ltd',
-    primary_state: 'Ogun',
-    primary_city: 'Sagamu Interchange',
-    total_orders_count: 8,
-    total_bookings_count: 16,
-    lifetime_value_ngn: 11200000,
-    customer_tier: 'vip_commercial',
-    staff_notes: 'Expanding to 3 tunnel-ventilated closed pens. Stocks 15,000 birds per cycle. Direct account managed by Operations Director.',
-    last_activity_at: '2026-11-03T16:20:00Z',
-    created_at: '2026-04-18T14:30:00Z',
-  },
-  {
-    id: 'cust-ref-3',
-    phone_normalized: '+2348127890123',
-    raw_phone: '0812 789 0123',
-    full_name: 'Dr. Chinedu Eze',
-    farm_name: 'Eze & Sons Integrated Poultry',
-    primary_state: 'Enugu',
-    primary_city: 'Enugu Urban (9th Mile)',
-    total_orders_count: 6,
-    total_bookings_count: 11,
-    lifetime_value_ngn: 6450000,
-    customer_tier: 'gold',
-    staff_notes: 'Regular pullet grower. Takes 50-80 cartons of Zartech ISA Brown on Thursday runs. Dispatches via Holy Ghost terminal.',
-    last_activity_at: '2026-11-04T07:45:00Z',
-    created_at: '2026-05-22T08:15:00Z',
-  },
-  {
-    id: 'cust-ref-4',
-    phone_normalized: '+2348091122334',
-    raw_phone: '0809 112 2334',
-    full_name: 'Engr. Mustapha Kano',
-    farm_name: 'Arewa Gold Livestock',
-    primary_state: 'Kano',
-    primary_city: 'Dawakin Kudu',
-    total_orders_count: 5,
-    total_bookings_count: 9,
-    lifetime_value_ngn: 4920000,
-    customer_tier: 'gold',
-    staff_notes: 'Northern corridor bulk buyer. Procures day-old broilers & turkey poults with aerated express truck delivery to Naibawa terminal.',
-    last_activity_at: '2026-11-03T11:00:00Z',
-    created_at: '2026-06-10T12:00:00Z',
-  },
-  {
-    id: 'cust-ref-5',
-    phone_normalized: '+2348139988776',
-    raw_phone: '0813 998 8776',
-    full_name: 'Mrs. Folake Oshodi',
-    farm_name: 'Oshodi Family Homestead',
-    primary_state: 'Lagos',
-    primary_city: 'Epe Farm Settlement',
-    total_orders_count: 4,
-    total_bookings_count: 5,
-    lifetime_value_ngn: 2150000,
-    customer_tier: 'gold',
-    staff_notes: 'Orders Point-of-Lay cages and 16-week pullets. Utilizes clinical vaccine programs regularly.',
-    last_activity_at: '2026-11-02T14:30:00Z',
-    created_at: '2026-07-04T15:20:00Z',
-  },
-  {
-    id: 'cust-ref-6',
-    phone_normalized: '+2347035567788',
-    raw_phone: '0703 556 7788',
-    full_name: 'Pastor Samuel Ogundipe',
-    farm_name: 'Grace & Truth Agritech',
-    primary_state: 'Osun',
-    primary_city: 'Osogbo Outer Ring',
-    total_orders_count: 3,
-    total_bookings_count: 4,
-    lifetime_value_ngn: 1480000,
-    customer_tier: 'silver',
-    staff_notes: 'Medium scale layer farmer (6,000 birds). Interested in battery cage finance options.',
-    last_activity_at: '2026-10-18T10:10:00Z',
-    created_at: '2026-08-14T11:00:00Z',
-  },
-  {
-    id: 'cust-ref-7',
-    phone_normalized: '+2348067789900',
-    raw_phone: '0806 778 9900',
-    full_name: 'Ibrahim Danladi',
-    farm_name: 'Danladi Livestock Hub',
-    primary_state: 'Kaduna',
-    primary_city: 'Zaria Road',
-    total_orders_count: 2,
-    total_bookings_count: 3,
-    lifetime_value_ngn: 890000,
-    customer_tier: 'silver',
-    staff_notes: 'Has not placed a new reservation in 28 days. Prime target for November broiler re-engagement campaign.',
-    last_activity_at: '2026-10-06T15:40:00Z',
-    created_at: '2026-08-28T09:30:00Z',
-  },
-  {
-    id: 'cust-ref-8',
-    phone_normalized: '+2348172233445',
-    raw_phone: '0817 223 3445',
-    full_name: 'Emmanuel Udoh',
-    farm_name: 'South-South Broiler Hub',
-    primary_state: 'Rivers',
-    primary_city: 'Port Harcourt (Oyigbo)',
-    total_orders_count: 1,
-    total_bookings_count: 1,
-    lifetime_value_ngn: 420000,
-    customer_tier: 'bronze',
-    staff_notes: 'First time commercial booking (10 cartons). Dispatched smoothly to Port Harcourt terminal.',
-    last_activity_at: '2026-09-24T13:00:00Z',
-    created_at: '2026-09-24T13:00:00Z',
-  },
-];
 
 export function CrmClient({ initialCustomers }: CrmClientProps) {
   const [activeTab, setActiveTab] = useState<'all' | 'vip' | 'gold' | 'winback' | 'register'>('all');
@@ -181,19 +50,8 @@ export function CrmClient({ initialCustomers }: CrmClientProps) {
   const [regNotes, setRegNotes] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
 
-  // Merge initial customers from DB with reference list
-  const [customers, setCustomers] = useState<DbCustomer[]>(() => {
-    if (!initialCustomers || initialCustomers.length === 0) {
-      return REFERENCE_CUSTOMERS;
-    }
-    const combined = [...initialCustomers];
-    REFERENCE_CUSTOMERS.forEach((ref) => {
-      if (!combined.some((c) => c.phone_normalized === ref.phone_normalized)) {
-        combined.push(ref);
-      }
-    });
-    return combined;
-  });
+  // Live customers strictly from database
+  const [customers, setCustomers] = useState<DbCustomer[]>(initialCustomers || []);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -686,16 +544,38 @@ export function CrmClient({ initialCustomers }: CrmClientProps) {
       {/* TABS 1-4: Customer Accounts Directory */}
       {activeTab !== 'register' && (
         <div className="rounded-3xl border border-slate-200/90 bg-white shadow-xs overflow-hidden">
-          <div className="overflow-x-auto">
-            {filteredCustomers.length === 0 ? (
-              <div className="p-16 text-center text-slate-500 space-y-3">
-                <Users className="h-10 w-10 text-slate-300 mx-auto" />
-                <div className="font-bold text-sm text-slate-800">No Farmer Accounts Match This Query</div>
-                <p className="text-xs max-w-sm mx-auto text-slate-500">
-                  Try adjusting your search keywords, switching between loyalty tabs, or selecting another state.
-                </p>
-              </div>
-            ) : (
+          {filteredCustomers.length === 0 ? (
+            <div className="p-8">
+              {customers.length === 0 ? (
+                <AdminConnectedEmptyState
+                  icon={Users}
+                  title="Farmer CRM Directory is Current"
+                  description="No poultry farmers are currently registered in the database. Customer profiles are automatically generated upon booking or can be manually registered."
+                  tableName="customers"
+                  badgeLabel="Commercial CRM"
+                  primaryAction={{
+                    label: 'Register First Farmer',
+                    icon: Plus,
+                    onClick: () => setActiveTab('register'),
+                  }}
+                />
+              ) : (
+                <AdminConnectedEmptyState
+                  icon={Users}
+                  title="No Farmers Match Active Query"
+                  description="No farmer accounts matched your search keyword, tier filter, or state selection. Reset filters to view all farmers."
+                  tableName="customers"
+                  isFiltered
+                  onClearFilters={() => {
+                    setSearchQuery('');
+                    setStateFilter('all');
+                    setActiveTab('all');
+                  }}
+                />
+              )}
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
               <table className="w-full text-left text-xs text-slate-700">
                 <thead className="bg-slate-50/80 text-[10px] uppercase font-bold tracking-wider text-slate-400 border-b border-slate-200">
                   <tr>
@@ -782,8 +662,8 @@ export function CrmClient({ initialCustomers }: CrmClientProps) {
                   })}
                 </tbody>
               </table>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       )}
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   CalendarCheck,
   CalendarDays,
@@ -18,10 +18,11 @@ import {
   ChevronLeft,
   ChevronRight,
   Printer,
-  RefreshCw,
   X,
+  Package,
 } from 'lucide-react';
 import { DbBooking, DbQuota } from '@/lib/supabase/data-access';
+import { AdminConnectedEmptyState } from '@/components/admin/connected-empty-state';
 
 interface BookingsClientProps {
   initialBookings: DbBooking[];
@@ -48,149 +49,53 @@ interface DisplayReservation {
   dispatch_date: string;
 }
 
-// Enterprise Flagship Seed Data (Matching Pixel-Perfect Screenshot Specification)
-const FLAGSHIP_RESERVATIONS: DisplayReservation[] = [
-  {
-    id: 'res-1',
-    booking_ref: 'DG-2025-10472',
-    customer_name: 'Chi Farms Ltd',
-    customer_phone: '0803 123 4567',
-    farm_name: 'Chi Broiler Complex',
-    hatchery_hub: 'Ibadan Central Hub',
-    breed: '(Ross 308)',
-    cartons: 120,
-    total_birds: 14400,
-    destination: 'Lagos Gateway Hub',
-    destination_sub: '(Berger / Ojota)',
-    deposit_required_ngn: 540000,
-    status: 'confirmed',
-    status_color: 'bg-[#ecfdf5] text-[#065f46] border-[#a7f3d0] dot-[#10b981]',
-    left_bar_color: 'border-l-[#10b981]',
-    delivery_state: 'Lagos',
-    dispatch_date: 'Tuesday, Nov 10',
-  },
-  {
-    id: 'res-2',
-    booking_ref: 'DG-2025-10471',
-    customer_name: 'Zartech Farms',
-    customer_phone: '0806 987 6543',
-    farm_name: 'Zartech Layer Section',
-    hatchery_hub: 'Enugu Hub',
-    breed: '(Isa Brown)',
-    cartons: 100,
-    total_birds: 12000,
-    destination: 'North-Central Transit',
-    destination_sub: '(Abuja)',
-    deposit_required_ngn: 420000,
-    status: 'pending',
-    status_color: 'bg-[#fffbeb] text-[#92400e] border-[#fde68a] dot-[#f59e0b]',
-    left_bar_color: 'border-l-[#f59e0b]',
-    delivery_state: 'FCT Abuja',
-    dispatch_date: 'Tuesday, Nov 10',
-  },
-  {
-    id: 'res-3',
-    booking_ref: 'DG-2025-10470',
-    customer_name: 'Amo Hatchery',
-    customer_phone: '0701 222 3333',
-    farm_name: 'Amo Commercial Broilers',
-    hatchery_hub: 'Lagos Hub',
-    breed: '(Ross 308)',
-    cartons: 150,
-    total_birds: 18000,
-    destination: 'Eastern Express Hub',
-    destination_sub: '(Onitsha / Awerri)',
-    deposit_required_ngn: 630000,
-    status: 'verified',
-    status_color: 'bg-[#f0f9ff] text-[#0369a1] border-[#bae6fd] dot-[#0284c7]',
-    left_bar_color: 'border-l-[#0284c7]',
-    delivery_state: 'Anambra',
-    dispatch_date: 'Thursday, Nov 12',
-  },
-  {
-    id: 'res-4',
-    booking_ref: 'DG-2025-10469',
-    customer_name: 'Green Valley Farms',
-    customer_phone: '0809 555 6666',
-    farm_name: 'Green Valley Agro',
-    hatchery_hub: 'Abeokuta Hub',
-    breed: '(Isa Brown)',
-    cartons: 200,
-    total_birds: 24000,
-    destination: 'Southwest Hub',
-    destination_sub: '(Shagamu)',
-    deposit_required_ngn: 840000,
-    status: 'dispatched',
-    status_color: 'bg-[#f5f3ff] text-[#6d28d9] border-[#ddd6fe] dot-[#8b5cf6]',
-    left_bar_color: 'border-l-[#8b5cf6]',
-    delivery_state: 'Ogun',
-    dispatch_date: 'Tuesday, Nov 10',
-  },
-  {
-    id: 'res-5',
-    booking_ref: 'DG-2025-10468',
-    customer_name: 'Royal Farm Ltd',
-    customer_phone: '0812 777 8888',
-    farm_name: 'Royal Poultry Complex',
-    hatchery_hub: 'Kaduna Hub',
-    breed: '(Ross 308)',
-    cartons: 100,
-    total_birds: 12000,
-    destination: 'Northwest Hub',
-    destination_sub: '(Kano)',
-    deposit_required_ngn: 420000,
-    status: 'confirmed',
-    status_color: 'bg-[#ecfdf5] text-[#065f46] border-[#a7f3d0] dot-[#10b981]',
-    left_bar_color: 'border-l-[#10b981]',
-    delivery_state: 'Kano',
-    dispatch_date: 'Thursday, Nov 12',
-  },
-];
+function mapBookingToDisplay(b: DbBooking, idx: number): DisplayReservation {
+  const statusMap: Record<string, 'confirmed' | 'pending' | 'verified' | 'dispatched'> = {
+    confirmed: 'confirmed',
+    quota_held: 'pending',
+    pending_deposit: 'pending',
+    verified: 'verified',
+    dispatched: 'dispatched',
+    completed: 'confirmed',
+  };
+  const mappedStatus = statusMap[b.booking_status] || 'pending';
+  const colors = {
+    confirmed: { status: 'bg-[#ecfdf5] text-[#065f46] border-[#a7f3d0] dot-[#10b981]', bar: 'border-l-[#10b981]' },
+    pending:   { status: 'bg-[#fffbeb] text-[#92400e] border-[#fde68a] dot-[#f59e0b]', bar: 'border-l-[#f59e0b]' },
+    verified:  { status: 'bg-[#f0f9ff] text-[#0369a1] border-[#bae6fd] dot-[#0284c7]', bar: 'border-l-[#0284c7]' },
+    dispatched:{ status: 'bg-[#f5f3ff] text-[#6d28d9] border-[#ddd6fe] dot-[#8b5cf6]', bar: 'border-l-[#8b5cf6]' },
+  }[mappedStatus];
+
+  const dispatchDate = b.held_until
+    ? new Date(b.held_until).toLocaleDateString('en-NG', { weekday: 'long', month: 'short', day: 'numeric' })
+    : 'Next Dispatch';
+
+  return {
+    id: b.id || `live-${idx}`,
+    booking_ref: b.booking_ref,
+    customer_name: b.customer_name,
+    customer_phone: b.customer_phone,
+    farm_name: b.farm_name || '',
+    hatchery_hub: b.destination_hub ? `${b.destination_hub} Hub` : 'Central Hub',
+    breed: `(${b.breed_type.toUpperCase()})`,
+    cartons: b.cartons_count,
+    total_birds: b.total_birds_count || b.cartons_count * b.birds_per_carton,
+    destination: b.destination_hub || `${b.delivery_state} Station`,
+    destination_sub: `(${b.delivery_state})`,
+    deposit_required_ngn: b.required_deposit_ngn,
+    status: mappedStatus,
+    status_color: colors.status,
+    left_bar_color: colors.bar,
+    delivery_state: b.delivery_state,
+    dispatch_date: dispatchDate,
+  };
+}
 
 export default function BookingsClient({ initialBookings, initialQuotas }: BookingsClientProps) {
-  // Convert any live Supabase bookings or fallback to flagship UI seed data
-  const mergedReservations: DisplayReservation[] =
-    initialBookings.length > 0
-      ? initialBookings.map((b, idx) => {
-          const statusMap: Record<string, 'confirmed' | 'pending' | 'verified' | 'dispatched'> = {
-            confirmed: 'confirmed',
-            quota_held: 'pending',
-            pending_deposit: 'pending',
-            verified: 'verified',
-            dispatched: 'dispatched',
-            completed: 'confirmed',
-          };
-          const mappedStatus = statusMap[b.booking_status] || 'pending';
-          const colors = {
-            confirmed: { status: 'bg-[#ecfdf5] text-[#065f46] border-[#a7f3d0] dot-[#10b981]', bar: 'border-l-[#10b981]' },
-            pending: { status: 'bg-[#fffbeb] text-[#92400e] border-[#fde68a] dot-[#f59e0b]', bar: 'border-l-[#f59e0b]' },
-            verified: { status: 'bg-[#f0f9ff] text-[#0369a1] border-[#bae6fd] dot-[#0284c7]', bar: 'border-l-[#0284c7]' },
-            dispatched: { status: 'bg-[#f5f3ff] text-[#6d28d9] border-[#ddd6fe] dot-[#8b5cf6]', bar: 'border-l-[#8b5cf6]' },
-          }[mappedStatus];
+  // Map strictly from live database bookings — no fake fallback
+  const liveReservations: DisplayReservation[] = initialBookings.map(mapBookingToDisplay);
 
-          return {
-            id: b.id || `live-${idx}`,
-            booking_ref: b.booking_ref,
-            customer_name: b.customer_name,
-            customer_phone: b.customer_phone,
-            farm_name: b.farm_name || '',
-            hatchery_hub: b.destination_hub ? `${b.destination_hub} Hub` : 'Central Hub',
-            breed: `(${b.breed_type.toUpperCase()})`,
-            cartons: b.cartons_count,
-            total_birds: b.total_birds_count || b.cartons_count * b.birds_per_carton,
-            destination: b.destination_hub || `${b.delivery_state} Station`,
-            destination_sub: `(${b.delivery_state})`,
-            deposit_required_ngn: b.required_deposit_ngn,
-            status: mappedStatus,
-            status_color: colors.status,
-            left_bar_color: colors.bar,
-            delivery_state: b.delivery_state,
-            dispatch_date: 'Tuesday, Nov 10',
-          };
-        })
-      : FLAGSHIP_RESERVATIONS;
-
-  const [reservations, setReservations] = useState<DisplayReservation[]>(mergedReservations);
+  const [reservations, setReservations] = useState<DisplayReservation[]>(liveReservations);
   const [quotas] = useState<DbQuota[]>(initialQuotas);
   const [activeTab, setActiveTab] = useState<'bookings' | 'quotas' | 'manifest'>('bookings');
 
@@ -210,6 +115,16 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
   const [depositorName, setDepositorName] = useState('');
   const [amountPaidNgn, setAmountPaidNgn] = useState<number>(0);
   const [verificationLoading, setVerificationLoading] = useState(false);
+
+  // Derived live KPIs from real data
+  const kpis = useMemo(() => ({
+    total: reservations.length,
+    pending: reservations.filter(r => r.status === 'pending').length,
+    confirmedCartons: reservations.filter(r => r.status === 'confirmed' || r.status === 'verified').reduce((s, r) => s + r.cartons, 0),
+    verifiedDeposits: reservations.filter(r => r.status === 'verified' || r.status === 'confirmed').length,
+  }), [reservations]);
+
+  const isFiltered = searchQuery.trim() !== '' || dateFilter !== 'all' || stateFilter !== 'all' || statusFilter !== 'all';
 
   const handleOpenVerification = (item: DisplayReservation) => {
     setVerifyModalReservation(item);
@@ -423,11 +338,13 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
               </div>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="text-2xl sm:text-[28px] font-black text-slate-900 font-heading tracking-tight">
-                  1,248
+                  {kpis.total.toLocaleString()}
                 </span>
-                <span className="text-emerald-700 bg-emerald-50 border border-emerald-200/60 text-[11px] font-bold px-1.5 py-0.2 rounded-full inline-flex items-center gap-0.5">
-                  ↑ 12.5%
-                </span>
+                {kpis.total > 0 && (
+                  <span className="text-emerald-700 bg-emerald-50 border border-emerald-200/60 text-[11px] font-bold px-1.5 rounded-full">
+                    Live
+                  </span>
+                )}
               </div>
               <div className="text-[11px] text-slate-400 mt-0.5 truncate">
                 Active customer booking orders
@@ -466,11 +383,13 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
               </div>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="text-2xl sm:text-[28px] font-black text-slate-900 font-heading tracking-tight">
-                  86
+                  {kpis.pending.toLocaleString()}
                 </span>
-                <span className="text-emerald-700 bg-emerald-50 border border-emerald-200/60 text-[11px] font-bold px-1.5 py-0.2 rounded-full inline-flex items-center gap-0.5">
-                  ↑ 8.3%
-                </span>
+                {kpis.pending > 0 && (
+                  <span className="text-amber-700 bg-amber-50 border border-amber-200/60 text-[11px] font-bold px-1.5 rounded-full">
+                    Action Needed
+                  </span>
+                )}
               </div>
               <div className="text-[11px] text-slate-400 mt-0.5 truncate">
                 Awaiting Zenith Bank deposit
@@ -509,14 +428,14 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
               </div>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="text-2xl sm:text-[28px] font-black text-slate-900 font-heading tracking-tight">
-                  980
+                  {kpis.confirmedCartons.toLocaleString()}
                 </span>
-                <span className="text-emerald-700 bg-emerald-50 border border-emerald-200/60 text-[11px] font-bold px-1.5 py-0.2 rounded-full inline-flex items-center gap-0.5">
-                  ↑ 14.8%
-                </span>
+                {kpis.confirmedCartons > 0 && (
+                  <span className="text-emerald-700 bg-emerald-50 border border-emerald-200/60 text-[11px] font-bold px-1.5 rounded-full">Live</span>
+                )}
               </div>
               <div className="text-[11px] text-slate-400 mt-0.5 truncate">
-                ~ 245,000 chicks locked
+                ~{(kpis.confirmedCartons * 50).toLocaleString()} chicks locked
               </div>
             </div>
           </div>
@@ -552,11 +471,11 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
               </div>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="text-2xl sm:text-[28px] font-black text-slate-900 font-heading tracking-tight">
-                  682
+                  {kpis.verifiedDeposits.toLocaleString()}
                 </span>
-                <span className="text-emerald-700 bg-emerald-50 border border-emerald-200/60 text-[11px] font-bold px-1.5 py-0.2 rounded-full inline-flex items-center gap-0.5">
-                  ↑ 10.2%
-                </span>
+                {kpis.verifiedDeposits > 0 && (
+                  <span className="text-cyan-700 bg-cyan-50 border border-cyan-200/60 text-[11px] font-bold px-1.5 rounded-full">Cleared</span>
+                )}
               </div>
               <div className="text-[11px] text-slate-400 mt-0.5 truncate">
                 Reconciled via Zenith Bank
@@ -578,7 +497,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
               : 'text-slate-600 hover:text-slate-900 border-b-[3px] border-transparent'
           }`}
         >
-          All Reservations (1,248)
+          All Reservations ({kpis.total.toLocaleString()})
         </button>
         <button
           onClick={() => setActiveTab('quotas')}
@@ -588,7 +507,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
               : 'text-slate-600 hover:text-slate-900 border-b-[3px] border-transparent'
           }`}
         >
-          Hatchery Quotas ({quotas.length || 3})
+          Hatchery Quotas ({quotas.length})
         </button>
         <button
           onClick={() => setActiveTab('manifest')}
@@ -797,7 +716,7 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
             {/* Table Pagination Footer */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 bg-white border-t border-slate-200 text-xs">
               <div className="text-slate-500 font-medium">
-                Showing 1–{paginated.length} of 1,248 reservations
+                Showing {filtered.length > 0 ? (currentPage - 1) * pageSize + 1 : 0}–{Math.min(currentPage * pageSize, filtered.length)} of {filtered.length} reservations
               </div>
 
               <div className="flex items-center gap-2">
@@ -875,36 +794,35 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
           </div>
 
           {/* ====================================================================
-              6. EMPTY STATE / FILTER RESET HERO BANNER
+              6. EMPTY STATE — CONNECTED TO SUPABASE chick_bookings TABLE
               ==================================================================== */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#d1fae5]/50 via-[#ecfdf5]/80 to-[#d1fae5]/50 border border-emerald-200/60 p-6 sm:p-7 text-center">
-            {/* Background watermarked silhouette */}
-            <div
-              className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-40 mix-blend-multiply"
-              style={{ backgroundImage: "url('/images/empty-state-bg.jpg')" }}
-            />
-
-            <div className="relative z-10 space-y-2">
-              <div className="w-12 h-12 rounded-2xl bg-[#a7f3d0] flex items-center justify-center mx-auto text-[#15803d] border border-emerald-300/40 shadow-2xs">
-                <CalendarCheck className="h-6 w-6" />
-              </div>
-              <h3 className="text-base font-extrabold text-[#062413] tracking-tight">
-                No Chick Bookings Found
-              </h3>
-              <p className="text-xs text-slate-500 max-w-md mx-auto">
-                There are no reservations matching your current filters. Try adjusting your search criteria.
-              </p>
-              <div className="pt-1">
-                <button
-                  onClick={clearAllFilters}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-white hover:bg-slate-50 px-4 py-2 text-xs font-bold text-[#047857] shadow-xs transition-all"
-                >
-                  <RefreshCw className="h-3.5 w-3.5" />
-                  <span>Clear Filters</span>
-                </button>
-              </div>
+          {reservations.length === 0 ? (
+            <div className="p-6">
+              <AdminConnectedEmptyState
+                icon={CalendarCheck}
+                title="Booking Queue is Current"
+                description="No chick bookings have been placed yet. When farmers submit reservations via WhatsApp or the booking form, they will appear here instantly."
+                tableName="chick_bookings"
+                badgeLabel="Live Booking Engine"
+                primaryAction={{
+                  label: 'Go to Chicks Pricing Desk',
+                  icon: CalendarDays,
+                  onClick: () => { window.location.href = '/admin/chicks-pricing'; },
+                }}
+              />
             </div>
-          </div>
+          ) : filtered.length === 0 ? (
+            <div className="p-6">
+              <AdminConnectedEmptyState
+                icon={CalendarCheck}
+                title="No Bookings Match Current Filters"
+                description="Adjust your search query, status, state, or date filters to show matching reservations."
+                tableName="chick_bookings"
+                isFiltered
+                onClearFilters={clearAllFilters}
+              />
+            </div>
+          ) : null}
         </div>
       )}
 
@@ -929,59 +847,50 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              {
-                hatchery: 'CHI Farms Ltd (Oyo)',
-                breed: 'Broiler (Ross 308)',
-                available: 340,
-                total: 500,
-                price: '₦54,000 / carton',
-                day: 'Tuesday Morning',
-              },
-              {
-                hatchery: 'Amo Hatchery (Oyo / Lagos)',
-                breed: 'Broiler (Arbor Acres)',
-                available: 210,
-                total: 450,
-                price: '₦53,500 / carton',
-                day: 'Tuesday Morning',
-              },
-              {
-                hatchery: 'Zartech Farms (Enugu / Ibadan)',
-                breed: 'Pullet (Isa Brown)',
-                available: 180,
-                total: 300,
-                price: '₦62,000 / carton',
-                day: 'Thursday Morning',
-              },
-            ].map((q, i) => (
-              <div key={i} className="rounded-2xl border border-slate-200 p-4 bg-slate-50/50 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-slate-900">{q.hatchery}</span>
-                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">
-                    {q.day}
-                  </span>
-                </div>
-                <div className="text-xs text-slate-600 font-medium">{q.breed}</div>
-                <div className="space-y-1">
-                  <div className="flex justify-between text-[11px] font-bold">
-                    <span className="text-slate-500">Reserved Capacity</span>
-                    <span className="text-slate-800">
-                      {q.available} / {q.total} Cartons
+            {quotas.length > 0 ? quotas.map((q, i) => {
+              const fillPct = q.total_cartons_quota > 0
+                ? Math.round(((q.total_cartons_quota - q.available_cartons) / q.total_cartons_quota) * 100)
+                : 0;
+              const satColor = fillPct >= 80 ? '#ef4444' : fillPct >= 50 ? '#f59e0b' : '#10b981';
+              return (
+                <div key={q.id || i} className="rounded-2xl border border-slate-200 p-4 bg-slate-50/50 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-extrabold text-slate-900">{q.hatchery_name || `Partner Hatchery ${i + 1}`}</span>
+                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">
+                      {q.dispatch_day?.replace('_', ' ') || 'Tuesday'}
                     </span>
                   </div>
-                  <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                    <div
-                      className="bg-emerald-600 h-full rounded-full"
-                      style={{ width: `${((q.total - q.available) / q.total) * 100}%` }}
-                    />
+                  <div className="text-xs text-slate-600 font-medium capitalize">{q.breed_type || 'Broiler'}</div>
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-[11px] font-bold">
+                      <span className="text-slate-500">Reserved Capacity</span>
+                      <span className="text-slate-800">{q.available_cartons} / {q.total_cartons_quota} Cartons</span>
+                    </div>
+                    <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div className="h-full rounded-full transition-all duration-500" style={{ width: `${fillPct}%`, background: satColor }} />
+                    </div>
+                  </div>
+                  <div className="text-xs font-mono font-bold text-emerald-800 pt-1 border-t border-slate-200/60">
+                    ₦{(q.estimated_price_per_carton || 0).toLocaleString()} / carton
                   </div>
                 </div>
-                <div className="text-xs font-mono font-bold text-emerald-800 pt-1 border-t border-slate-200/60">
-                  {q.price}
-                </div>
+              );
+            }) : (
+              <div className="col-span-3">
+                <AdminConnectedEmptyState
+                  icon={Package}
+                  title="No Hatchery Quotas Scheduled"
+                  description="No dispatch quotas have been allocated for upcoming Tuesday or Thursday runs. Contact your certified partner hatcheries to schedule batch allocations."
+                  tableName="hatchery_quotas"
+                  badgeLabel="Quota Registry"
+                  primaryAction={{
+                    label: 'Go to Chicks Pricing Desk',
+                    icon: CalendarCheck,
+                    onClick: () => { window.location.href = '/admin/chicks-pricing'; },
+                  }}
+                />
               </div>
-            ))}
+            )}
           </div>
         </div>
       )}
@@ -1015,47 +924,57 @@ export default function BookingsClient({ initialBookings, initialQuotas }: Booki
             </div>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border border-slate-200 rounded-xl overflow-hidden">
-              <thead className="bg-slate-50 font-bold text-slate-700 border-b border-slate-200">
-                <tr>
-                  <th className="py-2.5 px-3">WAYBILL NO</th>
-                  <th className="py-2.5 px-3">CUSTOMER / RECEIVER</th>
-                  <th className="py-2.5 px-3">MOTOR PARK DEPOT</th>
-                  <th className="py-2.5 px-3">CARTONS</th>
-                  <th className="py-2.5 px-3">50% DEPOSIT RECONCILED</th>
-                  <th className="py-2.5 px-3">STATUS</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {reservations.map((r) => (
-                  <tr key={r.id} className="hover:bg-slate-50">
-                    <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">
-                      WB-{r.booking_ref.slice(-5)}
-                    </td>
-                    <td className="py-2.5 px-3">
-                      <div className="font-bold text-slate-900">{r.customer_name}</div>
-                      <div className="text-[11px] text-slate-500">{r.customer_phone}</div>
-                    </td>
-                    <td className="py-2.5 px-3 font-medium text-slate-700">
-                      {r.destination} {r.destination_sub}
-                    </td>
-                    <td className="py-2.5 px-3 font-bold text-slate-900">
-                      {r.cartons} Cartons ({r.total_birds.toLocaleString()} birds)
-                    </td>
-                    <td className="py-2.5 px-3 font-mono font-bold text-slate-800">
-                      ₦{r.deposit_required_ngn.toLocaleString()} (Zenith Bank)
-                    </td>
-                    <td className="py-2.5 px-3">
-                      <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
-                        Manifest Cleared
-                      </span>
-                    </td>
+          {reservations.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border border-slate-200 rounded-xl overflow-hidden">
+                <thead className="bg-slate-50 font-bold text-slate-700 border-b border-slate-200">
+                  <tr>
+                    <th className="py-2.5 px-3">WAYBILL NO</th>
+                    <th className="py-2.5 px-3">CUSTOMER / RECEIVER</th>
+                    <th className="py-2.5 px-3">MOTOR PARK DEPOT</th>
+                    <th className="py-2.5 px-3">CARTONS</th>
+                    <th className="py-2.5 px-3">50% DEPOSIT RECONCILED</th>
+                    <th className="py-2.5 px-3">STATUS</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {reservations.map((r) => (
+                    <tr key={r.id} className="hover:bg-slate-50">
+                      <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">
+                        WB-{r.booking_ref.slice(-5)}
+                      </td>
+                      <td className="py-2.5 px-3">
+                        <div className="font-bold text-slate-900">{r.customer_name}</div>
+                        <div className="text-[11px] text-slate-500">{r.customer_phone}</div>
+                      </td>
+                      <td className="py-2.5 px-3 font-medium text-slate-700">
+                        {r.destination} {r.destination_sub}
+                      </td>
+                      <td className="py-2.5 px-3 font-bold text-slate-900">
+                        {r.cartons} Cartons ({r.total_birds.toLocaleString()} birds)
+                      </td>
+                      <td className="py-2.5 px-3 font-mono font-bold text-slate-800">
+                        ₦{r.deposit_required_ngn.toLocaleString()} (Zenith Bank)
+                      </td>
+                      <td className="py-2.5 px-3">
+                        <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+                          Manifest Cleared
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <AdminConnectedEmptyState
+              icon={Printer}
+              title="No Waybill Manifest Available"
+              description="Waybill delivery slips are generated automatically once reservations are booked and confirmed with verified Zenith Bank deposits."
+              tableName="chick_bookings"
+              badgeLabel="Logistics Hub"
+            />
+          )}
         </div>
       )}
 
