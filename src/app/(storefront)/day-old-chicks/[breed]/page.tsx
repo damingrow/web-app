@@ -176,7 +176,6 @@ export async function generateStaticParams() {
   return [
     { breed: 'broilers' },
     { breed: 'pullets' },
-    { breed: 'turkeys' },
   ];
 }
 
