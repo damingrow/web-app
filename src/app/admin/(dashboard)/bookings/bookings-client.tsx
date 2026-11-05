@@ -70,23 +70,27 @@ function mapBookingToDisplay(b: DbBooking, idx: number): DisplayReservation {
     ? new Date(b.held_until).toLocaleDateString('en-NG', { weekday: 'long', month: 'short', day: 'numeric' })
     : 'Next Dispatch';
 
+  const cartonsCount = b.cartons_count ?? 0;
+  const birdsPerCarton = b.birds_per_carton ?? 50;
+  const totalBirds = b.total_birds_count ?? (cartonsCount * birdsPerCarton);
+
   return {
     id: b.id || `live-${idx}`,
-    booking_ref: b.booking_ref,
-    customer_name: b.customer_name,
-    customer_phone: b.customer_phone,
+    booking_ref: b.booking_ref ?? '',
+    customer_name: b.customer_name ?? 'Unknown Customer',
+    customer_phone: b.customer_phone ?? '—',
     farm_name: b.farm_name || '',
     hatchery_hub: b.destination_hub ? `${b.destination_hub} Hub` : 'Central Hub',
-    breed: `(${b.breed_type.toUpperCase()})`,
-    cartons: b.cartons_count,
-    total_birds: b.total_birds_count || b.cartons_count * b.birds_per_carton,
-    destination: b.destination_hub || `${b.delivery_state} Station`,
-    destination_sub: `(${b.delivery_state})`,
-    deposit_required_ngn: b.required_deposit_ngn,
+    breed: `(${(b.breed_type ?? 'Broiler').toUpperCase()})`,
+    cartons: cartonsCount,
+    total_birds: totalBirds,
+    destination: b.destination_hub || `${b.delivery_state ?? ''} Station`,
+    destination_sub: `(${b.delivery_state ?? ''})`,
+    deposit_required_ngn: b.required_deposit_ngn ?? 0,
     status: mappedStatus,
     status_color: colors.status,
     left_bar_color: colors.bar,
-    delivery_state: b.delivery_state,
+    delivery_state: b.delivery_state ?? '',
     dispatch_date: dispatchDate,
   };
 }
