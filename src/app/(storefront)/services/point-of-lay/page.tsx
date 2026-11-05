@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getProductsByCategory } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import { PolBookingForm } from '@/components/forms/pol-booking-form';
 import {
   Egg,
@@ -105,57 +106,71 @@ export default function ServicePointOfLayPage() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/3" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-teal-400 mb-6">
-              <Egg className="h-4 w-4" />
-              Production-Ready Birds — Skip 17 Weeks of Rearing
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
-              Point-of-Lay Pullets{' '}
-              <span className="text-teal-400">Sales & Distribution</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-8 max-w-2xl">
-              Fully vaccinated 17–20 week-old brown and white layer pullets. Skip the mortality risk of rearing from day-old and begin egg production within 4–6 weeks of purchase.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-teal-400 mb-6">
+                <Egg className="h-4 w-4" />
+                Production-Ready Birds — Skip 17 Weeks of Rearing
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
+                Point-of-Lay Pullets{' '}
+                <span className="text-teal-400">Sales &amp; Distribution</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-8 max-w-2xl">
+                Fully vaccinated 17–20 week-old brown and white layer pullets. Skip the mortality risk of rearing from day-old and begin egg production within 4–6 weeks of purchase.
+              </p>
 
-            {/* Key Stats Strip */}
-            <div className="flex flex-wrap gap-3 mb-10">
-              {[
-                { label: '17–20 Weeks Old', emoji: '🐓' },
-                { label: '100% Vaccination History', emoji: '💉' },
-                { label: 'Lay Starts in 4–6 Weeks', emoji: '🥚' },
-                { label: 'Min Order: 50 Birds', emoji: '📦' },
-              ].map((stat, i) => (
-                <div key={i} className="flex items-center gap-2 bg-white/10 border border-white/15 rounded-xl px-4 py-2">
-                  <span>{stat.emoji}</span>
-                  <span className="text-sm font-semibold text-white">{stat.label}</span>
-                </div>
-              ))}
+              {/* Key Stats Strip */}
+              <div className="flex flex-wrap gap-3 mb-10">
+                {[
+                  { label: '17–20 Weeks Old', emoji: '🐓' },
+                  { label: '100% Vaccination History', emoji: '💉' },
+                  { label: 'Lay Starts in 4–6 Weeks', emoji: '🥚' },
+                  { label: 'Min Order: 50 Birds', emoji: '📦' },
+                ].map((stat, i) => (
+                  <div key={i} className="flex items-center gap-2 bg-white/10 border border-white/15 rounded-xl px-4 py-2">
+                    <span>{stat.emoji}</span>
+                    <span className="text-sm font-semibold text-white">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="#order-form"
+                  className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg shadow-teal-900/30"
+                >
+                  <Egg className="h-5 w-5" />
+                  Reserve POL Pullets
+                </a>
+                <a
+                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20order%20Point-of-Lay%20pullets.%20I%20need%20%5BQUANTITY%5D%20birds.%20Please%20send%20availability%20and%20price."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-6 py-4 rounded-2xl transition-all text-sm shadow-lg"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  WhatsApp Desk
+                </a>
+                <Link
+                  href="/point-of-lay"
+                  className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-6 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
+                >
+                  Full POL Catalog <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#order-form"
-                className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg shadow-teal-900/30"
-              >
-                <Egg className="h-5 w-5" />
-                Reserve POL Pullets
-              </a>
-              <a
-                href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20order%20Point-of-Lay%20pullets.%20I%20need%20%5BQUANTITY%5D%20birds.%20Please%20send%20availability%20and%20price."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-6 py-4 rounded-2xl transition-all text-sm shadow-lg"
-              >
-                <MessageCircle className="h-5 w-5" />
-                WhatsApp Desk
-              </a>
-              <Link
-                href="/point-of-lay"
-                className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-6 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
-              >
-                Full POL Catalog <ArrowRight className="h-4 w-4" />
-              </Link>
+            {/* Right: Live Transit Crating & POL Flock Footage */}
+            <div className="lg:col-span-5">
+              <MediaVideoPlayer
+                src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/transportation%20cage.mp4"
+                poster="/products/Chicks/Point of Lay.jpeg"
+                title="Live Bird Crating & Transport Operations"
+                badge="Safe Arrival Standard"
+                caption="Rigid plastic transport crates ensuring zero injury & calm transit during farm delivery"
+                aspectRatio="video"
+              />
             </div>
           </div>
         </div>

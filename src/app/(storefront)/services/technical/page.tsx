@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import {
   Syringe,
   Stethoscope,
@@ -133,35 +134,49 @@ export default function TechnicalServicesPage() {
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-400 mb-6">
-              <Wrench className="h-4 w-4" />
-              Certified Field Technical Services
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-400 mb-6">
+                <Wrench className="h-4 w-4" />
+                Certified Field Technical Services
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
+                On-Farm Technical Services{' '}
+                <span className="text-emerald-400">Across Nigeria</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
+                D-AminGrow deploys certified field technicians to your farm for hands-on vaccination, disease diagnostics, biosecurity audits, and equipment calibration. Your flock&apos;s health is managed by professionals.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20need%20to%20book%20a%20technical%20farm%20visit.%20My%20location%20is%20%5BLOCATION%5D.%20Please%20advise%20on%20availability%20and%20cost."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg shadow-[#25D366]/20"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  Book a Farm Visit
+                </a>
+                <a
+                  href="tel:+2348139169402"
+                  className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-7 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
+                >
+                  <Phone className="h-5 w-5" />
+                  Call Us Now
+                </a>
+              </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
-              On-Farm Technical Services{' '}
-              <span className="text-emerald-400">Across Nigeria</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
-              D-AminGrow deploys certified field technicians to your farm for hands-on vaccination, disease diagnostics, biosecurity audits, and equipment calibration. Your flock&apos;s health is managed by professionals.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20need%20to%20book%20a%20technical%20farm%20visit.%20My%20location%20is%20%5BLOCATION%5D.%20Please%20advise%20on%20availability%20and%20cost."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg shadow-[#25D366]/20"
-              >
-                <MessageCircle className="h-5 w-5" />
-                Book a Farm Visit
-              </a>
-              <a
-                href="tel:+2348139169402"
-                className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-7 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
-              >
-                <Phone className="h-5 w-5" />
-                Call Us Now
-              </a>
+
+            {/* Right: Automated Poultry Farm Operations Video */}
+            <div className="lg:col-span-5">
+              <MediaVideoPlayer
+                src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/fully%20automated%20battery%20cage%20system.mp4"
+                poster="/products/Acessories/Battery cage.jpeg"
+                title="Industrial Automated Poultry Housing"
+                badge="Engineering & Installation"
+                caption="Motorized feeding, automated egg collection, and nipple line calibration in commercial operations"
+                aspectRatio="video"
+              />
             </div>
           </div>
         </div>

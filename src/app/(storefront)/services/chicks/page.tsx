@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import {
   Feather,
   Truck,
@@ -146,8 +147,8 @@ const DISPATCH_FEATURES = [
   },
   {
     icon: Calendar,
-    title: 'Tuesday & Thursday Dispatch',
-    desc: 'Nationwide dispatch on Tuesdays and Thursdays only. Order cut-off is 6 PM the day before dispatch.',
+    title: 'Monday & Thursday Dispatch',
+    desc: 'Nationwide dispatch on Mondays and Thursdays only. Order cut-off is 48 hours before hatch day.',
     color: 'bg-rose-100 text-rose-700',
   },
   {
@@ -180,34 +181,48 @@ export default function ServiceChicksPage() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/3" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-amber-400 mb-6">
-              <Calendar className="h-4 w-4" />
-              Nationwide Dispatch — Every Tuesday &amp; Thursday
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-amber-400 mb-6">
+                <Calendar className="h-4 w-4" />
+                Nationwide Dispatch — Every Monday &amp; Thursday
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
+                Day-Old Chick{' '}
+                <span className="text-amber-400">Booking Service</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
+                Book commercial broilers, layer pullets, turkey poults, noiler, and ducklings from certified hatcheries. Pre-vaccinated, climate-packed, and dispatched nationwide every Monday and Thursday.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20book%20day-old%20chicks.%20Breed%3A%20%5BBREED%5D%2C%20Quantity%3A%20%5BQTY%5D%20cartons.%20Preferred%20dispatch%3A%20%5BMONDAY%2FTHURSDAY%5D.%20State%3A%20%5BSTATE%5D."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  Book Chicks via WhatsApp
+                </a>
+                <Link
+                  href="/chicks"
+                  className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-7 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
+                >
+                  View All Chick Products <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
-              Day-Old Chick{' '}
-              <span className="text-amber-400">Booking Service</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
-              Book commercial broilers, layer pullets, turkey poults, noiler, and ducklings from Nigeria&apos;s certified hatcheries. Pre-vaccinated, climate-packed, and dispatched nationwide every Tuesday and Thursday.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20want%20to%20book%20day-old%20chicks.%20Breed%3A%20%5BBREED%5D%2C%20Quantity%3A%20%5BQTY%5D%20cartons.%20Preferred%20dispatch%3A%20%5BTUESDAY%2FTHURSDAY%5D.%20State%3A%20%5BSTATE%5D."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg"
-              >
-                <MessageCircle className="h-5 w-5" />
-                Book Chicks via WhatsApp
-              </a>
-              <Link
-                href="/chicks"
-                className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-7 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
-              >
-                View All Chick Products <ArrowRight className="h-4 w-4" />
-              </Link>
+
+            {/* Right: Live Chicks Delivery Video */}
+            <div className="lg:col-span-5">
+              <MediaVideoPlayer
+                src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/supreme%20pullets%20inside%20cartons.mp4"
+                poster="/products/Chicks/day old broiler.jpeg"
+                title="Hatchery Dispatch Cartons & Live Chicks"
+                badge="Mon & Thu Waybill"
+                caption="Ventilated 50+1 packaging with verified livability before interstate motor park departure"
+                aspectRatio="portrait"
+              />
             </div>
           </div>
         </div>

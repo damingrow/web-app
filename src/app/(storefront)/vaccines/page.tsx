@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getProductsByCategory } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import { CLIENT_FARMS } from '@/data/partners-and-clients';
 import {
   CheckCircle2,
@@ -139,8 +140,17 @@ export default function VaccinesCategoryPage() {
               </div>
             </div>
 
-            {/* Right: Cold-chain callout */}
+            {/* Right: Cold-Chain Presentation & Protocol */}
             <div className="space-y-5">
+              <MediaVideoPlayer
+                src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/Presentation%20on%20IBH%20vaccine.mp4"
+                poster="/products/Vaccines/ND lasota.jpeg"
+                title="Clinical Briefing: Inclusion Body Hepatitis (IBH) Vaccine"
+                badge="Veterinary Biologicals"
+                caption="In-depth clinical presentation on poultry viral immunization & cold-chain preservation"
+                aspectRatio="video"
+              />
+
               <div className="rounded-3xl bg-cyan-500/10 border border-cyan-500/25 p-7 space-y-5">
                 <div className="flex items-center gap-3">
                   <div className="h-12 w-12 rounded-2xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center">

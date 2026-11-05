@@ -11,7 +11,9 @@ import {
   ChevronRight,
   ShieldCheck,
   Layers,
+  Box,
 } from 'lucide-react';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 
 export default function EggCalculatorClient() {
   const [flockCount, setFlockCount] = useState<number>(1000);
@@ -371,6 +373,47 @@ export default function EggCalculatorClient() {
                     Check if birds received Egg Drop Syndrome (EDS-76) killed vaccine at 16–18 weeks, and feed oyster shell grit at 4:00 PM for nighttime calcification.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* Commercial Egg Crates & Logistics Field Footage */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                <div>
+                  <h3 className="text-base font-bold text-slate-900 font-heading flex items-center gap-2">
+                    <Box className="h-5 w-5 text-emerald-600" />
+                    <span>Commercial Egg Crates &amp; Farm-Gate Packaging</span>
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Reusable heavy-duty 30-egg holding trays for zero shell hairline fractures during farm handling &amp; transit.
+                  </p>
+                </div>
+                <Link
+                  href="/accessories"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3.5 py-2 rounded-xl transition-colors w-fit"
+                >
+                  Order Egg Crates <ChevronRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <MediaVideoPlayer
+                  src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/egg%20crates%20to%20be%20supplied.mp4"
+                  poster="/products/Acessories/plastic egg crate.jpeg"
+                  title="Wholesale Egg Crates Prepared for Farm Supply"
+                  badge="Inventory In-Stock"
+                  caption="Bulk bundles of high-grade virgin plastic 30-egg trays ready for delivery"
+                  aspectRatio="video"
+                />
+
+                <MediaVideoPlayer
+                  src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/egg%20crates%202.mp4"
+                  poster="/products/Acessories/plastic egg crate.jpeg"
+                  title="Impact-Resistant Crate Stacking Demonstration"
+                  badge="Durability Tested"
+                  caption="Commercial stacking rigidity preventing egg weight crush in layer houses"
+                  aspectRatio="video"
+                />
               </div>
             </div>
 

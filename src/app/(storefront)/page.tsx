@@ -38,6 +38,7 @@ import {
 import { ARTICLES } from '@/data/articles';
 import { LiveChickPricingSection } from '@/components/home/live-chick-pricing-section';
 import { BASELINE_CHICK_RATES } from '@/lib/chicks/pricing-store';
+import { HeroVideoPlayer } from '@/components/ui/hero-video-player';
 
 export const metadata: Metadata = {
   title: 'D-AminGrow | Livestock Inputs, Day-Old Chicks & Poultry Solutions in Africa',
@@ -350,52 +351,9 @@ export default function HomePage() {
 
             </div>
 
-            {/* Right Column (5 cols): Visual Hero Image with Floating Telemetry */}
+            {/* Right Column (5 cols): Visual Hero Video Player with Floating Telemetry */}
             <div className="lg:col-span-5 relative mt-6 lg:mt-0">
-              <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-sm p-2.5 shadow-2xl group">
-                <div className="relative h-[420px] sm:h-[480px] w-full rounded-2xl overflow-hidden">
-                  <Image
-                    src="/images/poultry-hero.jpg"
-                    alt="Dependable Livestock Inputs, Day-Old Chicks and Poultry Solutions in Africa"
-                    fill
-                    priority
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
-                  {/* Subtle vignette gradients for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-slate-950/40" />
-
-                  {/* Top Floating Badge: Pan-African Dispatch */}
-                  <div className="absolute top-4 right-4 bg-slate-950/85 backdrop-blur-md border border-white/20 rounded-full px-3.5 py-1.5 flex items-center gap-2 shadow-lg">
-                    <span className="flex h-2 w-2 relative">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                    </span>
-                    <span className="text-[11px] font-bold text-white tracking-wide">Pan-African Dispatch</span>
-                  </div>
-
-                  {/* Top Left Floating Badge: Cold-Chain */}
-                  <div className="absolute top-4 left-4 bg-emerald-950/80 backdrop-blur-md border border-emerald-500/30 rounded-full px-3 py-1 flex items-center gap-1.5 text-[10px] font-semibold text-emerald-300">
-                    <Thermometer className="h-3 w-3 text-emerald-400" />
-                    <span>2°C–8°C Cold-Chain</span>
-                  </div>
-
-                  {/* Bottom Floating Telemetry Card */}
-                  <div className="absolute bottom-4 inset-x-4 bg-slate-950/90 backdrop-blur-md border border-white/15 rounded-xl p-3.5 space-y-2 shadow-xl">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-slate-300 font-medium">Brooding Livability</span>
-                      <span className="font-extrabold text-emerald-400">98.4% Target</span>
-                    </div>
-                    <div className="flex items-center justify-between text-[11px] text-slate-400 border-t border-white/10 pt-2">
-                      <div className="flex items-center gap-1.5">
-                        <ShieldCheck className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                        <span>Direct Hatchery Allotments</span>
-                      </div>
-                      <span className="text-slate-300 font-semibold">Mon & Thu</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <HeroVideoPlayer />
             </div>
 
           </div>

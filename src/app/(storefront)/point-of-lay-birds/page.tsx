@@ -11,6 +11,7 @@ import {
   Egg,
   MessageCircle,
 } from 'lucide-react';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import { PolBookingForm } from '@/components/forms/pol-booking-form';
 
 export const metadata: Metadata = {
@@ -124,26 +125,16 @@ export default function PointOfLayBirdsPage() {
               </div>
             </div>
 
-            {/* Right Column: Hero Image */}
+            {/* Right Column: Live Footage Video Player */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-white/5 shadow-2xl">
-                <div className="relative h-72 sm:h-80 w-full">
-                  <Image
-                    src="/products/Chicks/Point of Lay.jpeg"
-                    alt="Commercial Point-of-Lay Birds"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-white/10">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-bold text-amber-400">Transit Protection:</span>
-                      <span className="font-semibold text-white">Reinforced plastic transport crates (10 birds/crate)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <MediaVideoPlayer
+                src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/AMO%20pullets.mp4"
+                poster="/products/Chicks/Point of Lay.jpeg"
+                title="Commercial Point-of-Lay Flock (16–18 Weeks)"
+                badge="Pre-Lay Transition"
+                caption="Uniform brown layer pullets ready for laying within 4–6 weeks"
+                aspectRatio="video"
+              />
             </div>
           </div>
         </div>

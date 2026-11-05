@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import {
   Syringe,
   Thermometer,
@@ -154,34 +155,48 @@ export default function ServiceVaccinesPage() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/3" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-cyan-400 mb-6">
-              <Snowflake className="h-4 w-4" />
-              2°C–8°C Cold-Chain Guaranteed
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-cyan-400 mb-6">
+                <Snowflake className="h-4 w-4" />
+                2°C–8°C Cold-Chain Guaranteed
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
+                Livestock Vaccine{' '}
+                <span className="text-cyan-400">Distribution</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
+                Nigeria&apos;s trusted cold-chain biological distributor. Live and killed vaccines shipped under strict 2°C–8°C temperature monitoring with certified gel ice packs and temperature indicator strips to your farm or lab.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20need%20to%20order%20vaccines.%20Product%3A%20%5BVACCINE%20NAME%5D.%20Quantity%3A%20%5BDOSES%5D.%20My%20delivery%20state%3A%20%5BSTATE%5D.%20Please%20confirm%20cold-chain%20delivery%20procedure."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  Order Vaccines via WhatsApp
+                </a>
+                <Link
+                  href="/vaccines"
+                  className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-7 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
+                >
+                  Full Vaccine Catalog <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
-              Livestock Vaccine{' '}
-              <span className="text-cyan-400">Distribution</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
-              Nigeria&apos;s trusted cold-chain biological distributor. Live and killed vaccines shipped under strict 2°C–8°C temperature monitoring with certified gel ice packs and temperature indicator strips to your farm or lab.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20need%20to%20order%20vaccines.%20Product%3A%20%5BVACCINE%20NAME%5D.%20Quantity%3A%20%5BDOSES%5D.%20My%20delivery%20state%3A%20%5BSTATE%5D.%20Please%20confirm%20cold-chain%20delivery%20procedure."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-7 py-4 rounded-2xl transition-all text-sm shadow-lg"
-              >
-                <MessageCircle className="h-5 w-5" />
-                Order Vaccines via WhatsApp
-              </a>
-              <Link
-                href="/vaccines"
-                className="flex items-center gap-2 text-slate-300 hover:text-white font-semibold px-7 py-4 rounded-2xl border border-white/15 hover:border-white/30 transition-all text-sm"
-              >
-                Full Vaccine Catalog <ArrowRight className="h-4 w-4" />
-              </Link>
+
+            {/* Right: Veterinary Presentation Video */}
+            <div className="lg:col-span-5">
+              <MediaVideoPlayer
+                src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/Presentation%20on%20IBH%20vaccine.mp4"
+                poster="/products/Vaccines/ND lasota.jpeg"
+                title="Biological Presentation: Inclusion Body Hepatitis (IBH)"
+                badge="Cold-Chain Certified"
+                caption="Clinical veterinary overview on viral titer maintenance and cold storage transport"
+                aspectRatio="video"
+              />
             </div>
           </div>
         </div>

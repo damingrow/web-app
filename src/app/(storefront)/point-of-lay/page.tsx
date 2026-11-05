@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getProductsByCategory } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import { PolBookingForm } from '@/components/forms/pol-booking-form';
 import {
   CheckCircle2,
@@ -156,8 +157,17 @@ export default function PointOfLayPage() {
               </div>
             </div>
 
-            {/* Right: Stats + Dispatch info */}
+            {/* Right: Live Pullets Footage + Dispatch Stats */}
             <div className="space-y-5">
+              <MediaVideoPlayer
+                src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/supreme%20pullets.mp4"
+                poster="/products/Chicks/Point of Lay.jpeg"
+                title="Commercial Layer Pullet Flock"
+                badge="17–20 Weeks Old"
+                caption="Active, robust brown layer pullets with complete veterinary immunization"
+                aspectRatio="video"
+              />
+
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { value: '17–20', label: 'Weeks Old at Sale', sub: 'Pre-lay transition age' },
@@ -165,23 +175,23 @@ export default function PointOfLayPage() {
                   { value: '305+', label: 'Eggs Per Cycle', sub: 'Brown layer production' },
                   { value: '100%', label: 'Vaccinated', sub: 'Full schedule completed' },
                 ].map((stat, i) => (
-                  <div key={i} className="rounded-2xl bg-white/5 border border-white/8 p-5 text-center hover:border-emerald-500/25 transition-all">
-                    <div className="text-2xl font-extrabold text-white font-heading">{stat.value}</div>
+                  <div key={i} className="rounded-2xl bg-white/5 border border-white/8 p-4 text-center hover:border-emerald-500/25 transition-all">
+                    <div className="text-xl font-extrabold text-white font-heading">{stat.value}</div>
                     <div className="text-xs font-semibold text-emerald-400 mt-0.5">{stat.label}</div>
-                    <div className="text-xs text-slate-600 mt-0.5">{stat.sub}</div>
+                    <div className="text-[11px] text-slate-500 mt-0.5">{stat.sub}</div>
                   </div>
                 ))}
               </div>
 
               {/* Dispatch notice */}
-              <div className="rounded-3xl bg-emerald-500/10 border border-emerald-500/25 p-7 space-y-4">
+              <div className="rounded-3xl bg-emerald-500/10 border border-emerald-500/25 p-6 space-y-4">
                 <div className="flex items-center gap-3">
                   <Truck className="h-6 w-6 text-emerald-400" />
-                  <h3 className="text-base font-bold text-white font-heading">Dispatch & Delivery</h3>
+                  <h3 className="text-base font-bold text-white font-heading">Dispatch &amp; Delivery</h3>
                 </div>
                 <div className="space-y-3">
                   {[
-                    { label: 'Dispatch days:', value: 'Tuesday & Thursday' },
+                    { label: 'Dispatch days:', value: 'Monday & Thursday' },
                     { label: 'Minimum order:', value: '50 birds per batch' },
                     { label: 'Delivery method:', value: 'Motor park nationwide + farm delivery' },
                     { label: 'Transport crates:', value: 'Provided — ventilated HDPE crates' },

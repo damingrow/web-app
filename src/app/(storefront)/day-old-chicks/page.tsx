@@ -12,6 +12,7 @@ import {
   Building2,
   MapPin,
 } from 'lucide-react';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import { getNextDispatchDate } from '@/lib/booking/booking-service';
 
 export const metadata: Metadata = {
@@ -147,57 +148,71 @@ export default function DayOldChicksHubPage() {
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-400/30 px-3.5 py-1.5 text-xs font-bold text-emerald-300 mb-6">
-              <Building2 className="h-4 w-4" />
-              <span>Certified Primary Lineage · Standard Packaging</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading tracking-tight text-white leading-tight">
-              Commercial Day-Old Chicks Sourcing &amp; Nationwide Dispatch
-            </h1>
-
-            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              Order vaccinated, vigorous Day-Old Broilers, Zartech Pullets, Hybrid &amp; Local Turkeys, Noilers, and Cockerels directly from
-              Nigeria&apos;s leading accredited suppliers with guaranteed quota reservations and temperature-controlled
-              interstate dispatch.
-            </p>
-
-            {/* Next Dispatch Runs Bar */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
-              <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 p-4">
-                <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block">
-                  Next Monday Dispatch
-                </span>
-                <span className="text-lg font-extrabold text-white mt-0.5 block">{nextMonday}</span>
-                <span className="text-[11px] text-slate-300 block">Cutoff: 48h prior to hatch</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 border border-emerald-400/30 px-3.5 py-1.5 text-xs font-bold text-emerald-300 mb-6">
+                <Building2 className="h-4 w-4" />
+                <span>Certified Primary Lineage · Standard Packaging</span>
               </div>
 
-              <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 p-4">
-                <span className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider block">
-                  Next Thursday Dispatch
-                </span>
-                <span className="text-lg font-extrabold text-white mt-0.5 block">{nextThursday}</span>
-                <span className="text-[11px] text-slate-300 block">Cutoff: 48h prior to hatch</span>
+              <h1 className="text-3xl sm:text-5xl font-extrabold font-heading tracking-tight text-white leading-tight">
+                Commercial Day-Old Chicks Sourcing &amp; Nationwide Dispatch
+              </h1>
+
+              <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+                Order vaccinated, vigorous Day-Old Broilers, Zartech Pullets, Hybrid &amp; Local Turkeys, Noilers, and Cockerels directly from
+                Nigeria&apos;s leading accredited suppliers with guaranteed quota reservations and temperature-controlled
+                interstate dispatch.
+              </p>
+
+              {/* Next Dispatch Runs Bar */}
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
+                <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 p-4">
+                  <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block">
+                    Next Monday Dispatch
+                  </span>
+                  <span className="text-lg font-extrabold text-white mt-0.5 block">{nextMonday}</span>
+                  <span className="text-[11px] text-slate-300 block">Cutoff: 48h prior to hatch</span>
+                </div>
+
+                <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 p-4">
+                  <span className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider block">
+                    Next Thursday Dispatch
+                  </span>
+                  <span className="text-lg font-extrabold text-white mt-0.5 block">{nextThursday}</span>
+                  <span className="text-[11px] text-slate-300 block">Cutoff: 48h prior to hatch</span>
+                </div>
+              </div>
+
+              {/* CTAs */}
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/chicks"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 text-sm font-bold text-slate-950 hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/20"
+                >
+                  <Calendar className="h-4 w-4" />
+                  <span>Launch Live Booking Calendar</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="#breeds"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/10 transition-colors"
+                >
+                  <span>Explore Breed Specifications</span>
+                </Link>
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/chicks"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 text-sm font-bold text-slate-950 hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/20"
-              >
-                <Calendar className="h-4 w-4" />
-                <span>Launch Live Booking Calendar</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="#breeds"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold text-white hover:bg-white/10 transition-colors"
-              >
-                <span>Explore Breed Specifications</span>
-              </Link>
+            {/* Right Column: Live Footage Video Player */}
+            <div className="lg:col-span-5">
+              <MediaVideoPlayer
+                src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/AMO%20pullets%20collections.mp4"
+                poster="/products/Chicks/day old pullet.jpeg"
+                title="Hatchery Pullet Allocation & Collection"
+                badge="Active Hatchery Run"
+                caption="Mon & Thu primary sorting & live chick transit boxes"
+                aspectRatio="portrait"
+              />
             </div>
           </div>
         </div>

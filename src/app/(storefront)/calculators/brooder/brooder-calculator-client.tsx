@@ -7,6 +7,7 @@ import { PRODUCTS } from '@/data/products';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PrintableBroodingChart } from '@/components/calculators/printable-brooding-chart';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import {
   ShoppingBag,
   CheckCircle2,
@@ -347,6 +348,18 @@ export default function BrooderCalculatorClient() {
                     <Phone className="h-4 w-4" />
                     <span>Get Quote on WhatsApp</span>
                   </a>
+                </div>
+
+                {/* Live Brooding Field Demonstration Video */}
+                <div className="pt-4 border-t border-slate-100">
+                  <MediaVideoPlayer
+                    src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/chicks%20feeder.mp4"
+                    poster="/products/Acessories/feeder.jpeg"
+                    title="Brooder Pen Chick Feeder Operation"
+                    badge="Brooding Equipment"
+                    caption="Early starter feed trays designed for day-old chick access & low feed wastage"
+                    aspectRatio="video"
+                  />
                 </div>
               </div>
             </div>

@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getProductsByCategory } from '@/data/products';
 import { ProductCard } from '@/components/product/product-card';
+import { MediaVideoPlayer } from '@/components/ui/media-video-player';
 import {
   CheckCircle2,
   MessageCircle,
@@ -151,29 +152,16 @@ export default function AccessoriesPage() {
               </div>
             </div>
 
-            {/* Right: Quick Stats */}
+            {/* Right: Live Equipment Footage & Key Stats */}
             <div className="space-y-5">
-              <div className="rounded-3xl bg-white/5 border border-white/8 p-7 space-y-5">
-                <h3 className="text-lg font-bold text-white font-heading">Equipment Supply Promise</h3>
-                <div className="space-y-4">
-                  {[
-                    { icon: ShieldCheck, text: 'Genuine commercial-grade materials — no cheap imitations' },
-                    { icon: Truck, text: 'Nationwide delivery — all 36 states and FCT' },
-                    { icon: Wrench, text: 'Technical installation guidance provided with every purchase' },
-                    { icon: Star, text: 'After-sales support — call our desk for product questions' },
-                  ].map((item, i) => {
-                    const Icon = item.icon;
-                    return (
-                      <div key={i} className="flex items-start gap-3">
-                        <div className="h-8 w-8 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0">
-                          <Icon className="h-4 w-4 text-emerald-400" />
-                        </div>
-                        <span className="text-sm text-slate-400 leading-relaxed">{item.text}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+              <MediaVideoPlayer
+                src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/automated%20battery%20cage.mp4"
+                poster="/products/Acessories/Battery cage.jpeg"
+                title="Galvanized Layer Battery Cage Systems"
+                badge="Turnkey Installation"
+                caption="Multi-tier hot-dip galvanized layer cages with automated drinking & feeding"
+                aspectRatio="video"
+              />
 
               <div className="grid grid-cols-3 gap-4">
                 {[
@@ -183,7 +171,7 @@ export default function AccessoriesPage() {
                 ].map((stat, i) => (
                   <div key={i} className="rounded-2xl bg-white/5 border border-white/8 p-4 text-center">
                     <div className="text-2xl font-extrabold text-white font-heading">{stat.value}</div>
-                    <div className="text-xs text-slate-500 mt-1">{stat.label}</div>
+                    <div className="text-xs text-slate-400 mt-1">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -234,6 +222,84 @@ export default function AccessoriesPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          EQUIPMENT IN ACTION — VERIFIED OPERATION FOOTAGE
+          ==================================================================== */}
+      <section className="py-16 sm:py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:20px_20px]" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-4 py-1.5 text-xs font-bold text-emerald-400">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              <span>Real Field Footage · Working Equipment</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white tracking-tight">
+              Watch Our Equipment in Action
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300">
+              Verify build quality, automated feed delivery, and live operation before ordering your farm equipment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <MediaVideoPlayer
+              src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/fully%20automated%20battery%20cage%20system.mp4"
+              poster="/products/Acessories/Battery cage.jpeg"
+              title="Fully Automated Battery Cage Architecture"
+              badge="Turnkey Poultry Housing"
+              caption="Motorized feeding trolleys, nipple drinker lines, and egg collection belts"
+              aspectRatio="video"
+            />
+
+            <MediaVideoPlayer
+              src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/poultry%20hanging%20feeder.mp4"
+              poster="/products/Acessories/poultry hanging feeder.jpeg"
+              title="Commercial Conical Hanging Feeders"
+              badge="Zero-Feed-Wastage"
+              caption="Adjustable flow pan lip designed to prevent litter scratching and feed loss"
+              aspectRatio="video"
+            />
+
+            <MediaVideoPlayer
+              src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/chicks%20feeder.mp4"
+              poster="/products/Acessories/feeder.jpeg"
+              title="Brooder Day-Old Chick Feeders"
+              badge="First-Week Brooding"
+              caption="Shallow anti-spill feeding trays ensuring early starter feed access for day-old chicks"
+              aspectRatio="video"
+            />
+
+            <MediaVideoPlayer
+              src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/defathering%20machine.mp4"
+              poster="/products/Acessories/Defeathering machine.jpeg"
+              title="SS Defeathering Plucker Machine"
+              badge="Abattoir High-Throughput"
+              caption="Commercial food-grade stainless steel plucker for rapid broiler dressing"
+              aspectRatio="video"
+            />
+
+            <MediaVideoPlayer
+              src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/transportation%20cage.mp4"
+              poster="/products/Acessories/transportation crate.jpeg"
+              title="HDPE Live Bird Transport Crates"
+              badge="Interstate Transit"
+              caption="High-density perforated crates ensuring ventilation and zero bird suffocation during transit"
+              aspectRatio="video"
+            />
+
+            <MediaVideoPlayer
+              src="https://ullutbvytgllwechzfgx.supabase.co/storage/v1/object/public/videos/egg%20crate.mp4"
+              poster="/products/Acessories/plastic egg crate.jpeg"
+              title="Heavy-Duty Commercial Egg Crates"
+              badge="30-Egg Reusable Trays"
+              caption="Impact-resistant stackable plastic trays preventing hairline shell fractures during transport"
+              aspectRatio="video"
+            />
           </div>
         </div>
       </section>
