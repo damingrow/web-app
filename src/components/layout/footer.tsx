@@ -158,12 +158,15 @@ export function Footer() {
           {/* Products */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-widest text-slate-300 mb-5">Products</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5">
               {[
-                { name: 'Day-Old Chicks', href: '/chicks' },
+                { name: 'Commercial Broilers', href: '/day-old-chicks/broilers' },
+                { name: 'Commercial Pullets', href: '/day-old-chicks/pullets' },
+                { name: 'Day-Old Cockerels', href: '/day-old-chicks/cockerels' },
+                { name: 'Hybrid Turkey Poults', href: '/day-old-chicks/turkeys' },
                 { name: 'Point-of-Lay Birds', href: '/point-of-lay' },
-                { name: 'Livestock Drugs', href: '/drugs' },
                 { name: 'Livestock Vaccines', href: '/vaccines' },
+                { name: 'Veterinary Drugs', href: '/drugs' },
                 { name: 'Poultry Accessories', href: '/accessories' },
               ].map((link) => (
                 <li key={link.href}>

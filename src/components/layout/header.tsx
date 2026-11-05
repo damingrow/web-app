@@ -31,6 +31,7 @@ import {
   FileText,
   ArrowRight,
   Zap,
+  Truck,
 } from 'lucide-react';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -101,12 +102,101 @@ const SERVICES_MENU = [
   },
 ];
 
+const PRODUCTS_MEGA_MENU = {
+  breeds: {
+    section: 'Day-Old Poultry Breeds',
+    viewAllHref: '/day-old-chicks',
+    viewAllLabel: 'All Day-Old Chicks & Rates',
+    items: [
+      {
+        icon: Feather,
+        label: 'Commercial Broilers',
+        desc: 'Cobb 500 & Ross 308 · 6–7 wks harvest',
+        href: '/day-old-chicks/broilers',
+        badge: 'Fast Meat',
+        color: 'text-amber-600 bg-amber-50 group-hover:bg-amber-100',
+      },
+      {
+        icon: Egg,
+        label: 'Commercial Pullets',
+        desc: 'ISA Brown & Black · 94%+ peak lay rate',
+        href: '/day-old-chicks/pullets',
+        badge: 'High Lay',
+        color: 'text-yellow-600 bg-yellow-50 group-hover:bg-yellow-100',
+      },
+      {
+        icon: ShieldCheck,
+        label: 'Day-Old Cockerels',
+        desc: 'Hardy white & heavy black festive strains',
+        href: '/day-old-chicks/cockerels',
+        badge: 'Low Risk',
+        color: 'text-emerald-600 bg-emerald-50 group-hover:bg-emerald-100',
+      },
+      {
+        icon: Scale,
+        label: 'Hybrid Turkey Poults',
+        desc: 'Nicholas White & bronze toms (10–14kg)',
+        href: '/day-old-chicks/turkeys',
+        badge: '11kg+ Toms',
+        color: 'text-purple-600 bg-purple-50 group-hover:bg-purple-100',
+      },
+    ],
+  },
+  health: {
+    section: 'Animal Health & Biosecurity',
+    viewAllHref: '/drugs',
+    viewAllLabel: 'NAFDAC Formulations',
+    items: [
+      {
+        icon: Syringe,
+        label: 'Livestock Vaccines',
+        desc: 'Certified 2°C–8°C cold-chain verified defense',
+        href: '/vaccines',
+        color: 'text-cyan-600 bg-cyan-50 group-hover:bg-cyan-100',
+      },
+      {
+        icon: Pill,
+        label: 'Veterinary Drugs',
+        desc: 'NAFDAC-approved antibiotics & vitamins',
+        href: '/drugs',
+        color: 'text-rose-600 bg-rose-50 group-hover:bg-rose-100',
+      },
+      {
+        icon: Zap,
+        label: 'Vaccination Programs',
+        desc: 'Official broiler & layer immunization timetables',
+        href: '/vaccination-program',
+        color: 'text-amber-600 bg-amber-50 group-hover:bg-amber-100',
+      },
+    ],
+  },
+  stock: {
+    section: 'Stock & Infrastructure',
+    viewAllHref: '/accessories',
+    viewAllLabel: 'Farm Accessories',
+    items: [
+      {
+        icon: Egg,
+        label: 'Point-of-Lay Birds',
+        desc: '16–18 week vaccinated layers ready to lay',
+        href: '/point-of-lay',
+        color: 'text-emerald-600 bg-emerald-50 group-hover:bg-emerald-100',
+      },
+      {
+        icon: HomeIcon,
+        label: 'Farm Equipment',
+        desc: 'Battery cages, automated feeders & drinkers',
+        href: '/accessories',
+        color: 'text-slate-600 bg-slate-100 group-hover:bg-slate-200',
+      },
+    ],
+  },
+};
+
 const PRODUCTS_MENU = [
-  { icon: Feather, label: 'Day-Old Chicks', desc: 'Broilers, layers, turkeys, cockerels', href: '/chicks', color: 'text-amber-600 bg-amber-50' },
-  { icon: Egg, label: 'Point-of-Lay Birds', desc: 'Ready-to-produce ISA Brown & Lohmann', href: '/point-of-lay', color: 'text-yellow-600 bg-yellow-50' },
-  { icon: Syringe, label: 'Livestock Vaccines', desc: 'Cold-chain guaranteed (2°C–8°C)', href: '/vaccines', color: 'text-cyan-600 bg-cyan-50' },
-  { icon: Pill, label: 'Veterinary Drugs', desc: 'Antibiotics, anticoccidials & vitamins', href: '/drugs', color: 'text-red-600 bg-red-50' },
-  { icon: HomeIcon, label: 'Farm Equipment', desc: 'Cages, feeders, drinkers & housing', href: '/accessories', color: 'text-slate-600 bg-slate-100' },
+  ...PRODUCTS_MEGA_MENU.breeds.items,
+  ...PRODUCTS_MEGA_MENU.health.items,
+  ...PRODUCTS_MEGA_MENU.stock.items,
 ];
 
 const CALCULATORS_MENU = [
@@ -338,44 +428,187 @@ export function Header() {
               </div>
             </Dropdown>
 
-            {/* PRODUCTS dropdown */}
+            {/* PRODUCTS MEGA MENU dropdown */}
             <Dropdown
-              width="w-72"
+              width="w-[740px]"
               trigger={
                 <span className={navLinkClass(
-                  isActive('/chicks') || isActive('/vaccines') || isActive('/drugs') ||
-                  isActive('/accessories') || isActive('/point-of-lay')
+                  isActive('/day-old-chicks') || isActive('/chicks') || isActive('/vaccines') ||
+                  isActive('/drugs') || isActive('/accessories') || isActive('/point-of-lay') ||
+                  isActive('/vaccination-program')
                 )}>
                   Products
                 </span>
               }
             >
-              <div className="p-3">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 px-2 pt-1">
-                  Our Product Range
-                </div>
-                <div className="space-y-0.5">
-                  {PRODUCTS_MENU.map((item) => {
-                    const Icon = item.icon;
-                    return (
+              <div className="p-5">
+                <div className="grid grid-cols-12 gap-5">
+                  {/* Column 1: Day-Old Poultry Breeds (5 cols) */}
+                  <div className="col-span-5 space-y-1">
+                    <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 px-1">
+                      <span>{PRODUCTS_MEGA_MENU.breeds.section}</span>
+                      <span className="text-[9px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
+                        Live Rates
+                      </span>
+                    </div>
+                    <div className="space-y-0.5">
+                      {PRODUCTS_MEGA_MENU.breeds.items.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="flex items-start gap-2.5 px-2 py-2 rounded-xl hover:bg-slate-50 group transition-all"
+                          >
+                            <div className={`h-8 w-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${item.color} transition-colors`}>
+                              <Icon className="h-4 w-4" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-center gap-1.5 leading-tight">
+                                <span className="text-sm font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors">
+                                  {item.label}
+                                </span>
+                                {item.badge && (
+                                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 group-hover:bg-emerald-100 group-hover:text-emerald-800 transition-colors">
+                                    {item.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="text-[11px] text-slate-500 leading-snug mt-0.5 line-clamp-1">
+                                {item.desc}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                    <div className="pt-2 px-1">
                       <Link
-                        key={item.href}
-                        href={item.href}
-                        className="flex items-center gap-3 px-2 py-2.5 rounded-xl hover:bg-slate-50 group transition-colors"
+                        href={PRODUCTS_MEGA_MENU.breeds.viewAllHref}
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
                       >
-                        <div className={`h-8 w-8 rounded-lg flex items-center justify-center shrink-0 ${item.color}`}>
-                          <Icon className="h-4 w-4" />
-                        </div>
-                        <div>
-                          <div className="text-sm font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors leading-tight">
-                            {item.label}
-                          </div>
-                          <div className="text-xs text-slate-500 leading-tight">{item.desc}</div>
-                        </div>
-                        <ArrowRight className="h-3.5 w-3.5 text-slate-300 group-hover:text-emerald-500 ml-auto shrink-0 transition-colors" />
+                        {PRODUCTS_MEGA_MENU.breeds.viewAllLabel} <ArrowRight className="h-3.5 w-3.5" />
                       </Link>
-                    );
-                  })}
+                    </div>
+                  </div>
+
+                  {/* Column 2: Health & Biosecurity (4 cols) */}
+                  <div className="col-span-4 space-y-1">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 px-1">
+                      {PRODUCTS_MEGA_MENU.health.section}
+                    </div>
+                    <div className="space-y-0.5">
+                      {PRODUCTS_MEGA_MENU.health.items.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="flex items-start gap-2.5 px-2 py-2 rounded-xl hover:bg-slate-50 group transition-all"
+                          >
+                            <div className={`h-8 w-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${item.color} transition-colors`}>
+                              <Icon className="h-4 w-4" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="text-sm font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors leading-tight">
+                                {item.label}
+                              </div>
+                              <div className="text-[11px] text-slate-500 leading-snug mt-0.5 line-clamp-1">
+                                {item.desc}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                    <div className="pt-2 px-1">
+                      <Link
+                        href={PRODUCTS_MEGA_MENU.health.viewAllHref}
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
+                      >
+                        {PRODUCTS_MEGA_MENU.health.viewAllLabel} <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Column 3: Stock & Equipment (3 cols) */}
+                  <div className="col-span-3 space-y-2">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 px-1">
+                      {PRODUCTS_MEGA_MENU.stock.section}
+                    </div>
+                    <div className="space-y-0.5">
+                      {PRODUCTS_MEGA_MENU.stock.items.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="flex items-start gap-2.5 px-2 py-2 rounded-xl hover:bg-slate-50 group transition-all"
+                          >
+                            <div className={`h-8 w-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${item.color} transition-colors`}>
+                              <Icon className="h-4 w-4" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="text-sm font-semibold text-slate-800 group-hover:text-emerald-700 transition-colors leading-tight">
+                                {item.label}
+                              </div>
+                              <div className="text-[11px] text-slate-500 leading-snug mt-0.5 line-clamp-1">
+                                {item.desc}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+
+                    {/* Dispatch Guarantee Card */}
+                    <div className="mt-2 p-3 rounded-xl bg-gradient-to-br from-[#0A192F] to-slate-900 border border-emerald-500/25 text-white">
+                      <div className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        <span>Mon &amp; Thu Dispatch</span>
+                      </div>
+                      <div className="text-xs font-semibold text-slate-100">
+                        Hatchery Allocation Desk
+                      </div>
+                      <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
+                        48-hr clearing. Nationwide depot transit.
+                      </p>
+                      <Link
+                        href="/day-old-chicks"
+                        className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400 hover:text-emerald-300 transition-colors"
+                      >
+                        <span>Book upcoming batch</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mega Menu Footer Strip */}
+                <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-3 text-slate-500">
+                    <span className="flex items-center gap-1 text-[11px]">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                      Certified Parent Stock
+                    </span>
+                    <span className="text-slate-300">•</span>
+                    <span className="flex items-center gap-1 text-[11px]">
+                      <Truck className="w-3.5 h-3.5 text-emerald-600" />
+                      All 36 States Dispatch
+                    </span>
+                    <span className="text-slate-300 hidden sm:inline">•</span>
+                    <span className="hidden sm:flex items-center gap-1 text-[11px]">
+                      <Building2 className="w-3.5 h-3.5 text-emerald-600" />
+                      Zenith Bank Clearing
+                    </span>
+                  </div>
+                  <Link
+                    href="/day-old-chicks"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-colors"
+                  >
+                    <span>View all products</span>
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
                 </div>
               </div>
             </Dropdown>
@@ -557,34 +790,83 @@ export function Header() {
               )}
             </div>
 
-            {/* Section: Products */}
+            {/* Section: Products (Mobile Mega Drawer) */}
             <div>
               <button
                 onClick={() => setMobileSection(mobileSection === 'products' ? null : 'products')}
                 className="w-full flex items-center justify-between px-3 py-3 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
               >
                 <span className="flex items-center gap-2">
-                  <Feather className="h-4 w-4 text-amber-500" />
-                  Products
+                  <Feather className="h-4 w-4 text-emerald-600" />
+                  Products &amp; Day-Old Chicks
                 </span>
                 <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform ${mobileSection === 'products' ? 'rotate-180' : ''}`} />
               </button>
               {mobileSection === 'products' && (
-                <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-amber-100 pl-4">
-                  {PRODUCTS_MENU.map((item) => {
-                    const Icon = item.icon;
-                    return (
+                <div className="ml-4 mt-1 space-y-3 border-l-2 border-emerald-100 pl-4 py-1">
+                  {/* Group 1: Day-Old Poultry Breeds */}
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1 px-2">
+                      Day-Old Poultry Breeds
+                    </div>
+                    <div className="space-y-0.5">
+                      {PRODUCTS_MEGA_MENU.breeds.items.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center justify-between px-2 py-2 rounded-xl hover:bg-slate-50 text-sm text-slate-700 font-medium transition-colors"
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <Icon className="h-4 w-4 text-emerald-600 shrink-0" />
+                              <span>{item.label}</span>
+                            </div>
+                            {item.badge && (
+                              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800">
+                                {item.badge}
+                              </span>
+                            )}
+                          </Link>
+                        );
+                      })}
                       <Link
-                        key={item.href}
-                        href={item.href}
+                        href="/day-old-chicks"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-3 px-2 py-2.5 rounded-xl hover:bg-slate-50 text-sm text-slate-700 font-medium transition-colors"
+                        className="flex items-center gap-1.5 px-2 py-1.5 text-xs font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
                       >
-                        <Icon className="h-4 w-4 text-slate-500 shrink-0" />
-                        {item.label}
+                        <span>All Day-Old Chicks &amp; Rates</span>
+                        <ArrowRight className="h-3 w-3" />
                       </Link>
-                    );
-                  })}
+                    </div>
+                  </div>
+
+                  {/* Group 2: Animal Health & Infrastructure */}
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1 px-2">
+                      Health, Stock &amp; Equipment
+                    </div>
+                    <div className="space-y-0.5">
+                      {[
+                        ...PRODUCTS_MEGA_MENU.health.items,
+                        ...PRODUCTS_MEGA_MENU.stock.items,
+                      ].map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-2.5 px-2 py-2 rounded-xl hover:bg-slate-50 text-sm text-slate-700 font-medium transition-colors"
+                          >
+                            <Icon className="h-4 w-4 text-slate-500 shrink-0" />
+                            <span>{item.label}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
