@@ -46,8 +46,8 @@ const BREED_CHANNELS = [
   },
   {
     slug: 'pullets',
-    name: 'Zartech Pullet',
-    subTitle: 'ISA Brown · Zartech Certified Strains',
+    name: 'Commercial Pullet (Layers)',
+    subTitle: 'ISA Brown, Zartech & Hy-Line Certified Strains',
     desc: 'Industry-standard brown egg layers. Yields 310–325 eggs per hen with high shell strength and low rearing feed intake.',
     packaging: '50 birds / carton · ₦2,700 / chick (₦135,000 / carton)',
     dispatch: 'Mondays & Thursdays',

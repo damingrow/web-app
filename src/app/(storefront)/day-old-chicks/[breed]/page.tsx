@@ -71,9 +71,9 @@ const BREED_DATA: Record<string, BreedDetail> = {
   pullets: {
     slug: 'pullets',
     bookingParam: 'pullet',
-    title: 'Zartech Pullet',
-    seoTitle: 'Zartech Pullet Nigeria (ISA Brown / Zartech Strains) Egg Layers | D-AminGrow',
-    subTitle: 'High-Laying Commercial Brown Egg Genetics · 310–325 Eggs/Hen Potential',
+    title: 'Commercial Pullets (Layers)',
+    seoTitle: 'Day-Old Pullets Price in Nigeria | High-Yield Commercial Layers - D-AminGrow',
+    subTitle: 'ISA Brown, Zartech & Hy-Line Brown Layers · 310–325 Eggs/Hen Potential',
     metaDesc:
       'Book Zartech pullets in Nigeria. Peak egg production 94-96%, superior brown shell strength, docile temperament. Monday & Thursday dispatch runs.',
     image: '/products/Chicks/Pullet day old.jpeg',
