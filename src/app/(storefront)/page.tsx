@@ -278,7 +278,7 @@ export default function HomePage() {
               <div>
                 <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 rounded-full">
                   <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                  Africa&apos;s Dedicated Agro-Allied Supply & Farm Advisory Partner
+                  Dedicated Agro-Allied Solution Center
                 </div>
               </div>
 
@@ -289,7 +289,7 @@ export default function HomePage() {
                   <span className="text-gradient-green">Poultry Solutions</span> in Africa
                 </h1>
                 <p className="text-base sm:text-lg text-slate-300 font-medium max-w-2xl leading-relaxed">
-                  Protect your farm capital from day one. Direct allocations from verified partner hatcheries, 2°C–8°C cold-chain vaccines, NAFDAC-approved medications, and commercial rearing equipment — serving farmers across Nigeria and all African markets.
+                  Protect your farm capital from day one. Direct allocations from reliable hatcheries, 2°C–8°C cold-chain vaccines, NAFDAC-approved medications, and commercial rearing equipment — serving farmers across Nigeria and all African markets.
                 </p>
               </div>
 
@@ -1027,7 +1027,7 @@ export default function HomePage() {
               Verified Breeder Operations
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
-              Partner Breeding Operations We Allot From
+              Hatcheries We Allot From
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               Direct hatchery allotments ensuring genuine genetics and verified maternal antibody transfer.
@@ -1062,7 +1062,7 @@ export default function HomePage() {
           <div className="border-t border-slate-200 pt-16">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h3 className="text-xl font-bold font-heading text-slate-900">Commercial Poultry Clients</h3>
+                <h3 className="text-xl font-bold font-heading text-slate-900">Some Commercial Poultry Clients</h3>
                 <p className="text-xs text-slate-500">Commercial farms relying on D-AminGrow across Nigeria</p>
               </div>
               <Link
