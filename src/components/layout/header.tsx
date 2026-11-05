@@ -219,54 +219,73 @@ const MORE_MENU = [
 // ─── Dropdown Component ───────────────────────────────────────────────────────
 
 interface DropdownProps {
+  id: string;
   trigger: React.ReactNode;
   children: React.ReactNode;
   width?: string;
   align?: 'left' | 'right';
+  activeDropdown: string | null;
+  onOpen: (id: string) => void;
+  onClose: () => void;
+  onCloseImmediate: () => void;
+  onToggle: (id: string) => void;
 }
 
-function Dropdown({ trigger, children, width = 'w-72', align = 'left' }: DropdownProps) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
+function Dropdown({
+  id,
+  trigger,
+  children,
+  width = 'w-72',
+  align = 'left',
+  activeDropdown,
+  onOpen,
+  onClose,
+  onCloseImmediate,
+  onToggle,
+}: DropdownProps) {
+  const isOpen = activeDropdown === id;
 
   return (
     <div
-      ref={ref}
       className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={() => onOpen(id)}
+      onMouseLeave={onClose}
     >
       <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center gap-1"
-        aria-expanded={open}
+        onClick={() => onToggle(id)}
+        className="flex items-center gap-1 focus:outline-none"
+        aria-expanded={isOpen}
         aria-haspopup="true"
+        type="button"
       >
         {trigger}
         <ChevronDown
-          className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          className={`h-3.5 w-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180 text-emerald-600' : ''}`}
         />
       </button>
 
-      {open && (
+      {isOpen && (
         <div
-          className={`absolute top-full mt-2 ${width} ${
+          className={`absolute top-full pt-2.5 ${width} ${
             align === 'right' ? 'right-0' : 'left-0'
-          } z-50 rounded-2xl bg-white border border-slate-200 shadow-2xl shadow-slate-200/60 ring-1 ring-slate-100 overflow-hidden`}
-          onMouseEnter={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
+          } z-50`}
+          onMouseEnter={() => onOpen(id)}
+          onMouseLeave={onClose}
         >
-          {children}
+          {/* Invisible hover bridge spanning between trigger button and menu card */}
+          <div className="absolute -top-3 left-0 right-0 h-4 bg-transparent pointer-events-auto" />
+
+          <div
+            className="rounded-2xl bg-white border border-slate-200 shadow-2xl shadow-slate-200/60 ring-1 ring-slate-100 overflow-hidden"
+            onClick={(e) => {
+              const target = e.target as HTMLElement;
+              if (target.closest('a') || target.closest('button')) {
+                onCloseImmediate();
+              }
+            }}
+          >
+            {children}
+          </div>
         </div>
       )}
     </div>
@@ -280,6 +299,42 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const desktopNavRef = useRef<HTMLElement>(null);
+
+  const handleOpenDropdown = (id: string) => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setActiveDropdown(id);
+  };
+
+  const handleCloseDropdown = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+    closeTimerRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 220);
+  };
+
+  const handleCloseImmediate = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setActiveDropdown(null);
+  };
+
+  const handleToggleDropdown = (id: string) => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setActiveDropdown((curr) => (curr === id ? null : id));
+  };
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -290,7 +345,29 @@ export function Header() {
   useEffect(() => {
     setMobileMenuOpen(false);
     setMobileSection(null);
+    handleCloseImmediate();
   }, [pathname]);
+
+  // Handle outside click and Escape key on desktop dropdowns
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (desktopNavRef.current && !desktopNavRef.current.contains(e.target as Node)) {
+        handleCloseImmediate();
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleCloseImmediate();
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -367,11 +444,17 @@ export function Header() {
           </Link>
 
           {/* ── Desktop Nav ─────────────────────────────────────────── */}
-          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
+          <nav ref={desktopNavRef} className="hidden lg:flex items-center gap-0.5 xl:gap-1">
 
             {/* SERVICES dropdown */}
             <Dropdown
+              id="services"
               width="w-[680px]"
+              activeDropdown={activeDropdown}
+              onOpen={handleOpenDropdown}
+              onClose={handleCloseDropdown}
+              onCloseImmediate={handleCloseImmediate}
+              onToggle={handleToggleDropdown}
               trigger={
                 <span className={navLinkClass(isActive('/services'))}>
                   Services
@@ -430,7 +513,13 @@ export function Header() {
 
             {/* PRODUCTS MEGA MENU dropdown */}
             <Dropdown
+              id="products"
               width="w-[740px]"
+              activeDropdown={activeDropdown}
+              onOpen={handleOpenDropdown}
+              onClose={handleCloseDropdown}
+              onCloseImmediate={handleCloseImmediate}
+              onToggle={handleToggleDropdown}
               trigger={
                 <span className={navLinkClass(
                   isActive('/day-old-chicks') || isActive('/chicks') || isActive('/vaccines') ||
@@ -615,7 +704,13 @@ export function Header() {
 
             {/* CALCULATORS dropdown */}
             <Dropdown
+              id="calculators"
               width="w-72"
+              activeDropdown={activeDropdown}
+              onOpen={handleOpenDropdown}
+              onClose={handleCloseDropdown}
+              onCloseImmediate={handleCloseImmediate}
+              onToggle={handleToggleDropdown}
               trigger={
                 <span className={navLinkClass(isActive('/calculators'))}>
                   Calculators
@@ -684,8 +779,14 @@ export function Header() {
 
             {/* MORE dropdown */}
             <Dropdown
+              id="more"
               width="w-64"
               align="right"
+              activeDropdown={activeDropdown}
+              onOpen={handleOpenDropdown}
+              onClose={handleCloseDropdown}
+              onCloseImmediate={handleCloseImmediate}
+              onToggle={handleToggleDropdown}
               trigger={
                 <span className={navLinkClass(false)}>
                   More
