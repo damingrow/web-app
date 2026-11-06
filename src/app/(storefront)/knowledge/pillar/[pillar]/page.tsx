@@ -164,7 +164,7 @@ export default async function PillarDetailPage({ params }: PillarPageProps) {
                   <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
                     Pillar Category
                   </span>
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight leading-tight">
+                  <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading tracking-tight leading-tight">
                     {pillar.name}
                   </h1>
                 </div>

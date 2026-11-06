@@ -160,7 +160,7 @@ export default function ConsultationPage() {
               <HeartHandshake className="h-4 w-4" />
               Expert Farm Advisory
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight mb-6">
+            <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading text-white tracking-tight leading-tight mb-6">
               Poultry Farm Consultation{' '}
               <span className="text-emerald-400">Services</span>
             </h1>

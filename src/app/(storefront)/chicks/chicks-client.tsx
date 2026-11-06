@@ -213,7 +213,7 @@ export default function ChicksClient({ nextMonday, nextThursday }: ChicksClientP
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading text-white tracking-tight leading-tight">
                 Book Day-Old Chicks Online:{' '}
                 <span className="text-gradient-green">Direct Hatchery Allocation</span> &amp; Dispatch
               </h1>

@@ -86,7 +86,7 @@ export function CalculatorsHubClient() {
             <span>African Agro-Allied Intelligence Suite</span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight max-w-4xl mx-auto leading-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading tracking-tight max-w-4xl mx-auto leading-tight">
             Scientific Farm Calculators & <br />
             <span className="text-gradient-green">Clinical Decision Tools</span>
           </h1>

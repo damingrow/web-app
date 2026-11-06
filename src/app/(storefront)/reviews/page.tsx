@@ -342,14 +342,14 @@ export default function ReviewsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
             {/* Left — 7 cols */}
-            <div className="lg:col-span-7 space-y-7">
+            <div className="lg:col-span-7 space-y-6 lg:space-y-5">
               <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 rounded-full">
                 <Award className="h-4 w-4" />
                 Verified Farmer Satisfaction · 4.9 / 5.0 Trust Score
               </div>
 
-              <div className="space-y-4">
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              <div className="space-y-4 !mt-2.5">
+                <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading text-white tracking-tight leading-tight">
                   Farmer Reviews &{' '}
                   <span className="text-gradient-green">Commercial Flock Performance</span>{' '}
                   Testimonials

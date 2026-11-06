@@ -78,10 +78,10 @@ body {
 }
 
 @layer components {
-  /* Global Hero Heading: 36px desktop, 30px tablet, 24px mobile */
+  /* Global Hero Heading: 40px desktop, 30px tablet, 24px mobile */
   .heading-hero,
   .hero-heading {
-    @apply text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight leading-tight;
+    @apply text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading tracking-tight leading-tight;
   }
 
   /* Global Section Heading H2: 30px desktop, 24px tablet, 20px mobile */

@@ -180,7 +180,7 @@ export function ContactClient() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
             {/* Left Column (7 cols): Benefit-Driven Copy, Hook, CTAs */}
-            <div className="lg:col-span-7 space-y-7 text-left">
+            <div className="lg:col-span-7 space-y-6 lg:space-y-5 text-left">
 
               {/* Credibility Tag */}
               <div>
@@ -191,8 +191,8 @@ export function ContactClient() {
               </div>
 
               {/* Exact Primary H1 Directive */}
-              <div className="space-y-4">
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              <div className="space-y-4 !mt-2.5">
+                <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading text-white tracking-tight leading-tight">
                   Contact D-AminGrow:{' '}
                   <span className="text-gradient-green">Fast Farm Support Center</span>
                 </h1>

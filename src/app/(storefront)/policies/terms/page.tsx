@@ -36,7 +36,7 @@ export default function TermsOfServicePage() {
               <FileText className="h-4 w-4" />
               <span>Commercial Terms & Conditions</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading tracking-tight leading-tight">
               Terms of Service & Livestock Supply Agreement
             </h1>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

@@ -219,7 +219,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 </div>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-950 font-heading leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold text-slate-950 font-heading leading-tight tracking-tight">
                 {product.name}
               </h1>
 

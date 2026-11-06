@@ -274,7 +274,7 @@ export default function PulletLandingClient({ nextMonday, nextThursday }: Pullet
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
             {/* Left Column (7 cols): Directives, H1, Value Proposition & CTAs */}
-            <div className="lg:col-span-7 space-y-7 text-left">
+            <div className="lg:col-span-7 space-y-6 lg:space-y-5 text-left">
               <div>
                 <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 rounded-full">
                   <ShieldCheck className="h-4 w-4 text-emerald-400" />
@@ -283,8 +283,8 @@ export default function PulletLandingClient({ nextMonday, nextThursday }: Pullet
               </div>
 
               {/* Exact H1 Directive */}
-              <div className="space-y-4">
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              <div className="space-y-4 !mt-2.5">
+                <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading text-white tracking-tight leading-tight">
                   Day-Old Pullets Price in Nigeria:{' '}
                   <span className="text-gradient-green">Commercial Layer Chicks (ISA &amp; Hy-Line)</span>
                 </h1>

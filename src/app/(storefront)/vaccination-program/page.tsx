@@ -43,7 +43,7 @@ export default function VaccinationProgramPage() {
                 Clinical Immunization Engine
               </div>
 
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading text-white tracking-tight leading-tight">
                 Calibrated Poultry <br />
                 <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
                   Vaccination Programs

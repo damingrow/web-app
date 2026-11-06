@@ -68,7 +68,7 @@ export default function PointOfLayBirdsPage() {
                 <span>Ready to Lay in 4–6 Weeks · 16–18 Weeks Old</span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading text-white tracking-tight leading-tight">
                 Commercial Point-of-Lay Birds (16–18 Weeks)
               </h1>
 

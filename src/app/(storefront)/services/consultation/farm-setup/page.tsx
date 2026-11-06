@@ -140,7 +140,7 @@ export default function FarmSetupConsultationPage() {
               <span>Turnkey Commercial Farm Engineering</span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading text-white tracking-tight leading-tight">
               Poultry Farm Setup &amp; Pen Architecture Engineering
             </h1>
 

@@ -155,7 +155,7 @@ export default function DayOldChicksHubPage() {
                 <span>Certified Primary Lineage · Standard Packaging</span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight text-white leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading tracking-tight text-white leading-tight">
                 Commercial Day-Old Chicks Sourcing &amp; Nationwide Dispatch
               </h1>
 

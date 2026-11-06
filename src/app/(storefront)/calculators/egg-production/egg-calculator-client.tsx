@@ -134,7 +134,7 @@ export default function EggCalculatorClient() {
               <Egg className="h-4 w-4 text-amber-400" />
               <span>Commercial Layer & Point-of-Lay Efficiency</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-heading tracking-tight leading-tight">
               Hen-Day Egg Production (HDP) & <br />
               <span className="text-gradient-green">Layer Margin Calculator</span>
             </h1>
