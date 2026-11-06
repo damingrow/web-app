@@ -395,7 +395,7 @@ export default function PointOfLayClient() {
                 Age Inflation: Selling 12-Week Birds as 16 Weeks
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Unscrupulous brokers purchase stunted 12-week growers weighing barely 1.0kg–1.1kg and market them as "ready-to-lay 16-week pullets". When the birds arrive, you spend an extra 6 to 8 weeks feeding them grower mash at massive financial loss before they lay a single egg.
+                Unscrupulous brokers purchase stunted 12-week growers weighing barely 1.0kg–1.1kg and market them as &ldquo;ready-to-lay 16-week pullets&rdquo;. When the birds arrive, you spend an extra 6 to 8 weeks feeding them grower mash at massive financial loss before they lay a single egg.
               </p>
             </div>
 
