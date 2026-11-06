@@ -70,6 +70,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/knowledge/pillar',
+        destination: '/knowledge',
+        permanent: true,
+      },
+    ];
+  },
   // Ensure experimental or unnecessary flags are not present to maintain OpenNext compatibility
 };
 
