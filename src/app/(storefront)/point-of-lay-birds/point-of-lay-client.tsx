@@ -198,10 +198,7 @@ export default function PointOfLayClient() {
                   <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
                   Leading Agro-Allied Company in Nigeria
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-300 bg-amber-500/15 border border-amber-500/30 px-3.5 py-1.5 rounded-full">
-                  <Egg className="h-3.5 w-3.5 text-amber-400" />
-                  Eggs in 14–28 Days &bull; Fully Vaccinated
-                </span>
+
               </div>
 
               {/* Exact H1 Directive */}
