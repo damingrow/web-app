@@ -278,7 +278,7 @@ export default function PulletLandingClient({ nextMonday, nextThursday }: Pullet
               <div>
                 <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-2 rounded-full">
                   <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                  Leading Agro-Allied Company in Nigeria · Certified Layer Genetics
+                  Leading Agro-Allied Company in Nigeria
                 </div>
               </div>
 
