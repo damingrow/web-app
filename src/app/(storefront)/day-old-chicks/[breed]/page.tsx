@@ -244,7 +244,7 @@ export default async function BreedBuyerIntentPage({
                 <span>Certified Parent Lineage Direct</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
                 {data.title}
               </h1>
 

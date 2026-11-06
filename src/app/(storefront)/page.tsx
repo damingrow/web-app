@@ -653,7 +653,7 @@ export default function HomePage() {
               <Zap className="h-3.5 w-3.5 text-emerald-400" />
               Practical Field Systems
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-white tracking-tight">
               Actionable Insights for Commercial Farmers
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -887,7 +887,7 @@ export default function HomePage() {
                 <Calculator className="h-3.5 w-3.5 text-emerald-400" />
                 <span>Agricultural Intelligence Suite</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-white tracking-tight">
                 Scientific Farm Calculators & Decision Tools
               </h2>
               <p className="text-sm sm:text-base text-slate-300 max-w-xl leading-relaxed">
@@ -1127,7 +1127,7 @@ export default function HomePage() {
             Fast WhatsApp Response
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-white tracking-tight leading-tight">
             Ready to Secure Your Flock Allotment &<br />
             <span className="text-gradient-green">Farm Supplies for Next Dispatch?</span>
           </h2>

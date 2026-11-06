@@ -238,7 +238,7 @@ export default function SymptomCheckerClient() {
               <Stethoscope className="h-4 w-4 text-rose-400" />
               <span>Veterinary Clinical Diagnostic Triager</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight leading-tight">
               Poultry Disease Symptom Triager & <br />
               <span className="text-gradient-green">Emergency Farm Biosecurity Protocol</span>
             </h1>

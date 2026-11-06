@@ -213,7 +213,7 @@ export default function ChicksClient({ nextMonday, nextThursday }: ChicksClientP
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.12]">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
                 Book Day-Old Chicks Online:{' '}
                 <span className="text-gradient-green">Direct Hatchery Allocation</span> &amp; Dispatch
               </h1>
@@ -1042,7 +1042,7 @@ export default function ChicksClient({ nextMonday, nextThursday }: ChicksClientP
               <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-4 py-1.5 rounded-full">
                 Guaranteed Monday &amp; Thursday Dispatch
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-white tracking-tight leading-tight">
                 Ready to Lock Your Day-Old Chick Allocation for This Week?
               </h2>
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed">

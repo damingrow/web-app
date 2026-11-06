@@ -36,7 +36,7 @@ export default function ShippingPolicyPage() {
               <Truck className="h-4 w-4" />
               <span>Nationwide Livestock Logistics</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold font-heading tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight leading-tight">
               Shipping & Cold-Chain Delivery Protocol
             </h1>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

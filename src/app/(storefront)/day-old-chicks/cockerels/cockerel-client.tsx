@@ -165,7 +165,7 @@ export function CockerelLandingClient({
 
               {/* Primary H1 Directive */}
               <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.12]">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
                   Day-Old Cockerel Chicks Price in Nigeria:{' '}
                   <span className="text-gradient-green">White &amp; Heavy Strains</span>
                 </h1>
@@ -877,7 +877,7 @@ export function CockerelLandingClient({
             Your Satisfaction Is Our Priority
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-white tracking-tight leading-tight">
             Lock Your Cockerel Quota For The Next Monday Or Thursday Hatch Run
           </h2>
 

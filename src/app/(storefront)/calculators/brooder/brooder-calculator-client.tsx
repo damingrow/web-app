@@ -77,7 +77,7 @@ export default function BrooderCalculatorClient() {
               Interactive Farm Engineering Utility
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-heading leading-tight">
               Poultry Brooder Equipment <br />
               <span className="text-gradient-green">& Space Calculator</span>
             </h1>

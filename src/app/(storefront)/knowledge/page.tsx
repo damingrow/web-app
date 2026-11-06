@@ -64,7 +64,7 @@ export default function KnowledgeHubPage() {
               Veterinary Knowledge & Farm Engineering Hub
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-heading leading-tight">
               African Livestock <br />
               <span className="text-gradient-green">Knowledge Centre</span>
             </h1>

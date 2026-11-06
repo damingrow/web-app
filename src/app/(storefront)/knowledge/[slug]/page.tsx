@@ -150,7 +150,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white leading-tight tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white leading-tight tracking-tight">
               {article.title}
             </h1>
 

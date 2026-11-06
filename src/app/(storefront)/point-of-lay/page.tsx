@@ -105,7 +105,7 @@ export default function PointOfLayPage() {
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
                 Point-of-Lay Pullets —{' '}
                 <span className="text-gradient-green">Ready to Produce</span>
               </h1>

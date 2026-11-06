@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
               <ShieldCheck className="h-4 w-4" />
               <span>NDPA 2023 Compliant</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold font-heading tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight leading-tight">
               Privacy Policy & Data Protection
             </h1>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

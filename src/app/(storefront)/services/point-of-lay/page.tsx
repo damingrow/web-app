@@ -112,7 +112,7 @@ export default function ServicePointOfLayPage() {
                 <Egg className="h-4 w-4" />
                 Production-Ready Birds — Skip 17 Weeks of Rearing
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight mb-6">
                 Point-of-Lay Pullets{' '}
                 <span className="text-teal-400">Sales &amp; Distribution</span>
               </h1>

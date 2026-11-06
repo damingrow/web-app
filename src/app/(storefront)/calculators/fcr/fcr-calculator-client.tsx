@@ -130,7 +130,7 @@ export default function FcrCalculatorClient() {
               <Scale className="h-4 w-4 text-emerald-400" />
               <span>Poultry Feed Economics Algorithm</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight leading-tight">
               Feed Conversion Ratio (FCR) & <br />
               <span className="text-gradient-green">Meat Cost Margin Calculator</span>
             </h1>

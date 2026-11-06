@@ -283,7 +283,7 @@ export default function TurkeyLandingClient({
 
               {/* Exact H1 Directive */}
               <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.12]">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
                   Turkey Poults Price in Nigeria:{' '}
                   <span className="text-gradient-green">Foreign &amp; Local Day-Old Turkeys</span>
                 </h1>

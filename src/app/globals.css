@@ -25,6 +25,78 @@ body {
   scroll-behavior: smooth;
 }
 
+@layer base {
+  h1 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-h1-mobile);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  @media (min-width: 640px) {
+    h1 {
+      font-size: var(--font-size-h1-tablet);
+    }
+  }
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: var(--font-size-h1-desktop);
+    }
+  }
+
+  h2 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-h2-mobile);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+  @media (min-width: 640px) {
+    h2 {
+      font-size: var(--font-size-h2-tablet);
+    }
+  }
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: var(--font-size-h2-desktop);
+    }
+  }
+
+  h3 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-h3-mobile);
+    line-height: 1.3;
+  }
+  @media (min-width: 640px) {
+    h3 {
+      font-size: var(--font-size-h3-tablet);
+    }
+  }
+  @media (min-width: 1024px) {
+    h3 {
+      font-size: var(--font-size-h3-desktop);
+    }
+  }
+}
+
+@layer components {
+  /* Global Hero Heading: 36px desktop, 30px tablet, 24px mobile */
+  .heading-hero,
+  .hero-heading {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading tracking-tight leading-tight;
+  }
+
+  /* Global Section Heading H2: 30px desktop, 24px tablet, 20px mobile */
+  .heading-section,
+  .section-heading {
+    @apply text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading tracking-tight leading-tight;
+  }
+
+  /* Global Subheading H3 */
+  .heading-sub,
+  .sub-heading {
+    @apply text-lg sm:text-xl lg:text-2xl font-bold font-heading tracking-tight;
+  }
+}
+
 /* ============================================================================
    CUSTOM SCROLLBAR
    ============================================================================ */

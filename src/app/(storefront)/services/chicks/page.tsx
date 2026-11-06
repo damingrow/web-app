@@ -187,7 +187,7 @@ export default function ServiceChicksPage() {
                 <Calendar className="h-4 w-4" />
                 Nationwide Dispatch — Every Monday &amp; Thursday
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.05] mb-6">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight mb-6">
                 Day-Old Chick{' '}
                 <span className="text-amber-400">Booking Service</span>
               </h1>

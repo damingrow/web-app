@@ -182,7 +182,7 @@ export default function FeedFormulationConsultationPage() {
               <span>Veterinary Nutritional Science · Pearson Square Precision</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
               Poultry Feed Formulation &amp; Nutrition Advisory
             </h1>
 

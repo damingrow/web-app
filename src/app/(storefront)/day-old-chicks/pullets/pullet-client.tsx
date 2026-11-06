@@ -284,7 +284,7 @@ export default function PulletLandingClient({ nextMonday, nextThursday }: Pullet
 
               {/* Exact H1 Directive */}
               <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight leading-[1.12]">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
                   Day-Old Pullets Price in Nigeria:{' '}
                   <span className="text-gradient-green">Commercial Layer Chicks (ISA &amp; Hy-Line)</span>
                 </h1>
@@ -1242,7 +1242,7 @@ export default function PulletLandingClient({ nextMonday, nextThursday }: Pullet
             Your Satisfaction Is Our Priority
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-white tracking-tight leading-tight">
             Protect Your Layer Capital With Certified Primary Parent Stock
           </h2>
 
