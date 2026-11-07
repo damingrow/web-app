@@ -50,7 +50,7 @@ const LAYER_STRAINS: StrainDetail[] = [
     id: 'isa-brown',
     name: 'ISA Brown Commercial Layer',
     breeder: 'Zartech / Amo Certified Primary Stock',
-    badge: 'Global #1 Brown Egg Lineage',
+    badge: 'High-Persistency Commercial Brown Layer',
     peakLayRate: '94% – 96%',
     eggPotential: '315 – 325 Eggs / Hen (to 72 wks)',
     firstEggAge: 'Week 18 – Week 19',
@@ -60,7 +60,7 @@ const LAYER_STRAINS: StrainDetail[] = [
     perBirdEstimate: '₦2,500 – ₦2,900',
     bestFor: 'High-density commercial battery cages and deep-litter layer operations targeting maximum marketable crates.',
     description:
-      'The benchmark brown egg layer worldwide. Renowned for fast sexual maturation, early peak attainment at week 26, docile temperament in cages, and extraordinary persistence above 85% lay through 65+ weeks.',
+      'A globally renowned commercial brown egg lineage. Renowned for early sexual maturation, strong peak attainment at week 26, docile temperament in cages, and dependable persistence above 85% lay through 65+ weeks.',
     strengths: [
       'Documented capability of 320+ marketable table eggs per hen housed',
       'Exceptional eggshell thickness, dramatically reducing transport cracking',
@@ -72,7 +72,7 @@ const LAYER_STRAINS: StrainDetail[] = [
     id: 'hy-line-brown',
     name: 'Hy-Line Brown Commercial Layer',
     breeder: 'Chi Farms / Hybrid Primary Allotment',
-    badge: 'Maximum Feed-to-Egg Efficiency',
+    badge: 'High Feed-to-Egg Efficiency',
     peakLayRate: '93% – 95%',
     eggPotential: '310 – 320 Eggs / Hen (to 72 wks)',
     firstEggAge: 'Week 18 – Week 20',
@@ -82,7 +82,7 @@ const LAYER_STRAINS: StrainDetail[] = [
     perBirdEstimate: '₦2,400 – ₦2,800',
     bestFor: 'Operations prioritizing lowest feed consumption per crate of eggs and resilience during hot dry seasons.',
     description:
-      'Recognized for exceptional feed efficiency, eating 4g–8g less feed per day than competitors while sustaining heavy egg production. Highly resilient appetite in high heat conditions common in Northern and Western Nigeria.',
+      'Recognized for exceptional feed efficiency, converting nutrient-dense layer mash with lower daily gram intake while sustaining high commercial egg production. Highly resilient appetite in high heat conditions common in Northern and Western Nigeria.',
     strengths: [
       'Lowest daily feed consumption per dozen eggs produced',
       'Superb livability during peak summer heat waves in tropical pens',
@@ -581,6 +581,15 @@ export default function PulletLandingClient({ nextMonday, nextThursday }: Pullet
             <p className="text-base text-slate-600 leading-relaxed">
               Use our interactive layer operations tools to pick the ideal breed, forecast your daily crate returns, and review recommended 20-week weight gates:
             </p>
+
+            {/* Independent Commercial Sourcing Notice */}
+            <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 sm:p-5 max-w-3xl mx-auto my-6 text-left flex items-start gap-3.5">
+              <ShieldCheck className="h-5 w-5 text-emerald-700 shrink-0 mt-0.5" />
+              <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <strong className="text-slate-900 font-bold block mb-0.5">Independent Commercial Sourcing Notice:</strong>
+                D-AminGrow distributes all certified commercial layer lineages in Nigeria—including ISA Brown, Hy-Line Brown, Zartech Brown, and Black Shaver / Bovan. We do not operate a proprietary breeding strain, nor do we prioritize one over another. Each breed has unique production dynamics (feed intake rate, peak persistence, shell pigmentation, or salvage weight); our role is to provide transparent data and guaranteed authentic parentage matching your housing system and target market.
+              </div>
+            </div>
 
             {/* Pill Tabs */}
             <div className="inline-flex p-1.5 bg-slate-100 rounded-2xl border border-slate-200 flex-wrap justify-center gap-1.5">

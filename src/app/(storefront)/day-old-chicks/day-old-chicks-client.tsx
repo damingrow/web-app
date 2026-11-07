@@ -608,6 +608,15 @@ export default function DayOldChicksClient({ nextMonday, nextThursday }: DayOldC
             </div>
           </div>
 
+          {/* Independent Multi-Hatchery Distribution Policy */}
+          <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 sm:p-5 mb-8 text-left flex items-start gap-3.5">
+            <ShieldCheck className="h-5 w-5 text-emerald-700 shrink-0 mt-0.5" />
+            <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <strong className="text-slate-900 font-bold block mb-0.5">Independent Multi-Hatchery Distribution Policy:</strong>
+              D-AminGrow distributes all certified commercial parent-stock lineages in Nigeria—broilers, pullets, cockerels, turkeys, and noilers. We do not operate our own proprietary strain, nor do we prioritize one commercial lineage over another. Every breed has distinct production benefits engineered by international geneticists; our role is to objectively supply genuine first-generation allocations directly from Nigeria’s tier-1 accredited primary hatcheries (Zartech, Amo, Chi, Supreme, Sayed) matched to your farm’s climate and production target.
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {BREED_PRICE_DIRECTORY.map((breed) => (
               <div

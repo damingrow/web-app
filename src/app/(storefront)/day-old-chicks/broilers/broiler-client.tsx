@@ -52,7 +52,7 @@ const BROILER_STRAINS: StrainDetail[] = [
     id: 'cobb-500',
     name: 'Cobb 500 Commercial Broiler',
     breeder: 'Chi Farms / Certified Grandparent Stock',
-    badge: 'World #1 Breast Meat & Heat Efficiency',
+    badge: 'High Breast Yield & Heat Efficiency',
     targetWeight42Days: '2.35kg – 2.65kg (at 42 days)',
     fcrRange: '1.60 – 1.72',
     dailyGain: '56g – 62g / bird / day',
@@ -61,7 +61,7 @@ const BROILER_STRAINS: StrainDetail[] = [
     perBirdEstimate: '₦1,700 – ₦2,100',
     bestFor: 'Commercial processors, hotel carcass supply, and farmers seeking lowest cost of feed per kg of meat gained in hot tropical pens.',
     description:
-      'The global benchmark for meat yield and heat tolerance. Cobb 500 converts lower-density and economic grain rations with remarkable efficiency. Known for uniform body conformation, rapid early feathering, and strong cardiovascular health under tropical pen heat.',
+      'A leading global breed for meat yield and heat tolerance. Cobb 500 converts lower-density and economic grain rations with remarkable efficiency. Known for uniform body conformation, rapid early feathering, and strong cardiovascular health under tropical pen heat.',
     strengths: [
       'Exceptional breast meat deposition commanding top prices from cold-room processors',
       'Superior feed conversion on cost-effective, lower-density tropical diets',
@@ -73,7 +73,7 @@ const BROILER_STRAINS: StrainDetail[] = [
     id: 'ross-308',
     name: 'Ross 308 Commercial Broiler',
     breeder: 'Zartech / Amo Certified Primary Stock',
-    badge: 'Fastest Average Daily Weight Gain',
+    badge: 'Rapid Early Frame & Daily Weight Gain',
     targetWeight42Days: '2.45kg – 2.80kg (at 42 days)',
     fcrRange: '1.62 – 1.74',
     dailyGain: '58g – 65g / bird / day',
@@ -82,9 +82,9 @@ const BROILER_STRAINS: StrainDetail[] = [
     perBirdEstimate: '₦1,760 – ₦2,200',
     bestFor: 'Farmers targeting fast 38-to-42 day batch turnarounds and live-bird market sales where massive body frame commands premium prices.',
     description:
-      'The heavy-weight commercial champion. Bred for aggressive appetite and accelerated daily weight gain. When fed high-protein starter crumples (22%–23% CP), Ross 308 reaches 2.5kg faster than any other strain in Nigerian open-sided pens.',
+      'A world-renowned heavy-weight commercial lineage bred for hearty appetite and vigorous daily weight gain. When managed with quality high-protein starter rations (22%–23% CP), Ross 308 develops a robust skeletal frame and achieves rapid growth in Nigerian open-sided pens.',
     strengths: [
-      'Unrivaled average daily gain (ADG) achieving target harvest in 38 to 42 days',
+      'Consistent, high average daily gain (ADG) achieving target harvest in 38 to 42 days',
       'Heavy leg quarter and drumstick development favored in Nigerian live-bird markets',
       'High digestive efficiency on standard commercial broiler starter and finisher rations',
       'Strong vigor and rapid feeding reflex right out of the delivery carton',
@@ -195,7 +195,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'Which broiler breed is the best for fast weight gain in Nigeria?',
-    a: 'Ross 308 and Cobb 500 are the undisputed leaders for fast weight gain in Nigeria. Ross 308 records the highest average daily gain, easily hitting 2.5kg in 40 to 42 days under quality high-protein feeding. Cobb 500 delivers unmatched breast meat percentage and performs exceptionally well during hot dry weather on standard commercial rations. Arbor Acres Plus is best for farmers wanting rugged leg strength and lower ascites mortality.',
+    a: 'Every certified commercial broiler breed has specific production strengths engineered for different management setups. Ross 308 excels in early skeletal frame development and high daily weight gain (reaching 2.5kg in 40–42 days under balanced feeding). Cobb 500 provides high breast meat conformation and outstanding feed efficiency in tropical heat. Arbor Acres Plus offers exceptional leg strength and low ascites mortality in open-sided pens, while Marshall is ideal for farmers holding birds to 7+ weeks for large 3kg+ festive live sales. D-AminGrow supplies all certified commercial parent-stock lineages from Nigeria’s accredited primary hatcheries.',
   },
   {
     q: 'How many bags of feed will 100 broilers eat from day one to 6 weeks?',
@@ -537,7 +537,7 @@ export default function BroilerLandingClient({ nextMonday, nextThursday }: Broil
               {
                 title: 'Ghost Allocations & Cancellations',
                 problem: 'Disrupted marketing dates and dead weeks',
-                description: 'Middlemen collect booking deposits without confirmed hatchery quota slots. When clearing day arrives, they cancel orders or supply inferior substitute breeds, ruining your target market delivery.',
+                description: 'Middlemen collect booking deposits without confirmed hatchery quota slots. When clearing day arrives, they cancel orders or supply unauthorized breed substitutions, disrupting your planned harvest timeline.',
                 impact: 'Missed festive market windows',
                 icon: Clock,
                 border: 'border-rose-200',
@@ -585,6 +585,15 @@ export default function BroilerLandingClient({ nextMonday, nextThursday }: Broil
             <p className="text-base text-slate-600 leading-relaxed">
               Use our interactive tools to select the best commercial broiler lineage, model your 42-day feed consumption in 25kg bags, and review critical weekly weight gain gates:
             </p>
+
+            {/* Multi-Strain Allocation Policy Notice */}
+            <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 sm:p-5 max-w-3xl mx-auto my-6 text-left flex items-start gap-3.5">
+              <ShieldCheck className="h-5 w-5 text-emerald-700 shrink-0 mt-0.5" />
+              <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <strong className="text-slate-900 font-bold block mb-0.5">Our Multi-Strain Allocation Policy:</strong>
+                D-AminGrow supplies all certified commercial broiler lineages in Nigeria—including Ross 308, Cobb 500, Arbor Acres Plus, and Marshall. We do not have our own proprietary strain, nor do we favor one over another. Every strain has proven, distinct production strengths engineered by primary breeders; our role is to objectively guide you toward the optimal breed matching your pen climate, feed plan, and market destination.
+              </div>
+            </div>
 
             {/* Pill Tabs */}
             <div className="inline-flex p-1.5 bg-slate-100 rounded-2xl border border-slate-200 flex-wrap justify-center gap-1.5">

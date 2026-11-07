@@ -546,6 +546,15 @@ export default function TurkeyLandingClient({
             <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
               Plan your entire festive or year-round production cycle with precision. Switch between our strain comparison matrix, interactive festive revenue calculator, 3-phase fattening protocol, and 20-week market timing calendar.
             </p>
+
+            {/* Multi-Strain Allocation Policy Notice */}
+            <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 sm:p-5 max-w-3xl mx-auto my-6 text-left flex items-start gap-3.5">
+              <ShieldCheck className="h-5 w-5 text-emerald-700 shrink-0 mt-0.5" />
+              <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <strong className="text-slate-900 font-bold block mb-0.5">Independent Turkey Distribution Policy:</strong>
+                D-AminGrow supplies both Foreign Nicholas White and Local &amp; Bronze Hybrid poults from certified primary multiplication hatcheries. We do not breed proprietary strains or promote one breed over another. Both genetic lines serve distinct farm goals: heavy intensive meat conformation vs rugged tropical foraging resilience. Our role is to ensure certified parentage, zero heat stress during transit, and verified vaccine protocols.
+              </div>
+            </div>
           </div>
 
           {/* Interactive Navigation Tabs */}
@@ -708,10 +717,10 @@ export default function TurkeyLandingClient({
                 </div>
                 <div className="space-y-1">
                   <h4 className="text-base sm:text-lg font-bold font-heading text-white">
-                    Our Practical Opinion on Turkey Strain Selection:
+                    Our Practical Guidance on Commercial Turkey Selection:
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    If your farm targets corporate hampers, high-end festive buyers, or hotel carcass supply, <strong className="text-emerald-400">Foreign Nicholas White is mandatory</strong>. Nothing else produces 11kg–14kg toms at 20–22 weeks. However, if your brooding facility lacks automated gas heating or your local feeds lack 28% crude protein, choose <strong className="text-amber-300">Local Bronze turkeys</strong> to prevent leg collapse.
+                    D-AminGrow supplies both <strong className="text-emerald-400">Foreign Nicholas White</strong> and <strong className="text-amber-300">Local &amp; Hybrid Bronze</strong> poults. Neither strain is inherently superior; selection depends on your management infrastructure and target market. If your farm operates intensive brooding heat and access to 28% crude protein feed, Foreign Nicholas White delivers exceptional 11kg–14kg toms for high-end carcass and corporate hamper buyers. If you operate semi-intensive housing or farm-compounded rations, Local and Bronze hybrids provide rugged tropical hardiness, flexible feeding, and high demand in traditional open live-bird markets.
                   </p>
                 </div>
               </div>

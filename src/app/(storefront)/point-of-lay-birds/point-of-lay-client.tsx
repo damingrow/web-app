@@ -68,8 +68,8 @@ const POL_BREED_CATALOG: PolBreedItem[] = [
     feedIntake: '110g – 115g per bird / day at full lay',
     estimatedRatePerBird: 14500,
     image: '/products/Chicks/Point of Lay.jpeg',
-    badge: 'Nigeria’s #1 Commercial Layer',
-    desc: 'The undisputed benchmark for commercial brown egg production in Nigeria. Renowned for calm pen temperament, high feed efficiency, and persistent 72-week lay cycles.',
+    badge: 'High-Producing Commercial Brown Layer',
+    desc: 'A leading commercial brown egg layer in Nigeria, renowned for calm pen temperament, high feed efficiency, and persistent 72-week lay cycles.',
   },
   {
     id: 'hy-line-brown',
@@ -558,6 +558,15 @@ export default function PointOfLayClient() {
             </div>
           </div>
 
+          {/* Independent Multi-Strain Allocation Notice */}
+          <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 sm:p-5 mb-8 text-left flex items-start gap-3.5">
+            <ShieldCheck className="h-5 w-5 text-emerald-700 shrink-0 mt-0.5" />
+            <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <strong className="text-slate-900 font-bold block mb-0.5">Commercial Breed Selection Policy:</strong>
+              D-AminGrow rears and supplies all certified commercial layer lineages in Nigeria, including ISA Brown, Hy-Line Brown, and Dominant Black. We do not have our own proprietary strain and do not favor one lineage over another. Each breed has unique production advantages—ISA Brown for early lay peak, Hy-Line Brown for shell durability and feed conservation, and Dominant Black for rustic climate hardiness. Our veterinary team ensures verified weights, complete vaccination, and pubic bone spacing regardless of chosen strain.
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {POL_BREED_CATALOG.map((breed) => (
               <div
@@ -878,7 +887,7 @@ export default function PointOfLayClient() {
                 },
                 {
                   title: 'If You Are Looking for Cheap Off-Grade Culls',
-                  desc: 'We supply exclusively certified first-generation ISA Brown and Hy-Line lineages with documented weights. We do not trade in exhausted spent layers or mixed runts.',
+                  desc: 'We supply certified first-generation commercial lineages (including ISA Brown, Hy-Line Brown, and Dominant Black) with documented weights. We do not trade in exhausted spent layers or mixed runts.',
                 },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start gap-4 p-5 rounded-2xl bg-rose-50/50 border border-rose-200/70">

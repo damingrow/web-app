@@ -499,6 +499,15 @@ export default function ChicksClient({ nextMonday, nextThursday }: ChicksClientP
             </div>
           </div>
 
+          {/* Multi-Strain Independent Allocation Notice */}
+          <div className="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 sm:p-5 mb-8 text-left flex items-start gap-3.5">
+            <ShieldCheck className="h-5 w-5 text-emerald-700 shrink-0 mt-0.5" />
+            <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <strong className="text-slate-900 font-bold block mb-0.5">Independent Multi-Hatchery Distribution:</strong>
+              D-AminGrow is an authorized primary distributor across all certified commercial breeds in Nigeria—broilers (Ross 308, Cobb 500, Arbor Acres Plus, Marshall), layers (ISA Brown, Hy-Line Brown, Dominant Black), turkeys (Nicholas White, Bronze hybrids), and dual-purpose birds (Amo Noiler, cockerels). We do not own proprietary breeding stock, nor do we prioritize one commercial breed over another. We source exclusively authentic first-generation parentage from Nigeria’s tier-1 accredited hatcheries (Zartech, Amo, Chi, Supreme, Sayed) based on your farm’s operational goals.
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {BREED_CATALOG.map((breed) => (
               <div
