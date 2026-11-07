@@ -8,9 +8,7 @@ import {
   ShieldCheck,
   AlertTriangle,
   MessageCircle,
-  Phone,
   ArrowRight,
-  ChevronRight,
   Clock,
   HelpCircle,
   Package,
@@ -20,7 +18,6 @@ import {
   XCircle,
   PhoneCall,
   Layers,
-  Award,
 } from 'lucide-react';
 
 export const metadata: Metadata = {

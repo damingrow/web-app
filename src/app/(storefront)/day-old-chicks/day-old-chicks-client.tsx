@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  Calendar,
   CheckCircle2,
   ArrowRight,
   ShieldCheck,
@@ -15,27 +14,18 @@ import {
   Feather,
   ChevronRight,
   Clock,
-  Sparkles,
-  Layers,
   Thermometer,
   XCircle,
   Copy,
   Check,
   TrendingUp,
   Scale,
-  Award,
   AlertTriangle,
-  Calculator,
-  HelpCircle,
   ChevronDown,
   Syringe,
-  FileSpreadsheet,
-  BookOpen,
   DollarSign,
-  AlertCircle,
-  CheckCircle,
 } from 'lucide-react';
-import { HATCHERY_PARTNERS, CLIENT_FARMS } from '@/data/partners-and-clients';
+import { CLIENT_FARMS } from '@/data/partners-and-clients';
 
 export interface DayOldChicksClientProps {
   nextMonday: string;

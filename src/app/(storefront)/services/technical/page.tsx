@@ -11,22 +11,15 @@ import {
   HeartPulse,
   CheckCircle2,
   MessageCircle,
-  Phone,
-  ArrowRight,
-  ChevronRight,
   Star,
   Clock,
-  MapPin,
-  Award,
   Wrench,
-  Users,
   Sparkles,
   AlertTriangle,
   XCircle,
   HelpCircle,
   PhoneCall,
   Layers,
-  Flame,
 } from 'lucide-react';
 
 export const metadata: Metadata = {

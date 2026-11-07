@@ -8,16 +8,10 @@ import { PolBookingForm } from '@/components/forms/pol-booking-form';
 import {
   Egg,
   ShieldCheck,
-  Calendar,
   BarChart3,
   MessageCircle,
-  Phone,
-  ArrowRight,
-  ChevronRight,
-  Star,
   Clock,
   Feather,
-  Award,
   Sparkles,
   AlertTriangle,
   XCircle,
@@ -25,7 +19,6 @@ import {
   PhoneCall,
   Layers,
   CheckCircle2,
-  TrendingUp,
   Truck,
 } from 'lucide-react';
 
