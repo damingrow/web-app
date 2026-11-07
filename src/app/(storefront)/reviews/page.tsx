@@ -122,11 +122,11 @@ const REVIEWS: ReviewItem[] = [
     rating: 5,
     date: 'October 2026',
     verified: true,
-    highlight: 'Reliable Booking Desk & Genuine Parent-Stock Chicks',
+    highlight: 'Two Batches Supplied on Time, Complete & Healthy',
     review:
-      'Loveday Farm has placed repeat orders for broilers and turkeys. D-AminGrow coordinates directly with top hatcheries so we always receive genuine first-generation parent-stock chicks. Their waybill tracking and phone updates keep us completely at ease across every batch.',
+      'We are really happy with the two set of birds you supplied. Delivery was on time and they were complete and healthy. Thank you so much D-AminGrow',
     category: 'chicks',
-    metric: { value: '5×', label: 'Repeat Orders Placed' },
+    metric: { value: '100%', label: 'Complete & Healthy' },
   },
   {
     id: 'rev-04',

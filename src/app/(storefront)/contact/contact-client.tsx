@@ -1129,11 +1129,11 @@ export function ContactClient() {
                 </div>
                 <div className="text-xs text-amber-500">★★★★★ 5.0 Verified Client</div>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  &ldquo;Shipping live vaccines to Warri used to give us constant failed titers. With D-AminGrow, the cold-pack boxes arrive still iced with indicator strips green. Their veterinary WhatsApp desk walked our pen manager through Newcastle LaSota administration on Day 21 without extra consultancy charges.&rdquo;
+                  &ldquo;We are really happy with the two set of birds you supplied. Delivery was on time and they were complete and healthy. Thank you so much D-AminGrow&rdquo;
                 </p>
               </div>
               <div className="pt-3 border-t border-slate-200 text-[11px] text-slate-500">
-                Flock: 2,500 ISA Brown Layers · Continuous 2°C–8°C Verified
+                Flock: Commercial Birds · On-Time Delivery, Complete &amp; Healthy
               </div>
             </div>
 

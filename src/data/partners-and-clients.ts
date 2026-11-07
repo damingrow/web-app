@@ -104,7 +104,7 @@ export const CLIENT_FARMS: ClientFarm[] = [
     flockCapacity: '3,500+ Birds',
     relationshipYears: '3+ Years',
     testimonialSnippet:
-      'Their dynamic chick pricing desk is completely transparent. We get real-time price updates on WhatsApp and on-time motor park dispatch.',
+      'We are really happy with the two set of birds you supplied. Delivery was on time and they were complete and healthy. Thank you so much D-AminGrow',
     rating: 5,
   },
   {
