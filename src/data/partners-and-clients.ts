@@ -78,11 +78,11 @@ export const CLIENT_FARMS: ClientFarm[] = [
     id: 'ajila-farm',
     name: 'Ajila Farm',
     location: 'Oyo State Poultry Belt',
-    flockType: 'Commercial Broilers & Pullets',
+    flockType: 'Poultry Vaccines',
     flockCapacity: '4,000+ Birds',
     relationshipYears: '3+ Years',
     testimonialSnippet:
-      'D-AminGrow delivers our day-old chicks with consistent 98%+ brooding livability and authentic hatchery vaccination documentation.',
+      'D-AminGrow delivers our vaccines and they come in good condition and they are exact as we order. Thank you D-AminGrow',
     rating: 5,
   },
   {

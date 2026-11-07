@@ -1113,11 +1113,11 @@ export function ContactClient() {
                 </div>
                 <div className="text-xs text-amber-500">★★★★★ 5.0 Verified Client</div>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  &ldquo;When you book 5,000 broilers, having direct phone contact with the waybill driver at 6:30 AM before heat builds up makes all the difference. D-AminGrow is the only distributor where the support desk actually stays on the line until the last carton is counted into the pen.&rdquo;
+                  &ldquo;D-AminGrow delivers our vaccines and they come in good condition and they are exact as we order. Thank you D-AminGrow&rdquo;
                 </p>
               </div>
               <div className="pt-3 border-t border-slate-200 text-[11px] text-slate-500">
-                Flock: 5,000 Commercial Broilers · 98.6% 1st-Week Livability
+                Products: Cold-Chain Poultry Vaccines · Oyo State Poultry Belt
               </div>
             </div>
 

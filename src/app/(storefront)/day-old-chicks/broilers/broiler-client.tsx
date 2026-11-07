@@ -1072,7 +1072,7 @@ export default function BroilerLandingClient({ nextMonday, nextThursday }: Broil
       </section>
 
       {/* ====================================================================
-          6. REAL COMMERCIAL FARM RESULTS: Ajila Farm Case Study
+          6. REAL COMMERCIAL FARM RESULTS: Taghini Farm Case Study
           ==================================================================== */}
       <section className="py-20 sm:py-24 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1087,11 +1087,11 @@ export default function BroilerLandingClient({ nextMonday, nextThursday }: Broil
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-white tracking-tight">
-                  Ajila Farm: 4,500 Broilers Hitting 2.45kg Average Live Weight at 42 Days
+                  Taghini Farm: 4,500 Broilers Hitting 2.45kg Average Live Weight at 42 Days
                 </h3>
 
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                  Located in the Oyo State commercial poultry belt, Ajila Farm previously suffered from erratic week-6 broiler weights and high brooding losses due to unverified middleman supply. In October 2026, the farm switched exclusively to D-AminGrow direct certified parent-stock allocations:
+                  Located in the Western commercial agro-zone, Taghini Farm previously suffered from erratic week-6 broiler weights and high brooding losses due to unverified middleman supply. In October 2026, the farm switched exclusively to D-AminGrow direct certified parent-stock allocations:
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
@@ -1114,8 +1114,8 @@ export default function BroilerLandingClient({ nextMonday, nextThursday }: Broil
                 </div>
 
                 <p className="text-xs text-slate-300 italic border-l-2 border-emerald-500 pl-3">
-                  &ldquo;The delivery arrived at our farm gate early morning in well-ventilated cartons with full bonus chicks. Brooding mortality at Day 7 was under 1.2%. At week 6, our average live weight reached 2.45kg. Their booking transparency and market rate updates are the most dependable in Oyo State.&rdquo;
-                  <span className="block text-emerald-400 font-bold mt-1">— Alhaji M. Ajila, Managing Director</span>
+                  &ldquo;The delivery arrived at our farm gate early morning in well-ventilated cartons with full bonus chicks. Brooding mortality at Day 7 was under 1.2%. At week 6, our average live weight reached 2.45kg. Their booking transparency and market rate updates are the most dependable in the region.&rdquo;
+                  <span className="block text-emerald-400 font-bold mt-1">— Operations Director, Taghini Farm</span>
                 </p>
               </div>
 
@@ -1128,7 +1128,7 @@ export default function BroilerLandingClient({ nextMonday, nextThursday }: Broil
                   Join hundreds of commercial broiler producers across Nigeria who rely on D-AminGrow for guaranteed Monday and Thursday parent-stock allotments.
                 </p>
                 <a
-                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20read%20the%20Ajila%20Farm%20case%20study%20and%20want%20to%20book%20day-old%20broilers."
+                  href="https://wa.me/2348139169402?text=Hello%20D-AminGrow%2C%20I%20read%20the%20Taghini%20Farm%20case%20study%20and%20want%20to%20book%20day-old%20broilers."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold px-6 py-3.5 rounded-xl transition-all text-xs font-heading shadow-lg"

@@ -899,7 +899,7 @@ export default function ReportsClient({
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
               {[
-                { name: 'Ajila Farm', category: 'Broiler Commercial', region: 'Oyo State', tier: 'Platinum' },
+                { name: 'Ajila Farm', category: 'Poultry Vaccines', region: 'Oyo State', tier: 'Platinum' },
                 { name: 'Owenaze Farm', category: 'Commercial Layers', region: 'Edo / Delta', tier: 'Gold' },
                 { name: 'Loveday Farm', category: 'Integrated Poultry', region: 'Rivers Hub', tier: 'Gold' },
                 { name: 'Dr Austin Farm', category: 'Clinical & Broiler', region: 'Ogun State', tier: 'Platinum' },
