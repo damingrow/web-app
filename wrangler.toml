@@ -1,15 +1,16 @@
-name = "damingrow"
+name = "web-app"
 main = ".open-next/worker.js"
 compatibility_date = "2025-02-14"
 compatibility_flags = ["nodejs_compat"]
 
-# Workers Static Assets binding for Next.js static output
-assets = { directory = ".open-next/assets", binding = "ASSETS" }
-
-# Production KV namespace for Incremental Static Regeneration (ISR) cache
-# [[kv_namespaces]]
-# binding = "NEXT_CACHE_WORKERS_KV"
-# id = "<YOUR_PRODUCTION_KV_ID>"
+# Workers Static Assets configuration
+# Enables direct edge CDN asset delivery with 0 ms CPU time and 0 billed Worker requests on the Free Plan.
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+html_handling = "drop-trailing-slash"
+not_found_handling = "none"
+run_worker_first = false
 
 # Cloudflare Cron Triggers for background operational tasks (e.g. daily lead status updates)
 [triggers]

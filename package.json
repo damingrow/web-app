@@ -5,9 +5,9 @@
   "description": "D-AminGrow — High-Performance Livestock & Agricultural Platform",
   "scripts": {
     "dev": "next dev",
-    "build": "opennextjs-cloudflare build",
+    "build": "opennextjs-cloudflare build && node scripts/prepare-cloudflare-assets.mjs",
     "build:next": "next build",
-    "build:cloudflare": "opennextjs-cloudflare build",
+    "build:cloudflare": "opennextjs-cloudflare build && node scripts/prepare-cloudflare-assets.mjs",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
