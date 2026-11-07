@@ -23,7 +23,6 @@ import {
   TrendingDown,
   Info,
   Zap,
-  MapPin,
   BookOpen,
   Calculator,
 } from 'lucide-react';
@@ -275,25 +274,6 @@ export default function AccessoriesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
       />
 
-      {/* ====================================================================
-          DISPATCH NOTIFICATION BAR
-          ==================================================================== */}
-      <div className="bg-emerald-950 border-b border-emerald-900/60 py-2.5 px-4">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs text-emerald-300 font-medium">
-          <span className="flex items-center gap-1.5">
-            <Building className="h-3.5 w-3.5 text-emerald-400" />
-            100% commercial-grade poultry equipment
-          </span>
-          <span className="hidden sm:flex items-center gap-1.5">
-            <ShieldCheck className="h-3.5 w-3.5 text-cyan-400" />
-            Hot-dip galvanized battery cages — rust-resistant for 7–10 years
-          </span>
-          <span className="flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5 text-amber-400" />
-            Nationwide Nigeria delivery — Lagos · Ibadan · Abuja · Kano
-          </span>
-        </div>
-      </div>
 
       {/* ====================================================================
           HERO — 12-col grid, left 7 / right 5
