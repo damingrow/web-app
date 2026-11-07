@@ -719,64 +719,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ====================================================================
-          CASE STUDY / RESULTS — Verified Operational Proof
-          ==================================================================== */}
-      <section className="py-20 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-md p-8 sm:p-12">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full">
-                  Verified Batch Case Study
-                </span>
-                <h3 className="text-2xl font-extrabold font-heading text-slate-900 mt-2">
-                  1,200 Commercial Broiler Run (Ogun State Poultry Corridor)
-                </h3>
-              </div>
-              <div className="text-right">
-                <span className="text-xs text-slate-500">Duration: 42 Days</span>
-                <div className="text-sm font-bold text-emerald-700">Commercial Broiler Allotment</div>
-              </div>
-            </div>
-
-            <p className="text-sm text-slate-600 leading-relaxed py-6">
-              Grace Farm booked 24 cartons (1,200 chicks) dispatched on a Thursday schedule. Utilizing our pre-warmed brooding setup, electrolyte hydration protocol, and prompt Lasota immunization schedule, the flock achieved outstanding uniformity with minimal mortality.
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 bg-slate-50 rounded-2xl p-5 text-center">
-              <div>
-                <div className="text-2xl font-extrabold text-slate-900 font-heading">98.4%</div>
-                <div className="text-xs text-slate-500 font-medium">Flock Livability (19 lost)</div>
-              </div>
-              <div>
-                <div className="text-2xl font-extrabold text-slate-900 font-heading">2.52 kg</div>
-                <div className="text-xs text-slate-500 font-medium">Avg Weight at Day 42</div>
-              </div>
-              <div>
-                <div className="text-2xl font-extrabold text-slate-900 font-heading">1.58</div>
-                <div className="text-xs text-slate-500 font-medium">Feed Conversion Ratio</div>
-              </div>
-              <div>
-                <div className="text-2xl font-extrabold text-emerald-700 font-heading">₦2.14M</div>
-                <div className="text-xs text-slate-500 font-medium">Net Operating Margin</div>
-              </div>
-            </div>
-
-            <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="text-xs text-slate-500 italic">
-                &ldquo;D-AminGrow delivered on time. The chicks were active right from the carton with zero runts.&rdquo; — Farm Manager, Grace Farm
-              </span>
-              <Link
-                href="/reviews"
-                className="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 shrink-0"
-              >
-                Read More Farm Testimonials <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ====================================================================
           HONESTY FILTER: WE MAY NOT BE RIGHT FOR YOU IF...
